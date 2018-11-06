@@ -82,6 +82,8 @@ module.exports = __webpack_require__(2);
  * application frontend using useful Laravel and JavaScript libraries.
  */
 
+$(function () {})();
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {

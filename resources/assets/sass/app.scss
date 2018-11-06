@@ -1,5 +1,308 @@
+// 初始化开始
+html,
+body {
+	font-family: "SF Pro SC", "HanHei SC", "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "PingFang SC", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	position: relative;
+	background: #fff;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 300;
+}
 
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #626262;
+}
 
-body{
-    font-family:"Tahoma","Arial","Roboto","Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC","Hiragino Sans GB","Simsun,sans-self";
+.mdl-layout__container {
+	position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
+	font-weight: 300;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+h3 {
+	font-size: 32px;
+	font-weight: 400;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+.h5-500 {
+	font-weight: 500;
+}
+// 初始化结束
+
+// header开始
+.mdl-layout__header {
+    position: fixed;
+    transition: .5s cubic-bezier(0.935, 0.010, 0.270, 1.000) all;
+    overflow: hidden;
+}
+.mdl-layout__header-background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transition: .5s background;
+    background: rgba(255,255,255,0);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+}
+// 展开样式
+.mdl-layout__header--large-screen-menu-model {
+    min-height: 450px;
+    -webkit-box-shadow: 0px 2px 25px 5px rgba(0, 0, 0, 0.05) !important;
+    -moz-box-shadow: 0px 2px 25px 5px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0px 2px 25px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+header .mdl-layout__header-row {
+    width: 1170px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+header .mdl-layout-title .logo {
+    display: block;
+    width: 135px;
+    height: 45px;
+    // background: url(../images/logo-blue.png) no-repeat top left;
+    text-indent: -9999px;
+    background-size: 199px 45px;
+}
+
+.mdl-layout__header-row .mdl-navigation__link {
+    font-size: 16px;
+    font-weight: 800;
+    box-sizing: border-box;
+    height: 64px;
+    line-height: 64px;
+    border-bottom: 3px solid transparent;
+}
+.mdl-button--white-primary.mdl-button--white-primary.mdl-button--raised, .mdl-button--white-primary.mdl-button--white-primary.mdl-button--fab {
+    color: rgb(0, 132, 249);
+    background-color: rgb(255,255,255);
+}
+.mdl-button--white-primary.mdl-button--white-primary {
+    color: rgb(255,255,255);
+}
+.mdl-button--nav {
+    box-shadow: none;
+}
+.mdl-submail-large-screen-navigation-container {
+    width: 100%;
+    border-top: 1px solid rgba(100,100,100,0.0);
+    box-sizing: border-box;
+    position: absolute;
+    left: 0px;
+    top: 64px;
+    transition: .3s all;
+}
+.mdl-submail-large-screen-navigation-section {
+    width: 1130px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.mdl-submail-large-screen-navigation-product-container {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 30%;
+    float: left;
+}
+.mdl-submail-large-screen-navigation-product-container .submail-large-screen-navigation-menus-title {
+    margin: 15px 0 5px 0;
+}
+
+.mdl-submail-large-screen-navigation-product-container li {
+    width: 100%;
+}
+.mdl-submail-large-screen-navigation-product-container li {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transform: scale(1.1) translateY(-24px);
+    -ms-transform: scale(1.1) translateY(-24px);
+    transform: scale(1.1) translateY(-24px);
+    -webkit-transition: opacity 0.35s ease-out, -webkit-transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, -webkit-transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out, -webkit-transform 0.35s ease-out;
+}
+.mdl-submail-large-screen-navigation-product-container .submail-large-screen-navigation-menus-title a {
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+}
+.mdl-submail-large-screen-navigation-product-container li a {
+    font-size: 14px;
+    line-height: 34px;
+    text-decoration: none;
+    color: #999;
+    display: block;
+}
+.mdl-navigetion-sections {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transform: scale(1.1) translateY(-24px);
+    -ms-transform: scale(1.1) translateY(-24px);
+    transform: scale(1.1) translateY(-24px);
+    -webkit-transition: opacity 0.35s ease-out, -webkit-transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, -webkit-transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out, -webkit-transform 0.35s ease-out;
+}
+.online-chat-time, .submail-nav-tel-number {
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.online-chat-dec {
+    font-size: 12px;
+    color: #ccc;
+    width: 80%;
+}
+.online-chat-time, .submail-nav-tel-number {
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.mdl-layout:not(.is-small-screen) .mdl-layout--small-screen-only {
+    display: none;
+}
+
+header .mdl-layout__header-row {
+    width: 1170px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+// 移动端样式
+.mdl-layout__header-small-screen .mdl-layout-title .logo {
+    display: block;
+    width: 140px;
+    height: 38px;
+    // background: url(../images/logo.svg) no-repeat top left;
+    text-indent: -9999px;
+    background-size: 140px 38px;
+}
+
+header .mdl-layout-title .logo {
+    display: block;
+    width: 199px;
+    height: 45px;
+    // background: url(../images/logo.svg) no-repeat top left;
+    text-indent: -9999px;
+    background-size: 199px 45px;
+}
+.mdl-nav-button-container {
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    right: 2px;
+    top: 2px;
+}
+.mdl-nav-button-container label {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 51px;
+    height: 51px;
+    cursor: pointer;
+    -webkit-transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+}
+.submail-icon-nav-1, .submail-icon-nav-2, .submail-icon-nav-3 {
+    width: 51px;
+    height: 51px;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+}
+.submail-icon-nav-1 .submail-icon-nav {
+    -webkit-transition: -webkit-transform 0.2s 0.2s;
+    transition: -webkit-transform 0.2s 0.2s;
+    transition: transform 0.2s 0.2s;
+    transition: transform 0.2s 0.2s, -webkit-transform 0.2s 0.2s;
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+}
+
+.submail-icon-nav {
+    width: 23px;
+    height: 1px;
+    background: #fff;
+    top: 25px;
+    left: 14px;
+    position: absolute;
+}
+
+.submail-small-screen-navigation {
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+.submail-small-screen-navigation .submail-small-screen-navigation-container {
+    padding: 0px 50px 30px 50px;
+    height: 100%;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.submail-small-screen-navigation .submail-small-screen-navigation-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    padding-bottom: 80px;
+    visibility: hidden;
+    -webkit-transition: visibility 0s linear 1s;
+    transition: visibility 0s linear 1s;
+}
+.submail-small-screen-navigation .submail-small-screen-navigation-container ul li {
+    width: 100%;
+    height: 50px;
+    display: block;
+    border-bottom: 1px solid #626262;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transform: scale(1.1) translateY(-24px);
+    -ms-transform: scale(1.1) translateY(-24px);
+    transform: scale(1.1) translateY(-24px);
+    -webkit-transition: opacity 0.35s ease-out, -webkit-transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, -webkit-transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out, -webkit-transform 0.35s ease-out;
+}
+.submail-small-screen-navigation .submail-small-screen-navigation-container ul li a {
+    color: #fff;
+    display: block;
+    line-height: 60px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 300;
 }

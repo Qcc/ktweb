@@ -5,3 +5,7 @@
  * application frontend using useful Laravel and JavaScript libraries.
  */
 
+
+$(function () {
+      
+})();
