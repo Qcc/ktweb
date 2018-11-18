@@ -2,30 +2,29 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0">
     <title>@yield('title')</title>
-    <!-- Styles -->
-    <!-- <link href="{{ asset('bootstarp/css/bootstrap.min.css') }}" rel="stylesheet"> -->
-    <link href="{{ asset('material-design/material.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('animate/animate.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+  <link rel="stylesheet" href="/css/mdui.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/swiper.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/animate.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/iconfont.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
 </head>
+<body class="mdui-theme-primary-pink mdui-theme-accent-pink">
 @include('wwwlayouts._header')
-<body>
     <div class="mdl-layout__container">
         @yield('content')
     </div>
-<!-- @include('wwwlayouts._footer') -->
-
-
-<script src="{{ asset('bootstarp/js/jquery.min.js') }}"></script>
-<!-- <script src="{{ asset('bootstarp/js/popper.min.js') }}"></script> -->
-<!-- <script src="{{ asset('bootstarp/js/bootstrap.min.js') }}"></script> -->
-<script src="{{ asset('material-design/material.min.js') }}"></script>
-<link rel="stylesheet" href="{{ mix('/js/app.js') }}">
+@include('wwwlayouts._footer')
+<script src="/js/mdui.min.js"></script>
+  <script src="/js/swiper.min.js"></script>
+  <script src="/js/iconfont.js"></script>
+  <script src="/js/countUp.min.js"></script>
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>

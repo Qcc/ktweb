@@ -1,94 +1,135 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+var $$ = mdui.JQ;
+// body 动画
+var ctbsRun = true,
+	kingdeeRun = true,
+	yzjRun = true,
+	jdyRun = true
+	enterprisesRun = true,
+	usersRun = true;
+// body 动画结束
+// header部分
+$$(document).ready(function () {
+	// 展开导航菜单
+	$$('.kt-products').on('click', function () {
+		$$('.kt-menu-tab-head i').removeClass('active');
+		if ($$('.kt-nav-header-open').length === 0) {
+			$$('.kt-nav-header').toggleClass('kt-nav-header-open');
+			$$('.kt-products i').first().addClass('active');
+		} else if ($$('.products-panl').length !== 0) {
+			$$('.kt-nav-header').removeClass('kt-nav-header-open');
+		} else {
+			$$('.kt-products i').first().addClass('active');
+		}
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		if (scrollTop > 0) {
+			$$('.kt-nav-header').addClass('kt-header-top kt-header-top-and-open');
+		}
+		$$('.kt-menu-warp .kt-menu-panl').removeClass('active products-panl solutions-panl');
+		$$('.kt-menu-warp .kt-menu-panl').first().addClass('active products-panl');
 
-__webpack_require__(1);
-module.exports = __webpack_require__(2);
+	});
 
+	$$('.kt-solutions').on('click', function () {
+		$$('.kt-menu-tab-head i').removeClass('active');
+		if ($$('.kt-nav-header-open').length === 0) {
+			$$('.kt-nav-header').toggleClass('kt-nav-header-open');
+			$$('.kt-solutions i').first().addClass('active');
+		} else if ($$('.solutions-panl').length !== 0) {
+			$$('.kt-nav-header').removeClass('kt-nav-header-open');
+		} else {
+			$$('.kt-solutions i').first().addClass('active');
+		}
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		if (scrollTop > 0) {
+			$$('.kt-nav-header').addClass('kt-header-top kt-header-top-and-open');
+		}
+		$$('.kt-menu-warp .kt-menu-panl').removeClass('active products-panl solutions-panl');
+		$$('.kt-menu-warp .kt-menu-panl').last().addClass('active solutions-panl');
+	});
 
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
+	// 添加导航菜单背景色
+	$$(document).on("scroll", function () {
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		if (scrollTop > 0) {
+			if ($$('.kt-nav-header').hasClass('kt-nav-header-open')) {
+				$$('.kt-nav-header').addClass('kt-header-top kt-header-top-and-open');
+			} else {
+				$$('.kt-nav-header').addClass('kt-header-top');
+			}
+		} else {
+			$$('.kt-nav-header').removeClass('kt-header-top kt-header-top-and-open');
+		};
+		runNumberAnimat(); // 添加body内容数字动画
+	});
+	// 展开移动端菜单导航
+	$$('.ktm-nav-menu').on('click', function () {
+		$$('.kt-nav-header').toggleClass('kt-nav-header-open')
+	});
+	// header部分结束
 
+	// 初始化首页轮播图
+	var swiper = new Swiper('.swiper-container', {});
 
-/**
- * First, we will load all of this project's Javascript utilities and other
- * dependencies. Then, we will be ready to develop a robust and powerful
- * application frontend using useful Laravel and JavaScript libraries.
- */
+	// 初始化元素可视运行动画
+	wow = new WOW({
+		animateClass: 'animated',
+	});
+	wow.init();
 
-$(function () {})();
+	// 执行数字动画
+	runNumberAnimat();
 
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
+});
 
-// removed by extract-text-webpack-plugin
+// 检查元素是否可见
+function isVisible(element, winScrollTop) {
+	var mainOffsetTop = $$("#" + element).offset().top;
+	var mainHeight = $$("#" + element).height();
+	var winHeight = $$(window).height();
+	if (winScrollTop > mainOffsetTop + mainHeight || winScrollTop < mainOffsetTop - winHeight) {
+		return false;
+	} else {
+		return true;
+	}
+}
 
-/***/ })
-/******/ ]);
+// 启动数字动画
+function runNumberAnimat(){
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	if (isVisible('ctbs', scrollTop) && ctbsRun) {
+		// 初始化数字动态动画
+		var ctbs = new CountUp('ctbs', 1, 10000, 0, 3);
+		ctbs.start();
+		ctbsRun = false;
+	}
+	if (isVisible('kingdee', scrollTop) && kingdeeRun) {
+		// 初始化数字动态动画
+		var kingdee = new CountUp('kingdee', 1, 70, 0, 3);
+		kingdee.start();
+		kingdeeRun = false;
+	}
+	if (isVisible('yzj', scrollTop) && yzjRun) {
+		// 初始化数字动态动画
+		var yzj = new CountUp('yzj', 1, 99, 0, 3);
+		yzj.start();
+		yzjRun = false;
+	}
+	if (isVisible('jdy', scrollTop) && jdyRun) {
+		// 初始化数字动态动画
+		var jdy = new CountUp('jdy', 1, 80, 0, 3);
+		jdy.start();
+		jdyRun = false;
+	}
+	if (isVisible('enterprises', scrollTop) && enterprisesRun) {
+		// 初始化数字动态动画
+		var enterprises = new CountUp('enterprises', 1, 10000, 0, 3);
+		enterprises.start();
+		enterprisesRun = false;
+	}
+	if (isVisible('users', scrollTop) && usersRun) {
+		// 初始化数字动态动画
+		var users = new CountUp('users', 1, 100000, 0, 3);
+		users.start();
+		usersRun = false;
+	}
+}

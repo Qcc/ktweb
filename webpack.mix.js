@@ -11,12 +11,11 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .copyDirectory('resources/assets/material-design', 'public/material-design')
-   .copyDirectory('resources/assets/font-style', 'public/font-style')
-   .copyDirectory('resources/assets/bootstarp', 'public/bootstarp')
-   .copyDirectory('resources/assets/animate', 'public/animate');
+mix.copyDirectory('resources/assets/images', 'public/images')
+   .copyDirectory('resources/assets/fonts', 'public/fonts')
+   .copyDirectory('resources/assets/icons', 'public/icons')
+   .copyDirectory('resources/assets/js', 'public/js')
+   .copyDirectory('resources/assets/css', 'public/css');
 
 	// 生产环境添加版本号
   if (mix.inProduction()) {
