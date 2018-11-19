@@ -46,7 +46,7 @@
 
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
         <h4 class="mdui-text-color-white">微信公众号</h4>
-        <img src="./images/wx_kouton.jpg" alt="沟通科技微信公众号" style="width: 100px;">
+        <img src="/images/wx_kouton.jpg" alt="沟通科技微信公众号" style="width: 100px;">
       </div>
     </div>
 

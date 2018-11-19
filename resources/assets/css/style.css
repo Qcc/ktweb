@@ -716,6 +716,11 @@ a:active {
     border-bottom: 1px solid #eee;
 }
 
+.news-big-content-warp .news-date {
+    text-align: right;
+    position: absolute;
+}
+
 /* 小于600px宽度 */
 @media screen and (max-width: 600px) {
     .news-big-content-warp h3 {
@@ -731,15 +736,8 @@ a:active {
 
     .news-big-content-warp .news-date {
         font-size: 12px;
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    .news-big-content-warp {
-        position: absolute;
-        top: 85%!important;
-        left: 30%;
-        margin: -50px 0 0 0;
+        right: 5px;
+        bottom: 5px;
     }
 }
 
@@ -750,29 +748,26 @@ a:active {
         top: 0;
         right: 0;
     }
+
     .news-big-content-warp h3 {
         padding-left: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
     .news-big-item {
         padding: 0 10px;
     }
+
     .news-big-content-warp .news-summary {
         padding-left: 10px;
     }
 
     .news-big-content-warp .news-date {
         font-size: 12px;
-        text-align: right;
-    }
-
-    .news-big-content-warp {
-        position: absolute;
-        top: 70%;
-        left: 30%;
-        margin: -50px 0 0 0;
+        right: 5px;
+        bottom: 5px;
     }
 
     .ktnews-tab-warp .mdui-p-a-2 {
@@ -799,14 +794,8 @@ a:active {
         overflow: hidden;
         text-indent: 25px;
     }
-
-    .news-big-content-warp {
-        position: absolute;
-        top: 80%;
-        left: 30%;
-        margin: -50px 0 0 0;
-    }
 }
+
 /* 大于1024px宽度 */
 @media screen and (min-width: 1024px) {
     .news-big-content-warp .news-summary {
@@ -817,7 +806,6 @@ a:active {
         text-indent: 25px;
         line-height: 20px;
         margin: 10px 0;
-    
     }
 }
 
@@ -837,9 +825,88 @@ a:active {
     left: 0;
     top: 0;
 }
-/* 测试 */
-
-
-
 
 /* 新闻资讯结束 */
+
+/* 账户注册页面 */
+/* 解锁滑块 */
+.lock-drag{
+    width: 280px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ccc;
+    position: relative;
+    margin:0 auto;
+}
+.lock-drag .bg{
+    width:40px;
+    height: 100%;
+    position: absolute;
+    background-color: #75CDF9;
+    
+}
+.lock-drag .text{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    user-select: none;
+    background: -webkit-gradient(linear,left top,right top,color-stop(0,#4d4d4d),color-stop(.4,#4d4d4d),color-stop(.5,#fff),color-stop(.6,#4d4d4d),color-stop(1,#4d4d4d));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: kttounlock 3s infinite linear;
+    -webkit-animation: kttounlock 2s infinite linear; 
+    -webkit-text-size-adjust: none;
+}
+.lock-drag .btn{
+    width:40px;
+    height: 38px;
+    position: absolute;
+    border:1px solid #ccc;
+    cursor: move;
+    font-family: "宋体";
+    text-align: center;
+    background-color: #fff;
+    user-select: none;
+    color:#666;
+    touch-action: none;
+}
+
+@keyframes kttounlock {
+    0% {
+        background-position: -200px 0
+    }
+
+    100% {
+        background-position: 200px 0
+    }
+}
+@-webkit-keyframes kttounlock {
+    0% {
+        background-position: -200px 0
+    }
+
+    100% {
+        background-position: 200px 0
+    }
+}
+
+/*  大于600px */
+@media screen and (min-width: 600px) {   
+    .register-warp{
+        max-width: 960px;
+    }
+    .kt-log{
+        height: 100px;
+        line-height: 100px;
+    }
+}
+.register-title{
+    text-align: center;
+}
+.register-form{
+    width: 280px;
+    margin: 0 auto;
+}
+/* 账户注册页面结束 */

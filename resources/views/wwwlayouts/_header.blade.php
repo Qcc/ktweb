@@ -21,8 +21,8 @@
           产品社区</a>
       </nav>
       <nav class="kt-nav-login mdui-hidden-sm-down">
-        <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue">登录</a>
-        <a class="mdui-btn mdui-color-theme-accent mdui-ripple">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
+        <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
+        <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('users.create') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
       </nav>
 
     </div>
@@ -156,8 +156,8 @@
               精斗云</a></li>
           <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2be;</i>
               云之家</a></li>
-          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue">登录</a></li>
-          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple">注册有礼<i class="mdui-icon material-icons">&#xe8f6;</i></a></li>
+          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a></li>
+          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('users.create') }}">注册有礼<i class="mdui-icon material-icons">&#xe8f6;</i></a></li>
         </ul>
       </div>
     </div>

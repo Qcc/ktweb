@@ -68,16 +68,17 @@ $$(document).ready(function () {
 	// header部分结束
 
 	// 初始化首页轮播图
-	var swiper = new Swiper('.swiper-container', {});
-
-	// 初始化元素可视运行动画
-	wow = new WOW({
-		animateClass: 'animated',
-	});
-	wow.init();
-
-	// 执行数字动画
-	runNumberAnimat();
+	if($$('.swiper-container').length === 1){
+		var swiper = new Swiper('.swiper-container', {});
+		// 初始化元素可视运行动画
+		wow = new WOW({
+			animateClass: 'animated',
+		});
+		wow.init();
+		
+		// 执行数字动画
+		runNumberAnimat();
+	}
 
 });
 

@@ -230,6 +230,7 @@
         </div>
         <div id="ktnews-tab1" class="mdui-p-a-2">
           <div class="mdui-row">
+
             <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-lg-4 news-big-item">
               <div class="news-big-content-warp">
                 <h3 class="mdui-typo-title-opacity">这是标题适当方式发送发送电风扇电风扇的标题结束111</h3>
@@ -253,6 +254,7 @@
                 <img class="news-big-pictures" src="./images/solution2.jpg" alt="">
               </div>
             </div>
+            
           </div>
         </div>
         <div id="ktnews-tab2" class="mdui-p-a-2">

@@ -17,7 +17,7 @@ class UsersController extends Controller
     }
     // 创建用户页面
     public function create(){
-        return view('wwwlayouts.users.regist');
+        return view('wwwlayouts.users.register');
     }
     // 创建用户
     public function store(Request $request){
