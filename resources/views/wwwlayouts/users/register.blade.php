@@ -34,13 +34,13 @@
             <input class="mdui-textfield-input" name="phone" value="{{ old('phone') }}" pattern="^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$" type="text" required/>
             <div class="mdui-textfield-error">手机号不正确</div>
           </div>
-
-          <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">请输入验证码</label>
-            <input class="mdui-textfield-input" name="password" value="{{ old('password') }}" type="text" pattern="^.*(?=.{6,})(?=.*[a-zA-Z]).*$" required/>
-            <div class="mdui-textfield-error">密码至少 6 位，且包含大小写字母</div>
-            <div class="mdui-textfield-helper">请输入至少 6 位，且包含字母的密码</div>
-          </div>
+          
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">请输入验证码</label>
+                <input class="mdui-textfield-input" name="password" value="{{ old('password') }}" type="text" pattern="^.*(?=.{6,})(?=.*[a-zA-Z]).*$" required/>
+                <div class="mdui-textfield-error">密码至少 6 位，且包含大小写字母</div>
+                <div class="mdui-textfield-helper">请输入至少 6 位，且包含字母的密码</div>
+              </div>
 
           <div class="lock-drag">
             <div class="bg"></div>

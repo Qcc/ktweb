@@ -192,7 +192,7 @@ body {
     left: 0;
     top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
 }
 
 a:link {
@@ -901,12 +901,12 @@ a:active {
         height: 100px;
         line-height: 100px;
     }
+    .register-form{
+        width: 280px;
+        margin: 0 auto;
+    }
 }
 .register-title{
     text-align: center;
-}
-.register-form{
-    width: 280px;
-    margin: 0 auto;
 }
 /* 账户注册页面结束 */

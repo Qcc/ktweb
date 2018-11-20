@@ -2,7 +2,7 @@
     <div class="kt-nav-background"></div>
     <div class="kt-nav-warp">
       <div class="kt-nav-log mdui-typo-title mdui-inline mdui-m-l-5 mdui-hidden-sm-down">
-        <a href="/chs/store" class="kt-navigetion-sections">沟通科技1</a>
+        <a href="/" class="kt-navigetion-sections">沟通科技1</a>
       </div>
       <nav class="kt-nav mdui-typo-title mdui-inline mdui-hidden-sm-down kt-menu-tab-head ">
         <a href="javascript:;" class="kt-products mdui-m-l-5 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
@@ -21,8 +21,29 @@
           产品社区</a>
       </nav>
       <nav class="kt-nav-login mdui-hidden-sm-down">
+        @guest
         <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
         <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('users.create') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
+        @else
+        <a href="#">
+                {{ Auth::user()->name }}
+        </a>
+        <ul class="mdui-menu">
+          <li class="mdui-menu-item">
+            <a href="javascript:;" class="mdui-ripple">个人中心</a>
+          </li>
+          <li class="mdui-divider"></li>
+          <li class="mdui-menu-item">
+          <a href="{{ route('logout') }}" class="mdui-ripple"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+              退出</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+          </form>
+          </li>
+        </ul>
+        @endguest
       </nav>
 
     </div>
@@ -134,7 +155,7 @@
     </div>
     <div class="ktm-nav-warp">
       <div class="mdui-hidden-md-up mdui-float-left">
-        <a href="/chs/store" class=" ktm-logo kt-navigetion-sections">沟通科技</a>
+        <a href="/" class=" ktm-logo kt-navigetion-sections">沟通科技</a>
       </div>
       <nav class="ktm-nav-menu mdui-hidden-md-up mdui-float-right">
         <i class="mdui-icon material-icons kt-navigetion-sections active">&#xe3c7;</i>
@@ -156,8 +177,19 @@
               精斗云</a></li>
           <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2be;</i>
               云之家</a></li>
+          @guest
           <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a></li>
           <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('users.create') }}">注册有礼<i class="mdui-icon material-icons">&#xe8f6;</i></a></li>
+          @else
+          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue">个人中心</a></li>
+          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">退出</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+          </form>
+          </li>
+          @endguest
         </ul>
       </div>
     </div>

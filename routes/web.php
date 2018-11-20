@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'StaticPagesController@home')->name('home');
+Route::get('/', 'PagesController@home')->name('home');
 
 // 用户增删改查路由
 Route::get('/users', 'UsersController@index')->name('users.index');
@@ -27,4 +27,21 @@ Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
-Route::get('/category/{id}', 'StaticPagesController@managernews')->name('managernews');
+Route::get('/category/{id}', 'PagesController@managernews')->name('managernews');
+
+// 用户登录 注册 找回密码
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
