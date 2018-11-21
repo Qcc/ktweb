@@ -136,7 +136,7 @@ html {
 
 body {
     position: relative;
-    height: 100%;
+    /* height: 100%; */
     font-family: "Helvetica Neue", "goodbook", "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
     font-weight: 300;
     word-wrap: break-word;
@@ -830,46 +830,49 @@ a:active {
 
 /* 账户注册页面 */
 /* 解锁滑块 */
-.lock-drag{
+.lock-drag {
     width: 280px;
     height: 40px;
     line-height: 40px;
     background-color: #ccc;
     position: relative;
-    margin:0 auto;
+    margin: 0 auto;
 }
-.lock-drag .bg{
-    width:40px;
+
+.lock-drag .bg {
+    width: 40px;
     height: 100%;
     position: absolute;
     background-color: #75CDF9;
-    
+
 }
-.lock-drag .text{
+
+.lock-drag .text {
     position: absolute;
     width: 100%;
     height: 100%;
     text-align: center;
     user-select: none;
-    background: -webkit-gradient(linear,left top,right top,color-stop(0,#4d4d4d),color-stop(.4,#4d4d4d),color-stop(.5,#fff),color-stop(.6,#4d4d4d),color-stop(1,#4d4d4d));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, #fff), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: kttounlock 3s infinite linear;
-    -webkit-animation: kttounlock 2s infinite linear; 
+    -webkit-animation: kttounlock 2s infinite linear;
     -webkit-text-size-adjust: none;
 }
-.lock-drag .btn{
-    width:40px;
+
+.lock-drag .btn {
+    width: 40px;
     height: 38px;
     position: absolute;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     cursor: move;
     font-family: "宋体";
     text-align: center;
     background-color: #fff;
     user-select: none;
-    color:#666;
+    color: #666;
     touch-action: none;
 }
 
@@ -882,6 +885,7 @@ a:active {
         background-position: 200px 0
     }
 }
+
 @-webkit-keyframes kttounlock {
     0% {
         background-position: -200px 0
@@ -893,20 +897,24 @@ a:active {
 }
 
 /*  大于600px */
-@media screen and (min-width: 600px) {   
-    .register-warp{
+@media screen and (min-width: 600px) {
+    .register-warp {
         max-width: 960px;
     }
-    .kt-log{
+
+    .kt-log {
         height: 100px;
         line-height: 100px;
     }
-    .register-form{
+
+    .register-form {
         width: 280px;
         margin: 0 auto;
     }
 }
-.register-title{
+
+.register-title {
     text-align: center;
 }
+
 /* 账户注册页面结束 */

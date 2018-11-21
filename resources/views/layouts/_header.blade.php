@@ -2,7 +2,7 @@
     <div class="kt-nav-background"></div>
     <div class="kt-nav-warp">
       <div class="kt-nav-log mdui-typo-title mdui-inline mdui-m-l-5 mdui-hidden-sm-down">
-        <a href="/" class="kt-navigetion-sections">沟通科技1</a>
+        <a href="/" class="kt-navigetion-sections">沟通科技</a>
       </div>
       <nav class="kt-nav mdui-typo-title mdui-inline mdui-hidden-sm-down kt-menu-tab-head ">
         <a href="javascript:;" class="kt-products mdui-m-l-5 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
@@ -23,7 +23,7 @@
       <nav class="kt-nav-login mdui-hidden-sm-down">
         @guest
         <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
-        <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('users.create') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
+        <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
         @else
         <a href="#">
                 {{ Auth::user()->name }}
@@ -179,7 +179,7 @@
               云之家</a></li>
           @guest
           <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a></li>
-          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('users.create') }}">注册有礼<i class="mdui-icon material-icons">&#xe8f6;</i></a></li>
+          <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons">&#xe8f6;</i></a></li>
           @else
           <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue">个人中心</a></li>
           <li class="kt-navigetion-btn"><a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('logout') }}"

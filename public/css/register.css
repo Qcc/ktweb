@@ -1,0 +1,59 @@
+.kt-nav-warp nav.kt-nav-login,
+footer {
+    display: none;
+}
+.kt-nav-warp .kt-nav {
+    float: right;
+}
+
+.kt-nav-header .kt-nav-background {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.kt-nav-warp .kt-navigetion-sections,
+.kt-navigetion-sections {
+    color: #333 !important;
+}
+
+/* 小于600px宽度 */
+@media screen and (max-width: 600px) {
+}
+        .submit{
+            width: 100%;
+        }
+.form-group{
+    position: relative;
+}
+.send-sms{
+    width: 120px;
+    position: absolute;
+    right: 0;
+    bottom: 28px;
+}
+.send-sms .mdui-btn{
+    width: 120px;
+}
+.sms-input{
+    padding-right: 130px;
+}
+.kt-register ,.panel-heading{
+    line-height: 60px;
+    text-align: center;
+}
+/* 大于600px宽度 */
+@media screen and (min-width: 600px) {
+    .panel-body{
+        width: 280px;
+    }
+    .panel-heading{
+        border-bottom: 1px solid #ccc;
+        margin: 20px;
+    }
+    .panel-default{
+        border: 1px solid #ccc;
+        height: 506px;
+        width: 900px;
+        border-radius: 10px;
+        margin: 40px auto 20px;
+    }
+}
