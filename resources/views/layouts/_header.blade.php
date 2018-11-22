@@ -25,18 +25,22 @@
         <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
         <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
         @else
-        <a href="#">
-                {{ Auth::user()->name }}
+        <a class="kt-navigetion-sections" href="javascript:;" mdui-menu="{target: '#user-menu'}">
+          <img  class="avatar" src="/images/avatar.png" alt="">
+                {{ Auth::user()->username ?? hiddenPhone(Auth::user()->phone) }}
         </a>
-        <ul class="mdui-menu">
+        <ul class="mdui-menu mdui-menu-cascade" id="user-menu">
           <li class="mdui-menu-item">
-            <a href="javascript:;" class="mdui-ripple">个人中心</a>
+            <a href="javascript:;" class="mdui-ripple">
+            <i class="mdui-icon material-icons">&#xe7ff;</i>
+            个人中心</a>
           </li>
           <li class="mdui-divider"></li>
           <li class="mdui-menu-item">
           <a href="{{ route('logout') }}" class="mdui-ripple"
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
+              <i class="mdui-icon material-icons">&#xe0e4;</i>
               退出</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}

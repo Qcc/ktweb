@@ -48,9 +48,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'phone' => 'required|max:11|min:11',
+            'vercode' => 'required|max:5|min:5',
             'captcha' => 'required|captcha',
         ], [
             'captcha.required' => '验证码不能为空',
@@ -66,10 +65,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // 注册成功后删除会话中的验证码，修改captcha包中ajax多次请求验证失败的问题
+        $this->session->remove('captcha');
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'password' => bcrypt('password'),
         ]);
+        
     }
 }

@@ -8,3 +8,14 @@ function route_class()
 {
     return str_replace('.', '-', Route::currentRouteName());
 }
+/**
+ * 隐藏电话号码，星号显示
+ *
+ * @param String $phone
+ * @return void
+ */
+function hiddenPhone(String $phone){
+    $start = substr($phone, 0, 3);
+    $end = substr($phone, 7, 11);
+    return $start.'**'.$end;
+}

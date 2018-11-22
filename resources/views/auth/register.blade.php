@@ -11,31 +11,30 @@
         <form method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
-    <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-        <div class="mdui-textfield mdui-textfield-floating-label">
+    <div class="form-group">
+        <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('phone') ? ' mdui-textfield-invalid-html5' : '' }}">
           <label class="mdui-textfield-label">手机号码</label>
           <input id="phone" class="mdui-textfield-input" type="text" pattern="^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$" name="phone" value="{{ old('phone') }}" required/>
-          <div class="mdui-textfield-error">手机号不正确</div>
+          @if ($errors->has('phone'))
+              <div class="mdui-textfield-error">{{ $errors->first('phone') }}</div>
+          @else
+              <div class="mdui-textfield-error">手机号不正确</div>
+          @endif
         </div>
-        @if ($errors->has('phone'))
-            <span class="help-block">
-                <strong>{{ $errors->first('phone') }}</strong>
-            </span>
-        @endif
     </div>
 
-    <div class="form-group{{ $errors->has('vercode') ? ' has-error' : '' }}">
+    <div class="form-group" style="display:none;">
         <div class="sms-input">
-        <div class="mdui-textfield mdui-textfield-floating-label">
-          <label class="mdui-textfield-label">验证码</label>
-          <input id="vercode" class="mdui-textfield-input" type="text"  name="vercode" required/>
-          <div class="mdui-textfield-error">短信验证码不正确</div>
+        <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('vercode') ? ' mdui-textfield-invalid-html5' : '' }}">
+          <label class="mdui-textfield-label">短信验证码</label>
+          <input id="vercode" class="mdui-textfield-input" type="text"  name="vercode" />
+          @if ($errors->has('vercode'))
+              <div class="mdui-textfield-error">{{ $errors->first('vercode') }}</div>
+          @else
+              <div class="mdui-textfield-error">短信验证码不正确</div>
+          @endif
         </div>
-        @if ($errors->has('vercode'))
-            <span class="help-block">
-                <strong>{{ $errors->first('vercode') }}</strong>
-            </span>
-        @endif
+
         </div>
         <div class="send-sms">
         <button id="btnvercode" class="mdui-btn mdui-btn-raised mdui-ripple">获取验证码</button>
@@ -43,7 +42,25 @@
     </div>
 
     <div class="form-group">
-        <button id="submit" type="submit"  class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent submit">注 册</button>  
+        <div class="captcha-input">
+        <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('vercode') ? ' mdui-textfield-invalid-html5' : '' }}">
+          <label class="mdui-textfield-label">图形验证码</label>
+          <input id="captcha" class="mdui-textfield-input" type="text"  name="captcha" required/>
+          @if ($errors->has('captcha'))
+              <div class="mdui-textfield-error">{{ $errors->first('captcha') }}</div>
+          @else
+              <div class="mdui-textfield-error">图形证码不正确</div>
+          @endif
+        </div>
+        </div>
+
+        <div class="captcha-img">
+        <img class="thumbnail captcha" src="{{ captcha_src('default') }}" onclick="this.src='/captcha/default?'+Math.random()" title="点击图片重新获取验证码">
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <button id="submit" type="submit"  class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent submit">立 即 注 册</button>  
     </div>
     
     <div class="form-group kt-register">
@@ -62,17 +79,34 @@
 <script>
 var $$ = mdui.JQ;
 $$(document).ready(function () {
+    
     $$('#submit').on('click',function(e){
         var phone = $$('#phone');
-       var vercode = $$('#vercode');
+       var captcha = $$('#captcha');
        if(!phone.val() || !phone.val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/)){
-        phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
-        e.preventDefault();
+          phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+          e.preventDefault();
+          return false;
         }
-       if(!vercode.val()){
-        vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
-        e.preventDefault();
+       if(!captcha.val()){
+          captcha.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+          e.preventDefault();
+          return false;
         }
+        $$.ajax({
+          method: 'POST',
+          url: '/ajax/captcha',
+          headers: {'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')},
+          data: {
+            captcha: captcha.val()
+          },
+          success: function (data) {
+            if(JSON.parse(data).captcha){
+                $$('#submit').text('下 一 步');
+            }
+          }
+        });
+        return false;
     });
     var getCodeBtn = $$('#btnvercode');
     getCodeBtn.on('click',function(e){
@@ -94,25 +128,6 @@ $$(document).ready(function () {
             getCodeBtn.text("("+ num +")重新获取");
             num--;
         }, 1000);
-        var metas = $$('meta');
-        var csrfToken = '';
-        for (let i = 0; i < metas.length; i++) {
-            if(metas[i].name ===  'csrf-token'){
-                csrfToken = metas[i].content;
-                break;
-            }
-        }
-        $$.ajax({
-          method: 'POST',
-          url: './test.php',
-          data: {
-            phone: phone.val(),
-            csrfToken: csrfToken
-          },
-          success: function (data) {
-            console.log(data);
-          }
-        });
     })
 });
  

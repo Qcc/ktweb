@@ -24,7 +24,7 @@ footer {
 .form-group{
     position: relative;
 }
-.send-sms{
+.send-sms,.captcha-img{
     width: 120px;
     position: absolute;
     right: 0;
@@ -33,7 +33,7 @@ footer {
 .send-sms .mdui-btn{
     width: 120px;
 }
-.sms-input{
+.sms-input,.captcha-input{
     padding-right: 130px;
 }
 .kt-register ,.panel-heading{

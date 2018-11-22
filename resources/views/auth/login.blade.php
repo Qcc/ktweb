@@ -9,33 +9,29 @@
     <div class="panel-body">
         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <div class="mdui-textfield mdui-textfield-floating-label">
+            <div class="form-group">
+                    <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('phone') ? ' mdui-textfield-invalid-html5' : '' }}">
                         <label class="mdui-textfield-label">手机号 / 邮箱</label>
-                        <input id="phone" class="mdui-textfield-input" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
+                        <input id="phone" class="mdui-textfield-input" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
                         @if ($errors->has('phone'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('phone') }}</strong>
-                            </span>
+                        <div class="mdui-textfield-error">{{ $errors->first('phone') }}</div>
+                        @elseif ($errors->has('email'))
+                        <div class="mdui-textfield-error">{{ $errors->first('email') }}</div>
+                        @else
+                        <div class="mdui-textfield-error">用户名不能为空</div>
                         @endif
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                      <div class="mdui-textfield-error">用户名不能为空</div>
                     </div>
             </div>
-            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <div class="mdui-textfield mdui-textfield-floating-label">
+            <div class="form-group">
+                <div class="mdui-textfield mdui-textfield-floating-label {{ $errors->has('password') ? ' mdui-textfield-invalid-html5' : '' }}">
                     <label class="mdui-textfield-label">密 码</label>
                     <input id="password" class="mdui-textfield-input" id="password" type="password" class="form-control" name="password" required>
                     @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
+                        <div class="mdui-textfield-error">{{ $errors->first('password') }}</div>
+                    @else
+                        <div class="mdui-textfield-error">密码不能为空</div>
                     @endif
-                  <div class="mdui-textfield-error">密码不能为空</div>
+                    
                 </div>
             </div>
             <div class="form-group">
