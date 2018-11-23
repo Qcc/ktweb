@@ -20,20 +20,31 @@ footer {
 }
         .submit{
             width: 100%;
+            cursor: pointer;
         }
 .form-group{
     position: relative;
 }
-.send-sms,.captcha-img{
+.captcha-img{
     width: 120px;
     position: absolute;
     right: 0;
     bottom: 28px;
 }
-.send-sms .mdui-btn{
-    width: 120px;
+
+.form-group-sms{
+    display:none;
 }
-.sms-input,.captcha-input{
+.send-sms{
+    margin-bottom: 20px;
+}
+.sendsmstips,.sendsmstips a,.sendsms-title{
+    color: #888!important;
+}
+.sendsmstips span,.sendsms-title span{
+    color: #ff790a;
+}
+.captcha-input{
     padding-right: 130px;
 }
 .kt-register ,.panel-heading{
@@ -56,4 +67,8 @@ footer {
         border-radius: 10px;
         margin: 40px auto 20px;
     }
+}
+.captcha-check-icon,.smscode-check-icon{
+    right: 0px;
+    display: none;
 }

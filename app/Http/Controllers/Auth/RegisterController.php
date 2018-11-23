@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Session\Store as Session;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -28,15 +29,17 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $session;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Session $session)
     {
         $this->middleware('guest');
+        $this->session = $session;
     }
 
     /**
@@ -67,6 +70,7 @@ class RegisterController extends Controller
     {
         // 注册成功后删除会话中的验证码，修改captcha包中ajax多次请求验证失败的问题
         $this->session->remove('captcha');
+        $this->session->remove('smscode');
         return User::create([
             'phone' => $data['phone'],
             'password' => bcrypt('password'),

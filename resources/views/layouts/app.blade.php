@@ -17,11 +17,11 @@
 </head>
 <body class="mdui-theme-primary-pink mdui-theme-accent-pink">
     <div class="{{ route_class() }}-page">
-    @include('layouts._header')
-    <div class="mdui-container-full" style="margin-top: 64px;">
-        @yield('content')
-    </div>    
-    @include('layouts._footer')
+        @include('layouts._header')
+        <div class="mdui-container-full" style="margin-top: 64px;">
+            @yield('content')
+        </div>    
+        @include('layouts._footer')
     </div>
   <script src="{{ asset('js/mdui.min.js') }}"></script>
   <script src="{{ asset('js/swiper.min.js') }}"></script>

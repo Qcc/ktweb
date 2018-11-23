@@ -24,6 +24,10 @@ Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy')
 
 // AJAX图形验证码
 Route::post('ajax/captcha', 'CaptchaController@captcha');
+// AJAX短信验证码
+Route::post('ajax/smscode', 'CaptchaController@smscode');
+Route::post('ajax/sendsms', 'CaptchaController@sendsms');
+
 // 用户登录 退出
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
