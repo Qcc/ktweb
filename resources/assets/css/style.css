@@ -932,3 +932,8 @@ a:active {
 }
 
 /* 账户注册页面结束 */
+
+/* 表单顶部样式修改 */
+.form-group .mdui-textfield{
+    padding-top: 0px
+}

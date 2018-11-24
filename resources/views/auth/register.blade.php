@@ -23,24 +23,25 @@
                     </div>
                 </div>
 
+                <p class="sendsms-title mdui-typo-body-1-opacity"></p>
                 <div class="form-group form-group-sms">
                     <div class="sms-input">
                         <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('vercode') ? ' mdui-textfield-invalid-html5' : '' }}">
-                            <p class="sendsms-title mdui-typo-body-1-opacity"></p>
                             <label class="mdui-textfield-label">短信验证码</label>
                             <input id="vercode" class="mdui-textfield-input" type="text" required name="vercode" />
                             <div class="mdui-textfield-error">短信验证码不正确</div>
-                            <i class="mdui-icon material-icons mdui-text-color-light-green smscode-check-icon">&#xe5ca;</i>
+                            <div class="mdui-spinner mdui-spinner-colorful smscode-check-icon"></div>
+                            <i class="mdui-icon material-icons mdui-text-color-light-green smscode-success-icon">&#xe5ca;</i>
                         </div>
                     </div>
-                    <div class="send-sms">
-                        <p class="sendsmstips mdui-typo-body-1-opacity"></p>
-                    </div>
+                </div>
+                <div class="send-sms">
+                    <p class="sendsmstips mdui-typo-body-1-opacity"></p>
                 </div>
 
                 <div class="form-group form-group-captcha">
                     <div class="captcha-input">
-                        <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('vercode') ? ' mdui-textfield-invalid-html5' : '' }}">
+                        <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('captcha') ? ' mdui-textfield-invalid-html5' : '' }}">
                             <label class="mdui-textfield-label">图形验证码</label>
                             <input id="captcha" class="mdui-textfield-input" type="text" name="captcha" required />
                             @if ($errors->has('captcha'))
@@ -48,7 +49,8 @@
                             @else
                             <div class="mdui-textfield-error">图形证码不正确</div>
                             @endif
-                            <i class="mdui-icon material-icons mdui-text-color-light-green captcha-check-icon">&#xe5ca;</i>
+                            <div class="mdui-spinner mdui-spinner-colorful captcha-check-icon"></div>
+                            <i class="mdui-icon material-icons mdui-text-color-light-green captcha-success-icon">&#xe5ca;</i>
                         </div>
                     </div>
 

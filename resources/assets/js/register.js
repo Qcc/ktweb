@@ -1,14 +1,15 @@
 var $$ = mdui.JQ;
 $$(document).ready(function () {
     // 保存图形验证码是否正确状态
-    var captchaStatus = false;
-    var smsStatus = '';
-    var ready = false;
-    var captcha = $$('#captcha');
-    var vercode = $$('#vercode');
-    var phone = $$('#phone');
-    var submit = $$('#submit');
-   
+    var captchaStatus = false; //图形验证码状态
+    var sms = ''; // 保存短信验证码
+    var smsStatus = false; //短信验证码发送状态
+    var ready = false; // 验证是否就绪，就绪后直接提交表单
+    var captcha = $$('#captcha'); // 图片验证码
+    var vercode = $$('#vercode'); //短信验证码
+    var phone = $$('#phone'); // 手机号input
+    var submit = $$('#submit'); //提交表单按钮
+
     submit.on('click', function (event) {
         var e = event || window.event;
         if (!ready) {
@@ -25,8 +26,13 @@ $$(document).ready(function () {
             $$('.form-group-phone').css('display', 'none');
             $$('.form-group-captcha').css('display', 'none');
             $$('.form-group-sms').css('display', 'block');
-            if (!smsStatus) {
+            if (!smsStatus && !sms) {
                 sendsms(phone.val());
+                return false;
+            }
+            if (!sms) {
+                vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+                e.preventDefault();
                 return false;
             }
         }
@@ -36,6 +42,7 @@ $$(document).ready(function () {
         var value = captcha.val();
         // 限定验证码长度为4位
         if (value.length === 4) {
+            $$('.captcha-check-icon').css('display', 'block');
             $$.ajax({
                 method: 'POST',
                 url: '/ajax/captcha',
@@ -49,22 +56,19 @@ $$(document).ready(function () {
                 success: function (data) {
                     if (JSON.parse(data).captcha) {
                         $$('#submit').text('下 一 步');
-                        $$('.captcha-check-icon').css('display', 'inline');
-                        captchaStatus = true;
-                        // if (phone.val()) {
-                        //     smstips();
-                        //     sendsms(phone.val());
-                        // }
-                    } else {
-                        captchaStatus = false;
                         $$('.captcha-check-icon').css('display', 'none');
+                        $$('.captcha-success-icon').css('display', 'inline');
+                        captchaStatus = true;
+                    } else {
+                        $$('.captcha-check-icon').css('display', 'none');
+                        captchaStatus = false;
                         captcha.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
                     }
                 }
             })
         } else {
+            $$('.captcha-success-icon').css('display', 'none');
             captchaStatus = false;
-            $$('.captcha-check-icon').css('display', 'none');
             captcha.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
         }
     });
@@ -72,6 +76,7 @@ $$(document).ready(function () {
     vercode.on('keyup', function () {
         // 限定验证码长度为5位
         if (vercode.val().length === 5) {
+            $$('.smscode-check-icon').css('display', 'block');
             $$.ajax({
                 method: 'POST',
                 url: '/ajax/smscode',
@@ -87,20 +92,21 @@ $$(document).ready(function () {
                     data = JSON.parse(data);
                     if (data.smscode) {
                         vercode.parent('.mdui-textfield').removeClass('mdui-textfield-invalid-html5');
-                        $$('.smscode-check-icon').css('display', 'inline');
-                        ready = true;
+                        $$('.smscode-check-icon').css('display', 'none');
+                        $$('.smscode-success-icon').css('display', 'inline');
+                        ready = true; // 装备就绪 可以提交表单
+                        sms = data.value; // 保存获取到的正确短信验证码
                     } else {
                         $$('.smscode-check-icon').css('display', 'none');
                         vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
                         ready = false;
                     }
-                    smsStatus = data.value;
                 }
-            })
+            });
         } else {
-            smsStatus = '';
-            ready = false;
-            $$('.smscode-check-icon').css('display', 'none');
+            sms = '';
+            ready = false; // 重置短信表单验证状态
+            $$('.smscode-success-icon').css('display', 'none');
             vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
         }
     });
@@ -108,7 +114,7 @@ $$(document).ready(function () {
     function smstips() {
         var num = 60;
         $$('.sendsms-title').empty().append("我们已经向您的手机<span>" + phone.val() + "</span>发送了一条验证码")
-        var interval = setInterval(function(){ 
+        var interval = setInterval(function () {
             $$('.sendsmstips').empty();
             if (num < 0) {
                 $$('.sendsmstips').append("<a id='btnsendsms' href='javascript:;'>重新发送验证码?</a>")
@@ -116,13 +122,14 @@ $$(document).ready(function () {
                 $$('#btnsendsms').on('click', function () {
                     sendsms(phone.val());
                 })
+                smsStatus = false; //校验超时后 重置发送状态
                 return;
             }
             $$('.sendsmstips').append("没收到?<span>" + num + "秒</span>后重新获取。");
             num--;
-        },1000);
+        }, 1000);
     };
-    
+
     // 发送验证码
     function sendsms(phoneNumber) {
         $$.ajax({
@@ -139,7 +146,8 @@ $$(document).ready(function () {
             success: function (data) {
                 smstips();
             }
-        })
+        });
+        smsStatus = true; //发送短信后 改变发送状态
     }
 });
 

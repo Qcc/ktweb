@@ -68,7 +68,15 @@ footer {
         margin: 40px auto 20px;
     }
 }
-.captcha-check-icon,.smscode-check-icon{
+.smscode-success-icon,.captcha-success-icon{    
     right: 0px;
     display: none;
+}
+.form-group .captcha-check-icon,.form-group .smscode-check-icon{
+    display: none;
+    right: 6px;
+    top: 23px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
 }

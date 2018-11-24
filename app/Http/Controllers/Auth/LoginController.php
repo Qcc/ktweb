@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class LoginController extends Controller
 {
@@ -26,15 +29,17 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $request;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('guest')->except('logout');
+        $this->request = $request;
     }
 
     /**
@@ -44,6 +49,11 @@ class LoginController extends Controller
      */
     public function username()
     {
-        return 'phone';
+        if($this->request->input('email')){
+            return 'email';
+        }
+        if($this->request->input('phone')){
+            return 'phone';
+        }
     }
 }
