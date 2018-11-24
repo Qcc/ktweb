@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '用户注册')
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 @stop

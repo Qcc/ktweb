@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '用户登录')
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 @stop

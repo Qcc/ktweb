@@ -26,12 +26,12 @@
         <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
         @else
         <a class="kt-navigetion-sections" href="javascript:;" mdui-menu="{target: '#user-menu'}">
-          <img  class="avatar" src="/images/avatar.png" alt="">
+          <img  class="avatar" src="{{ Auth::user()->avatar }}" alt="">
                 {{ Auth::user()->username ?? hiddenPhone(Auth::user()->phone) }}
         </a>
         <ul class="mdui-menu mdui-menu-cascade" id="user-menu">
           <li class="mdui-menu-item">
-            <a href="javascript:;" class="mdui-ripple">
+            <a href="{{ route('users.show', Auth::id()) }}" class="mdui-ripple">
             <i class="mdui-icon material-icons">&#xe7ff;</i>
             个人中心</a>
           </li>

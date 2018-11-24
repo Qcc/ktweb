@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Handlers\ImageUploadHandler;
+
 class UsersController extends Controller
 {
     // 显示所有用户
@@ -13,37 +16,27 @@ class UsersController extends Controller
     }
     // 显示用户个人信息页面
     public function show(User $user){
-        return view('wwwlayouts.users.show',compact('user'));
+        return view('users.show',compact('user'));
     }
-    // 创建用户页面
-    public function create(){
-        return view('wwwlayouts.users.register');
-    }
-    // 创建用户
-    public function store(Request $request){
-        $this->validate($request, [
-            'phone' => 'required|max:11',
-            'password' => 'required|min:6'
-        ]);
 
-        $user = User::create([
-            'phone' => $request->phone,
-            'password' => bcrypt($request->password),
-        ]);
-
-        session()->flash('success', '验证邮件已发送到你的注册邮箱上，请注意查收。');
-        return redirect('/');
-    }
     // 编辑用户个人资料页面
-    public function edit(){
-
+    public function edit(User $user){
+        return view('users.edit',compact('user'));
     }
     // 更新用户
-    public function update(){
+    public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
+    {
+        $data = $request->all();
+        if($request->avatar){
+            // 保存图片并且裁剪宽度为362px
+            $result = $uploader->save($request->avatar,'avatar',$user->id,362);
+            if($result){
+                $data['avatar'] = $result['path'];
+            }
+        }
 
+        $user->update($data);
+        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
     }
-    // 删除用户
-    public function destroy(){
-
-    }
+    
 }
