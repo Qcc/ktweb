@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
-    // 显示所有用户
-    public function index(){
 
-    }
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }    
+    
     // 显示用户个人信息页面
     public function show(User $user){
         return view('users.show',compact('user'));
@@ -21,11 +22,15 @@ class UsersController extends Controller
 
     // 编辑用户个人资料页面
     public function edit(User $user){
+        // 授权策略只能当前用户访问自己的编辑页面
+        // App\Http\Controllers\Controller 控制器基类包含了 Laravel 的 AuthorizesRequests trait。此 trait 提供了 authorize 方法
+        $this->authorize('update', $user);
         return view('users.edit',compact('user'));
     }
     // 更新用户
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
+        $this->authorize('update', $user);
         $data = $request->all();
         if($request->avatar){
             // 保存图片并且裁剪宽度为362px
