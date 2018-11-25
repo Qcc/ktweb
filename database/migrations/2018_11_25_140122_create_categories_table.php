@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('icon')->nullable()->comment('图标');
             $table->text('description')->nullable()->comment('描述');
             $table->boolean('directory')->default(false)->coment('是否有子分类录');
-            $table->integer('parent')->nullable()->comment('所属目录');
+            $table->integer('parent')->nullable()->unsigned()->comment('所属目录');
             $table->integer('post_count')->default(0)->comment('帖子数');
             $table->timestamps();
         });
