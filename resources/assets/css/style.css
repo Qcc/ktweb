@@ -107,6 +107,12 @@ input,
 img {
     border: none;
 }
+/* 解决chrome浏览器默认黄色背景颜色 */
+input:-webkit-autofill {
+    outline:none;    
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    　　-webkit-text-fill-color: #333;
+}
 
 .mdui-inline {
     display: inline;
