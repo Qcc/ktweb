@@ -52,3 +52,5 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 
 // 社区帖子增删改查
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+// 分类话题列表
+Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
