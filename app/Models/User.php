@@ -16,4 +16,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
+    // 通过用户查询话题
+    // 用户可以发表多个话题 为一对多关系
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }

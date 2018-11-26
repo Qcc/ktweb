@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="description" content="@yield('description', '深圳市沟通科技有限公司官方网站')" />
     <title>@yield('title') - 深圳市沟通科技有限公司</title>
     <link rel="stylesheet" href="{{ asset('css/mdui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">

@@ -19,3 +19,16 @@ function hiddenPhone(String $phone){
     $end = substr($phone, 7, 11);
     return $start.'**'.$end;
 }
+
+/**
+ * 从文章中截取200个字符作为文章摘要
+ *
+ * @param [type] $value
+ * @param integer $length
+ * @return void
+ */
+function make_excerpt($value, $length = 200)
+{
+    $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
+    return str_limit($excerpt, $length);
+}
