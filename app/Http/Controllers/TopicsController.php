@@ -14,10 +14,11 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index()
+	// $request->order 是获取 URI http://keweb.test/topics?order=recent 中的 order 参数
+	public function index(Request $request, Topic $topic)
 	{
-		// 分页获取15条记录。默认获取15条
-		$topics = Topic::with('user', 'category')->paginate(30);
+		// 分页获取20条记录。默认获取15条
+		$topics = $topic->withOrder($request->order)->paginate(20);
 		return view('topics.index', compact('topics'));
 	}
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title',  '话题列表')
+@section('title',  isset($category) ? $category->name : '话题列表')
 
 @section('content')
 <div class="row">
@@ -15,8 +15,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="#">最后回复</a></li>
-                    <li role="presentation"><a href="#">最新发布</a></li>
+                        <!-- Request::url() 获取的是当前请求的 URL -->
+                    <li role="presentation" class="active"><a href="{{ Request::url() }}?order=default">最后回复</a></li>
+                    <li role="presentation"><a href="{{ Request::url() }}?order=recent">最新发布</a></li>
                 </ul>
             </div>
 

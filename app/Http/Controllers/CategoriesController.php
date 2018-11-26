@@ -14,10 +14,12 @@ class CategoriesController extends Controller
      * @param Category $category
      * @return void
      */
-    public function show(Category $category)
+    public function show(Category $category, Request $request, Topic $topic)
     {
-        // 读取分类 ID  关联的话题， 并按照每40条分页
-        $topics = Topic::where('category_id',$category->id)->paginate(20);
+        // 读取分类 ID  关联的话题， 并按照每20条分页
+        $topics = $topic->withOrder($request->order)
+                        ->where('category_id',$category->id)
+                        ->paginate(20);
         // 传参变量话题和分类 到模版中
         return view('topics.index',compact('topics','category'));
     }
