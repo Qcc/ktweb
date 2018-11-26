@@ -7,14 +7,27 @@ use App\Models\Topic;
 
 class TopicPolicy extends Policy
 {
+    /**
+     * 更新时判断是否为当前用户
+     *
+     * @param User $user
+     * @param Topic $topic
+     * @return void
+     */
     public function update(User $user, Topic $topic)
     {
-        // return $topic->user_id == $user->id;
-        return true;
+        return $user->isAuthorOf($topic);
     }
 
+    /**
+     * 删除时判断是否为当前用户
+     *
+     * @param User $user
+     * @param Topic $topic
+     * @return void
+     */
     public function destroy(User $user, Topic $topic)
     {
-        return true;
+        return $user->isAuthorOf($topic);
     }
 }
