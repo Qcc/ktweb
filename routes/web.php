@@ -64,3 +64,5 @@ Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 //发表社区回复
 Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);
+// 发表回复后 消息通知话题创建者
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);

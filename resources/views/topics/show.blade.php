@@ -6,6 +6,12 @@
 
 @section('content')
 
+<a href="{{ route('notifications.index') }}" class="notifications-badge" style="margin-top: -2px;">
+        <span class="badge badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'fade' }} " title="消息提醒">
+            {{ Auth::user()->notification_count }}
+        </span>
+    </a>
+
 <p>
     {{ $topic->title }}
 </p> <label>Body</label>
