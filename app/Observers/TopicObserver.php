@@ -34,4 +34,15 @@ class TopicObserver
             dispatch(new TranslateSlug($topic));
         }
     }
+    /**
+     * 回复依赖话题 当话题删除时，同时删除话题下的所有回复
+     * 模型监听器中，数据库操作需要避免再次 Eloquent 事件，所以这里使用了 DB 
+     *
+     * @param Topic $topic
+     * @return void
+     */
+    public function deleted(Topic $topic)
+    {
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+    }
 }

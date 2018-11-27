@@ -31,9 +31,24 @@ class ReplyObserver
          */
         $topic->user->notify(new TopicReplied($reply));
     }
-
+    /**
+     * 过滤用户输入
+     *
+     * @param Reply $reply
+     * @return void
+     */
     public function creating(Reply $reply)
     {
         $reply->content = clean($reply->content,'user_topic_body');
+    }
+    /**
+     * 回复删除后减去话题回复数
+     *
+     * @param Reply $reply
+     * @return void
+     */
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->decrement('reply_count', 1);
     }
 }

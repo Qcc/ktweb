@@ -10,9 +10,10 @@ use App\Models\Reply;
 /**
  * implements ShouldQueue 为实现队列方式发送邮件
  */
-class TopicReplied extends Notification
+class TopicReplied extends Notification implements ShouldQueue
 {
     use Queueable;
+
     public $reply;
     /**
      * Create a new notification instance.
@@ -33,6 +34,7 @@ class TopicReplied extends Notification
      */
     public function via($notifiable)
     {
+        // 开启通知的频道
         return ['database', 'mail'];
     }
 
@@ -45,7 +47,7 @@ class TopicReplied extends Notification
     public function toDatabase($notifiable)
     {
         $topic = $this->reply->topic;
-        $link = $topic->link(['#reply'.$this->reply->id]);
+        $link = $topic->link(['#reply' . $this->reply->id]);
 
         // 存入数据库里的数据
         return [
@@ -62,11 +64,11 @@ class TopicReplied extends Notification
 
     public function toMail($notifiable)
     {
-        $url = $this->reply->topic->link(['#reply'.$this->reply->id]);
+        $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
 
-        return(new MailMessage)
-            ->line('你的话题有新的回复！')
-            ->action('查看回复',$url);
+        return (new MailMessage)
+                    ->line('你的话题有新回复！')
+                    ->action('查看回复', $url);
     }
 
 }
