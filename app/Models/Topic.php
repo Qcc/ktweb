@@ -26,6 +26,12 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    //一个话题可以有多条回复，一对多
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     //scope前缀为laravel本地作用域 
     // $topic = App\topic::WithOrder()->RecentReplied()->orderBy('created_at')->get();
     // 可以链式调用，调用时不需要加scope前缀

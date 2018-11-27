@@ -12,6 +12,41 @@
 
 -用户取消授权 解绑
 
+代码生成器
+composer require "summerblue/generator:~0.5" --dev
+扩展可以生成代码骨架 并执行数据迁移
+unsigned() —— 设置不需要标识符（unsigned）
+default() —— 为字段添加默认值。
+nullable() —— 可为空
+使用
+php artisan make:scaffold Topic --schema="title:string:index,body:text,user_id:integer:unsigned:index,category_id:integer:unsigned:index,reply_count:integer:unsigned:default(0),view_count:integer:unsigned:default(0),last_reply_user_id:integer:unsigned:default(0),order:integer:unsigned:default(0),excerpt:text:nullable,slug:string:nullable"
+命令 make:scaffold 的 --schema 选项中是以逗号分隔的字段名称和设置信息，字段分别如下，对于上面的字段表格
+title:string:index
+body:text
+user_id:integer:unsigned:index
+category_id:integer:unsigned:index
+reply_count:integer:unsigned:default(0)
+view_count:integer:unsigned:default(0)
+last_reply_user_id:integer:unsigned:default(0)
+order:integer:unsigned:default(0)
+excerpt:text:nullable
+slug:string:nullable
+
+生成的代码处理了以下事务:
+创建话题的数据库迁移文件 —— 2017_09_26_111713_create_topics_table.php；
+创建话题数据工厂文件 —— TopicFactory.php；
+创建话题数据填充文件 —— TopicsTableSeeder.php；
+创建模型基类文件 —— Model.php， 并创建话题数据模型；
+创建话题控制器 —— TopicsController.php；
+创建表单请求的基类文件 —— Request.php，并创建话题表单请求验证类；
+创建话题模型事件监控器 TopicObserver 并在 AppServiceProvider 中注册；
+创建授权策略基类文件 —— Policy.php，同时创建话题授权类，并在 AuthServiceProvider 中注册；
+在 web.php 中更新路由，新增话题相关的资源路由；
+新建符合资源控制器要求的三个话题视图文件，并存放于 resources/views/topics 目录中；
+执行了数据库迁移命令 artisan migrate；
+因此次操作新建了多个文件，最终执行 composer dump-autoload 来生成 classmap。
+
+
 debug 扩展包
 barryvdh/laravel-debugbar
 composer require "barryvdh/laravel-debugbar:~3.1" --dev

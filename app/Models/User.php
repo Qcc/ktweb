@@ -23,6 +23,12 @@ class User extends Authenticatable
         return $this->hasMany(Topic::class);
     }
 
+    //一个用户可以有多条回复，一对多
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     // 判断是否为当前用户
     public function isAuthorOf($model)
     {
