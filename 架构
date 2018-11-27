@@ -11,3 +11,63 @@
 -代理商订货管理 发证
 
 -用户取消授权 解绑
+
+debug 扩展包
+barryvdh/laravel-debugbar
+composer require "barryvdh/laravel-debugbar:~3.1" --dev
+php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+'enabled' => env('APP_DEBUG', false),
+
+动态添加class扩展
+composer require "hieu-le/active:~3.5"
+用法   $condition为true 添加$activeClass 否则添加$inactiveClass
+function active_class($condition, $activeClass = 'active', $inactiveClass = '')
+提供的condition方法
+if_route() - 判断当前对应的路由是否是指定的路由；
+if_route_param() - 判断当前的 url 有无指定的路由参数。
+if_query() - 判断指定的 GET 变量是否符合设置的值；
+if_uri() - 判断当前的 url 是否满足指定的 url；
+if_route_pattern() - 判断当前的路由是否包含指定的字符；
+if_uri_pattern() - 判断当前的 url 是否含有指定的字符；
+
+HTMLPurifier 本身就是一个独立的项目，运用『白名单机制』对 HTML 文本信息进行 XSS 过滤。
+composer require "mews/purifier:~2.0"
+php artisan vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"
+配置信息
+'HTML.Allowed' => 'div,em,a[href|title|style],ul,ol,li,p[style],br',
+'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family',
+当客户端提交
+<a someproperty="somevalue" href="http://example.com" style="color:#ccc;font-size:16px">
+    文章内容<script>alert('Alerted')</script>
+</a>
+会被解析为
+<a href="http://example.com" style="font-size:16px">
+    文章内容
+</a>
+以下属性未指定会被过滤
+someproperty 未指定的 HTML 属性
+color 未指定的 CSS 属性
+script 未指定的 HTML 标签
+
+Guzzle 库是一套强大的 PHP HTTP 请求套件
+composer require "guzzlehttp/guzzle:~6.3"
+无需配置，安装完成后即可使用。在顶部 use GuzzleHttp\Client; 引入使用。
+
+composer require "overtrue/pinyin:~3.0"
+PinYin 是 安正超 开发的，基于 CC-CEDICT 词典的中文转拼音工具，是一套优质的汉字转拼音解决方案。
+无需配置，安装完成后即可使用。在顶部 use use Overtrue\Pinyin\Pinyin;  引入使用。
+
+Redis 驱动
+composer require "predis/predis:~1.0"
+
+
+Horizon 是 Laravel 生态圈里的一员，为 Laravel Redis 队列提供了一个漂亮的仪表板，允许我们很方便地查看和管理 Redis 队列任务执行的情况
+安装
+composer require "laravel/horizon:~1.0"
+发布配置文件
+php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
+配置文件分别是 config/horizon.php 和存放在 public/vendor/horizon 文件夹中的 CSS 、JS 等页面资源文件。
+至此安装完毕，浏览器打开 http://kouton.test/horizon 访问控制台：
+生产环境中
+使用 Supervisor 进程工具进行管理，配置和使用请参照 文档 进行配置；
+每一次部署代码时，需 artisan horizon:terminate 然后再 artisan horizon 重新加载代码。

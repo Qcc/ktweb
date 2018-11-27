@@ -3,7 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Topic;
-use App\Handlers\SlugTranslateHandler;
+use App\Jobs\TranslateSlug;
+
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
 /**
@@ -20,11 +21,17 @@ class TopicObserver
         //excerpt 字段存储的是话题的摘录，将作为文章页面的 description 元标签使用
         //make_excerpt() 是自定义的辅助方法，我们需要在 helpers.php 文件中添加
         $topic->excerpt = make_excerpt($topic->body);
-        
+    }
+
+    public function saved(Topic $topic)
+    {
         //如slug字段无内容，即使用翻译对title进行翻译
         if(! $topic->slug){
-            $topic->slug = app(SlugTranslateHandler::class)->translate($topic->title);
-        }
+            //不使用队列直接进行翻译，耗时任务
+            // $topic->slug = app(SlugTranslateHandler::class)->translate($topic->title);
 
+            //推送到队列执行
+            dispatch(new TranslateSlug($topic));
+        }
     }
 }
