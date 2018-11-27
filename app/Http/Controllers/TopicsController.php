@@ -27,8 +27,24 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
-    public function show(Topic $topic)
+	/**
+	 * 我们需要访问用户请求的路由参数 Slug，在 show() 方法中我们注入 $request；
+	 * ! empty($topic->slug) 如果话题的 Slug 字段不为空；
+	 * && $topic->slug != $request->slug 并且话题 Slug 不等于请求的路由参数 Slug；
+	 * redirect($topic->link(), 301) 301 永久重定向到正确的 URL 上。
+	 * 例如 用户访问 http://ktweb.test/topics/119
+	 * 将被强制重定向到 http://ktweb.test/topics/119/title-test
+	 *
+	 * @param Request $request
+	 * @param Topic $topic
+	 * @return void
+	 */
+    public function show(Request $request, Topic $topic)
     {
+		// 如果话题带有slug翻译字段 强制使用带翻译字段的链接
+        if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+            return redirect($topic->link(), 301);
+        }
         return view('topics.show', compact('topic'));
     }
 
@@ -55,7 +71,7 @@ class TopicsController extends Controller
 		$topic->fill($request->all());
 		$topic->user_id = Auth::id();
 		$topic->save();
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+		return redirect()->to($topic->link())->with('success', '成功创建话题！');
 	}
 
 	public function edit(Topic $topic)
@@ -70,7 +86,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->to($topic->link())->with('success', '话题更新成功！');
 	}
 
 	public function destroy(Topic $topic)

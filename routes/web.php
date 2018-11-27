@@ -51,7 +51,13 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 // Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 
 // 社区帖子增删改查
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+// URI 参数 topic 是 『隐性路由模型绑定』 的提示，将会自动注入 ID 对应的话题实体。
+// URI 最后一个参数表达式 {slug?} ，? 意味着参数可选，这是为了兼容我们数据库中 Slug 为空的话题数据。这种写法可以同时兼容以下两种链接：
+// http://larabbs.test/topics/119
+// http://larabbs.test/topics/119/slug-translation-test
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 // 分类话题列表
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 //上传图片
