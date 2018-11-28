@@ -113,3 +113,76 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
     　　-webkit-text-fill-color: #333;
 }
+.club-header-content{
+    position: relative;
+}
+.club-header-warp{
+    width: 100%;
+    height: 50px;
+    background: #444;
+}
+.club-nav-ul li{
+    float: left;
+    padding: 0 5px;
+}
+.club-nav-ul li.active{
+    background: #555;
+}
+.club-nav-ul li a{
+    color: #FFF;
+    width: 70px;
+    height: 50px;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+}
+.club-log img{
+    width: 115px;
+}
+.club-log{
+    float: left;
+    margin-right: 50px;
+}
+.club-longin{
+    position: absolute;
+    right: 10px;
+}
+.club-avatar{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+}
+ /* 头像 */
+ .avatar{
+    width: 26px;
+    height: 26px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+  /* 用户中心菜单样式 */
+.mdui-menu-cascade{
+    width:150px;
+  }
+
+/* 消息 */
+.notifications-badge{
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+.badge{
+    padding: 1px 7px;
+    color: #fff;
+    border-radius: 15px;
+}
+.badge-hint{
+    background-color: #28a745;
+}
+.badge-fade{
+    background-color: #555;
+}

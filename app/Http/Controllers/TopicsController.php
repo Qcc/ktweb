@@ -19,6 +19,13 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
+	// 社区首页
+	public function club(Request $request, Topic $topic)
+	{
+		// 分页获取20条记录。默认获取15条
+		$topics = $topic->withOrder($request->order)->paginate(20);
+		return view('topics.index', compact('topics'));
+	}
 	// $request->order 是获取 URI http://keweb.test/topics?order=recent 中的 order 参数
 	public function index(Request $request, Topic $topic)
 	{

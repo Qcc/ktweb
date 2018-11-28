@@ -30,6 +30,10 @@ class SeedCategoriesData extends Migration
                 'name'        => '金蝶ERP',
                 'description' => '金蝶ERP',
             ],
+            [
+                'name'        => '其他',
+                'description' => '其他',
+            ],
         ];
 
         DB::table('categories')->insert($categories);
