@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.club')
 
 @section('title',  isset($category) ? $category->name : '话题列表')
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.club')
 
 @section('title', Auth::user()->username . ' 的个人中心')
 

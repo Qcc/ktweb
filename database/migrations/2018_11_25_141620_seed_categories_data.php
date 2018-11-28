@@ -23,12 +23,12 @@ class SeedCategoriesData extends Migration
                 'description' => '金蝶云',
             ],
             [
-                'name'        => '金蝶ERP',
-                'description' => '金蝶ERP',
+                'name'        => '精斗云',
+                'description' => '精斗云',
             ],
             [
-                'name'        => '公告',
-                'description' => '沟通科技公告',
+                'name'        => '金蝶ERP',
+                'description' => '金蝶ERP',
             ],
         ];
 

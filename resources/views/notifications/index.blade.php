@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.club')
 
 @section('title')
 我的通知 
