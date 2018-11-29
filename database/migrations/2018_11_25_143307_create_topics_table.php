@@ -9,16 +9,17 @@ class CreateTopicsTable extends Migration
 	{
 		Schema::create('topics', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->index();
-            $table->text('body');
+            $table->string('title')->index()->comment('标题');
+            $table->text('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('category_id')->unsigned()->index();
-            $table->integer('reply_count')->unsigned()->default(0);
-            $table->integer('view_count')->unsigned()->default(0);
-            $table->integer('last_reply_user_id')->unsigned()->default(0);
-            $table->integer('order')->unsigned()->default(0);
-            $table->text('excerpt')->nullable();
-            $table->string('slug')->nullable();
+            $table->integer('category_id')->unsigned()->index()->comment('栏目');
+            $table->integer('reply_count')->unsigned()->default(0)->comment('回复数');
+            $table->integer('view_count')->unsigned()->default(0)->comment('阅读数');
+            $table->integer('great_count')->unsigned()->default(0)->comment('点赞数');
+            $table->integer('last_reply_user_id')->unsigned()->default(0)->comment('最后回复');
+            $table->integer('order')->unsigned()->default(0)->comment('排序');
+            $table->text('excerpt')->nullable()->comment('摘要');
+            $table->string('slug')->nullable()->comment('seo链接');
             $table->timestamps();
         });
 	}

@@ -17,7 +17,7 @@
 <body class="mdui-theme-primary-pink mdui-theme-accent-pink">
     <div class="{{ route_class() }}-page">
         @include('layouts._club_header')
-        <div class="mdui-container-full" style="margin-top: 64px;">
+        <div class="mdui-container-full">
             @include('layouts._message')
             @yield('content')
         </div>    

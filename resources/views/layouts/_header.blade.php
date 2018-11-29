@@ -15,9 +15,9 @@
           <i class="mdui-icon material-icons">&#xe1bd;</i>
           解决方案
         </a>
-        <a href="/chs/documents/developer/index" class="mdui-m-l-3 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
+        <a href="" class="mdui-m-l-3 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
           合作伙伴</a>
-        <a href="/chs/documents/developer/index" class="mdui-m-l-3 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
+        <a href="{{ route('topics.index') }}" class="mdui-m-l-3 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
           产品社区</a>
       </nav>
       <nav class="kt-nav-login mdui-hidden-sm-down">

@@ -1,38 +1,79 @@
 @extends('layouts.club')
 
-@section('title',  isset($category) ? $category->name : '话题列表')
+@section('title', isset($category) ? $category->name : '社区')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-9 col-md-9 topic-list">
+@if (!isset($category))
+<div class="mdui-container-full club-banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div>
+                    <img src="{{ asset('images/topics1.jpg') }}" alt="">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div>
+                    <img src="{{ asset('images/topics2.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+<div class="club-warp mdui-container">
+    <div class="mdui-row">
+
+        <div class="mdui-col-xs-9 topic-list">
 
             @if (isset($category))
             <div class="alert alert-info" role="alert">
                 {{ $category->name }} ：{{ $category->description }}
             </div>
-        @endif
+            @endif
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <ul class="nav nav-pills">
+            <div class="club-panel">
+                <div class="panel-heading mdui-clearfix">
+                    <ul class="club-nav-pills">
                         <!-- Request::url() 获取的是当前请求的 URL -->
-                    <li role="presentation" class="active"><a href="{{ Request::url() }}?order=default">最后回复</a></li>
-                    <li role="presentation"><a href="{{ Request::url() }}?order=recent">最新发布</a></li>
-                </ul>
-            </div>
+                        <li role="presentation" class="active"><a class="mdui-text-color-blue" href="{{ Request::url() }}?order=default">最后回复</a></li>
+                        <li role="presentation"><a class="mdui-text-color-blue" href="{{ Request::url() }}?order=recent">最新发布</a></li>
+                    </ul>
+                </div>
 
-            <div class="panel-body">
-                {{-- 话题列表 --}}
-                @include('topics._topic_list', ['topics' => $topics])
-                {{-- 分页 --}}
-                {!! $topics->appends(Request::except('page'))->render() !!}
+                <div class="club-panel-body">
+                    {{-- 话题列表 --}}
+                    @include('topics._topic_list', ['topics' => $topics])
+                    {{-- 分页 --}}
+                    <div class="club-pagination">
+                        {!! $topics->appends(Request::except('page'))->render() !!}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-lg-3 col-md-3 sidebar">
-        @include('topics._sidebar')
+        <div class="mdui-col-xs-3 sidebar">
+            @include('topics._sidebar')
+        </div>
     </div>
 </div>
 
 @endsection
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
+@stop
+
+@section('script')
+<script src="{{ asset('js/swiper.min.js') }}"></script>
+
+<script>
+    $$(document).ready(function () {
+        // 初始化首页轮播图
+    if ($$('.swiper-container').length === 1) {
+      var swiper = new Swiper('.swiper-container', {});
+    }
+    });
+</script>
+
+@stop

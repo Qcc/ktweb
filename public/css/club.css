@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html {
-    color: #000;
+    color: #555;
     background: #FFF;
 }
 
@@ -93,7 +93,7 @@ acronym {
 
 a {
     text-decoration: none;
-    color: #000000;
+    color: #555;
     font-size: 15px;
     cursor: pointer;
     /*字体*/
@@ -103,32 +103,42 @@ li {
     list-style: none;
 }
 
+span {
+    color: #555;
+}
+
 input,
 img {
     border: none;
 }
+
 /* 解决chrome浏览器默认黄色背景颜色 */
 input:-webkit-autofill {
-    outline:none;    
+    outline: none;
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-    　　-webkit-text-fill-color: #333;
+    -webkit-text-fill-color: #333;
 }
-.club-header-content{
+
+.club-header-content {
     position: relative;
 }
-.club-header-warp{
+
+.club-header-warp {
     width: 100%;
     height: 50px;
     background: #444;
 }
-.club-nav-ul li{
+
+.club-nav-ul li {
     float: left;
     padding: 0 5px;
 }
-.club-nav-ul li.active{
+
+.club-nav-ul li.active {
     background: #555;
 }
-.club-nav-ul li a{
+
+.club-nav-ul li a {
     color: #FFF;
     width: 70px;
     height: 50px;
@@ -136,53 +146,166 @@ input:-webkit-autofill {
     line-height: 50px;
     text-align: center;
 }
-.club-log img{
+
+.club-log img {
     width: 115px;
 }
-.club-log{
+
+.club-log {
     float: left;
     margin-right: 50px;
 }
-.club-longin{
+
+.club-longin {
     position: absolute;
     right: 10px;
 }
-.club-avatar{
+
+.club-avatar {
     display: inline-block;
     height: 50px;
     line-height: 50px;
     color: #fff;
 }
- /* 头像 */
- .avatar{
+
+/* 头像 */
+.avatar {
     width: 26px;
     height: 26px;
     border: 2px solid #fff;
     border-radius: 15px;
     vertical-align: middle;
     margin-right: 3px;
-  }
-  /* 用户中心菜单样式 */
-.mdui-menu-cascade{
-    width:150px;
-  }
+}
+
+/* 用户中心菜单样式 */
+.mdui-menu-cascade {
+    width: 150px;
+}
 
 /* 消息 */
-.notifications-badge{
+.notifications-badge {
     display: inline-block;
     text-align: center;
     margin-right: 10px;
     line-height: 50px;
     vertical-align: middle;
 }
-.badge{
+
+.badge {
     padding: 1px 7px;
     color: #fff;
     border-radius: 15px;
 }
-.badge-hint{
+
+.badge-hint {
     background-color: #28a745;
 }
-.badge-fade{
+
+.badge-fade {
     background-color: #555;
+}
+
+.club-warp {
+    margin-top: 30px;
+}
+
+/* 首页banner图 */
+
+.swiper-slide div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+}
+
+.club-nav-pills li {
+    float: left;
+}
+
+.club-nav-pills li a {
+    padding: 0 10px;
+}
+
+/* 话题列表 */
+.club-panel-body {
+    margin-top: 20px;
+}
+
+.club-panel-body .media-left {
+    display: inline-block;
+}
+
+.media-left a img {
+    width: 40px;
+    height: 40px;
+}
+
+.media-left .media-avatar {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px #ccc;
+    overflow: hidden;
+}
+
+.club-panel-body .media-body {
+    display: inline-block;
+}
+
+.category {
+    background: #ccc;
+    padding: 2px 5px;
+    margin: 0px 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.club-panel-body .media-footer {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+}
+
+.club-panel-body .media {
+    position: relative;
+}
+
+/* 分页 */
+.club-pagination {
+    margin: 30px 0px;
+    position: relative;
+}
+
+.club-pagination .pagination {
+    float: right;
+}
+
+.club-pagination .pagination .active span{
+ color:#03A9F4;
+ padding: 0 10px;
+}
+.club-pagination .pagination .disabled span{
+ padding: 0 10px;
+}
+.club-pagination .pagination li {
+    float: left;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+}
+.club-pagination .pagination li a{
+    padding: 0 10px;
+}
+.club-pagination .pagination li a:hover{
+    padding: 0 10px;
+    color:#03A9F4;
 }
