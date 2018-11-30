@@ -30,6 +30,7 @@ th,
 td {
     margin: 0;
     padding: 0;
+    
 }
 
 table {
@@ -308,4 +309,182 @@ input:-webkit-autofill {
 .club-pagination .pagination li a:hover{
     padding: 0 10px;
     color:#03A9F4;
+}
+/* 文章详情页面 */
+.club-artical{
+    margin-top: 20px;
+    color: #555;
+}
+.usercard-warp, .article-warp{
+    padding: 20px;
+    margin-bottom: 30px;
+    background: #fff;
+    border: 1px solid #f2f2f2;
+    box-shadow: 0 0 2px #dedada;
+    border-radius: 4px;
+    text-align: justify;
+}
+/* 文章详情，头像卡 */
+.usercard-body .usercard-avatar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+.usercard-header{
+    position: relative;
+    margin-bottom: 15px;
+}
+.usercard-name{
+    position: absolute;
+    top: 0px;
+    left: 62px;
+}
+.usercard-name .name{
+    margin-bottom: 5px;
+}
+.usercard-favorites{
+    text-align: center;
+    margin: 50px 0;
+}
+.usercard-message{
+    text-align: center;
+}
+/* 文章标题 */
+.article-header{
+ position: relative;
+}
+.article-title{
+    max-width: 600px;
+}
+.article-title .article-title-h1{
+    font-size: 20px;
+    line-height: 34px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    padding-right: 60px;
+}
+.article-like{
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 34px;
+    vertical-align: middle;
+}
+/* 点赞动画 */
+.article-like .heartAnimation {
+    display: inline-block;
+    -webkit-animation-name: heartBlast;
+    animation-name: heartBlast;
+    -webkit-animation-duration: .8s;
+    animation-duration: .8s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: steps(28);
+    animation-timing-function: steps(28);
+    background-position: right;
+}
+
+.heart {
+    background: url(../images/web_heart.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    position: absolute;
+    left: -14px;
+    background-size: 2900%;
+}
+
+.likeCount {
+    font-family: 'Georgia', Times, Times New Roman, serif;
+    margin-left: 30px;
+    font-size: 25px;
+    color: #999999;
+}
+
+.article-like {
+    clear: both;
+}
+
+.heart:hover,
+.heart:focus {
+    background-position: right;
+}
+
+@keyframes heartBlast {
+
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
+}
+
+/* 正文样式 */
+.topic-body{
+    line-height: 34px;
+    margin-bottom: 30px;
+}
+.topic-body b, .topic-body strong{
+        font-weight: bold;
+}
+.topic-body a{
+    color:  #448AFF;
+}
+.topic-body ol,.topic-body ul{
+    margin: 10px 0;
+}
+.topic-body blockquote{
+    border-left: 6px solid #ddd;
+    padding: 5px 0 5px 10px;
+    margin: 15px 0 15px 15px;
+}
+.topic-body img{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px 0;
+}
+.topic-body h1{
+    font-size: 24px;
+    font-weight: normal;
+    margin: 40px 0 20px;
+}
+.topic-body h2{
+    font-size: 22px;
+    font-weight: normal;
+    margin: 40px 0 20px;
+}
+.topic-body h3{
+    font-size: 20px;
+    font-weight: normal;
+    margin: 40px 0 20px;
+}
+.topic-body h4{
+    font-size: 18px;
+    font-weight: normal;
+    margin: 40px 0 20px;
+}
+.topic-body h5{
+    font-size: 16px;
+    font-weight: normal;
+    margin: 40px 0 20px;
+}
+.topic-body table,.topic-body tbody{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 15px 0;
+}
+.topic-body th, .topic-body td{
+    min-width: 40px;
+    height: 30px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+    padding: 2px 4px;
+    text-align: left;
+    box-sizing: border-box;
 }

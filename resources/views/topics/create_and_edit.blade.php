@@ -82,8 +82,10 @@
     $(document).ready(function(){
         var editor = new Simditor({
             textarea: $('#editor'),
+            toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'],
             upload: {
                 url: '{{ route('topics.upload_image') }}',
+                //工具条都包含哪些内容
                 params: { _token: '{{ csrf_token() }}' },
                 fileKey: 'upload_file',
                 connectionCount: 3,
