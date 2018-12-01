@@ -28,25 +28,28 @@
                         </div>
                     </div>
                     <div class="usercard-favorites mdui-row">
-                        <div class="mdui-col-xs-4">
+                        <div class="mdui-col-xs-3">
                             <p>文章</p>
-                            <p>10</p>
+                            <p>{{ $topic->user->topics()->count() }}</p>
                         </div>
-                        <div class="mdui-col-xs-4">
-                            <p>粉丝</p>
-                            <p>40</p>
+                        <div class="mdui-col-xs-3">
+                            <a href="{{ route('users.followings',$topic->user) }}">    
+                                <p>粉丝</p>
+                                <p>{{ count($topic->user->followings) }}</p>
+                            </a>
                         </div>
-                        <div class="mdui-col-xs-4">
+                        <div class="mdui-col-xs-3">
+                            <a href="{{ route('users.followers',$topic->user) }}">
+                                <p>关注</p>
+                                <p>{{ count($topic->user->followers) }}</p>
+                            </a>
+                        </div>
+                        <div class="mdui-col-xs-3">
                             <p>喜欢</p>
                             <p>24</p>
                         </div>
                     </div>
-                    <div class="usercard-message">
-                        <div class="mdui-btn-group">
-                            <button class="mdui-btn mdui-ripple"><i class="mdui-icon material-icons">&#xe0e1;</i> 发私信</button>
-                            <button class="mdui-btn mdui-ripple"><i class="mdui-icon material-icons">&#xe145;</i> 加关注</button>
-                        </div>
-                    </div>
+                    @include('users._follow_form',['user' => $topic->user])
                 </div>
             </div>
         </div>

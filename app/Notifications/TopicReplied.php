@@ -39,7 +39,8 @@ class TopicReplied extends Notification implements ShouldQueue
     }
 
     /**
-     * Get the mail representation of the notification.
+     * 最后的toDatabase方法接收$notifiable的实例参数并返回一个数组。 
+     * 返回的数组会以json格式存储到notification表里的data字段中。
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage

@@ -346,6 +346,9 @@ input:-webkit-autofill {
     text-align: center;
     margin: 50px 0;
 }
+.usercard-favorites .mdui-col-xs-3 p{
+    line-height: 25px;
+}
 .usercard-message{
     text-align: center;
 }
