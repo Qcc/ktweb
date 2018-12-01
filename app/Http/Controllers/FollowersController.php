@@ -15,27 +15,33 @@ class FollowersController extends Controller
         $this->middleware('auth');
     }
     /** 添加关注 */
-    public function store(User $user)
+    public function store(Request $request)
     {
+        $data = ['result'=>false,'msg'=>'关注失败!'];
         //用户未登录不能关注
-        if(Auth::user()->id === $user->id){
-            return redirect('/');
+        if(Auth::user()->id === $request->id){
+            return $data;
         }
         //用户未关注时才关注
-        if(!Auth::user()->isFollowing($user->id)){
-            Auth::user()->follow($user->id);
+        if(!Auth::user()->isFollowing($request->id)){
+            Auth::user()->follow($request->id);
+            $data['result']= true;
+            $data['result']= '关注成功！';
         }
-        return redirect()->route('users.show',$user->id);
+        return $data;
     }
 
-    public function destroy(User $user)
+    public function destroy(Request $request)
     {
-        if(Auth::user()->id === $user->id){
-            return redirect('/');
+        $data = ['result'=>false,'msg'=>'取消关注失败!'];
+        if(Auth::user()->id === $request->id){
+            return $data; 
         }
-        if(Auth::user()->isFollowing($user->id)){
-            Auth::user()->unfollow($user->id);
+        if(Auth::user()->isFollowing($request->id)){
+            Auth::user()->unfollow($request->id);
+            $data['result'] = true;
+            $data['msg'] = '取消关注成功';
         }
-        return redirect()->route('users.show',$user->id);
+        return $data;
     }
 }

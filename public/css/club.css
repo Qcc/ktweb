@@ -491,3 +491,21 @@ input:-webkit-autofill {
     text-align: left;
     box-sizing: border-box;
 }
+
+/* 登录后操作提示框 */
+.require-warp {
+    text-align: center;
+    color:#555;
+}
+.require-warp div{
+    margin: 30px 0;
+}
+.require-warp .require-icon i{
+    font-size: 60px;
+    color: #F4511E;
+}
+.require-warp .require-btn .mdui-btn{
+    float: none;
+    margin: 20px;
+    zoom:1.2;
+}

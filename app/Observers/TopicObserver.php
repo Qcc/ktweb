@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Topic;
 use App\Jobs\TranslateSlug;
+use App\Notifications\TopicFollowing;
+use Illuminate\Support\Facades\Log;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -12,6 +14,23 @@ use App\Jobs\TranslateSlug;
  */
 class TopicObserver
 {
+    public function created(Topic $topic)
+    {
+        $follows = $topic->user->followers;
+        /**
+         * 调用 Notifications 类通知作者话题被回复了
+         * 默认的 User 模型中使用了 trait —— Notifiable，它包含着一个可以用来发通知的方法 notify() ，
+         * 此方法接收一个通知实例做参数。虽然 notify() 已经很方便，
+         * 但是我们还需要对其进行定制，我们希望每一次在调用 $user->notify() 时，
+         * 自动将 users 表里的 notification_count +1 ，这样我们就能跟踪用户未读通知了。
+         * 修改User.php 模型文件，将 use Notifiable修改为定制方法;
+         * 通知作者的所有粉丝 发表了新的话题
+         */
+        foreach ($follows as $user) {
+            // Log::info('user ',dd($user));
+            $user->notify(new TopicFollowing($topic));
+        }
+    }
     public function saving(Topic $topic)
     {
         // 配置文件config/purifier.php
@@ -30,9 +49,10 @@ class TopicObserver
             //不使用队列直接进行翻译，耗时任务
             // $topic->slug = app(SlugTranslateHandler::class)->translate($topic->title);
 
-            //推送到队列执行
+            //推送到队列执行，翻译标题填入slug SEO优化
             dispatch(new TranslateSlug($topic));
         }
+        
     }
     /**
      * 回复依赖话题 当话题删除时，同时删除话题下的所有回复

@@ -50,6 +50,8 @@
                         </div>
                     </div>
                     @include('users._follow_form',['user' => $topic->user])
+                    
+                </div>
                 </div>
             </div>
         </div>
@@ -136,25 +138,25 @@
 <script>
     var $$ = mdui.JQ;
     $$(document).ready(function () {
-        $$(document).ready(function () {
-            $$('#like').on("click", function () {
-                var A = $$(this).attr("id");
-                var B = A.split("like");
-                var messageID = B[1];
-                var C = parseInt($$("#likeCount" + messageID).html());
-                $$(this).css("background-position", "")
-                var D = $$(this).attr("rel");
+        // 点赞
+        $$('#like').on("click", function () {
+            var A = $$(this).attr("id");
+            var B = A.split("like");
+            var messageID = B[1];
+            var C = parseInt($$("#likeCount" + messageID).html());
+            $$(this).css("background-position", "")
+            var D = $$(this).attr("rel");
+            if (D === 'like') {
+                $$("#likeCount" + messageID).html(C + 1);
+                $$(this).addClass("heartAnimation").attr("rel", "unlike");
+            } else {
+                $$("#likeCount" + messageID).html(C - 1);
+                $$(this).removeClass("heartAnimation").attr("rel", "like");
+                $$(this).css("background-position", "left");
+            }
+        });
+        $$(".club-followering").on("click",function(){
 
-                if (D === 'like') {
-                    $$("#likeCount" + messageID).html(C + 1);
-                    $$(this).addClass("heartAnimation").attr("rel", "unlike");
-
-                } else {
-                    $$("#likeCount" + messageID).html(C - 1);
-                    $$(this).removeClass("heartAnimation").attr("rel", "like");
-                    $$(this).css("background-position", "left");
-                }
-            });
         });
     });
 </script>
