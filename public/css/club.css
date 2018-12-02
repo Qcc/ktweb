@@ -505,6 +505,7 @@ input:-webkit-autofill {
     color: #F4511E;
 }
 .require-warp .require-btn .mdui-btn{
+    width: 90px;
     float: none;
     margin: 20px;
     zoom:1.2;

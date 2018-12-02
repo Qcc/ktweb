@@ -14,8 +14,8 @@ class FollowersController extends Controller
     {
         $this->middleware('auth');
     }
-    /** 添加关注 */
-    public function store(Request $request)
+    /** 添加关注 取消关注 */
+    public function followers(Request $request)
     {
         $data = ['result'=>false,'msg'=>'关注失败!'];
         //用户未登录不能关注
@@ -26,20 +26,11 @@ class FollowersController extends Controller
         if(!Auth::user()->isFollowing($request->id)){
             Auth::user()->follow($request->id);
             $data['result']= true;
-            $data['result']= '关注成功！';
-        }
-        return $data;
-    }
-
-    public function destroy(Request $request)
-    {
-        $data = ['result'=>false,'msg'=>'取消关注失败!'];
-        if(Auth::user()->id === $request->id){
-            return $data; 
-        }
-        if(Auth::user()->isFollowing($request->id)){
+            $data['msg']= '关注成功！';
+        //用户关注后才能取消
+        }else if(Auth::user()->isFollowing($request->id)){
             Auth::user()->unfollow($request->id);
-            $data['result'] = true;
+            $data['result'] = false;
             $data['msg'] = '取消关注成功';
         }
         return $data;

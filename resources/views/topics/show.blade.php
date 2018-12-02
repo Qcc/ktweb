@@ -155,8 +155,28 @@
                 $$(this).css("background-position", "left");
             }
         });
-        $$(".club-followering").on("click",function(){
-
+        //加关注 取消关注
+        $$(".club-follower").on("click",function(){
+            var id = $$('#author_id').attr('data_id');
+            $$.ajax({
+                method: 'POST',
+                url: '/users/followers/action',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if(data.result){
+                        $$('.club-follower').empty().append("<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr('title','取消关注将不会再收到他的动态');
+                    }else{
+                        $$('.club-follower').empty().append("<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr('title','关注后能收到他的最新动态');
+                    }
+                }
+            })
         });
     });
 </script>

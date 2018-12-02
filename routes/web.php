@@ -43,8 +43,7 @@ Route::get('/users/{user}/followings', 'UsersController@followings')->name('user
 //用户粉丝 显示用户的粉丝列表
 Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
 //关注 取关
-Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
-Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
+Route::post('/users/followers/action', 'FollowersController@followers')->name('followers.action');
 
 //用户个人页面
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
