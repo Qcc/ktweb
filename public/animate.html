@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+
+<head>
+    <meta charset="utf-8">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="description" content="@yield('description', '深圳市沟通科技有限公司官方网站')" />
+    <style>
+        .submail-products-icon-nav-1,
+        .submail-products-icon-nav-2,
+        .submail-products-icon-nav-3 {
+            width: 15px;
+            height: 15px;
+            display: block;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            -webkit-transform: rotate(0);
+            -ms-transform: rotate(0);
+            transform: rotate(0);
+        }
+
+        .mdl-layout__header--large-screen-menu-model .submail-products-icon-nav-1 {
+            -webkit-transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .warp {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 100px auto;
+            background: #ccc;
+            color: #000;
+            padding: 20px;
+
+        }
+
+        .mdl-layout__header--menu-model .submail-icon-nav-3 .submail-icon-nav {
+            -webkit-transition: -webkit-transform 0.2s;
+            transition: -webkit-transform 0.2s;
+            transition: transform 0.2s;
+            transition: transform 0.2s, -webkit-transform 0.2s;
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .submail-products-icon-nav-3 .submail-products-icon-nav {
+            -webkit-transform: translateY(3px);
+            -ms-transform: translateY(3px);
+            transform: translateY(3px);
+        }
+
+        .submail-products-icon-nav {
+            width: 15px;
+            height: 1px;
+            background: #fff;
+            top: 7px;
+            left: 0px;
+            position: absolute;
+        }
+
+        .submail-icon-nav-3 .submail-icon-nav {
+            -webkit-transform: translateY(5px);
+            -ms-transform: translateY(5px);
+            transform: translateY(5px);
+        }
+
+        .submail-icon-nav {
+            width: 23px;
+            height: 1px;
+            background: #fff;
+            top: 25px;
+            left: 14px;
+            position: absolute;
+        }
+
+        .mdl-layout__header--large-screen-menu-model #menu-products label {
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+
+        #menu-products label {
+            display: block;
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            -webkit-transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+        }
+
+        .mdl-layout__header--large-screen-menu-model #menu-products label {
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+
+        .submail-products-icon-nav-2 .submail-products-icon-nav {
+            transition: .2s cubic-bezier(0.935, 0.010, 0.270, 1.000) opacity;
+        }
+
+        .submail-products-icon-nav-1 .submail-products-icon-nav {
+            -webkit-transition: -webkit-transform 0.2s 0.2s;
+            transition: -webkit-transform 0.2s 0.2s;
+            transition: transform 0.2s 0.2s;
+            transition: transform 0.2s 0.2s, -webkit-transform 0.2s 0.2s;
+            -webkit-transform: translateY(-3px);
+            -ms-transform: translateY(-3px);
+            transform: translateY(-3px);
+        }
+
+        #menu-products {
+            position: relative;
+            padding-left: 45px;
+        }
+        .mdl-layout__header--large-screen-menu-model .submail-products-icon-nav-1 .submail-products-icon-nav {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition-delay: 0;
+    transition-delay: 0;
+}
+.mdl-layout__header--large-screen-menu-model .submail-products-icon-nav-2 .submail-products-icon-nav {
+    opacity: 0;
+}
+
+.submail-products-icon-nav-2 .submail-products-icon-nav {
+    transition: .2s cubic-bezier(0.935, 0.010, 0.270, 1.000) opacity;
+}
+.mdl-layout__header--large-screen-menu-model .submail-products-icon-nav-1 .submail-products-icon-nav {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition-delay: 0;
+    transition-delay: 0;
+}
+.mdl-layout__header--large-screen-menu-model .submail-products-icon-nav-3 {
+    -webkit-transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.mdl-layout__header--large-screen-menu-model .submail-products-icon-nav-3 .submail-products-icon-nav {
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+}
+    </style>
+</head>
+
+<body>
+    <div class=" warp">
+        <a href="" id="menu-products">
+            <label class="mdl-submail-menu-nav__link">
+                <span class="submail-products-icon-nav-1">
+                    <span class="submail-products-icon-nav"></span>
+                </span>
+                <span class="submail-products-icon-nav-2">
+                    <span class="submail-products-icon-nav"></span>
+                </span>
+                <span class="submail-products-icon-nav-3">
+                    <span class="submail-products-icon-nav"></span>
+                </span>
+            </label>
+        </a>
+    </div>
+    <button id="btn">anniu</button>
+    <div class="mdl-layout__header--large-screen-menu-model warp">
+        <label class="mdl-submail-menu-nav__link" id="mdl-submail-nav-btn">
+            <span class="submail-icon-nav-1">
+                <span class="submail-icon-nav"></span>
+            </span>
+            <span class="submail-icon-nav-2">
+                <span class="submail-icon-nav"></span>
+            </span>
+            <span class="submail-icon-nav-3">
+                <span class="submail-icon-nav"></span>
+            </span>
+        </label>
+    </div>
+    <script src="./jquery.min.js"></script>
+    <script>
+        $('#btn').on('click', function () {
+            $('.warp').toggleClass('mdl-layout__header--large-screen-menu-model');
+        });
+    </script>
+</body>
+
+</html>
