@@ -35,13 +35,13 @@
                         <div class="mdui-col-xs-3">
                             <a href="{{ route('users.followings',$topic->user) }}">    
                                 <p>粉丝</p>
-                                <p>{{ count($topic->user->followings) }}</p>
+                                <p>{{ count($topic->user->followers) }}</p>
                             </a>
                         </div>
                         <div class="mdui-col-xs-3">
                             <a href="{{ route('users.followers',$topic->user) }}">
                                 <p>关注</p>
-                                <p>{{ count($topic->user->followers) }}</p>
+                                <p>{{ count($topic->user->followings) }}</p>
                             </a>
                         </div>
                         <div class="mdui-col-xs-3">
@@ -49,7 +49,7 @@
                             <p>24</p>
                         </div>
                     </div>
-                    @include('users._follow_form',['user' => $topic->user])
+                    @include('users._follow_users',['user' => $topic->user])
                     
                 </div>
                 </div>
@@ -86,35 +86,7 @@
                     <div class="topic-body">
                         {!! $topic->body !!}
                     </div>
-                    <a href="" class="mdui-btn mdui-ripple">
-                            <i class="mdui-icon material-icons">&#xe417;</i>关注
-                    </a>
-                    <a href="" class="mdui-btn mdui-ripple">
-                            <i class="mdui-icon material-icons">&#xe8b2;</i>举报
-                    </a>
-                    <a href="" class="mdui-btn mdui-ripple">
-                            <i class="mdui-icon material-icons">&#xe25a;</i>置顶
-                    </a>
-                    <a href="" class="mdui-btn mdui-ripple">
-                            <i class="mdui-icon material-icons">&#xe83a;</i>精华
-                    </a>
-                    @can('update', $topic)
-                    <div class="operate">
-                        <a href="{{ route('topics.edit', $topic->id) }}" class="mdui-btn mdui-ripple" role="button">
-                                <i class="mdui-icon material-icons">&#xe3c9;</i> 编辑
-                        </a>
-
-                        <form action="{{ route('topics.destroy', $topic->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="mdui-btn mdui-ripple" style="margin-left: 6px">
-                                    <i class="mdui-icon material-icons">&#xe92b;</i>
-                                删除
-                            </button>
-                        </form>
-                    </div>
-                    @endcan
-
+                    @include('topics._follow_topic',$topic)
                 </div>
             </div>
 
@@ -155,8 +127,8 @@
                 $$(this).css("background-position", "left");
             }
         });
-        //加关注 取消关注
-        $$(".club-follower").on("click",function(){
+        //加关注 取消关注 粉丝
+        $$(".user-follower").on("click",function(){
             var id = $$('#author_id').attr('data_id');
             $$.ajax({
                 method: 'POST',
@@ -171,9 +143,32 @@
                 success: function (data) {
                     var data = JSON.parse(data);
                     if(data.result){
-                        $$('.club-follower').empty().append("<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr('title','取消关注将不会再收到他的动态');
+                        $$('.user-follower').empty().append("<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr('title','取消关注将不会再收到他的动态');
                     }else{
-                        $$('.club-follower').empty().append("<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr('title','关注后能收到他的最新动态');
+                        $$('.user-follower').empty().append("<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr('title','关注后能收到他的最新动态');
+                    }
+                }
+            })
+        });
+        //加关注 取消关注 文章
+        $$(".topic-follower").on("click",function(){
+            var id = $$('#topic_id').attr('data_id');
+            $$.ajax({
+                method: 'POST',
+                url: '/topic/followers/action',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if(data.result){
+                        $$('.topic-follower').empty().append("<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr('title','取消关注将不会再收到新的回复通知');
+                    }else{
+                        $$('.topic-follower').empty().append("<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr('title','关注后能收到文章的最新回复通知');
                     }
                 }
             })

@@ -42,8 +42,10 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
 //用户粉丝 显示用户的粉丝列表
 Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
-//关注 取关
+//关注 取关 用户
 Route::post('/users/followers/action', 'FollowersController@followers')->name('followers.action');
+//关注 取关 文章
+Route::post('/topic/followers/action', 'FollowersController@TopicFollowers')->name('topicfollowers.action');
 
 //用户个人页面
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);

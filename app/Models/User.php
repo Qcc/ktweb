@@ -133,4 +133,36 @@ class User extends Authenticatable
     {
         return $this->followings->contains($user_id);
     }
+    
+    /** 获取当前用户关注的文章列表 */
+    public function topicFollowings()
+    {
+        return $this->belongsToMany(Topic::Class,'topicfollowers','user_id','topic_id');
+    }
+    /** 判断当前用户是否关注了文章 */
+    public function isTopicFollowing($topic_ids)
+    {
+        return $this->topicFollowings->contains($topic_ids);
+    }
+
+    /** 关注文章 */
+    public function topicFollow($topic_ids)
+    {
+        if(!is_array($topic_ids)){
+            $topic_ids = compact('topic_ids');
+        }
+        $this->topicFollowings()->sync($topic_ids,false);
+    }
+    /** 
+     * 
+     * 取消关注文章
+     */
+    public function topicUnFollow($topic_ids)
+    {
+        if(!is_array($topic_ids)){
+            $topic_ids = compact('topic_ids');
+        }
+        $this->topicFollowings()->detach($topic_ids);
+    }
+    
 }

@@ -70,5 +70,11 @@ class Topic extends Model
     {
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
+
+    /** 获取关注当前文章的用户列表 */
+    public function topicFollowers()
+    {
+        return $this->belongsToMany(User::Class,'topicfollowers','topic_id','user_id');
+    }
     
 }

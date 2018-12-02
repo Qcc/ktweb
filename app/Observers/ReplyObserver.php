@@ -19,9 +19,11 @@ class ReplyObserver
     public function created(Reply $reply)
     {
         $topic = $reply->topic;
+        $followers = $topic->topicFollowers;
         $topic->increment('reply_count',1);
 
         /**
+         * 通知作者
          * 调用 Notifications 类通知作者话题被回复了
          * 默认的 User 模型中使用了 trait —— Notifiable，它包含着一个可以用来发通知的方法 notify() ，
          * 此方法接收一个通知实例做参数。虽然 notify() 已经很方便，
@@ -30,6 +32,10 @@ class ReplyObserver
          * 修改User.php 模型文件，将 use Notifiable修改为定制方法;
          */
         $topic->user->notify(new TopicReplied($reply));
+        // 通知话题关注者
+        foreach ($followers as $user) {
+            $user->notify(new TopicReplied($reply));
+        }
     }
     /**
      * 过滤用户输入
