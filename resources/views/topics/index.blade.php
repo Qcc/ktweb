@@ -42,8 +42,8 @@
                 </div>
 
                 <div class="club-panel-body">
-                    {{-- 话题列表 --}}
-                    @include('topics._topic_list', ['topics' => $topics])
+                    {{-- 话题列表  $tops 为置顶文章--}}
+                    @include('topics._topic_list', ['topics' => $topics,'tops'=>$tops])
                     {{-- 分页 --}}
                     <div class="club-pagination">
                         {!! $topics->appends(Request::except('page'))->render() !!}

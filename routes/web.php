@@ -68,3 +68,7 @@ Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload
 Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);
 // 发表回复后 消息通知话题创建者
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]); 
+//将文章设置为精华
+Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('excellent.action');
+//将文章设置置顶
+Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');

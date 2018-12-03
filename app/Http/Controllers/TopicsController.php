@@ -23,9 +23,13 @@ class TopicsController extends Controller
 	// $request->order 是获取 URI http://keweb.test/topics?order=recent 中的 order 参数
 	public function index(Request $request, Topic $topic)
 	{
+		//获取置顶文章
+		// $tops = Topic::where('topping', 1)->get();
+		$tops = $topic->withOrder($request->order)->where('topping', 1)->get();
 		// 分页获取20条记录。默认获取15条
 		$topics = $topic->withOrder($request->order)->paginate(20);
-		return view('topics.index', compact('topics'));
+
+		return view('topics.index', compact('topics','tops'));
 	}
 
 	/**
@@ -126,4 +130,68 @@ class TopicsController extends Controller
 		}
 		return $data;
 	}
+	/**
+	 * 将文章设为精华
+	 * 如果已经设置就取消，如果没有设置就加精华
+	 * ajax方法{id:topic_id}
+	 * @return void
+	 */
+	public function excellent(Request $request)
+	{
+		$data = ['result' => false,'status' => false,'msg' => '参数不正确，失败!'];
+		if($request->id){
+			$topic = Topic::find($request->id);
+			// 设置精华时禁止更新updated_at字段
+			$topic->timestamps = false;
+			if($topic->excellent){
+				$topic->excellent = false;
+				$topic->save();
+				$data['result'] = true;
+				$data['status'] = false;
+				$data['msg'] = '取消设置精华成功!';
+			}else{
+				$topic->excellent = true;
+				$topic->save();
+				$data['result'] = true;
+				$data['status'] = true;
+				$data['msg'] = '设置精华成功!';
+			}
+		}
+		return $data;
+		
+	}
+	/**
+	 * 将文章设置置顶
+	 * ajax方法
+	 * {id:topic_id}
+	 * @param Request $request
+	 * @return void
+	 */
+	public function topping(Request $request)
+	{
+		$data = ['result' => false,'status' => false,'top_expired' => '','msg' => '设置置顶失败!'];
+		if($request->id){
+			$topic = Topic::find($request->id);
+			// 设置置顶时禁止更新updated_at字段
+			$topic->timestamps = false;
+			if($topic->topping){
+				$topic->topping = false;
+				$topic->top_expired = null;
+				$topic->save();
+				$data['result'] = true;
+				$data['status'] = false;
+				$data['msg'] = '取消置顶成功!';
+			}else{
+				$topic->topping = true;
+				$topic->top_expired = $request->expired;
+				$topic->save();
+				$data['result'] = true;
+				$data['status'] = true;
+				$data['top_expired'] = $request->expired;
+				$data['msg'] = '设置置顶成功!';
+			}
+		}
+		return $data;
+	}
+
 }

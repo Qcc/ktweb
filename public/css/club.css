@@ -259,6 +259,9 @@ input:-webkit-autofill {
 .club-panel-body .media-body {
     display: inline-block;
 }
+.club-panel-body .media-body .category-excellent{
+background: #00C853;
+}
 
 .category {
     background: #ccc;
@@ -350,7 +353,11 @@ input:-webkit-autofill {
     line-height: 25px;
 }
 .usercard-message{
-    text-align: center;
+    text-align: left;
+    position: relative;
+}
+.usercard-message .mdui-btn-group .mdui-btn{
+    color: #a2a2a2;
 }
 /* 文章标题 */
 .article-header{
@@ -509,4 +516,29 @@ input:-webkit-autofill {
     float: none;
     margin: 20px;
     zoom:1.2;
+}
+/* 置顶操作 */
+.topexpired-warp{
+    display: none;
+    width: 150px;
+    height: 56px;
+    padding: 10px;
+    position: absolute;
+    top: -60px;
+    background: #fff;
+    -webkit-box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+.topexpired-warp input{
+    width: 90px;
+    height: 34px;
+    border: 1px solid #a2a2a2;
+}
+.topexpired-warp .mdui-btn{
+    float: none;
+}
+.topexpired-warp p{
+    color: #a2a2a2;
+    font-size: 12px;
+    line-height: 30px;
 }

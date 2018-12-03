@@ -16,11 +16,16 @@ class CategoriesController extends Controller
      */
     public function show(Category $category, Request $request, Topic $topic)
     {
+        //获取置顶文章
+        $tops = $topic->withOrder($request->order)
+                      ->where('topping', 1)
+                      ->where('category_id',$category->id)              
+                      ->get();
         // 读取分类 ID  关联的话题， 并按照每20条分页
         $topics = $topic->withOrder($request->order)
                         ->where('category_id',$category->id)
                         ->paginate(20);
         // 传参变量话题和分类 到模版中
-        return view('topics.index',compact('topics','category'));
+        return view('topics.index',compact('topics','category','tops'));
     }
 }
