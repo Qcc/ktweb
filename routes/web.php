@@ -44,8 +44,12 @@ Route::get('/users/{user}/followings', 'UsersController@followings')->name('user
 Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
 //关注 取关 用户
 Route::post('/users/followers/action', 'FollowersController@followers')->name('followers.action');
+
 //关注 取关 文章
-Route::post('/topic/followers/action', 'FollowersController@TopicFollowers')->name('topicfollowers.action');
+Route::post('/topic/followers/action', 'FollowersController@topicFollowers')->name('topicfollowers.action');
+
+// 点赞 取消点赞 文章
+Route::post('/topic/greats/action', 'FollowersController@topicGreats')->name('topicgreats.action');
 
 //用户个人页面
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);

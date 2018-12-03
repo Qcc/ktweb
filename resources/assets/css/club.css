@@ -407,19 +407,14 @@ background: #00C853;
 }
 
 .likeCount {
-    font-family: 'Georgia', Times, Times New Roman, serif;
     margin-left: 30px;
     font-size: 25px;
-    color: #999999;
+    line-height: 50px;
+    color: #a2a2a2;
 }
 
 .article-like {
     clear: both;
-}
-
-.heart:hover,
-.heart:focus {
-    background-position: right;
 }
 
 @keyframes heartBlast {

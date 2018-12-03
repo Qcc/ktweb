@@ -76,5 +76,10 @@ class Topic extends Model
     {
         return $this->belongsToMany(User::Class,'topicfollowers','topic_id','user_id');
     }
+    /** 获取点赞当前文章的用户列表 */
+    public function topicGreats()
+    {
+        return $this->belongsToMany(User::Class,'greattopics','topic_id','user_id');
+    }
     
 }

@@ -66,8 +66,8 @@
                         </h1>
                     </div>
                     <div class="article-like" title="喜欢就点个赞吧">
-                        <div class="heart" id="like" style="background-position: left center;"></div>
-                        <div class="likeCount" id="likeCount">4</div>
+                        <div class="heart {{ Auth::user()->isTopicGreat($topic->id)?'heartAnimation':'' }}"></div>
+                        <div class="likeCount" id="likeCount">{{ count($topic->topicGreats) }}</div>
                     </div>
                 </div>
 

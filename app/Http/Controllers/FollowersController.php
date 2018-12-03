@@ -37,7 +37,7 @@ class FollowersController extends Controller
         return $data;
     }
     /** 添加关注 取消关注 文章*/
-    public function TopicFollowers(Request $request)
+    public function topicFollowers(Request $request)
     {
         $data = ['result'=>false,'msg'=>'文章关注失败!'];
         $topic = Topic::find($request->id);
@@ -55,6 +55,29 @@ class FollowersController extends Controller
             Auth::user()->topicUnFollow($topic->id);
             $data['result'] = false;
             $data['msg'] = '取消文章关注成功';
+        }
+        return $data;
+    }
+    /** 点赞 取消点赞 文章 */
+    public function topicGreats(Request $request)
+    {
+        $data = ['result'=>false,'status' => false,'msg'=>'用户点赞失败!'];
+        //用户不能给自己点赞
+        if(Auth::user()->id === $request->id){
+            return $data;
+        }
+        //用户未点赞时才能点赞
+        if(!Auth::user()->isTopicGreat($request->id)){
+            Auth::user()->topicGreat($request->id);
+            $data['result']= true;
+            $data['status']= true;
+            $data['msg']= '用户点赞成功！';
+        //用户关注后才能取消
+        }else if(Auth::user()->isTopicGreat($request->id)){
+            Auth::user()->topicUnGreat($request->id);
+            $data['result'] = true;
+            $data['status'] = false;
+            $data['msg'] = '取消用户点赞成功';
         }
         return $data;
     }

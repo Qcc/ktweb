@@ -2,21 +2,28 @@ var $$ = mdui.JQ;
 // header部分
 $$(document).ready(function () {
     // 点赞
-    $$('#like').on("click", function () {
-        var A = $$(this).attr("id");
-        var B = A.split("like");
-        var messageID = B[1];
-        var C = parseInt($$("#likeCount" + messageID).html());
-        $$(this).css("background-position", "")
-        var D = $$(this).attr("rel");
-        if (D === 'like') {
-            $$("#likeCount" + messageID).html(C + 1);
-            $$(this).addClass("heartAnimation").attr("rel", "unlike");
-        } else {
-            $$("#likeCount" + messageID).html(C - 1);
-            $$(this).removeClass("heartAnimation").attr("rel", "like");
-            $$(this).css("background-position", "left");
+    $$('.article-like').on("click", function () {
+        var id = $$('#topic_id').attr('data_id');
+        if($$('.heartAnimation').length === 0){
+            $$('.heart').addClass("heartAnimation");
+            $$('#likeCount').text(parseInt($$('#likeCount').text()) + 1);
+        }else{
+            $$('.heart').removeClass("heartAnimation");
+            $$('#likeCount').text(parseInt($$('#likeCount').text()) - 1);
         }
+        $$.ajax({
+            method: 'POST',
+            url: '/topic/greats/action',
+            ContentType: 'application/json',
+            headers: {
+                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                id: id
+            },
+            success: function (data) {
+            }
+        })
     });
     //加关注 取消关注 粉丝
     $$(".user-follower").on("click", function () {
