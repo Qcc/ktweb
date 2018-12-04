@@ -376,6 +376,7 @@ input:-webkit-autofill {
     position: relative;
     margin: 10px 0;
 }
+
 .article-actionbar {
     text-align: left;
     position: relative;
@@ -385,16 +386,21 @@ input:-webkit-autofill {
 .article-actionbar .article-action-bar .mdui-btn {
     color: #a2a2a2;
 }
-.article-actionbar .article-action-bar{
+
+.article-actionbar .article-action-bar {
     width: 100%;
 }
-.article-action-bar .mdui-btn{
+
+.article-action-bar .mdui-btn {
     display: inline-block;
 }
-.article-edit{
+
+.article-edit {
     display: inline;
 }
-.article-edit .mdui-btn, .article-edit form{
+
+.article-edit .mdui-btn,
+.article-edit form {
     display: inline-block;
 }
 
@@ -629,24 +635,177 @@ input:-webkit-autofill {
     line-height: 20px;
     color: #a2a2a2;
 }
+
 /* 文末点赞 */
-.execllent-warp{
+.execllent-warp {
     margin-bottom: 30px;
 }
-.execllent-warp, .execllent-btn, .execllent-body{
+
+.execllent-warp,
+.execllent-btn,
+.execllent-body {
     text-align: center;
 }
-.execllent-warp .execllent-body{
+
+.execllent-warp .execllent-body {
     margin: 10px 0;
 }
-.execllent-body .execllent-avatar{
+
+.execllent-body .execllent-avatar {
     display: inline-block;
     margin: 5px
 }
-.execllent-avatar a img{
+
+.execllent-avatar a img {
     width: 30px;
     height: 30px;
     border-radius: 30px;
     border: 2px solid #fff;
     vertical-align: middle;
+}
+
+/* 评论列表 */
+.reply-list .reply-feed{
+    position: relative;
+    z-index: 1;
+}
+.reply-list .mdui-divider {
+    margin: 30px 0;
+    position: relative;
+}
+
+.mdui-divider .reply-count,
+.reply-count i {
+    text-align: center;
+    font-size: 15px;
+    color: #a2a2a2;
+}
+
+.mdui-divider .reply-count {
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    background: #fff;
+    top: -9px;
+    height: 20px;
+    width: 100px;
+    padding: 0 5px;
+}
+
+.reply-list .avatar-left {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+.reply-feed:after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 90px;
+    display: block;
+    width: 2px;
+    content: "";
+    background-color: #e2e2e2;
+    z-index: -1;
+}
+
+.avatar-left a img {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 0px 1px 10px 0 #a2a2a2;
+    box-shadow: 0px 1px 10px 0 #a2a2a2;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.reply-list .reply-infos {
+    margin-left: 75px;
+    margin-bottom: 20px;
+    min-height: 150px;
+    -webkit-box-shadow: 0px 1px 10px 0 #a2a2a2;
+    box-shadow: 0px 1px 10px 0 #a2a2a2;
+}
+.reply-feed .reply-item{
+    position: relative;
+    background: #fff;
+}
+.reply-item .reply-heading {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.reply-item .reply-heading:before{
+    position: absolute;
+    top: 6px;
+    right: 100%;
+    left: 47px;
+    display: block;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid outset;
+    border-width: 13px;
+    border-right-color: #e2e2e2;
+}
+
+.reply-list .reply-infos:hover .reply-reply {
+    display: block;
+}
+
+.reply-heading .introduction {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #a2a2a2;
+}
+
+.reply-heading .reply-reply {
+    float: right;
+    height: 40px;
+    width: 40px;
+    color: #a2a2a2;
+    text-align: center;
+    display: none;
+}
+
+.reply-infos .reply-content {
+    padding: 30px 15px 10px;
+}
+
+.reply-content .reply-time {
+    margin-top: 20px;
+    color: #a2a2a2;
+    font-size: 12px;
+}
+
+.reply-content .reply-time i {
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.reply-item .reply-footer {
+    height: 36px;
+    border-top: 1px solid #e2e2e2;
+}
+
+.reply-footer .reply-report, .reply-footer .reply-excellent {
+    display: inline-block;
+    border-right: 1px solid #e2e2e2;
+    color: #a2a2a2;
+    font-size: 12px;
+}
+.reply-report .mdui-btn i,.reply-delete .mdui-btn i,.reply-excellent .mdui-btn i{
+    font-size: 12px
+}
+.reply-footer button{
+    font-size: 12px;
+}
+.reply-footer .reply-delete {
+    color: #a2a2a2;
+    font-size: 12px;
+    float: right;
+    border-left: 1px solid #e2e2e2;
 }

@@ -1,37 +1,52 @@
 <div class="reply-list">
-    @foreach ($replies as $index => $reply)
-        <div class=" media"  name="reply{{ $reply->id }}" id="reply{{ $reply->id }}">
-            <div class="avatar pull-left">
+    <div class="mdui-divider">
+        <div class="reply-count">
+            <i class="mdui-icon material-icons">&#xe813;</i> 讨论数量 {{ count($replies)}}
+        </div>
+    </div>
+    <div class="reply-feed">
+        @foreach ($replies as $index => $reply)
+        <div class="reply-item" name="reply{{ $reply->id }}" id="reply{{ $reply->id }}">
+            <div class="avatar-left">
                 <a href="{{ route('users.show', [$reply->user_id]) }}">
-                <img class="media-object img-thumbnail" alt="{{ $reply->user->name }}" src="{{ $reply->user->avatar }}"  style="width:48px;height:48px;"/>
+                    <img alt="{{ $reply->user->name }}" src="{{ $reply->user->avatar }}" />
                 </a>
             </div>
 
-            <div class="infos">
-                <div class="media-heading">
-                    <a href="{{ route('users.show', [$reply->user_id]) }}" title="{{ $reply->user->name }}">
-                    {{ $reply->user->name }}
+            <div class="reply-infos">
+                <div class="reply-heading">
+                    <a href="{{ route('users.show', [$reply->user_id]) }}" title="{{ $reply->user->username }}">
+                        <b>{{ $reply->user->username }}</b>
                     </a>
-                    <span> •  </span>
-                    <span class="meta" title="{{ $reply->created_at }}">{{ $reply->created_at->diffForHumans() }}</span>
-
-                    @can('destroy', $reply)
-                    <span class="meta pull-right">
-                        <form action="{{ route('replies.destroy', $reply->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-default btn-xs pull-left">
-                                删除<i class="glyphicon glyphicon-trash"></i>
-                            </button>
-                        </form>
-                    </span>
-                    @endcan
+                    <span class="introduction"> {{ $reply->user->introduction }} </span>
+                    <a class="reply-reply" title="回复{{ $reply->user->username }}" href="javascript:;"><i class="mdui-icon material-icons">&#xe15e;</i></a>
                 </div>
                 <div class="reply-content">
                     {!! $reply->content !!}
+                    <div class="reply-time" title="回复时间"><i class="mdui-icon material-icons">&#xe8b5;</i> {{
+                        $reply->created_at->diffForHumans() }}</div>
+                </div>
+                <div class="reply-footer">
+                    <div class="reply-excellent">
+                        <button class="mdui-btn mdui-ripple"> <i class="mdui-icon material-icons">&#xe8dc;</i> 点赞</button>
+                    </div>
+                    <div class="reply-report">
+                        <button class="mdui-btn mdui-ripple"> <i class="mdui-icon material-icons">&#xe002;</i> 举报</button>
+                    </div>
+                    @can('destroy', $reply)
+                    <div class="reply-delete">
+                        <form action="{{ route('replies.destroy', $reply->id) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="mdui-btn mdui-ripple">
+                                <i class="mdui-icon material-icons">&#xe92b;</i> 删除
+                            </button>
+                        </form>
+                    </div>
+                    @endcan
                 </div>
             </div>
         </div>
-        <hr>
-    @endforeach
+        @endforeach
+    </div>
 </div>
