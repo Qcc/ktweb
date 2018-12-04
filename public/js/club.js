@@ -2,14 +2,17 @@ var $$ = mdui.JQ;
 // header部分
 $$(document).ready(function () {
     // 点赞
-    $$('.article-like').on("click", function () {
+    $$('.excellent').on("click", function () {
         var id = $$('#topic_id').attr('data_id');
+        $$(this).attr('disabled', true);
         if($$('.heartAnimation').length === 0){
             $$('.heart').addClass("heartAnimation");
             $$('#likeCount').text(parseInt($$('#likeCount').text()) + 1);
+            $$('.excellent-footer').removeClass('mdui-color-theme-accent').empty().append('<i class="mdui-icon material-icons">&#xe8dc;</i> 已赞');
         }else{
             $$('.heart').removeClass("heartAnimation");
             $$('#likeCount').text(parseInt($$('#likeCount').text()) - 1);
+            $$('.excellent-footer').addClass('mdui-color-theme-accent').empty().append('<i class="mdui-icon material-icons">&#xe8dc;</i> 点赞');
         }
         $$.ajax({
             method: 'POST',
@@ -22,11 +25,13 @@ $$(document).ready(function () {
                 id: id
             },
             success: function (data) {
+                $$('.excellent').removeAttr('disabled');  
             }
         })
     });
     //加关注 取消关注 粉丝
     $$(".user-follower").on("click", function () {
+        $$(this).attr('disabled', true);
         var id = $$('#author_id').attr('data_id');
         $$.ajax({
             method: 'POST',
@@ -49,11 +54,13 @@ $$(document).ready(function () {
                         "<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr(
                         'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
                 }
+                $$('.user-follower').removeAttr('disabled');
             }
         })
     });
     //加关注 取消关注 文章
     $$(".topic-follower").on("click", function () {
+        $$(this).attr('disabled', true);
         var id = $$('#topic_id').attr('data_id');
         $$.ajax({
             method: 'POST',
@@ -76,6 +83,7 @@ $$(document).ready(function () {
                         "<i class='mdui-icon material-icons'>&#xe8f4;</i> 加关注").attr(
                         'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
                 }
+                $$('.topic-follower').removeAttr('disabled');
             }
         })
     });

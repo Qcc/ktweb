@@ -17,7 +17,10 @@ class CreateTopicsTable extends Migration
             $table->integer('view_count')->unsigned()->default(0)->comment('阅读数');
             $table->integer('great_count')->unsigned()->default(0)->comment('点赞数');
             $table->boolean('excellent')->default(false)->comment('精华标志');
+            $table->dateTime('excellent_time')->nullable()->comment('加精时间');
+            $table->string('excellent_user')->nullable()->comment('加精人');
             $table->boolean('topping')->default(false)->comment('置顶标志');
+            $table->string('topping_user')->nullable()->comment('置顶人');
             $table->dateTime('top_expired')->nullable()->comment('置顶过期');
             $table->integer('last_reply_user_id')->unsigned()->default(0)->comment('最后回复');
             $table->integer('order')->unsigned()->default(0)->comment('排序');

@@ -151,6 +151,8 @@ class TopicsController extends Controller
 				$data['msg'] = '取消设置精华成功!';
 			}else{
 				$topic->excellent = true;
+				$topic->excellent_time = date("Y-m-d h:i:s",time());
+				$topic->excellent_user = Auth::User()->username;
 				$topic->save();
 				$data['result'] = true;
 				$data['status'] = true;
@@ -183,6 +185,7 @@ class TopicsController extends Controller
 				$data['msg'] = '取消置顶成功!';
 			}else{
 				$topic->topping = true;
+				$topic->topping_user = Auth::user()->username;
 				$topic->top_expired = $request->expired;
 				$topic->save();
 				$data['result'] = true;

@@ -26,15 +26,15 @@
             </div>
         </div>
         <div class="media-footer">
-            <a class="pull-right" href="{{ $topic->link() }}" title="阅读数">
+            <a class="" href="{{ $topic->link() }}" title="阅读数">
                 <span> {{ $topic->view_count }} </span>
             </a>
             <span> / </span>
-            <a class="pull-right" href="{{ $topic->link() }}" title="点赞数">
+            <a class="" href="{{ $topic->link() }}" title="点赞数">
                 <span> {{ $topic->great_count }} </span>
             </a>
             <span> / </span>
-            <a class="pull-right" href="{{ $topic->link() }}" title="回复数">
+            <a class="" href="{{ $topic->link() }}" title="回复数">
                 <span> {{ $topic->reply_count }} </span>
             </a>
             <span> | </span>
@@ -72,15 +72,15 @@
             </div>
         </div>
         <div class="media-footer">
-            <a class="pull-right" href="{{ $topic->link() }}" title="阅读数">
+            <a class="" href="{{ $topic->link() }}" title="阅读数">
                 <span> {{ $topic->view_count }} </span>
             </a>
             <span> / </span>
-            <a class="pull-right" href="{{ $topic->link() }}" title="点赞数">
+            <a class="" href="{{ $topic->link() }}" title="点赞数">
                 <span> {{ $topic->great_count }} </span>
             </a>
             <span> / </span>
-            <a class="pull-right" href="{{ $topic->link() }}" title="回复数">
+            <a class="" href="{{ $topic->link() }}" title="回复数">
                 <span> {{ $topic->reply_count }} </span>
             </a>
             <span> | </span>

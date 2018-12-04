@@ -5,7 +5,7 @@ namespace App\Models;
 class Topic extends Model
 {
     // 允许修改的字段
-    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
+    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug', 'excellent_user', 'excellent_time', 'topping_user'];
 
     /**
      * 话题所属分类 属于一对一关系

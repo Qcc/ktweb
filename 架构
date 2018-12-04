@@ -108,3 +108,84 @@ php artisan horizon
 生产环境中
 使用 Supervisor 进程工具进行管理，配置和使用请参照 文档 进行配置；
 每一次部署代码时，需 artisan horizon:terminate 然后再 artisan horizon 重新加载代码。
+
+快速用户切换工具
+安装
+composer require "viacreative/sudo-su:~1.1"
+添加Provider
+app/Providers/AppServiceProvider.php
+class AppServiceProvider extends ServiceProvider
+{
+    ...
+    public function register()
+    {
+        if (app()->isLocal()) {
+            $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
+        }
+    }
+}
+发布资源
+php artisan vendor:publish --provider="VIACreative\SudoSu\ServiceProvider"
+修改配置
+config/sudosu.php
+// 允许使用的顶级域名
+'allowed_tlds' => ['dev', 'local', 'test'],
+// 用户模型
+'user_model' => App\Models\User::class
+模版植入
+resources/views/layouts/app.blade.php
+...
+    @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
+
+</body>
+</html>
+
+<table><thead><tr><th>扩展包</th>
+<th>一句话描述</th>
+<th>本项目应用场景</th>
+</tr></thead><tbody><tr><td><a href="https://github.com/laravel/passport">laravel/passport</a></td>
+<td>jwt 用户认证包</td>
+<td>api 登录认证</td>
+</tr><tr><td><a href="https://github.com/Intervention/image">Intervention/image</a></td>
+<td>图片处理包</td>
+<td>图片上传裁剪</td>
+</tr><tr><td><a href="https://github.com/spatie/laravel-permission">laravel-permission:~2.7</a></td>
+<td>权限管理包</td>
+<td>权限管理</td>
+</tr><tr><td><a href="https://github.com/mewebstudio/Purifier">mews/purifier</a></td>
+<td>xss过滤</td>
+<td>富文本编辑器</td>
+</tr><tr><td><a href="https://github.com/overtrue/pinyin">overtrue/pinyin</a></td>
+<td>基于 CC-CEDICT 词典的中文转拼音工具</td>
+<td>文章 seo 友好的 url</td>
+</tr><tr><td><a href="https://github.com/nrk/predis">nrk/predis</a></td>
+<td>redis 队列驱动器</td>
+<td>队列管理</td>
+</tr><tr><td><a href="https://laravel-china.org/docs/laravel/5.5/horizon/1345">laravel/horizon</a></td>
+<td>队列监控</td>
+<td>队列监控</td>
+</tr><tr><td><a href="https://github.com/rap2hpoutre/laravel-log-viewer">rap2hpoutre/laravel-log-viewer</a></td>
+<td>laravel 日志查看</td>
+<td>查看日志</td>
+</tr><tr><td><a href="https://help.aliyun.com/document_detail/32099.html?spm=5176.87240.400427.47.CtLkv4">aliyuncs/oss-sdk-php</a></td>
+<td>啊里云 oss</td>
+<td>对象存储</td>
+</tr><tr><td><a href="https://github.com/overtrue/easy-sms">overtrue/easy-sms</a></td>
+<td>短信发送</td>
+<td>找回密码</td>
+</tr><tr><td><a href="https://github.com/barryvdh/laravel-cors">barryvdh/laravel-cors</a></td>
+<td>跨越解决</td>
+<td>开发环境方便测试</td>
+</tr><tr><td><a href="https://github.com/thephpleague/html-to-markdown">league/html-to-markdown</a></td>
+<td>markdown 转 html</td>
+<td>富文本编辑器 markdown 支持</td>
+</tr><tr><td><a href="https://github.com/Maatwebsite/Laravel-Excel">Maatwebsite/Laravel-Excel</a></td>
+<td>excel 处理</td>
+<td>导入导出 excel</td>
+</tr></tbody></table>

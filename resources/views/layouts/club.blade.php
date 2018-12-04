@@ -26,6 +26,9 @@
   <script src="{{ asset('js/mdui.min.js') }}"></script>
   <script src="{{ asset('js/iconfont.js') }}"></script>
   <script src="{{ asset('js/club.js') }}"></script>
+  @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
   @yield('script')
 </body>
 </html>

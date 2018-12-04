@@ -30,7 +30,7 @@ th,
 td {
     margin: 0;
     padding: 0;
-    
+
 }
 
 table {
@@ -259,8 +259,9 @@ input:-webkit-autofill {
 .club-panel-body .media-body {
     display: inline-block;
 }
-.club-panel-body .media-body .category-excellent{
-background: #00C853;
+
+.club-panel-body .media-body .category-excellent {
+    background: #00C853;
 }
 
 .category {
@@ -291,13 +292,15 @@ background: #00C853;
     float: right;
 }
 
-.club-pagination .pagination .active span{
- color:#03A9F4;
- padding: 0 10px;
+.club-pagination .pagination .active span {
+    color: #03A9F4;
+    padding: 0 10px;
 }
-.club-pagination .pagination .disabled span{
- padding: 0 10px;
+
+.club-pagination .pagination .disabled span {
+    padding: 0 10px;
 }
+
 .club-pagination .pagination li {
     float: left;
     font-size: 16px;
@@ -306,80 +309,125 @@ background: #00C853;
     height: 30px;
     border: 1px solid #e2e2e2;
 }
-.club-pagination .pagination li a{
+
+.club-pagination .pagination li a {
     padding: 0 10px;
 }
-.club-pagination .pagination li a:hover{
+
+.club-pagination .pagination li a:hover {
     padding: 0 10px;
-    color:#03A9F4;
+    color: #03A9F4;
 }
+
 /* 文章详情页面 */
-.club-artical{
+.club-artical {
     margin-top: 20px;
     color: #555;
 }
-.usercard-warp, .article-warp{
-    padding: 20px;
+
+.usercard-warp,
+.article-warp {
     margin-bottom: 30px;
     background: #fff;
     border: 1px solid #f2f2f2;
     box-shadow: 0 0 2px #dedada;
+    box-shadow: 0 0 2px #000;
     border-radius: 4px;
     text-align: justify;
 }
+
 /* 文章详情，头像卡 */
-.usercard-body .usercard-avatar img{
+.usercard-body {
+    margin: 20px;
+}
+
+.usercard-body .usercard-avatar img {
     width: 50px;
     height: 50px;
     border-radius: 25px;
 }
-.usercard-header{
+
+.usercard-header {
     position: relative;
     margin-bottom: 15px;
 }
-.usercard-name{
+
+.usercard-name {
     position: absolute;
     top: 0px;
     left: 62px;
 }
-.usercard-name .name{
+
+.usercard-name .name {
     margin-bottom: 5px;
 }
-.usercard-favorites{
+
+.usercard-favorites {
     text-align: center;
     margin: 50px 0;
 }
-.usercard-favorites .mdui-col-xs-3 p{
+
+.usercard-favorites .mdui-col-xs-3 p {
     line-height: 25px;
 }
-.usercard-message{
+
+.usercard-message {
+    text-align: center;
+    position: relative;
+    margin: 10px 0;
+}
+.article-actionbar {
     text-align: left;
     position: relative;
+    margin: 10px 0;
 }
-.usercard-message .mdui-btn-group .mdui-btn{
+
+.article-actionbar .article-action-bar .mdui-btn {
     color: #a2a2a2;
 }
-/* 文章标题 */
-.article-header{
- position: relative;
+.article-actionbar .article-action-bar{
+    width: 100%;
 }
-.article-title{
+.article-action-bar .mdui-btn{
+    display: inline-block;
+}
+.article-edit{
+    display: inline;
+}
+.article-edit .mdui-btn, .article-edit form{
+    display: inline-block;
+}
+
+/* 文章标题 */
+.article-body {
+    margin: 20px;
+}
+
+.article-header {
+    position: relative;
+}
+
+.article-title {
     max-width: 600px;
 }
-.article-title .article-title-h1{
+
+.article-title .article-title-h1 {
     font-size: 20px;
     line-height: 34px;
     font-weight: normal;
     margin-bottom: 20px;
     padding-right: 60px;
 }
-.article-like{
+
+.article-like,
+.article-like-guest {
     position: absolute;
     top: 0;
     right: 0;
     line-height: 34px;
     vertical-align: middle;
 }
+
 /* 点赞动画 */
 .article-like .heartAnimation {
     display: inline-block;
@@ -429,62 +477,78 @@ background: #00C853;
 }
 
 /* 正文样式 */
-.topic-body{
+.topic-body {
     line-height: 34px;
     margin-bottom: 30px;
 }
-.topic-body b, .topic-body strong{
-        font-weight: bold;
+
+.topic-body b,
+.topic-body strong {
+    font-weight: bold;
 }
-.topic-body a{
-    color:  #448AFF;
+
+.topic-body a {
+    color: #448AFF;
 }
-.topic-body ol,.topic-body ul{
+
+.topic-body ol,
+.topic-body ul {
     margin: 10px 0;
 }
-.topic-body blockquote{
+
+.topic-body blockquote {
     border-left: 6px solid #ddd;
     padding: 5px 0 5px 10px;
     margin: 15px 0 15px 15px;
 }
-.topic-body img{
+
+.topic-body img {
     max-width: 100%;
     max-height: 100%;
     margin: 10px 0;
 }
-.topic-body h1{
+
+.topic-body h1 {
     font-size: 24px;
     font-weight: normal;
     margin: 40px 0 20px;
 }
-.topic-body h2{
+
+.topic-body h2 {
     font-size: 22px;
     font-weight: normal;
     margin: 40px 0 20px;
 }
-.topic-body h3{
+
+.topic-body h3 {
     font-size: 20px;
     font-weight: normal;
     margin: 40px 0 20px;
 }
-.topic-body h4{
+
+.topic-body h4 {
     font-size: 18px;
     font-weight: normal;
     margin: 40px 0 20px;
 }
-.topic-body h5{
+
+.topic-body h5 {
     font-size: 16px;
     font-weight: normal;
     margin: 40px 0 20px;
 }
-.topic-body table,.topic-body tbody{
+
+.topic-body table,
+.topic-body tbody {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
     margin: 15px 0;
 }
-.topic-body th, .topic-body td{
+
+.topic-body th,
+.topic-body td {
     min-width: 40px;
     height: 30px;
     border: 1px solid #ccc;
@@ -497,43 +561,92 @@ background: #00C853;
 /* 登录后操作提示框 */
 .require-warp {
     text-align: center;
-    color:#555;
+    color: #555;
 }
-.require-warp div{
+
+.require-warp div {
     margin: 30px 0;
 }
-.require-warp .require-icon i{
+
+.require-warp .require-icon i {
     font-size: 60px;
     color: #F4511E;
 }
-.require-warp .require-btn .mdui-btn{
+
+.require-warp .require-btn .mdui-btn {
     width: 90px;
     float: none;
     margin: 20px;
-    zoom:1.2;
+    zoom: 1.2;
 }
+
 /* 置顶操作 */
-.topexpired-warp{
+.topexpired-warp {
     display: none;
-    width: 150px;
+    width: 160px;
     height: 56px;
     padding: 10px;
     position: absolute;
-    top: -60px;
+    top: -80px;
+    right: 10px;
     background: #fff;
-    -webkit-box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
-    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
 }
-.topexpired-warp input{
+
+.topexpired-warp input {
     width: 90px;
     height: 34px;
     border: 1px solid #a2a2a2;
 }
-.topexpired-warp .mdui-btn{
+
+.topexpired-warp .mdui-btn {
     float: none;
+    min-width: 60px;
 }
-.topexpired-warp p{
+
+.topexpired-warp p {
     color: #a2a2a2;
     font-size: 12px;
     line-height: 30px;
+}
+
+/* 文末添加精华标志 */
+.article-warp .article-excellent {}
+
+.article-excellent .excel-title {
+    font-size: 14px;
+    line-height: 30px;
+    padding: 0 30px;
+    border-top: 1px solid #00C853;
+    border-bottom: 1px solid #00C853;
+    color: #00C853;
+}
+
+.article-excellent .excel-name {
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: #a2a2a2;
+}
+/* 文末点赞 */
+.execllent-warp{
+    margin-bottom: 30px;
+}
+.execllent-warp, .execllent-btn, .execllent-body{
+    text-align: center;
+}
+.execllent-warp .execllent-body{
+    margin: 10px 0;
+}
+.execllent-body .execllent-avatar{
+    display: inline-block;
+    margin: 5px
+}
+.execllent-avatar a img{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 2px solid #fff;
+    vertical-align: middle;
 }
