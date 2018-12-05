@@ -283,25 +283,27 @@ input:-webkit-autofill {
 }
 
 /* 分页 */
-.club-pagination {
-    margin: 30px 0px;
+.pagination-box {
     position: relative;
+    width: 100%;
+    height: 32px;
+    margin: 30px 0;
 }
 
-.club-pagination .pagination {
+.pagination-box .pagination {
     float: right;
 }
 
-.club-pagination .pagination .active span {
+.pagination-box .pagination .active span {
     color: #03A9F4;
     padding: 0 10px;
 }
 
-.club-pagination .pagination .disabled span {
+.pagination-box .pagination .disabled span {
     padding: 0 10px;
 }
 
-.club-pagination .pagination li {
+.pagination-box .pagination li {
     float: left;
     font-size: 16px;
     line-height: 30px;
@@ -310,11 +312,11 @@ input:-webkit-autofill {
     border: 1px solid #e2e2e2;
 }
 
-.club-pagination .pagination li a {
+.pagination-box .pagination li a {
     padding: 0 10px;
 }
 
-.club-pagination .pagination li a:hover {
+.pagination-box .pagination li a:hover {
     padding: 0 10px;
     color: #03A9F4;
 }
@@ -325,8 +327,11 @@ input:-webkit-autofill {
     color: #555;
 }
 
+/* 边框样式 */
 .usercard-warp,
 .article-warp,
+.useraction-nav,
+.useraction-content,
 .reply-box {
     margin-bottom: 30px;
     background: #fff;
@@ -666,10 +671,11 @@ input:-webkit-autofill {
 }
 
 /* 评论列表 */
-.reply-list .reply-feed{
+.reply-list .reply-feed {
     position: relative;
     z-index: 1;
 }
+
 .reply-list .mdui-divider {
     margin: 30px 0;
     position: relative;
@@ -698,7 +704,8 @@ input:-webkit-autofill {
     height: 50px;
     float: left;
 }
-.reply-feed:after{
+
+.reply-feed:after {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -727,17 +734,20 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0px 1px 10px 0 #a2a2a2;
     box-shadow: 0px 1px 10px 0 #a2a2a2;
 }
-.reply-feed .reply-item{
+
+.reply-feed .reply-item {
     position: relative;
     background: #fff;
 }
+
 .reply-item .reply-heading {
     height: 40px;
     line-height: 40px;
     padding-left: 15px;
     border-bottom: 1px solid #e2e2e2;
 }
-.reply-item .reply-heading:before{
+
+.reply-item .reply-heading:before {
     position: absolute;
     top: 6px;
     right: 100%;
@@ -793,48 +803,197 @@ input:-webkit-autofill {
     border-top: 1px solid #e2e2e2;
 }
 
-.reply-footer .reply-report, .reply-footer .reply-excellent {
+.reply-footer .reply-report,
+.reply-footer .reply-excellent {
     display: inline-block;
     border-right: 1px solid #e2e2e2;
     color: #a2a2a2;
     font-size: 12px;
 }
-.reply-report .mdui-btn i,.reply-delete .mdui-btn i,.reply-excellent .mdui-btn i{
+
+.reply-report .mdui-btn i,
+.reply-delete .mdui-btn i,
+.reply-excellent .mdui-btn i {
     font-size: 12px
 }
-.reply-footer button{
+
+.reply-footer button {
     font-size: 12px;
 }
+
 .reply-footer .reply-delete {
     color: #a2a2a2;
     font-size: 12px;
     float: right;
     border-left: 1px solid #e2e2e2;
 }
+
 /* 回复表单 */
-.reply-box{
+.reply-box {
     margin-left: 75px;
     padding: 15px;
     margin-bottom: 20px;
 }
-.reply-box .reply-tips{
+
+.reply-box .reply-tips {
     height: 40px;
     line-height: 40px;
     border: 1px solid#FF9800;
     border-radius: 4px;
     margin-bottom: 20px;
 }
-.reply-tips p{
+
+.reply-tips p {
     color: #FF9800;
     font-size: 13px;
 }
-.reply-tips i{
+
+.reply-tips i {
     margin: 0 4px 0 15px;
     font-size: 16px;
 }
+
 .simditor .simditor-wrapper .simditor-body {
     min-height: 170px;
 }
-.reply-form .mdui-btn{
+
+.reply-form .mdui-btn {
     margin-top: 10px;
+}
+
+/* 个人中心 */
+.user-edit {
+    display: none;
+}
+
+.users-show-page .user-edit {
+    display: block;
+    text-align: center;
+}
+
+.user-edit .mdui-btn {
+    width: 100%;
+}
+
+/* 用户动作导航 */
+.useraction-nav {
+    text-align: center;
+}
+
+.useraction-nav .nav-tabs {}
+
+.useraction-nav .nav-tabs li a {
+    display: block;
+    padding: 15px 15px;
+}
+
+.useraction-nav .nav-tabs li.active a {
+    color: #F4511E;
+}
+
+.useraction-nav .nav-tabs li a:hover {
+    color: #F4511E;
+}
+
+.useraction-nav .nav-tabs li i {
+    padding: 0 5px;
+    font-size: 20px;
+}
+
+/* 用户发表的文章 点赞 粉丝 关注 */
+.useraction-content {
+    padding: 15px;
+}
+
+.topics-group .topic-item {
+    margin: 30px 0;
+}
+
+.topic-item .topic-info {
+    display: inline;
+    float: right;
+}
+
+.topic-item .title {
+    max-width: 600px;
+    display: inline-block;
+    line-height: 20px;
+}
+
+.topic-item .title:hover {
+    color: #F4511E;
+}
+
+.topic-item .category-excellent {
+    background: #00C853;
+}
+
+.topic-item span a.category-excellent {
+    color: #fff;
+}
+
+.topic-item a.category {
+    color: #555;
+}
+
+/* 他的回复 */
+.replies-group .replies-item {
+    margin: 30px 0;
+}
+
+.replies-item .reply-content {
+    position: relative;
+    padding: 0 40px;
+    margin: 10px 0;
+}
+
+.replies-item .title {
+    font-size: 16px;
+}
+
+.replies-item .title:hover {
+    color: #F4511E;
+}
+
+.replies-item .title span {
+    font-size: 13px;
+    color: #a2a2a2;
+}
+
+.reply-content .icon {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    color: #a2a2a2;
+}
+
+.reply-content p {
+    line-height: 25px;
+}
+
+.replies-item .reply-time {
+    padding-left: 40px;
+}
+
+.reply-time i,
+.reply-time span {
+    font-size: 13px;
+    color: #a2a2a2;
+}
+
+.user-item .avatar {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+}
+
+.users-group .user-item {
+    margin: 20px 0;
+    height: 34px;
+}
+
+.user-item .introduction {
+    padding: 0 10px;
+    line-height: 34px;
 }

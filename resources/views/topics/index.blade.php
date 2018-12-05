@@ -45,7 +45,7 @@
                     {{-- 话题列表  $tops 为置顶文章--}}
                     @include('topics._topic_list', ['topics' => $topics,'tops'=>$tops])
                     {{-- 分页 --}}
-                    <div class="club-pagination">
+                    <div class="pagination-box">
                         {!! $topics->appends(Request::except('page'))->render() !!}
                     </div>
                 </div>

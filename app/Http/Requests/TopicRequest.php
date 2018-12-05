@@ -20,7 +20,7 @@ class TopicRequest extends Request
             case 'PATCH':
             {
                 return [
-                    'title'       => 'required|min:2',
+                    'title'       => 'required|min:2|max:30',
                     'body'        => 'required|min:3',
                     'category_id' => 'required|numeric',
                 ];
@@ -38,6 +38,7 @@ class TopicRequest extends Request
     {
         return [
             'title.min' => '标题必须至少两个字符',
+            'title.max' => '标题不能超过30个字符',
             'body.min' => '文章内容必须至少三个字符',
         ];
     }
