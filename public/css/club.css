@@ -774,6 +774,7 @@ input:-webkit-autofill {
 
 .reply-infos .reply-content {
     padding: 30px 15px 10px;
+    margin-bottom: 0px;
 }
 
 .reply-content .reply-time {

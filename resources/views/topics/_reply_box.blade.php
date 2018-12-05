@@ -41,7 +41,6 @@
                 connectionCount: 3,
                 leaveConfirm: '文件上传中，关闭此页面将取消上传。'
             },
-            height:150,
             pasteImage: true,
         });
     });
