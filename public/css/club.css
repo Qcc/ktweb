@@ -326,7 +326,8 @@ input:-webkit-autofill {
 }
 
 .usercard-warp,
-.article-warp {
+.article-warp,
+.reply-box {
     margin-bottom: 30px;
     background: #fff;
     border: 1px solid #f2f2f2;
@@ -808,4 +809,31 @@ input:-webkit-autofill {
     font-size: 12px;
     float: right;
     border-left: 1px solid #e2e2e2;
+}
+/* 回复表单 */
+.reply-box{
+    margin-left: 75px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.reply-box .reply-tips{
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid#FF9800;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.reply-tips p{
+    color: #FF9800;
+    font-size: 13px;
+}
+.reply-tips i{
+    margin: 0 4px 0 15px;
+    font-size: 16px;
+}
+.simditor .simditor-wrapper .simditor-body {
+    min-height: 170px;
+}
+.reply-form .mdui-btn{
+    margin-top: 10px;
 }

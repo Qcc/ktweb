@@ -9,7 +9,7 @@ class ReplyRequest extends Request
         
         {
             return [
-                'content' => 'required|min:3'
+                'content' => 'required|min:10'
             ];
         };
     }

@@ -13,7 +13,7 @@
                 </a>
             </div>
 
-            <div class="reply-infos">
+            <div class="reply-infos ">
                 <div class="reply-heading">
                     <a href="{{ route('users.show', [$reply->user_id]) }}" title="{{ $reply->user->username }}">
                         <b>{{ $reply->user->username }}</b>
@@ -21,7 +21,7 @@
                     <span class="introduction"> {{ $reply->user->introduction }} </span>
                     <a class="reply-reply" title="回复{{ $reply->user->username }}" href="javascript:;"><i class="mdui-icon material-icons">&#xe15e;</i></a>
                 </div>
-                <div class="reply-content">
+                <div class="reply-content topic-body">
                     {!! $reply->content !!}
                     <div class="reply-time" title="回复时间"><i class="mdui-icon material-icons">&#xe8b5;</i> {{
                         $reply->created_at->diffForHumans() }}</div>
