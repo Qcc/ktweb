@@ -15,17 +15,18 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->nullable();
-            $table->string('nickname')->nullable()->unique();
+            $table->string('username')->nullable()->comment('真实姓名');
+            $table->string('nickname')->nullable()->unique()->comment('昵称');
             $table->string('email')->nullable()->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->comment('手机');
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('introduction')->nullable();
-            $table->integer('permission')->default(1);;
-            $table->string('activation_token')->nullable();
-            $table->boolean('activated')->default(true);
-            $table->boolean('mail_activated')->default(false);
+            $table->string('company')->nullable();
+            $table->string('telephone')->nullable()->comment('座机');
+            $table->string('introduction')->nullable()->comment('简介');
+            $table->string('activation_token')->nullable()->comment('找回密码');
+            $table->boolean('activated')->default(true)->comment('用户状态');
+            $table->boolean('mail_activated')->default(false)->comment('邮箱激活');
             $table->rememberToken();
             $table->timestamps();
         });

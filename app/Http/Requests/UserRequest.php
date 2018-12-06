@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
     {
         return [
             // 'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
-            'username' => 'required|between:2,10',
+            'username' => 'between:2,10',
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             'introduction' => 'max:80',
             'avatar' => 'mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200',

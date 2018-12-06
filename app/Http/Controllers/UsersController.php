@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Models\User;
+use Hash;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use Illuminate\Support\Facades\Log;
 
 class UsersController extends Controller
 {
@@ -27,6 +30,25 @@ class UsersController extends Controller
         $this->authorize('update', $user);
         return view('users.edit',compact('user'));
     }
+
+    //修改密码页面
+    public function password(User $user){
+        // 授权策略只能当前用户访问自己的编辑页面
+        // App\Http\Controllers\Controller 控制器基类包含了 Laravel 的 AuthorizesRequests trait。此 trait 提供了 authorize 方法
+        $this->authorize('update', $user);
+        return view('users.password',compact('user'));
+    }
+    public function uppwd(Request $request, User $user){
+        $this->authorize('update',$user);
+        $this->validate($request, [
+            'oldpassword' => 'bail|required|max:30',
+            'password' => 'bail|required|confirmed|min:6|max:30',
+        ]);
+        $request->user()->fill([
+            'password' => Hash::make($request->password)
+        ])->save();
+        return redirect()->route('users.password', $user->id)->with('success', '密码更新成功！');
+    }
     // 更新用户
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
@@ -39,7 +61,6 @@ class UsersController extends Controller
                 $data['avatar'] = $result['path'];
             }
         }
-
         $user->update($data);
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
     }

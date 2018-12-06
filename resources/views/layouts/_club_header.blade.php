@@ -38,8 +38,11 @@
         <ul class="mdui-menu mdui-menu-cascade" id="user-menu">
           <li class="mdui-menu-item">
             <a href="{{ route('users.show', Auth::id()) }}" class="mdui-ripple">
-              <i class="mdui-icon material-icons">&#xe7ff;</i>
-              个人中心</a>
+              <i class="mdui-icon material-icons">&#xe7ff;</i> 个人中心</a>
+          </li>
+          <li class="mdui-menu-item">
+            <a href="{{ route('users.edit', Auth::id()) }}"   class="mdui-ripple">
+              <i class="mdui-icon material-icons">&#xe14f;</i> 编辑资料</a>
           </li>
           <li class="mdui-divider"></li>
           <li class="mdui-menu-item">
