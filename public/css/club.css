@@ -341,12 +341,13 @@ input:-webkit-autofill {
 .useraction-content,
 .edit-item-warp,
 .edit-action-warp,
+.article-panel,
 .reply-box {
     margin-bottom: 30px;
     background: #fff;
     border: 1px solid #f2f2f2;
     box-shadow: 0 0 2px #dedada;
-    box-shadow: 0 0 2px #000;
+    /* box-shadow: 0 0 2px #000; */
     border-radius: 4px;
     text-align: justify;
 }
@@ -839,7 +840,6 @@ input:-webkit-autofill {
 
 /* 回复表单 */
 .reply-box {
-    margin-left: 75px;
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -1036,4 +1036,43 @@ input:-webkit-autofill {
 }
 .form-btn{
     margin: 20px 0;
+}
+/* 文章发表 */
+.article-panel{
+    margin: 30px 0;
+    padding: 30px;
+}
+.panel-body>.head{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: #555;
+}
+.panel-body input,.panel-body select, .panel-body .mdui-select{
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0em;
+    outline: none;
+    -webkit-appearance: none;
+    line-height: 1.2142em;
+    padding: 0.67861429em 1em;
+    font-size: 1em;
+    background: #FFFFFF;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    color: rgba(0, 0, 0, 0.87);
+    border-radius: 0.28571429rem;
+    -webkit-box-shadow: 0em 0em 0em 0em transparent inset;
+    box-shadow: 0em 0em 0em 0em transparent inset;
+    -webkit-transition: color 0.1s ease, border-color 0.1s ease;
+    transition: color 0.1s ease, border-color 0.1s ease;
+}
+.panel-body .mdui-select .mdui-select-selected {
+ left: 10px;
+}
+.panel-body .title,.panel-body .title>input{
+    width: 80%
+}
+
+.panel-body .title, .panel-body .select{
+    display: inline-block;
+    margin: 10px 0 10px 5px;
 }
