@@ -347,7 +347,7 @@ input:-webkit-autofill {
     background: #fff;
     border: 1px solid #f2f2f2;
     box-shadow: 0 0 2px #dedada;
-    /* box-shadow: 0 0 2px #000; */
+    box-shadow: 0 0 2px #000;
     border-radius: 4px;
     text-align: justify;
 }

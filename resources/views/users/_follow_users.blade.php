@@ -8,7 +8,7 @@
       @include('common.require_login')
     @else
       @if ($user->id !== Auth::user()->id)
-        <button class="mdui-btn mdui-ripple" title="给他发送私信"><i class="mdui-icon material-icons">&#xe0e1;</i> 发私信</button>
+        <a class="mdui-btn mdui-ripple" title="给他发送私信" href="{{ route('message.to', $user->id) }}"><i class="mdui-icon material-icons">&#xe0e1;</i> 发私信</a>
         @if (Auth::user()->isFollowing($user->id))
           <button class="mdui-btn mdui-ripple user-follower" title="取消关注将不会再收到他的动态" style="color:#00C853"><i class="mdui-icon material-icons">&#xe5ca;</i>
             已关注</button>
