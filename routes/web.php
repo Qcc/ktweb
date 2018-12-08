@@ -75,9 +75,12 @@ Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']])
 // 发表回复后 消息通知话题创建者
 Route::get('notifications/notice', 'NotificationsController@notifications')->name('notifications.notice'); 
 Route::get('notifications/message', 'NotificationsController@message')->name('notifications.message'); 
-Route::get('notifications/message/to/{user}', 'NotificationsController@sendtouser')->name('message.to'); 
-Route::post('notifications/message/{user}', 'NotificationsController@sendmessage')->name('message.send'); 
 Route::get('notifications/system', 'NotificationsController@system')->name('notifications.system'); 
+
+// 发送私信
+Route::get('notifications/message/to/{user}', 'NotificationsController@sendtouser')->name('message.to'); 
+Route::get('notifications/message/{conversation}', 'NotificationsController@conversation')->name('message.conversation'); 
+Route::post('notifications/message/{user}', 'NotificationsController@sendmessage')->name('message.send'); 
 //将文章设置为精华
 Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('excellent.action');
 //将文章设置置顶

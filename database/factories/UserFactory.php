@@ -19,6 +19,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
 
     return [
         'username' => $faker->name,
+        'nickname' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('password'),
         'phone' => $faker->numberBetween($min = 13, $max = 18).$faker->numberBetween($min = 100000000, $max = 900000000),

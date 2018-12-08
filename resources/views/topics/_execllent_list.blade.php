@@ -11,8 +11,8 @@
     <div class="execllent-body">
         @foreach ($users as $index => $user)
         <div class="execllent-avatar">
-            <a href="{{ route('users.show', $user->id) }}" title="{{ $user->username }}">
-                <img src="{{ $user->avatar }}" alt="{{ $user->username }}">
+            <a href="{{ route('users.show', $user->id) }}" title="{{ $user->nickname }}">
+                <img src="{{ $user->avatar }}" alt="{{ $user->nickname }}">
             </a>
         </div>
         @endforeach

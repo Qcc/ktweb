@@ -1,6 +1,6 @@
 @extends('layouts.club')
 
-@section('title', $user->username . ' 的个人中心')
+@section('title', $user->nickname . ' 的个人中心')
 
 @section('content')
 <div class="mdui-container club-artical">

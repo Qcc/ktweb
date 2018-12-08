@@ -52,7 +52,7 @@ class TopicFollowing extends Notification
             'topic_title' => $this->topic->title,
             'topic_excerpt' => $this->topic->excerpt,
             'user_id' => $this->topic->user->id,
-            'user_username' => $this->topic->user->username,
+            'user_nickname' => $this->topic->user->nickname,
             'user_avatar' => $this->topic->user->avatar,
             'topic_link' => $this->topic->link(),
             'topic_created_at' => $this->topic->created_at,

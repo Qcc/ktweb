@@ -6,8 +6,8 @@
         <div class="media-left">
             <div class="media-avatar">
                 <a href="{{ route('users.show', [$topic->user_id]) }}">
-                    <img class="media-object img-thumbnail" src="{{ $topic->user->avatar }}" title="{{ $topic->user->username }}"
-                        alt={{ $topic->user->username }}">
+                    <img class="media-object img-thumbnail" src="{{ $topic->user->avatar }}" title="{{ $topic->user->nickname }}"
+                        alt={{ $topic->user->nickname }}">
                 </a>
             </div>
         </div>
@@ -53,8 +53,8 @@
         <div class="media-left">
             <div class="media-avatar">
                 <a href="{{ route('users.show', [$topic->user_id]) }}">
-                    <img class="media-object img-thumbnail" src="{{ $topic->user->avatar }}" title="{{ $topic->user->username }}"
-                        alt={{ $topic->user->username }}">
+                    <img class="media-object img-thumbnail" src="{{ $topic->user->avatar }}" title="{{ $topic->user->nickname }}"
+                        alt={{ $topic->user->nickname }}">
                 </a>
             </div>
         </div>

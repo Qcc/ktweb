@@ -1076,3 +1076,66 @@ input:-webkit-autofill {
     display: inline-block;
     margin: 10px 0 10px 5px;
 }
+/* 发送私信 */
+.send-avatar>a:hover{
+    color: #F4511E;
+}
+.send-avatar>a img{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 2px solid #fff;
+    vertical-align: middle;
+}
+.send-avatar{
+    margin: 20px 0;
+}
+.message-warp {
+    margin-top: 20px;
+}
+.message-warp>ul>li{
+    margin: 30px 0;
+}
+.message-warp .message-left{
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+.message-warp .message-info{
+ padding-left: 50px;
+}
+.message-info .head{
+    font-size: 16px;
+    font-weight: 500;
+}
+.message-info .content{
+    margin: 10px 0;
+}
+.message-info .time{
+    font-size: 12px;
+    color: #a2a2a2;
+}
+.message-info .time i{
+font-size: 15px;
+}
+.chat-info .head{
+    font-size: 16px;
+    font-weight: 500;
+}
+.chat-info .content{
+    margin: 10px 0;
+}
+.chat-info .head>p{
+    display: inline;
+    margin-left: 10px;
+    font-size: 12px;
+    color: #a2a2a2;
+}
+.chat-info .head>p i{
+font-size: 15px;
+}
+.chat-info .link>a , .chat-info .link>a i{
+font-size: 12px;
+color: #a2a2a2;
+}

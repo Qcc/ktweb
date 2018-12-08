@@ -8,16 +8,7 @@
     <div class="mdui-row">
         <div class="mdui-col-xs-3">
             <div class="edit-item-warp">
-                <div class="edit-item">
-                    <ul class="edit-list">
-                        <li><a href="{{ route('notifications.message') }}" class="mdui-btn mdui-ripple">
-                                <i class="mdui-icon material-icons">&#xe0e1;</i> 私信</a></li>
-                        <li><a href="{{ route('notifications.notice') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">
-                            <i class="mdui-icon material-icons">&#xe7f5;</i> 通知</a></li>
-                        <li><a href="{{ route('notifications.system') }}" class="mdui-btn">
-                                <i class="mdui-icon material-icons">&#xe050;</i> 系统</a></li>
-                    </ul>
-                </div>
+                    @include('notifications._menu')
             </div>
         </div>
         <div class="mdui-col-xs-8">

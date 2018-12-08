@@ -33,7 +33,7 @@
         </a>
         <a class="club-avatar" href="javascript:;" mdui-menu="{target: '#user-menu'}">
           <img class="avatar" src="{{ Auth::user()->avatar }}" alt="">
-          {{ Auth::user()->username ?? hiddenPhone(Auth::user()->phone) }}
+          {{ Auth::user()->nickname }}
         </a>
         <ul class="mdui-menu mdui-menu-cascade" id="user-menu">
           <li class="mdui-menu-item">

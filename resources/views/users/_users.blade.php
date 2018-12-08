@@ -4,7 +4,7 @@
     @foreach ($users as $user)
         <li class="user-item">
             <div class="execllent-avatar avatar">
-                <a href="{{ route('users.show',$user->id) }}" title="{{ $user->username }}">
+                <a href="{{ route('users.show',$user->id) }}" title="{{ $user->nickname }}">
                     <img src="{{ $user->avatar }}" alt="用户头像">
                 </a>
             </div>

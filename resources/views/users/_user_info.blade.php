@@ -8,7 +8,7 @@
             </div>
             <div class="usercard-name">
                 <div class="name mdui-typo-title-opacity">
-                    {{ $user->username ?? hiddenPhone($user->phone) }}
+                    {{ $user->nickname }}
                 </div>
                 <div class="mdui-typo-body-1-opacity">
                     {{ $user->introduction }}

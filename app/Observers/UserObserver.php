@@ -11,7 +11,7 @@ class UserObserver
 {
     public function creating(User $user)
     {
-        //
+        $user->nickname = hiddenPhone($user->phone);
     }
 
     public function updating(User $user)

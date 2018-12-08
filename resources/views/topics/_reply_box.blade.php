@@ -9,7 +9,7 @@
             <input type="hidden" name="topic_id" value="{{ $topic->id }}">
             <div class="form-group">
                 <textarea class="form-control" id="reply-editor" placeholder="说点儿什么吧!" name="content">
-                        {{ old('body') }}
+                        {{ old('content') }}
                 </textarea>
             </div>
             <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">&#xe15e;</i> 回复</button>

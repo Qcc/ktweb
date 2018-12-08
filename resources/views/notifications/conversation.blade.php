@@ -1,13 +1,13 @@
 @extends('layouts.club')
 
-@section('title', '系统消息')
+@section('title', '我的私信')
 
 @section('content')
 <div class="mdui-container useredit-box">
     <div class="mdui-row">
         <div class="mdui-col-xs-3">
             <div class="edit-item-warp">
-                    @include('notifications._menu')
+                 @include('notifications._menu')
             </div>
         </div>
         <div class="mdui-col-xs-8">
