@@ -31,6 +31,7 @@
       加关注</button>
     @endif
     @endif
+    @can('update', $topic)
     @if($topic->topping)
     <!-- 当前置顶状态标记1已经置顶，0未置顶 -->
     <button class="mdui-btn mdui-ripple topic-topping mdui-float-right" topping='1' title="取消话题置顶" style="color:#00C853"><i class="mdui-icon material-icons">&#xe5ca;</i>
@@ -51,5 +52,6 @@
     <button class="mdui-btn mdui-ripple topic-excellent mdui-float-right" title="将话题设置为精华"><i class="mdui-icon material-icons">&#xe83a;</i>
       加精华</button>
     @endif
+    @endcan
     @endguest
   </div>

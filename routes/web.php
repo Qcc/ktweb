@@ -85,3 +85,6 @@ Route::post('notifications/message/{user}', 'NotificationsController@sendmessage
 Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('excellent.action');
 //将文章设置置顶
 Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');
+
+// 网站后台管理
+Route::get('/management/admin','WebManagementController@index')->name('admin.index');
