@@ -146,6 +146,16 @@ resources/views/layouts/app.blade.php
 </body>
 </html>
 
+权限扩展
+安装
+composer require "spatie/laravel-permission:~2.7"
+生成迁移文件
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"
+发布配置文件
+php artisan migrate
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="config"
+
+
 <table><thead><tr><th>扩展包</th>
 <th>一句话描述</th>
 <th>本项目应用场景</th>

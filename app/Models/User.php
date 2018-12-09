@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
+    // 权限管理扩展 trait
+    use HasRoles;
     /**
      * 默认的 User 模型中使用了 trait —— Notifiable，
      * 它包含着一个可以用来发通知的方法 notify() ，
