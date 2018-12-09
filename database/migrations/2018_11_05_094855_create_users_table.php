@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->nullable()->comment('真实姓名');
+            $table->string('name')->nullable()->comment('真实姓名');
             $table->string('nickname')->nullable()->unique()->comment('昵称');
             $table->string('email')->nullable()->unique();
             $table->string('phone')->unique()->comment('手机');
@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
     }
-    // App\Models\User::create(['username'=> 'kevin','nickname'=> 'kk','email'=>'kevin@kouton.com','phone'=>'15889730027','password'=>bcrypt('password'),'permission'=>1000])
+    // App\Models\User::create(['name'=> 'kevin','nickname'=> 'kk','email'=>'kevin@kouton.com','phone'=>'15889730027','password'=>bcrypt('password'),'permission'=>1000])
 
     /**
      * Reverse the migrations.

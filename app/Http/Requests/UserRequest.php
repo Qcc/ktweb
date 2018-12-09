@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
     {
         return [
             // 'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
-            'username' => 'required|between:2,10',
+            'name' => 'required|between:2,10',
             'nickname' => 'required|unique:users,nickname,'. Auth::id(),'|between:2,10',
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             'introduction' => 'max:80',
@@ -43,7 +43,7 @@ class UserRequest extends FormRequest
     {
         return [
             'email.unique' => '邮箱已被注册，如果不是您本人注册请找回密码修改',
-            'username.between' => '姓名必须介于 3 - 10 个字符之间。',
+            'name.between' => '姓名必须介于 3 - 10 个字符之间。',
             'nickname.required' => '昵称不能为空。',
             'nickname.unique' => '昵称已经被使用。',
             'nickname.between' => '昵称必须介于 3 - 10 个字符之间。',

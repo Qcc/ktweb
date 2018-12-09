@@ -35,7 +35,7 @@
                                 <div class="mdui-textfield mdui-textfield-floating-label">
                                     <label class="mdui-textfield-label">真实姓名</label>
                                     <input class="mdui-textfield-input {{ $user->company?'disabled':'' }}" type="text"
-                                        name="username" {{ $user->username?'readonly':'' }} value="{{ old('username',$user->username) }}" />
+                                        name="name" {{ $user->name?'readonly':'' }} value="{{ old('name',$user->name) }}" />
                                     <div class="mdui-textfield-helper">请输入姓名,保存后不能再修改，请谨慎操作</div>
                                 </div>
                             </div>

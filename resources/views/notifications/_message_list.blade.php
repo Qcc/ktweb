@@ -14,7 +14,7 @@
                         <b>{{ $message->sendUser->id == Auth::User()->id?'我':$message->sendUser->nickname }}</b></a>
                 </div>
                 <div class="topic-body content">
-                    {{ $message->content }}
+                    {!! $message->content !!}
                 </div>
                 <div class="time">
                     <i class="mdui-icon material-icons">&#xe192;</i>

@@ -39,7 +39,9 @@
                         </div>
                     </form>
                     <div class="mdui-divider"></div>
+                    @if(!collect($conversation)->isEmpty())
                     @include('notifications._message_list',['messages'=>$conversation->messages])
+                    @endif
                 </div>
             </div>
         </div>
