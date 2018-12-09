@@ -6,20 +6,20 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\Models\User;
+use App\Models\Message;
 class PrivateMessage extends Notification
 {
     use Queueable;
-    public $user;
+    public $message;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Message $message)
     {
-        $this->user = $user;
+        $this->message = $message;
     }
 
     /**
@@ -42,19 +42,16 @@ class PrivateMessage extends Notification
      */
     public function toDatabase($notifiable)
     {
-        $topic = $this->reply->topic;
-        $link = $topic->link(['#reply' . $this->reply->id]);
+        $link = $this->message->link(['#msg' . $this->message->id]);
 
         // 存入数据库里的数据
         return [
-            'reply_id' => $this->reply->id,
-            'reply_content' => $this->reply->content,
-            'user_id' => $this->reply->user->id,
-            'user_nickname' => $this->reply->user->nickname,
-            'user_avatar' => $this->reply->user->avatar,
-            'topic_link' => $link,
-            'topic_id'=> $topic->id,
-            'topic_title' => $topic->title,
+            'message_id' => $this->message->id,
+            'user_id' => $this->message->sendUser->id,
+            'user_nickname' => $this->message->sendUser->nickname,
+            'user_avatar' => $this->message->sendUser->avatar,
+            'message_link' => $link,
+            'message_content' => $this->message->content,
         ];
     }
 }

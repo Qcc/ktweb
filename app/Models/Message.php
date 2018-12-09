@@ -21,9 +21,15 @@ class Message extends Model
         return $this->belongsTo(User::class,'send_id');
     }
     //一条消息接收者属于一个用户反向一对一关系
-    public function recevieUser()
+    public function receiveUser()
     {
         return $this->belongsTo(User::class,'receive_id');
     }
     
+    // 参数 $params 允许附加 URL 参数的设定。
+    // 跳转到消息位置
+    public function link($params = [])
+    {
+        return route('message.conversation', array_merge([$this->conversation_id], $params));
+    }
 }

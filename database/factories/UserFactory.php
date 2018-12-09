@@ -16,10 +16,10 @@ use Carbon\Carbon;
 $factory->define(App\Models\User::class, function (Faker $faker) {
     static $password;
     $now = Carbon::now()->toDateTimeString();
-
+    $name = $faker->name;
     return [
-        'name' => $faker->name,
-        'nickname' => $faker->name,
+        'name' => $name,
+        'nickname' => $name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('password'),
         'phone' => $faker->numberBetween($min = 13, $max = 18).$faker->numberBetween($min = 100000000, $max = 900000000),

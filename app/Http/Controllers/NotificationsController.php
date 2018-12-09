@@ -7,7 +7,6 @@ use Auth;
 use App\Models\User;
 use App\Models\Conversation;
 use App\Models\Message;
-use Illuminate\Support\Facades\Log;
 
 class NotificationsController extends Controller
 {
@@ -49,6 +48,7 @@ class NotificationsController extends Controller
     }
     public function conversation(Conversation $conversation)
     {
+        $this->authorize('view', $conversation);
         $user = Auth::user();
         if($conversation->sendUser->id !== $user->id){
             $user = $conversation->sendUser;
