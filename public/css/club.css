@@ -112,6 +112,21 @@ input,
 img {
     border: none;
 }
+.mdui-inline {
+    display: inline;
+}
+
+.mdui-block {
+    display: block;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.mdui-inline-block {
+    display: inline-block;
+}
 
 /* 解决chrome浏览器默认黄色背景颜色 */
 input:-webkit-autofill {
@@ -328,6 +343,29 @@ input:-webkit-autofill {
     color: #03A9F4;
 }
 
+/* 底部样式 */
+.footer-sections {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width:1200px) {
+    .footer-sections {
+        width: 100%;
+    }
+}
+
+.footer-sections .mdui-typo ul {
+    cursor: pointer;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
 /* 文章详情页面 */
 .club-artical ,.useredit-box{
     margin-top: 20px;

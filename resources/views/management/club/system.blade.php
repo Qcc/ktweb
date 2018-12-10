@@ -1,18 +1,18 @@
 @extends('layouts.club')
 
-@section('title', '我的私信')
+@section('title', '运行状态')
 
 @section('content')
 <div class="mdui-container useredit-box">
     <div class="mdui-row">
         <div class="mdui-col-xs-3">
             <div class="edit-item-warp">
-                    @include('management._menu')
+                    @include('management._menu_club')
             </div>
         </div>
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
-                暂无内容
+                运行状态
             </div>
         </div>
     </div>

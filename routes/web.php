@@ -86,5 +86,17 @@ Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('exce
 //将文章设置置顶
 Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');
 
-// 网站后台管理
-Route::get('/management/admin','WebManagementController@index')->name('admin.index');
+// 社区管理
+Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
+Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
+Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
+Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
+Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
+Route::get('/management/club/articles','ClubManagementController@articles')->name('admin.club.articles');
+Route::get('/management/club/replys','ClubManagementController@replys')->name('admin.club.replys');
+// 网站管理
+Route::get('/management/web/settings','WebManagementController@settings')->name('admin.web.settings');
+Route::get('/management/web/recommend','WebManagementController@recommend')->name('admin.web.recommend');
+Route::get('/management/web/create','WebManagementController@create')->name('admin.web.create');
+Route::get('/management/web/categorys','WebManagementController@categorys')->name('admin.web.categorys');
+Route::get('/management/web/system','WebManagementController@system')->name('admin.web.system');

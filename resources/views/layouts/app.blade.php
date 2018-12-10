@@ -31,6 +31,9 @@
   <script src="{{ asset('js/countUp.min.js') }}"></script>
   <script src="{{ asset('js/wow.min.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
+  @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
   @yield('script')
 </body>
 </html>
