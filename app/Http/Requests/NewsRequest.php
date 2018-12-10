@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class TopicRequest extends Request
+class NewsRequest extends Request
 {
     public function rules()
     {
@@ -22,7 +22,7 @@ class TopicRequest extends Request
                 return [
                     'title'       => 'required|min:2|max:50',
                     'body'        => 'required|min:3',
-                    'category_id' => 'required|numeric',
+                    'column_id' => 'required|numeric',
                 ];
             }
             case 'GET':

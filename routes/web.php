@@ -100,3 +100,7 @@ Route::get('/management/web/recommend','WebManagementController@recommend')->nam
 Route::get('/management/web/create','WebManagementController@create')->name('admin.web.create');
 Route::get('/management/web/categorys','WebManagementController@categorys')->name('admin.web.categorys');
 Route::get('/management/web/system','WebManagementController@system')->name('admin.web.system');
+
+//主站新闻
+Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('news/{news}/{slug?}', 'NewsController@show')->name('news.show');
