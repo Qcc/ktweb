@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', isset($news->id) ? $news->title : '新建资讯')
 @section('content')
-<div class="mdui-container">
+<div class="mdui-container" style="margin-top:80px;">
     <div class="article-panel">
 
         <div class="panel-body">
@@ -70,12 +70,12 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
 <style>
-    .news-edit-page .kt-nav-header .kt-nav-background {
+    .news-edit-page .kt-nav-header .kt-navigetion-sections, .news-create-page .kt-nav-header .kt-navigetion-sections{
+        color: #333;
+    }
+    .news-create-page .kt-nav-header .kt-nav-background,.news-create-page .kt-nav-header .kt-nav-background{
         background: rgba(255, 255, 255, 0.9);
         border-bottom: 1px solid rgba(200, 200, 200, 0.5);
-    }
-    .news-edit-page .kt-nav-header .kt-navigetion-sections {
-        color: #333;
     }
 </style>
 @stop

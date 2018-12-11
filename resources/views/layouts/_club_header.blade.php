@@ -7,11 +7,11 @@
       <div class="club-nav">
         <ul class="club-nav-ul">
           <li class="{{ active_class(if_route('topics.index')) }}"><a href="{{ route('topics.index') }}">社区</a></li>
-          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }} }}"><a href="{{ route('categories.show', 1) }}">虚拟化</a></li>
-          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }} }}"><a href="{{ route('categories.show', 2) }}">金蝶云</a></li>
-          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }} }}"><a href="{{ route('categories.show', 3) }}">精斗云</a></li>
-          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }} }}"><a href="{{ route('categories.show', 4) }}">金蝶ERP</a></li>
-          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 5))) }} }}"><a href="{{ route('categories.show', 5) }}">其他</a></li>
+          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}"><a href="{{ route('categories.show', 1) }}">虚拟化</a></li>
+          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}"><a href="{{ route('categories.show', 2) }}">金蝶云</a></li>
+          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}"><a href="{{ route('categories.show', 3) }}">精斗云</a></li>
+          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}"><a href="{{ route('categories.show', 4) }}">金蝶ERP</a></li>
+          <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 5))) }}"><a href="{{ route('categories.show', 5) }}">其他</a></li>
         </ul>
       </div>
       <div class="club-search">

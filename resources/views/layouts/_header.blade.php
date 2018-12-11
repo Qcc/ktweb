@@ -25,6 +25,7 @@
         <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
         <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
         @else
+        <a href="{{ route('news.create') }}" style="margin: 0 10px;" class="kt-navigetion-sections " title="新建主站资讯"><i class="mdui-icon material-icons">&#xe150;</i></a>
         <a class="kt-navigetion-sections" href="javascript:;" mdui-menu="{target: '#user-menu'}">
           <img  class="avatar" src="{{ Auth::user()->avatar }}" alt="">
                 {{ Auth::user()->nickname }}

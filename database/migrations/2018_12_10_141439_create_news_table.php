@@ -20,6 +20,7 @@ class CreateNewsTable extends Migration
             $table->text('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index()->comment('作者');
             $table->integer('column_id')->unsigned()->index()->comment('栏目');
+            $table->integer('view_count')->unsigned()->default(0)->comment('阅读数');
             $table->integer('order')->unsigned()->default(0)->comment('排序');
             $table->text('keywords')->comment('关键词');
             $table->text('excerpt')->nullable()->comment('摘要');

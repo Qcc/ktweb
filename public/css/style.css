@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html {
-    color: #000;
+    color: #666;
     background: #FFF;
 }
 
@@ -30,6 +30,7 @@ th,
 td {
     margin: 0;
     padding: 0;
+    color: #666;
 }
 
 table {
@@ -93,11 +94,12 @@ acronym {
 
 a {
     text-decoration: none;
-    color: #000000;
+    color: #666;
     font-size: 15px;
     cursor: pointer;
     /*字体*/
 }
+
 
 li {
     list-style: none;
@@ -107,11 +109,12 @@ input,
 img {
     border: none;
 }
+
 /* 解决chrome浏览器默认黄色背景颜色 */
 input:-webkit-autofill {
-    outline:none;    
+    outline: none;
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-    　　-webkit-text-fill-color: #333;
+    -webkit-text-fill-color: #333;
 }
 
 .mdui-inline {
@@ -239,18 +242,19 @@ a:active {
 }
 
 /* 用户中心菜单样式 */
-.mdui-menu-cascade{
-    width:150px;
-  }
-  /* 头像 */
-  .avatar{
+.mdui-menu-cascade {
+    width: 150px;
+}
+
+/* 头像 */
+.avatar {
     width: 26px;
     height: 26px;
     border: 2px solid #fff;
     border-radius: 15px;
     vertical-align: middle;
     margin-right: 3px;
-  }
+}
 
 /* 产品详情导航 */
 .kt-menu-panl {
@@ -539,6 +543,9 @@ a:active {
     text-align: center;
     color: #fff;
 }
+.banner-content h3{
+    color: #fff;
+}
 
 @media screen and (max-width: 1024px) {
 
@@ -715,6 +722,9 @@ a:active {
 .img-solution-content i {
     font-size: 65px;
 }
+.img-solution-content h3,.img-solution-content p {
+    color: #fff;
+}
 
 /* 图片解决方案结束 */
 
@@ -770,6 +780,7 @@ a:active {
     }
 
     .news-big-content-warp h3 {
+        -webkit-line-clamp: 2;
         padding-left: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -940,7 +951,7 @@ a:active {
 /* 账户注册页面结束 */
 
 /* 表单顶部样式修改 */
-.form-group .mdui-textfield{
+.form-group .mdui-textfield {
     padding-top: 0px
 }
 
@@ -988,11 +999,13 @@ a:active {
     position: absolute;
     right: 10px;
 }
+
 .club-longin .mdui-menu-cascade>.mdui-menu-item>a {
     height: 40px;
     line-height: 40px;
 }
-.club-longin .mdui-menu-cascade>.mdui-menu-item a>i{
+
+.club-longin .mdui-menu-cascade>.mdui-menu-item a>i {
     margin-right: 10px;
 }
 
@@ -1178,8 +1191,10 @@ a:active {
     font-weight: 400;
     letter-spacing: 0;
 }
+
 /* 文章详情页面 */
-.club-artical ,.useredit-box{
+.club-artical,
+.useredit-box {
     margin-top: 20px;
     color: #555;
 }
@@ -1284,7 +1299,15 @@ a:active {
 }
 
 .article-title .article-title-h1 {
-    font-size: 20px;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    padding-right: 60px;
+}
+
+.article-title .article-title-h3 {
+    font-size: 18px;
     line-height: 34px;
     font-weight: normal;
     margin-bottom: 20px;
@@ -1856,49 +1879,63 @@ a:active {
     padding: 0 10px;
     line-height: 34px;
 }
+
 /* 编辑用户信息 */
-.edit-item,.edit-action{
+.edit-item,
+.edit-action {
     margin: 30px 20px;
     position: relative;
 }
-.edit-action .avatar{
+
+.edit-action .avatar {
     position: absolute;
     left: 590px;
     top: 80px;
 }
-.edit-list>li a{
+
+.edit-list>li a {
     width: 100%;
 }
-.edit-action .title{
+
+.edit-action .title {
     font-size: 30px;
     font-weight: 500;
     margin: 10px;
 }
-.edit-action .title>i{
+
+.edit-action .title>i {
     font-size: 30px;
 }
-.edit-action .edit-form{
-    max-width:500px 
+
+.edit-action .edit-form {
+    max-width: 500px
 }
-.edit-form .disabled{
-    border-bottom: 1px dashed rgba(0,0,0,.42);
+
+.edit-form .disabled {
+    border-bottom: 1px dashed rgba(0, 0, 0, .42);
     color: #a2a2a2;
 }
-.form-btn{
+
+.form-btn {
     margin: 20px 0;
 }
+
 /* 文章发表 */
-.article-panel{
+.article-panel {
     margin: 30px 0;
     padding: 30px;
 }
-.panel-body>.head{
+
+.panel-body>.head {
     text-align: center;
     font-size: 30px;
     margin-bottom: 30px;
     color: #555;
 }
-.panel-body input,.panel-body select, .panel-body .mdui-select{
+
+.panel-body input,
+.panel-body select,
+.panel-body .mdui-select {
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0em;
     outline: none;
@@ -1915,77 +1952,172 @@ a:active {
     -webkit-transition: color 0.1s ease, border-color 0.1s ease;
     transition: color 0.1s ease, border-color 0.1s ease;
 }
+
 .panel-body .mdui-select .mdui-select-selected {
- left: 10px;
+    left: 10px;
 }
-.panel-body .title,.panel-body .title>input{
+
+.panel-body .title,
+.panel-body .title>input {
     width: 80%
 }
 
-.panel-body .title, .panel-body .select{
+.panel-body .title,
+.panel-body .select {
     display: inline-block;
     margin: 10px 0 10px 5px;
 }
+
 /* 发送私信 */
-.send-avatar>a:hover{
+.send-avatar>a:hover {
     color: #F4511E;
 }
-.send-avatar>a img{
+
+.send-avatar>a img {
     width: 30px;
     height: 30px;
     border-radius: 30px;
     border: 2px solid #fff;
     vertical-align: middle;
 }
-.send-avatar{
+
+.send-avatar {
     margin: 20px 0;
 }
+
 .message-warp {
     margin-top: 20px;
 }
-.message-warp>ul>li{
+
+.message-warp>ul>li {
     margin: 30px 0;
 }
-.message-warp .message-left{
+
+.message-warp .message-left {
     margin-left: 10px;
     width: 40px;
     height: 40px;
     float: left;
 }
-.message-warp .message-info{
- padding-left: 50px;
+
+.message-warp .message-info {
+    padding-left: 50px;
 }
-.message-info .head{
+
+.message-info .head {
     font-size: 16px;
     font-weight: 500;
 }
-.message-info .content{
+
+.message-info .content {
     margin: 10px 0;
 }
-.message-info .time{
+
+.message-info .time {
     font-size: 12px;
     color: #a2a2a2;
 }
-.message-info .time i{
-font-size: 15px;
+
+.message-info .time i {
+    font-size: 15px;
 }
-.chat-info .head{
+
+.chat-info .head {
     font-size: 16px;
     font-weight: 500;
 }
-.chat-info .content{
+
+.chat-info .content {
     margin: 10px 0;
 }
-.chat-info .head>p{
+
+.chat-info .head>p {
     display: inline;
     margin-left: 10px;
     font-size: 12px;
     color: #a2a2a2;
 }
-.chat-info .head>p i{
-font-size: 15px;
+
+.chat-info .head>p i {
+    font-size: 15px;
 }
-.chat-info .link>a , .chat-info .link>a i{
-font-size: 12px;
-color: #a2a2a2;
+
+.chat-info .link>a,
+.chat-info .link>a i {
+    font-size: 12px;
+    color: #a2a2a2;
+}
+
+/* 主站文章  */
+.article-header .datetime {
+    color: #a2a2a2;
+    font-size: 13px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+}
+
+.news-show-page .article-title {
+    max-width: 750px;
+}
+
+.topic-content .navigation {
+    margin: 20px 15px;
+}
+
+.navigation .now {
+    color: #a2a2a2;
+    font-size: 12px;
+}
+.navigation a {
+    font-size: 12px;
+}
+
+.news-show-page .topic-body {
+    padding: 0 20px;
+}
+
+.columns-show-page .article-list {
+    width: 100%;
+    height: 100%;
+}
+.article-list .images{
+    margin: 20px 10px 0;
+}
+.article-list .images img{
+    width: 100%;
+    height: 100%;
+}
+.article-list a:hover>.article-header h3:hover{
+    color: #F4511E;
+}
+.article-list a:hover .images img{
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    zoom: 1.1;
+    box-shadow: 0 5px 30px 0 #555;
+}
+.article-list .article-header{
+    min-height: 80px;
+    max-height: 80px;
+    margin: 0 10px;
+    overflow: hidden;
+} 
+.news-nav{
+    margin: 30px 0 10px;
+}
+.news-nav .column-nav-ul{
+    width: 400px;
+    margin: 0 auto;
+    line-height: 30px;
+    height: 30px;
+}
+.news-nav .column-nav-ul li {
+    float: left;
+    margin: 0 20px;
+}
+.news-nav .column-nav-ul .active a{
+    color: #F4511E;
 }

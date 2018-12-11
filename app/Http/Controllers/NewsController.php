@@ -15,9 +15,12 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(News $news, Request $request)
     {
-        //
+		// 分页获取21条记录。默认获取15条
+		$newss = $news->withOrder($request->order)->paginate(21);
+
+		return view('pages.news.index', compact('newss'));
     }
 
     /**
@@ -25,9 +28,10 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(News $news)
     {
-        //
+        $columns = Column::all();
+		return view('pages.news.create_and_edit', compact('news', 'columns'));
     }
 
     /**
@@ -36,9 +40,12 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request, News $news)
     {
-        //
+        $news->fill($request->all());
+		$news->user_id = Auth::id();
+		$news->save();
+		return redirect()->to($news->link())->with('success', '成功创建话题！');
     }
 
     /**
@@ -50,7 +57,7 @@ class NewsController extends Controller
     public function show(Request $request, News $news)
     {
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
-        if ( ! empty($news->slug) && $topic->news != $request->slug) {
+        if ( ! empty($news->slug) && $news->slug != $request->slug) {
             return redirect($news->link(), 301);
         }
         return view('pages.news.show', compact('news'));
@@ -90,8 +97,11 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
-        //
+        $this->authorize('destroy', $news);
+		$news->delete();
+
+		return redirect()->route('news.index')->with('message', '删除成功.');
     }
 }

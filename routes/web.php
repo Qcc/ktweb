@@ -104,3 +104,5 @@ Route::get('/management/web/system','WebManagementController@system')->name('adm
 //主站新闻
 Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('news/{news}/{slug?}', 'NewsController@show')->name('news.show');
+// 分类新闻
+Route::resource('columns', 'ColumnsController', ['only' => ['show']]);
