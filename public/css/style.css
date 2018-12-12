@@ -482,6 +482,9 @@ a:active {
     font-weight: 400;
     letter-spacing: 0;
 }
+.footer-sections .mdui-typo ul li{
+    color: #9e9e9e;
+}
 
 /* 首页轮播图 */
 .swiper-container {

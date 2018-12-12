@@ -63,15 +63,12 @@ class NotificationsController extends Controller
     {
         $auth = Auth::user();
         $unique_id = $auth->id + $user->id;
-        $conversation = Conversation::where('conversation',$unique_id)->first();
-        if(collect($conversation)->isEmpty()){
-            $conversation = Conversation::create([
-                'conversation' => $unique_id,
-                'send_id' => $auth->id,
-                'receive_id' => $user->id,
-                'content' => $request->message,
-            ]);
-        }
+        $conversation = Conversation::firstOrCreate(
+            ['conversation'=>$unique_id],
+            ['send_id' => $auth->id,
+            'receive_id' => $user->id,
+            'content' => $request->message]
+        );
         $message->conversation_id = $conversation->id;
         $message->conversation = $unique_id;
         $message->send_id = $auth->id;
@@ -79,7 +76,7 @@ class NotificationsController extends Controller
         $message->content = $request->message;
         $message->save();
         
-        return view('notifications.send_to_user',compact('user','conversation'));
+        return redirect()->route('message.conversation',$conversation->id)->with('success', '发送成功！');
     }
     // 显示所有系统消息
     public function system()

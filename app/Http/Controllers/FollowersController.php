@@ -61,20 +61,32 @@ class FollowersController extends Controller
     /** 点赞 取消点赞 文章 */
     public function topicGreats(Request $request)
     {
+        $topic = Topic::find($request->id);
+        //点赞时不更新updated_at时间戳
+        $topic->timestamps = false;
         $data = ['result'=>false,'status' => false,'msg'=>'用户点赞失败!'];
         //用户不能给自己点赞
-        if(Auth::user()->id === $request->id){
+        if(Auth::user()->id === $topic->id){
             return $data;
         }
         //用户未点赞时才能点赞
-        if(!Auth::user()->isTopicGreat($request->id)){
-            Auth::user()->topicGreat($request->id);
+        if(!Auth::user()->isTopicGreat($topic->id)){
+            Auth::user()->topicGreat($topic->id);
+            $topic->increment('great_count',1);
+            // 当点攒数大于10时系统自动添加精华标志
+            if($topic->great_count > 10){
+                $topic->excellent = true;
+				$topic->excellent_time = date("Y-m-d h:i:s",time());
+				$topic->excellent_user = '系统自动';
+				$topic->save();
+            }
             $data['result']= true;
             $data['status']= true;
             $data['msg']= '用户点赞成功！';
         //用户关注后才能取消
-        }else if(Auth::user()->isTopicGreat($request->id)){
-            Auth::user()->topicUnGreat($request->id);
+        }else if(Auth::user()->isTopicGreat($topic->id)){
+            Auth::user()->topicUnGreat($topic->id);
+            $topic->decrement('great_count', 1);
             $data['result'] = true;
             $data['status'] = false;
             $data['msg'] = '取消用户点赞成功';

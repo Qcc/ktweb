@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
  
-$factory->define(App\Models\News::class, function (Faker $faker) {
+$factory->define(App\Models\Solution::class, function (Faker $faker) {
     $sentence = $faker->sentence();
 
     // 随机取一个月以内的时间
@@ -15,7 +15,7 @@ $factory->define(App\Models\News::class, function (Faker $faker) {
         'body' => $faker->text(),
         'excerpt' => $sentence,
         'keywords' => $sentence,
-        'image' => '/images/solution2.jpg',
+        'image' => '/images/solution3.jpg',
         'created_at' => $created_at,
         'updated_at' => $updated_at,
     ];

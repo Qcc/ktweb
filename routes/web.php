@@ -106,3 +106,21 @@ Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store'
 Route::get('news/{news}/{slug?}', 'NewsController@show')->name('news.show');
 // 分类新闻
 Route::resource('columns', 'ColumnsController', ['only' => ['show']]);
+
+//产品介绍
+Route::resource('product', 'ProductController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+// Route::get('/product', 'ProductController@index')->name('product.index');
+// Route::get('/product/create', 'ProductController@create')->name('product.create');
+// Route::post('/product', 'ProductController@store')->name('product.store');
+// Route::get('/product/{product}/edit', 'ProductController@edit')->name('product.edit');
+// Route::patch('/product/{product}', 'ProductController@update')->name('product.update');
+// Route::delete('/product/{product}', 'ProductController@destroy')->name('product.destroy');
+Route::get('product/{product}/{slug?}', 'ProductController@show')->name('product.show');
+// 产品分类
+Route::get('products/{productcol}', 'ProductcolController@show')->name('products.show');
+
+//解决方案
+Route::resource('solution', 'SolutionController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('solution/{solution}/{slug?}', 'SolutionController@show')->name('solution.show');
+// 方案分类
+Route::get('solutions/{solutioncol}', 'SolutioncolController@show')->name('solutions.show');
