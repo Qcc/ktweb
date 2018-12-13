@@ -40,6 +40,7 @@ class TopicRequest extends Request
             'title.min' => '标题必须至少两个字符',
             'title.max' => '标题不能超过50个字符',
             'body.min' => '文章内容必须至少三个字符',
+            'category_id.required' => '请选择话题分类',
         ];
     }
 }

@@ -317,6 +317,9 @@ a:active {
 .kt-navigetion-item:visited {
     text-decoration: none;
 }
+.kt-navigetion-item a{
+    color: #999;
+}
 
 .btn-lg {
     zoom: 1.5;

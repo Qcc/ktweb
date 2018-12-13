@@ -25,10 +25,13 @@
         <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
         <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
         @else
-        <a href="{{ route('news.create') }}" style="margin: 0 10px;" class="kt-navigetion-sections " title="新建主站资讯"><i class="mdui-icon material-icons">&#xe150;</i></a>
+        @role('Founder')
+        <a href="javascript:;" style="margin: 0 10px;" mdui-menu="{target: '#user-article'}" class="kt-navigetion-sections " title="新建主站资讯">发布资讯<i class="mdui-icon material-icons">&#xe5c5;</i></a>
+        @endrole
         <a class="kt-navigetion-sections" href="javascript:;" mdui-menu="{target: '#user-menu'}">
           <img  class="avatar" src="{{ Auth::user()->avatar }}" alt="">
-                {{ Auth::user()->nickname }}
+          {{ Auth::user()->nickname }}
+          <i class="mdui-icon material-icons">&#xe5c5;</i>      
         </a>
         <ul class="mdui-menu mdui-menu-cascade" id="user-menu">
           <li class="mdui-menu-item">
@@ -56,6 +59,29 @@
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
           </form>
+          </li>
+        </ul>
+        <!-- 新建主站资讯 -->
+        <ul class="mdui-menu mdui-menu-cascade" id="user-article">
+          <li class="mdui-menu-item">
+            <a href="{{ route('news.create') }}" title="沟通动态|行业新闻|管理智库" class="mdui-ripple">
+              <i class="mdui-icon material-icons">&#xe80b;</i>
+            主站资讯</a>
+          </li>
+          <li class="mdui-menu-item">
+            <a href="{{ route('product.create') }}" title="产品相关文章"  class="mdui-ripple">
+              <i class="mdui-icon material-icons">&#xe02f;</i>
+            产品文章</a>
+          </li>
+          <li class="mdui-menu-item">
+            <a href="{{ route('solution.create') }}" title="行业解决方案" class="mdui-ripple">
+              <i class="mdui-icon material-icons">&#xe8fd;</i>
+            解决方案</a>
+          </li>
+          <li class="mdui-menu-item">
+            <a href="{{ route('customer.create') }}" title="产品客户案例文章" class="mdui-ripple">
+              <i class="mdui-icon material-icons">&#xe153;</i>
+            客户案例</a>
           </li>
         </ul>
         @endguest

@@ -22,7 +22,7 @@ class ProductRequest extends Request
                 return [
                     'title'       => 'required|min:2|max:50',
                     'body'        => 'required|min:3',
-                    'product_id' => 'required|numeric',
+                    'productcol_id' => 'required|numeric',
                 ];
             }
             case 'GET':
@@ -40,6 +40,7 @@ class ProductRequest extends Request
             'title.min' => '标题必须至少两个字符',
             'title.max' => '标题不能超过50个字符',
             'body.min' => '文章内容必须至少三个字符',
+            'productcol_id.required' => '请选择产品分类',
         ];
     }
 }
