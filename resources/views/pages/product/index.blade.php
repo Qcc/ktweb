@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','沟通科技')
+@section('title',isset($productcol)?$productcol->name:'所有产品')
 
 @section('content')
 <div class="mdui-container-full">

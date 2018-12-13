@@ -2,7 +2,7 @@
     <div class="kt-nav-background"></div>
     <div class="kt-nav-warp">
       <div class="kt-nav-log mdui-typo-title mdui-inline mdui-m-l-5 mdui-hidden-sm-down">
-        <a href="/" class="kt-navigetion-sections">沟通科技</a>
+        <a href="{{ route('home') }}" class="kt-navigetion-sections">沟通科技</a>
       </div>
       <nav class="kt-nav mdui-typo-title mdui-inline mdui-hidden-sm-down kt-menu-tab-head ">
         <a href="javascript:;" class="kt-products mdui-m-l-5 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
@@ -70,26 +70,26 @@
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('products.show',1) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe1af;</i>
                   应用虚拟化</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',1) }}"></a> CTBS高级版</li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',2) }}"></a> CTBS企业版</li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',1) }}"> CTBS高级版</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',2) }}"> CTBS企业版</a></li>
               <li class="navigetion-sections-title"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe918;</i>
                   应用接入</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',3) }}"></a>云桌面RAS</li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',3) }}">云桌面RAS</a></li>
             </ul>
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('products.show',4) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe3dd;</i>
                   金蝶云</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',4) }}"></a> 金蝶云·星空</li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',5) }}"></a> 金蝶云·苍穹</li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',6) }}"></a> 精斗云</li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',7) }}"></a> 云之家</li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',4) }}"> 金蝶云·星空</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',5) }}"> 金蝶云·苍穹</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',6) }}"> 精斗云</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',7) }}"> 云之家</a></li>
             </ul>
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('products.show',8) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe62f;</i>
                   ERP</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',8) }}"></a> 金蝶EAS</li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',9) }}"></a> 金蝶K3</li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',10) }}"></a> 金蝶KIS系列</li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',8) }}"> 金蝶EAS</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',9) }}"> 金蝶K3</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('products.show',10) }}"> 金蝶KIS系列</a></li>
             </ul>
           </div>
           <div class="mdui-col-xs-4">
@@ -119,32 +119,32 @@
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('solutions.show',1) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe7f1;</i>
                   制造业</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',1) }}"></a> 工业制造</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',2) }}"></a> 电子</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',3) }}"></a> 食品</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',4) }}"></a> 日化</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',5) }}"></a> 家具</li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',1) }}"> 工业制造</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',2) }}"> 电子</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',3) }}"> 食品</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',4) }}"> 日化</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',5) }}"> 家具</a></li>
             </ul>
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('solutions.show',6) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe7fb;</i>
                   服务行业</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',6) }}"></a> 汽车经销</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',7) }}"></a> 餐饮连锁</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',8) }}"></a> 教育机构</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',9) }}"></a> 财税服务</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',10) }}"></a> 金融服务</li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',6) }}"> 汽车经销</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',7) }}"> 餐饮连锁</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',8) }}"> 教育机构</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',9) }}"> 财税服务</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',10) }}"> 金融服务</a></li>
             </ul>
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('solutions.show',11) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe8d1;</i>
                   零售业</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',11) }}"></a> 电商企业</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',12) }}"></a> 全渠道零售</li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',11) }}"> 电商企业</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',12) }}"> 全渠道零售</a></li>
             </ul>
             <ul class="navigation-product">
               <li class="navigetion-sections-title"><a href="{{ route('solutions.show',13) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe885;</i>
                   政府机构</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',13) }}"></a> 政府部门</li>
-              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',14) }}"></a> 企事业单位</li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',13) }}"> 政府部门</a></li>
+              <li class="kt-navigetion-item"><a href="{{ route('solutions.show',14) }}"> 企事业单位</a></li>
             </ul>
           </div>
           <div class="mdui-col-xs-4">
@@ -170,7 +170,7 @@
     </div>
     <div class="ktm-nav-warp">
       <div class="mdui-hidden-md-up mdui-float-left">
-        <a href="/" class=" ktm-logo kt-navigetion-sections">沟通科技</a>
+        <a href="{{ route('home') }} " class=" ktm-logo kt-navigetion-sections">沟通科技</a>
       </div>
       <nav class="ktm-nav-menu mdui-hidden-md-up mdui-float-right">
         <i class="mdui-icon material-icons kt-navigetion-sections active">&#xe3c7;</i>
@@ -178,19 +178,19 @@
       </nav>
       <div class="mdui-hidden-md-up ktm-nav-content animated fadeInDown">
         <ul class="ktm-menu-products">
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe1af;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',1) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe1af;</i>
               CTBS应用虚拟化</a></li>
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe918;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',3) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe918;</i>
               智慧桌面RAS</a></li>
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2c2;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',4) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2c2;</i>
               金蝶云·苍穹</a></li>
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe3dd;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',5) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe3dd;</i>
               金蝶云·星空</a></li>
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe922;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',10) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe922;</i>
               金蝶ERP</a></li>
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe8d1;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',6) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe8d1;</i>
               精斗云</a></li>
-          <li class="kt-navigetion-item"><a href="" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2be;</i>
+          <li class="kt-navigetion-item"><a href="{{ route('products.show',7) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2be;</i>
               云之家</a></li>
           @guest
           <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a></li>
