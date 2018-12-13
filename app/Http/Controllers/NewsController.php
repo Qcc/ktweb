@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\Column;
 use App\Http\Requests\NewsRequest;
 use Auth;
+use App\Handlers\ImageUploadHandler;
 
 class NewsController extends Controller
 {
@@ -104,4 +105,26 @@ class NewsController extends Controller
 
 		return redirect()->route('news.index')->with('message', '删除成功.');
     }
+
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+	{
+		//初始化数据,默认是失败的
+		$data = [
+			'success' => false,
+			'msg' => '上传失败',
+			'file_path' => ''
+		];
+		// 判断是否有文件上传，并赋值给$file
+		if($file = $request->upload_file){
+			// 保存图片到本地
+			$result = $uploader->save($request->upload_file,'news',\Auth::id(),1920);
+			//图片保存成功的话
+			if($result){
+				$data['file_path'] = $result['path'];
+				$data['msg'] = '上传成功';
+				$data['success'] = true;
+			}
+		}
+		return $data;
+	}
 }

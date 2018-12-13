@@ -96,7 +96,7 @@
                 'indent', 'outdent', 'alignment'
             ],
             upload: {
-                url: "{{ route('topics.upload_image') }}",
+                url: "{{ route('solution.upload_image') }}",
                 //工具条都包含哪些内容
                 params: {
                     _token: '{{ csrf_token() }}'

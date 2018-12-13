@@ -16,6 +16,7 @@ $factory->define(App\Models\Solution::class, function (Faker $faker) {
         'excerpt' => $sentence,
         'keywords' => $sentence,
         'image' => '/images/solution3.jpg',
+        'icon' => '/images/product.png',
         'created_at' => $created_at,
         'updated_at' => $updated_at,
     ];

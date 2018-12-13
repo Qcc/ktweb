@@ -11,6 +11,7 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('title')->index();
             $table->string('image');
+            $table->string('icon')->nullable()->comment('图标');
             $table->string('banner')->nullable()->comment('banner图');
             $table->text('body');
             $table->integer('user_id')->unsigned()->index();

@@ -69,7 +69,7 @@ Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show
 // 分类话题列表
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 //上传图片
-Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
+Route::post('topics/upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 //发表社区回复
 Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);
 // 发表回复后 消息通知话题创建者
@@ -127,3 +127,8 @@ Route::get('solutions/{solutioncol}', 'SolutioncolController@show')->name('solut
 //客户案例
 Route::resource('customer', 'CustomersController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('customers/{customercol}', 'CustomercolController@show')->name('customers.show');
+//上传图片
+Route::post('news/upload_image', 'NewsController@uploadImage')->name('news.upload_image');
+Route::post('product/upload_image', 'ProductController@uploadImage')->name('product.upload_image');
+Route::post('solution/upload_image', 'SolutionController@uploadImage')->name('solution.upload_image');
+Route::post('customer/upload_image', 'CustomersController@uploadImage')->name('customer.upload_image');

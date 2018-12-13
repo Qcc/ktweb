@@ -317,7 +317,8 @@ a:active {
 .kt-navigetion-item:visited {
     text-decoration: none;
 }
-.kt-navigetion-item a{
+
+.kt-navigetion-item a {
     color: #999;
 }
 
@@ -485,7 +486,8 @@ a:active {
     font-weight: 400;
     letter-spacing: 0;
 }
-.footer-sections .mdui-typo ul li{
+
+.footer-sections .mdui-typo ul li {
     color: #9e9e9e;
 }
 
@@ -549,7 +551,8 @@ a:active {
     text-align: center;
     color: #fff;
 }
-.banner-content h3{
+
+.banner-content h3 {
     color: #fff;
 }
 
@@ -728,7 +731,9 @@ a:active {
 .img-solution-content i {
     font-size: 65px;
 }
-.img-solution-content h3,.img-solution-content p {
+
+.img-solution-content h3,
+.img-solution-content p {
     color: #fff;
 }
 
@@ -2076,6 +2081,7 @@ a:active {
     color: #a2a2a2;
     font-size: 12px;
 }
+
 .navigation a {
     font-size: 12px;
 }
@@ -2088,42 +2094,87 @@ a:active {
     width: 100%;
     height: 100%;
 }
-.article-list .images{
+
+.article-list .images {
     margin: 20px 10px 0;
 }
-.article-list .images img{
+
+.article-list .images img {
     width: 100%;
     height: 100%;
 }
-.article-list a:hover>.article-header h3:hover{
+
+.article-list a:hover>.article-header h3:hover {
     color: #F4511E;
 }
-.article-list a:hover .images img{
+
+.article-list a:hover .images img {
     transition: all 0.6s;
     -webkit-transition: all 0.6s;
     -o-transition: all 0.6s;
     zoom: 1.1;
     box-shadow: 0 5px 30px 0 #555;
 }
-.article-list .article-header{
+
+.article-list .article-header {
     min-height: 80px;
     max-height: 80px;
     margin: 0 10px;
     overflow: hidden;
-} 
-.news-nav{
+}
+
+.news-nav {
     margin: 30px 0 10px;
 }
-.news-nav .column-nav-ul{
+
+.news-nav .column-nav-ul {
     width: 400px;
     margin: 0 auto;
     line-height: 30px;
     height: 30px;
 }
+
 .news-nav .column-nav-ul li {
     float: left;
     margin: 0 20px;
 }
-.news-nav .column-nav-ul .active a{
+
+.news-nav .column-nav-ul .active a {
     color: #F4511E;
+}
+
+/* 产品页面样式 */
+.products-banner-warp {
+    height: 464px;
+    overflow: hidden;
+    position: relative;
+}
+
+.products-banner-warp .products-banner {
+    width: 1920px;
+    position: absolute;
+    left: 50%;
+    margin-left: -960px;
+    z-index: 1;
+}
+.products-banner-warp .products-action{
+    z-index: 2;
+    position: absolute;
+    top: 150px;
+    left: 200px;
+}
+.products-head>h2{
+ font-size: 40px;
+ max-width: 400px;
+ color: #2196f3;
+}   
+.products-head>h4{
+    max-width: 350px;
+    font-size: 20px;
+    margin: 10px 0;
+    color: #999;
+}
+
+.products-action .products-btn a{
+    margin:30px 10px 0 0;
 }

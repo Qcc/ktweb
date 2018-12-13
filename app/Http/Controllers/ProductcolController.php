@@ -13,8 +13,8 @@ class ProductcolController extends Controller
         // 读取分类 ID  关联的话题， 并按照每20条分页
         $products = $product->withOrder($request->order)
                         ->where('productcol_id',$productcol->id)
-                        ->paginate(21);
+                        ->paginate(6);
         // 传参变量话题和分类 到模版中
-        return view('pages.product.index',compact('products','productcol'));
+        return view('pages.product.products',compact('products','productcol'));
     }
 }
