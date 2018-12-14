@@ -17,6 +17,7 @@ class CreateProductcolsTable extends Migration
             $table->increments('id');
             $table->string('name')->index()->comment('名称');
             $table->string('icon')->nullable()->comment('图标');
+            $table->string('title')->nullable()->comment('标题');
             $table->string('banner')->nullable()->comment('banner图');
             $table->text('description')->nullable()->comment('描述');
             $table->boolean('directory')->default(false)->coment('是否有子分类录');

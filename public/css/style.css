@@ -2178,3 +2178,17 @@ a:active {
 .products-action .products-btn a{
     margin:30px 10px 0 0;
 }
+
+.product-featrue .images>img{
+    width: 80px;
+    height: 80px;
+}
+.product-featrue .images{
+    text-align: center;
+}
+.featrue-title>p{
+    color: #555;
+    font-size: 30px;
+    text-align: center;
+    margin: 50px;
+}

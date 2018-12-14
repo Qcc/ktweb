@@ -20,79 +20,35 @@
     </div>
     @include('common.error')
     <div class="mdui-container">
-        <div class="featrue-warp">
-
+        <div class="featrue-title">
+            <p>{{ $productcol->title }}</p>
         </div>
-        <div class="mdui-divider"></div>
         <div class="mdui-row">
             @foreach($products as $index => $product)
-            @if($loop->index < 4) <div class="mdui-col-xs-3">
-                <div class="article-list">
+            @break($loop->index > 3)
+            <div class="mdui-col-xs-3">
+                <div class="product-featrue">
                     <a href="{{ route('product.show',$product->id) }}" target="_blank">
                         <div class="images">
                             <img src="{{ $product->icon }}" alt="{{ $product->title }}">
                         </div>
-                        <div class="article-header">
-                            <div class="article-title">
-                                <h3 class="article-title-h3">
-                                    {{ $product->title }}
-                                </h3>
-                            </div>
-                            <div class="datetime">
-                                <span>{{ $product->updated_at->toDateString() }}</span>
-                            </div>
+                        <div>
+                            <p>{{ $product->title }}</p>
                         </div>
                     </a>
                 </div>
+            </div>
+            @endforeach
         </div>
-        @endif
-        @if($loop->index == 4)
-        <div class="mdui-col-xs-6">
-            <div class="article-list">
-                <a href="{{ route('product.show',$product->id) }}" target="_blank">
-                    <div class="images">
-                        <img src="{{ $product->image }}" alt="{{ $product->title }}">
-                    </div>
-                </a>
-            </div>
-            <div class="mdui-col-xs-6">
-                <div class="article-header">
-                    <div class="article-title">
-                        <h3 class="article-title-h3">
-                            {{ $product->title }}
-                        </h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
-        @if($loop->index == 5)
-        <div class="mdui-col-xs-6">
-            <div class="mdui-col-xs-6">
-                <div class="article-header">
-                    <div class="article-title">
-                        <h3 class="article-title-h3">
-                            {{ $product->title }}
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="article-list">
-                <a href="{{ route('product.show',$product->id) }}" target="_blank">
-                    <div class="images">
-                        <img src="{{ $product->image }}" alt="{{ $product->title }}">
-                    </div>
-                </a>
-            </div>
-
-        </div>
-        @endif
-        @endforeach
+        @foreach($products as $index => $product)
+        @continue($loop->index < 4) @if($loop->index % 2 == 1)
+            @include('pages.product._pic_left',$product)
+            @endif
+            @if($loop->index % 2 == 0)
+            @include('pages.product._pic_right',$product)
+            @endif
+            @endforeach
     </div>
-    <div class="pagination-box">
-        {!! $products->appends(Request::except('page'))->render() !!}
-    </div>
-</div>
 </div>
 
 @stop
