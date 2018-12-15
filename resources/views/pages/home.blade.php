@@ -218,6 +218,7 @@
   </div>
 </section>
 <section>
+  <!-- 沟通动态 行业新闻 管理智库 -->
   @include('pages._news',['kouton'=>$kouton,'industry'=>$industry,'think'=>$think])
 </section>
 @stop

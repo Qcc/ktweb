@@ -26,8 +26,9 @@
         <a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a>
         <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('register') }}">注册有礼<i class="mdui-icon material-icons mdui-icon-right">&#xe8f6;</i></a>
         @else
-        <a href="{{ route('notifications.notice') }}" class="notifications-badge">
-          <span class="badge badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'fade' }} " title="您有{{ Auth::user()->notification_count }}条未读消息">
+        <a href="{{ route('notifications.notice') }}" class="notifications-badge" title="您有{{ Auth::user()->notification_count }}条未读消息">
+        <i class="mdui-icon material-icons">&#xe0e1;</i>
+          <span class="badge badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'fade' }} " >
             {{ Auth::user()->notification_count }}
           </span>
         </a>

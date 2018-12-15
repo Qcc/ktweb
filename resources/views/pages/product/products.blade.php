@@ -49,14 +49,37 @@
             @endif
         @endforeach
     </div>
+    <div class="solution-warp">
+        <div class="solution-title"><p>{{ $productcol->name }}解决方案</p>
+        </div>
+        <div id="solutionSwiper" class="swiper-container">
+            <div class="swiper-wrapper">
+            @foreach($solutions as $index => $solution)
+                <div class="swiper-slide">
+                    <div class="swiper-background"></div>
+                    <div class="swiper-image">
+                        <img src="{{ $solution->image }}" alt="{{ $solution->title }}">
+                    </div>
+                    <div class="info">
+                        <div class="date">{{ $productcol->name }}解决方案</div>
+                        <h3><a href="{{ route('solution.show', $solution->id) }}">{{ $solution->title }}</a></h3>
+                        <p>{{ $solution->excerpt }}</p>
+                        <a href="{{ route('solution.show', $solution->id) }}" class="btn">详情</a>
+                    </div>
+                </div>
+            @endforeach
+            </div>
+            <div class="swiper-button-prev"><i class="mdui-icon material-icons">&#xe5cb;</i></div>
+            <div class="swiper-button-next"><i class="mdui-icon material-icons">&#xe5cc;</i></div>
+        </div>
+    </div>
     <div>
-    @foreach($solutions as $index => $solution)
+    @foreach($customers as $index => $customer)
         <p>
-            {{ $solution->title }}
+            {{ $customer->title }}
         </p>
     @endforeach
     </div>
-    <div>客户案例</div>
 </div>
 
 @stop
@@ -70,11 +93,22 @@
 
 <script>
     $$(document).ready(function () {
+        $$(document).ready(function () {
         // 初始化首页轮播图
         if ($$('.swiper-container').length === 1) {
-            var swiper = new Swiper('.swiper-container', {});
+            var solutionSwiper = new Swiper ('#solutionSwiper', {
+              centeredSlides : true,
+            	slidesPerView : 'auto',
+                spaceBetween : 40,
+                loop : true,
+                autoplay:true,
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+            }) 
         }
+        });
     });
 </script>
-
 @stop

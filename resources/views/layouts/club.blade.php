@@ -10,7 +10,7 @@
     <title>@yield('title') - 深圳市沟通科技有限公司</title>
     <link rel="stylesheet" href="{{ asset('css/mdui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/iconfont.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/club.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('styles')
     
 </head>

@@ -1054,20 +1054,30 @@ a:active {
     margin-right: 10px;
     line-height: 50px;
     vertical-align: middle;
+    position: relative;
 }
-
+.notifications-badge i{
+    color: #a2a2a2;
+}
 .badge {
-    padding: 1px 7px;
-    color: #fff;
-    border-radius: 15px;
+    position: absolute;
+    top: 3px;
+    right: -12px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+    padding: 0 3px;
+    min-width: 13px;
+    color: #a2a2a2;
 }
-
 .badge-hint {
+    color: #eee;
+    display: block;
     background-color: #28a745;
 }
 
 .badge-fade {
-    background-color: #555;
+    display: none;
 }
 
 .club-warp {
@@ -1076,13 +1086,13 @@ a:active {
 
 /* 首页banner图 */
 
-.swiper-slide div {
+.home-page .swiper-slide .banner-content {
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
 
-.swiper-slide img {
+.home-page .swiper-slide img {
     position: relative;
     left: 50%;
     margin-left: -960px;
@@ -2248,4 +2258,144 @@ padding: 0 20px;
 .ghostbtn:hover{
     background: #ff4081;
     color: #fff;
+}
+/* 解决方案轮播图 */
+.home-page .solution-warp{
+margin-bottom: 30px;
+}
+.solution-warp .solution-title{
+width: 300px;
+margin: 0 auto;
+margin-bottom: 30px;
+}
+.solution-title>p{
+    font-size: 30px;
+    text-align: center;
+}
+#solutionSwiper{
+	margin-top:20px;
+}
+#solutionSwiper .swiper-slide{
+	width: 480px;
+	height: 326px;
+	border-radius: 8px;
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position:relative;
+    overflow: hidden;
+}
+#solutionSwiper .swiper-slide:after {
+    z-index: 1;
+    opacity: 0.3;
+    transition: opacity .4s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: " ";
+    overflow: hidden;
+    display: block;
+	border-radius: 8px;
+}
+#solutionSwiper .swiper-slide:hover >.swiper-background{
+    display: block;
+	}
+ 
+
+#solutionSwiper .swiper-button-prev,#solutionSwiper .swiper-button-next{
+	width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+    background: rgba(0,0,0,0.2);
+    border-radius: 60px;
+	text-align:center;
+	opacity:1;
+	display:none;
+}
+#solutionSwiper:hover .swiper-button-prev,#solutionSwiper:hover .swiper-button-next{
+	display:block;
+}
+#solutionSwiper .swiper-button-prev>i {
+    position: relative;
+    top: -5px;
+    font-size: 30px;
+}	
+#solutionSwiper .swiper-button-next>i {
+    position: relative;
+    top: -5px;
+    font-size: 30px;
+}
+
+
+#solutionSwiper .info{
+	position: absolute;
+	padding:30px;
+	z-index:999;
+    transition: all .2s;
+    bottom: -149px;
+	color:#fff;
+	font-size:14px;
+    padding-top:30px;
+    text-align: left;
+}	
+#solutionSwiper .swiper-slide:hover .info{
+	bottom:0px;
+}
+#solutionSwiper .info .date{
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #fff;
+}
+#solutionSwiper .info h3{
+	margin-bottom: 18px;
+}
+#solutionSwiper .info h3 a{
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+	text-decoration:none;
+}
+#solutionSwiper .info p{
+    text-indent:2em;
+    color:#fff;
+}
+#solutionSwiper .info .btn{
+	margin-top: 40px;
+	display: inline-block;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 16px;
+    padding: 9px 35px;
+    border-radius: 20px;
+    line-height: 20px;
+	text-decoration:none;
+}
+#solutionSwiper .info .btn:hover{
+    background:#ff4081;
+    border: 2px solid #ff4081;
+	color:#fff;
+}
+
+#solutionSwiper .swiper-image{
+ overflow: hidden;
+ height: 100%;
+ width: 100%;
+}
+
+#solutionSwiper .swiper-image>img{
+    height: 100%;
+    width: 100%;
+}
+#solutionSwiper .swiper-background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0.6;
+    background: #000;
+    display: none;
 }
