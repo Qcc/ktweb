@@ -25,6 +25,7 @@
                 </div>
             </div>
             <div class="mdui-divider"></div>
+            <div class="topic-body">{!! $product->point !!}</div>
             <div class="topic-body">{!! $product->body !!}</div>
             @can('update', $product)
             <div class="article-edit">

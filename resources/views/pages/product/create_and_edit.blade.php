@@ -29,10 +29,10 @@
 
 
                     <div class="form-group select">
-                        <select class="mdui-select" mdui-select name="product_id" required>
-                            <option value="" hidden disabled {{ $product->id ? '' : 'selected' }}>请选择分类</option>
+                        <select class="mdui-select" mdui-select name="productcol_id" required>
+                            <option value="" hidden disabled {{ $product->productcol_id ? '' : 'selected' }}>请选择分类</option>
                             @foreach ($productcol as $value)
-                            <option value="{{ $value->id }}" {{ $product->product_id == $value->id ? 'selected' : '' }}>
+                            <option value="{{ $value->id }}" {{ $product->productcol_id == $value->id ? 'selected' : '' }}>
                                 {{$value->name }}</option>
                             @endforeach
                         </select>
@@ -48,12 +48,22 @@
                             placeholder="关键词" required />
                     </div>
                     <div class="form-group title">
+                        <input class="form-control" type="text" name="icon" value="{{ old('image', $product->image ) }}"
+                            placeholder="图标" required />
+                    </div>
+                    <div class="form-group title">
                         <input class="form-control" type="text" name="image" value="{{ old('image', $product->image ) }}"
                             placeholder="首图" required />
                     </div>
+                    
 
                     <div class="form-group">
-                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少三个字符的内容。"
+                        <textarea name="point" class="form-control" id="pointeditor" rows="3" placeholder="功能点，请填入至少三个字符的内容。"
+                            required>{{ old('point', $product->point ) }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="功能详情描述，请填入至少三个字符的内容。"
                             required>{{ old('body', $product->body ) }}</textarea>
                     </div>
 
@@ -106,6 +116,9 @@
                 leaveConfirm: '文件上传中，关闭此页面将取消上传。'
             },
             pasteImage: true,
+        });
+        var editor = new Simditor({
+            textarea: $('#pointeditor'),
         });
     });
     // <!-- 

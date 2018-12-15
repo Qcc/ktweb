@@ -854,6 +854,10 @@ a:active {
 
 .news-big-item .news-big-pictures {
     width: 100%;
+    transition: all 0.6s;
+}
+.news-big-item .news-big-pictures:hover {
+    transform: scale(1.1);
 }
 
 .news-big-content-warp {
@@ -866,6 +870,7 @@ a:active {
     position: relative;
     left: 0;
     top: 0;
+    overflow: hidden;
 }
 
 /* 新闻资讯结束 */
@@ -2186,9 +2191,61 @@ a:active {
 .product-featrue .images{
     text-align: center;
 }
+.featrue-arp .product-featrue-arp{
+    padding: 0 60px;
+}
 .featrue-title>p{
     color: #555;
     font-size: 30px;
     text-align: center;
     margin: 50px;
+}
+.featrue-arp .product-featrue-arp{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.product-featrue-arp .featrue-point{
+margin-top: 10px;
+padding: 0 20px;
+}
+.featrue-arp .product-left{
+    background: #fff;
+    margin: 0 auto;
+    padding: 50px 60px;
+}
+.featrue-arp .product-right{
+    margin: 0 auto;
+    background: #e2e2e2;
+    padding: 50px 60px;
+}
+ 
+.product-featrue-image>img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.product-featrue-image>img:hover{
+    transform: scale(1.1);
+}
+.product-featrue-image>img{
+    transition: all 0.6s;
+}
+.product-right .product-point-right{
+    text-align: left;
+    padding-left: 50px;
+}
+.product-left .product-point-left{
+    text-align: right;
+    padding-right: 50px;
+}
+.product-title .product-title-h3{
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+.ghostbtn{
+    border: 1px solid #ff4081;
+}
+.ghostbtn:hover{
+    background: #ff4081;
+    color: #fff;
 }

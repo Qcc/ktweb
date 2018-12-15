@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->comment('首图');
             $table->string('icon')->nullable()->comment('图标');
             $table->string('banner')->nullable()->comment('banner图');
+            $table->text('point')->comment('功能点');
             $table->text('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index()->comment('作者');
             $table->integer('productcol_id')->unsigned()->index()->comment('分类');

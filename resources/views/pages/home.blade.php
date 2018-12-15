@@ -2,7 +2,7 @@
 @section('title','沟通科技')
 
 @section('content')
-<section style="margin-top: -64px;">
+<section>
 
   <div class="swiper-container">
     <div class="swiper-wrapper">

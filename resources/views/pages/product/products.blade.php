@@ -19,11 +19,11 @@
         </div>
     </div>
     @include('common.error')
-    <div class="mdui-container">
+    <div class="mdui-container-full featrue-arp">
         <div class="featrue-title">
             <p>{{ $productcol->title }}</p>
         </div>
-        <div class="mdui-row">
+        <div class="mdui-row product-featrue-arp">
             @foreach($products as $index => $product)
             @break($loop->index > 3)
             <div class="mdui-col-xs-3">
@@ -32,7 +32,7 @@
                         <div class="images">
                             <img src="{{ $product->icon }}" alt="{{ $product->title }}">
                         </div>
-                        <div>
+                        <div class="featrue-point">
                             <p>{{ $product->title }}</p>
                         </div>
                     </a>
@@ -47,8 +47,16 @@
             @if($loop->index % 2 == 0)
             @include('pages.product._pic_right',$product)
             @endif
-            @endforeach
+        @endforeach
     </div>
+    <div>
+    @foreach($solutions as $index => $solution)
+        <p>
+            {{ $solution->title }}
+        </p>
+    @endforeach
+    </div>
+    <div>客户案例</div>
 </div>
 
 @stop

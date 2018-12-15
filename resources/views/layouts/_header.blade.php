@@ -71,7 +71,7 @@
           <li class="mdui-menu-item">
             <a href="{{ route('product.create') }}" title="产品相关文章"  class="mdui-ripple">
               <i class="mdui-icon material-icons">&#xe02f;</i>
-            产品文章</a>
+            产品功能</a>
           </li>
           <li class="mdui-menu-item">
             <a href="{{ route('solution.create') }}" title="行业解决方案" class="mdui-ripple">

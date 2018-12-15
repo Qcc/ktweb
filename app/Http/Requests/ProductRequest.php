@@ -20,7 +20,7 @@ class ProductRequest extends Request
             case 'PATCH':
             {
                 return [
-                    'title'       => 'required|min:2|max:50',
+                    'title'       => 'required|min:2|max:100',
                     'body'        => 'required|min:3',
                     'productcol_id' => 'required|numeric',
                 ];
@@ -38,7 +38,7 @@ class ProductRequest extends Request
     {
         return [
             'title.min' => '标题必须至少两个字符',
-            'title.max' => '标题不能超过50个字符',
+            'title.max' => '标题不能超过100个字符',
             'body.min' => '文章内容必须至少三个字符',
             'productcol_id.required' => '请选择产品分类',
         ];
