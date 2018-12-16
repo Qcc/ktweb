@@ -468,6 +468,9 @@ a:active {
     width: 1170px;
     margin: 0 auto;
 }
+.copyright{
+    margin-top: 50px;
+}
 
 @media screen and (max-width:1200px) {
     .footer-sections {
@@ -2435,7 +2438,7 @@ margin: 30px 0;
 
 /* 底部联系我们表单 */
 .contact{
-    background: #536DFE;
+    background: #616161;
     padding: 80px 0;
 }
 .contact .contact-head{
@@ -2463,4 +2466,37 @@ margin: 30px 0;
     text-align: right;
     float: left;
     width: 49%;
+}
+.contact-form .phone,.contact-form .name, .contact-form .btn{
+    display: inline;
+    margin: 0 10px;
+}
+.contact-form .form{
+    margin: 90px auto 30px;
+    width: 800px;
+    text-align: center;
+}
+.contact-form .btn{
+    color: #fff;
+    line-height: 1.2142em;
+}
+.contact-form .btn>a{
+    zoom: 1.1;
+}
+.contact-form .phone>input,.contact-form .name>input{
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0em;
+    outline: none;
+    -webkit-appearance: none;
+    line-height: 1.2142em;
+    padding: 0.67861429em 1em;
+    font-size: 1em;
+    background: #FFFFFF;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    color: rgba(0, 0, 0, 0.87);
+    border-radius: 0.28571429rem;
+    -webkit-box-shadow: 0em 0em 0em 0em transparent inset;
+    box-shadow: 0em 0em 0em 0em transparent inset;
+    -webkit-transition: color 0.1s ease, border-color 0.1s ease;
+    transition: color 0.1s ease, border-color 0.1s ease;
 }

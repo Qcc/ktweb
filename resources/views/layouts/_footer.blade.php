@@ -1,4 +1,4 @@
-<footer class="mdui-container-fluid mdui-color-grey-800" style="padding:10px 0 20px;margin-top:20px;">
+<footer class="mdui-container-fluid mdui-color-grey-800" style="padding:10px 0 20px">
     <div class="mdui-row-xs-5 mdui-text-color-grey footer-sections">
 
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="mdui-text-color-grey">
+    <div class="mdui-text-color-grey copyright">
       <p class="txt-center">深圳市沟通科技有限公司 · 版权所有 电话：0755-26525890 地址：深圳市南山区科技园南区W1-B栋5楼</p>
       <p class="txt-center"><small>KouTon © 2000-2018 粤ICP备09149236 号</small></p>
     </div>

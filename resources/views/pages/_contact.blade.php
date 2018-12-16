@@ -46,18 +46,21 @@
         </div>
         </div>
     </div>
-    <div>
+    <div class="contact-form">
+        <div class="form">
         <form action="">
-            <div>
-                <input type="text">
+            <div class="name">
+                <input type="text" name="name" placeholder="姓名">
             </div>
-            <div>
-                <input type="text">
+            <div class="phone">
+                <input type="text" name="phone" placeholder="手机号码">
             </div>
-            <div>
-                <input type="usbmit">
+            <div class="btn">
+            <a class="mdui-btn mdui-ripple mdui-color-theme-accent">提交需求</a>
+            <a class="mdui-btn ghostbtn mdui-ripple">在线咨询</a>
             </div>
         </form>
+        </div>
     </div>
 </div>
 </div>
