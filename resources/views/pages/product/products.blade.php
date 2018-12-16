@@ -73,15 +73,37 @@
             <div class="swiper-button-next"><i class="mdui-icon material-icons">&#xe5cc;</i></div>
         </div>
     </div>
-    <div>
-    @foreach($customers as $index => $customer)
-        <p>
-            {{ $customer->title }}
-        </p>
-    @endforeach
+    <div class="mdui-container customer-warp">
+        <div class="customer-title"><p>看看他们如何使用{{ $productcol->name }}</p>
+        </div>
+            <div class="mdui-row customer-list">
+            @foreach($customers as $index => $customer)
+                <div class="mdui-col-xs-3">
+                    <div class=" customer-item">
+                        <div class="customer-img">
+                            <a href="{{ route('customer.show',$customer->id) }}">
+                                <img src="{{ $customer->image }}" alt="{{ $customer->title }}">
+                            </a>
+                        </div>
+                        <div class="customer-col">
+                            <a href="{{ route('customers.show',$customer->customercol->id) }}">{{ $customer->customercol->name }}</a>
+                            <span> | </span>
+                            <a href="{{ route('customer.show',$customer->id) }}">{{ $customer->name }}</a>
+                        </div>
+                        <div class="customer-body">
+                            <a href="{{ route('customer.show',$customer->id) }}">
+                                <p>{{ $customer->title }} </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+            </div>
+        </div>
+         
     </div>
 </div>
-
+@include('pages._contact')
 @stop
 
 @section('styles')

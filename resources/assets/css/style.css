@@ -2264,9 +2264,8 @@ padding: 0 20px;
 margin-bottom: 30px;
 }
 .solution-warp .solution-title{
-width: 300px;
 margin: 0 auto;
-margin-bottom: 30px;
+margin: 30px 0;
 }
 .solution-title>p{
     font-size: 30px;
@@ -2398,4 +2397,70 @@ margin-bottom: 30px;
     opacity: 0.6;
     background: #000;
     display: none;
+}
+/* 客户案例模块 */
+.products-show-page .customer-warp{
+    margin-bottom: 30px;
+}
+    .customer-warp .customer-title{
+    margin: 0 auto;
+    margin: 60px 0 30px;
+    }
+    .customer-title>p{
+        font-size: 30px;
+        text-align: center;
+    }
+.customer-warp .customer-item{
+    padding: 20px;    
+}
+.customer-warp .customer-item:hover{
+    box-shadow: 0px 0px 10px 1px #a2a2a2;
+}
+.customer-item .customer-img a>img{
+    max-width: 100%;
+    transition: all 0.6s;
+}
+.customer-item .customer-img a>img:hover{
+    transform: scale(1.1);
+}
+
+.customer-item .customer-col{
+    margin: 10px 0;
+}
+
+.customer-item .customer-body{
+ height: 50px;
+ overflow: hidden;
+}
+
+/* 底部联系我们表单 */
+.contact{
+    background: #536DFE;
+    padding: 80px 0;
+}
+.contact .contact-head{
+    text-align: center;
+}
+.contact .contact-head .contact-title{
+    float: right;
+    width: 50%;
+    text-align: left;
+}
+.contact-head .contact-title h5{
+    color: #fff;
+    font-size: 25px;
+}
+.contact-head .contact-title p{
+    color: #e2e2e2;
+    font-size: 20px;
+}
+.contact-head .contact-icon i{
+    padding-right: 10px;
+    font-size: 60px;
+    color: #e2e2e2;
+}
+.contact-head .contact-icon{
+    text-align: right;
+    float: left;
+    width: 49%;
 }

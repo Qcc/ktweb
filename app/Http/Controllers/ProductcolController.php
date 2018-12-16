@@ -23,7 +23,7 @@ class ProductcolController extends Controller
         //读取产品相关客户案例
         $customers = $customer->withOrder($request->order)
                         ->where('productcol_id',$productcol->id)
-                        ->paginate(4);
+                        ->paginate(8);
         
         // 传参变量话题和分类 到模版中
         return view('pages.product.products',compact('products','solutions','customers','productcol'));
