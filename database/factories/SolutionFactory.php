@@ -13,6 +13,7 @@ $factory->define(App\Models\Solution::class, function (Faker $faker) {
     return [
         'title' => $sentence,
         'body' => $faker->text(),
+        'point' => $faker->text(),
         'excerpt' => $sentence,
         'keywords' => $sentence,
         'image' => '/images/solution3.jpg',

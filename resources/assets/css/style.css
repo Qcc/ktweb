@@ -468,7 +468,8 @@ a:active {
     width: 1170px;
     margin: 0 auto;
 }
-.copyright{
+
+.copyright {
     margin-top: 50px;
 }
 
@@ -859,6 +860,7 @@ a:active {
     width: 100%;
     transition: all 0.6s;
 }
+
 .news-big-item .news-big-pictures:hover {
     transform: scale(1.1);
 }
@@ -1059,9 +1061,11 @@ a:active {
     vertical-align: middle;
     position: relative;
 }
-.notifications-badge i{
+
+.notifications-badge i {
     color: #a2a2a2;
 }
+
 .badge {
     position: absolute;
     top: 3px;
@@ -1073,6 +1077,7 @@ a:active {
     min-width: 13px;
     color: #a2a2a2;
 }
+
 .badge-hint {
     color: #eee;
     display: block;
@@ -2175,118 +2180,141 @@ a:active {
     margin-left: -960px;
     z-index: 1;
 }
-.products-banner-warp .products-action{
+
+.products-banner-warp .products-action {
     z-index: 2;
     position: absolute;
     top: 150px;
     left: 200px;
 }
-.products-head>h2{
- font-size: 40px;
- max-width: 400px;
- color: #2196f3;
-}   
-.products-head>h4{
+
+.products-head>h2 {
+    font-size: 40px;
+    max-width: 400px;
+    color: #2196f3;
+}
+
+.products-head>h4 {
     max-width: 350px;
     font-size: 20px;
     margin: 10px 0;
     color: #999;
 }
 
-.products-action .products-btn a{
-    margin:30px 10px 0 0;
+.products-action .products-btn a {
+    margin: 30px 10px 0 0;
 }
 
-.product-featrue .images>img{
+.product-featrue .images>img {
     width: 80px;
     height: 80px;
 }
-.product-featrue .images{
+
+.product-featrue .images {
     text-align: center;
 }
-.featrue-arp .product-featrue-arp{
+
+.featrue-arp .product-featrue-arp {
     padding: 0 60px;
 }
-.featrue-title>p{
+
+.featrue-title>p {
     color: #555;
     font-size: 30px;
     text-align: center;
     margin: 50px;
 }
-.featrue-arp .product-featrue-arp{
+
+.featrue-arp .product-featrue-arp {
     margin-top: 20px;
     margin-bottom: 50px;
 }
-.product-featrue-arp .featrue-point{
-margin-top: 10px;
-padding: 0 20px;
+
+.product-featrue-arp .featrue-point {
+    margin-top: 10px;
+    padding: 0 20px;
 }
-.featrue-arp .product-left{
+
+.featrue-arp .product-left {
     background: #fff;
     margin: 0 auto;
     padding: 50px 60px;
 }
-.featrue-arp .product-right{
+
+.featrue-arp .product-right {
     margin: 0 auto;
     background: #e2e2e2;
     padding: 50px 60px;
 }
- 
-.product-featrue-image>img{
+
+.product-featrue-image>img {
     max-width: 100%;
     max-height: 100%;
 }
-.product-featrue-image>img:hover{
+
+.product-featrue-image>img:hover {
     transform: scale(1.1);
 }
-.product-featrue-image>img{
+
+.product-featrue-image>img {
     transition: all 0.6s;
 }
-.product-right .product-point-right{
+
+.product-right .product-point-right {
     text-align: left;
     padding-left: 50px;
 }
-.product-left .product-point-left{
+
+.product-left .product-point-left {
     text-align: right;
     padding-right: 50px;
 }
-.product-title .product-title-h3{
+
+.product-title .product-title-h3 {
     font-size: 30px;
     line-height: 30px;
     margin-bottom: 30px;
 }
-.ghostbtn{
+
+.ghostbtn {
     border: 1px solid #ff4081;
 }
-.ghostbtn:hover{
+
+.ghostbtn:hover {
     background: #ff4081;
     color: #fff;
 }
+
 /* 解决方案轮播图 */
-.home-page .solution-warp{
-margin-bottom: 30px;
+.home-page .solution-warp {
+    margin-bottom: 30px;
 }
-.solution-warp .solution-title{
-margin: 0 auto;
-margin: 30px 0;
+
+.solution-warp .solution-title {
+    margin: 0 auto;
+    margin: 30px 0;
 }
-.solution-title>p{
+
+.solution-title>p {
     font-size: 30px;
     text-align: center;
 }
-#solutionSwiper{
-	margin-top:20px;
+
+#solutionSwiper {
+    margin-top: 20px;
 }
-#solutionSwiper .swiper-slide{
-	width: 480px;
-	height: 326px;
-	border-radius: 8px;
-	background-repeat: no-repeat;
+
+#solutionSwiper .swiper-slide {
+    width: 480px;
+    height: 326px;
+    border-radius: 8px;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    position:relative;
+    position: relative;
     overflow: hidden;
 }
+
 #solutionSwiper .swiper-slide:after {
     z-index: 1;
     opacity: 0.3;
@@ -2299,33 +2327,39 @@ margin: 30px 0;
     content: " ";
     overflow: hidden;
     display: block;
-	border-radius: 8px;
+    border-radius: 8px;
 }
-#solutionSwiper .swiper-slide:hover >.swiper-background{
-    display: block;
-	}
- 
 
-#solutionSwiper .swiper-button-prev,#solutionSwiper .swiper-button-next{
-	width: 60px;
+#solutionSwiper .swiper-slide:hover>.swiper-background {
+    display: block;
+}
+
+
+#solutionSwiper .swiper-button-prev,
+#solutionSwiper .swiper-button-next {
+    width: 60px;
     height: 60px;
     line-height: 60px;
     font-size: 16px;
     color: #fff;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 60px;
-	text-align:center;
-	opacity:1;
-	display:none;
+    text-align: center;
+    opacity: 1;
+    display: none;
 }
-#solutionSwiper:hover .swiper-button-prev,#solutionSwiper:hover .swiper-button-next{
-	display:block;
+
+#solutionSwiper:hover .swiper-button-prev,
+#solutionSwiper:hover .swiper-button-next {
+    display: block;
 }
+
 #solutionSwiper .swiper-button-prev>i {
     position: relative;
     top: -5px;
     font-size: 30px;
-}	
+}
+
 #solutionSwiper .swiper-button-next>i {
     position: relative;
     top: -5px;
@@ -2333,66 +2367,74 @@ margin: 30px 0;
 }
 
 
-#solutionSwiper .info{
-	position: absolute;
-	padding:30px;
-	z-index:999;
+#solutionSwiper .info {
+    position: absolute;
+    padding: 30px;
+    z-index: 999;
     transition: all .2s;
     bottom: -149px;
-	color:#fff;
-	font-size:14px;
-    padding-top:30px;
+    color: #fff;
+    font-size: 14px;
+    padding-top: 30px;
     text-align: left;
-}	
-#solutionSwiper .swiper-slide:hover .info{
-	bottom:0px;
 }
-#solutionSwiper .info .date{
+
+#solutionSwiper .swiper-slide:hover .info {
+    bottom: 0px;
+}
+
+#solutionSwiper .info .date {
     font-size: 14px;
     margin-bottom: 16px;
     color: #fff;
 }
-#solutionSwiper .info h3{
-	margin-bottom: 18px;
+
+#solutionSwiper .info h3 {
+    margin-bottom: 18px;
 }
-#solutionSwiper .info h3 a{
+
+#solutionSwiper .info h3 a {
     color: #fff;
     font-size: 24px;
     font-weight: 500;
-	text-decoration:none;
+    text-decoration: none;
 }
-#solutionSwiper .info p{
-    text-indent:2em;
-    color:#fff;
+
+#solutionSwiper .info p {
+    text-indent: 2em;
+    color: #fff;
 }
-#solutionSwiper .info .btn{
-	margin-top: 40px;
-	display: inline-block;
+
+#solutionSwiper .info .btn {
+    margin-top: 40px;
+    display: inline-block;
     border: 2px solid #fff;
     color: #fff;
     font-size: 16px;
     padding: 9px 35px;
     border-radius: 20px;
     line-height: 20px;
-	text-decoration:none;
+    text-decoration: none;
 }
-#solutionSwiper .info .btn:hover{
-    background:#ff4081;
+
+#solutionSwiper .info .btn:hover {
+    background: #ff4081;
     border: 2px solid #ff4081;
-	color:#fff;
+    color: #fff;
 }
 
-#solutionSwiper .swiper-image{
- overflow: hidden;
- height: 100%;
- width: 100%;
-}
-
-#solutionSwiper .swiper-image>img{
+#solutionSwiper .swiper-image {
+    overflow: hidden;
     height: 100%;
     width: 100%;
 }
-#solutionSwiper .swiper-background{
+
+#solutionSwiper .swiper-image>img {
+    height: 100%;
+    width: 100%;
+}
+
+#solutionSwiper .swiper-background {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -2401,89 +2443,110 @@ margin: 30px 0;
     background: #000;
     display: none;
 }
+
 /* 客户案例模块 */
-.products-show-page .customer-warp{
+.products-show-page .customer-warp {
     margin-bottom: 30px;
 }
-    .customer-warp .customer-title{
+
+.customer-warp .customer-title {
     margin: 0 auto;
     margin: 60px 0 30px;
-    }
-    .customer-title>p{
-        font-size: 30px;
-        text-align: center;
-    }
-.customer-warp .customer-item{
-    padding: 20px;    
 }
-.customer-warp .customer-item:hover{
+
+.customer-title>p {
+    font-size: 30px;
+    text-align: center;
+}
+
+.customer-warp .customer-item {
+    padding: 20px;
+}
+
+.customer-warp .customer-item:hover {
     box-shadow: 0px 0px 10px 1px #a2a2a2;
 }
-.customer-item .customer-img a>img{
+
+.customer-item .customer-img a>img {
     max-width: 100%;
     transition: all 0.6s;
 }
-.customer-item .customer-img a>img:hover{
+
+.customer-item .customer-img a>img:hover {
     transform: scale(1.1);
 }
 
-.customer-item .customer-col{
+.customer-item .customer-col {
     margin: 10px 0;
 }
 
-.customer-item .customer-body{
- height: 50px;
- overflow: hidden;
+.customer-item .customer-body {
+    height: 50px;
+    overflow: hidden;
 }
 
 /* 底部联系我们表单 */
-.contact{
+.contact {
     background: #616161;
     padding: 80px 0;
 }
-.contact .contact-head{
+
+.contact .contact-head {
     text-align: center;
 }
-.contact .contact-head .contact-title{
+
+.contact .contact-head .contact-title {
     float: right;
     width: 50%;
     text-align: left;
 }
-.contact-head .contact-title h5{
+
+.contact-head .contact-title h5 {
     color: #fff;
     font-size: 25px;
 }
-.contact-head .contact-title p{
+
+.contact-head .contact-title p {
     color: #e2e2e2;
     font-size: 20px;
 }
-.contact-head .contact-icon i{
+
+.contact-head .contact-icon i {
     padding-right: 10px;
     font-size: 60px;
     color: #e2e2e2;
 }
-.contact-head .contact-icon{
+
+.contact-head .contact-icon {
     text-align: right;
     float: left;
     width: 49%;
 }
-.contact-form .phone,.contact-form .name, .contact-form .btn{
+
+.contact-form .phone,
+.contact-form .name,
+.contact-form .btn {
     display: inline;
     margin: 0 10px;
 }
-.contact-form .form{
+
+.contact-form .form {
     margin: 90px auto 30px;
     width: 800px;
     text-align: center;
 }
-.contact-form .btn{
+
+.contact-form .btn {
     color: #fff;
     line-height: 1.2142em;
 }
-.contact-form .btn>a{
+
+.contact-form .btn>a {
     zoom: 1.1;
 }
-.contact-form .phone>input,.contact-form .name>input{
+
+.contact-form .phone>input,
+.contact-form .name>input {
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0em;
     outline: none;
@@ -2499,4 +2562,115 @@ margin: 30px 0;
     box-shadow: 0em 0em 0em 0em transparent inset;
     -webkit-transition: color 0.1s ease, border-color 0.1s ease;
     transition: color 0.1s ease, border-color 0.1s ease;
+}
+
+/* 合作伙伴 */
+.business-show-page .partner-bg {
+    width: 100%;
+    height: 364px;
+    text-align: center;
+    background: url(/images/partner.png) no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+}
+
+.partner-bg .head>a {
+    width: 120px;
+    border-radius: 18px;
+    margin-top: 30px;
+    font-size: 18px;
+    line-height: 36px;
+}
+
+.partner-bg .head {
+    padding-top: 150px;
+}
+
+.partner-bg .title {
+    color: #fff;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.partner-bg .name {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.business-show-page .partner-list {
+    margin: 50px 0;
+}
+
+.partner-list>div {
+    padding: 0 30px;
+    border-left: 1px solid #e2e2e2;
+}
+
+.partner-list>div:first-child {
+    border-left: none;
+}
+
+.partner-list .icon>i {
+    font-size: 50px;
+    color: #a2a2a2;
+}
+
+.partner-list .title {
+    color: #555;
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.partner-list .info {
+    color: #555;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+/* 提交申请表格 */
+.partnerinfo .partner-warp {
+    width: 550px;
+    height: 350px;
+    margin: 150px auto;
+}
+.partner-warp .title{
+    margin: 30px auto;
+    text-align: center;
+    padding-top: 20px;
+}
+.partner-warp .title>p:first-child{
+    font-size: 25px;
+    line-height: 30px;
+}
+.partner-warp .title>p:last-child{
+    font-size: 15px;
+    line-height: 30px;
+}
+.partner-warp .form-group{
+    margin: 20px 0;
+    text-align: center;
+}
+.partner-warp .form-group>textarea {
+    padding: 10px;
+    margin: 0px;
+    height: 135px;
+    width: 360px;
+}
+.partner-warp .form-group>input {
+    width: 300px;
+    height: 32px;
+    font-size: 14px;
+    padding-left: 10px;
+    line-height: 32px;
+    border-radius: 4px;
+    border: 1px solid rgb(224, 224, 224);
+    outline: none;
+    box-shadow: none;
+}
+
+.partner-warp .form-group>input:focus {
+    border: 1px solid rgb(102, 175, 233);
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset, rgba(102, 175, 233, 0.6) 0px 0px 8px;
 }

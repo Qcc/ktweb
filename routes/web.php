@@ -132,3 +132,10 @@ Route::post('news/upload_image', 'NewsController@uploadImage')->name('news.uploa
 Route::post('product/upload_image', 'ProductController@uploadImage')->name('product.upload_image');
 Route::post('solution/upload_image', 'SolutionController@uploadImage')->name('solution.upload_image');
 Route::post('customer/upload_image', 'CustomersController@uploadImage')->name('customer.upload_image');
+
+// 用户需求提交
+Route::get('business/partner', 'BusinessController@show')->name('business.show');
+Route::get('business/partner_info', 'BusinessController@info')->name('business.info');
+Route::post('business/store', 'BusinessController@store')->name('business.store');
+Route::get('business/{token}', 'BusinessController@check')->name('business.check');
+Route::put('business/{business}', 'BusinessController@update')->name('business.update');
