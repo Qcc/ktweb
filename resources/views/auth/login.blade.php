@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 @stop
 @section('content')
-<div class="login-form-warp" style="margin-top:60px;">
+<div class="login-form-warp xhs_login_pad" style="margin-top:60px;">
     <div class="login-form">
         <div class="mdui-typo-subheading-opacity login-title">用户登录</div>
         <div class="login-body">

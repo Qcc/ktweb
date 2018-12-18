@@ -86,7 +86,6 @@
         </ul>
         @endguest
       </nav>
-
     </div>
     <div class="mdui-container-fluid kt-menu-warp">
       <!-- 产品菜单 -->

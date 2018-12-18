@@ -55,7 +55,9 @@ $$(document).ready(function () {
 	});
 	// 展开移动端菜单导航
 	$$('.ktm-nav-menu').on('click', function () {
+		console.log("123")
 		$$('.kt-nav-header').toggleClass('kt-nav-header-open')
+
 	});
 	// header部分结束
 
