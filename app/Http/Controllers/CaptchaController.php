@@ -39,13 +39,8 @@ class CaptchaController extends Controller
         
         $rules = ['captcha' => 'required|captcha'];
         $validator = Validator::make($request->all(), $rules);
-        $status=[];
-        if ($validator->fails())
-        {
-            $status = ['captcha'=>false,'msg'=>'验证码不正确'];
-        }
-        else
-        {
+        $status = ['captcha'=>false,'msg'=>'验证码不正确'];
+        if (!$validator->fails()){
             $status = ['captcha'=>true,'msg'=>'验证码正确'];
         }
         return response()->json($status);

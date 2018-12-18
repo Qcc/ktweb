@@ -18,6 +18,7 @@ class CreateSolutionsTable extends Migration
             $table->string('title')->index()->comment('标题');
             $table->string('image')->comment('首图');
             $table->string('icon')->nullable()->comment('图标');
+            $table->text('point')->comment('关键点');
             $table->string('banner')->nullable()->comment('banner图');
             $table->text('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index()->comment('作者');

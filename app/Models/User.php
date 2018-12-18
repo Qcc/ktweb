@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Log;
 class User extends Authenticatable
 {
     // 权限管理扩展 trait
@@ -35,6 +36,7 @@ class User extends Authenticatable
         if($this->id == Auth::id()){
             return;
         }
+        Log::info('没有收到');
         $this->increment('notification_count');
         $this->laravelNotify($instance);
     }

@@ -64,7 +64,7 @@ $$(document).ready(function () {
         var id = $$('#topic_id').attr('data_id');
         $$.ajax({
             method: 'POST',
-            url: '/topic/followers/action',
+            url: '/users/followers/action',
             ContentType: 'application/json',
             headers: {
                 'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')

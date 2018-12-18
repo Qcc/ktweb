@@ -13,8 +13,8 @@ class SolutioncolController extends Controller
         // 读取分类 ID  关联的话题， 并按照每20条分页
         $solutions = $solution->withOrder($request->order)
                         ->where('solutioncol_id',$solutioncol->id)
-                        ->paginate(21);
+                        ->paginate(8);
         // 传参变量话题和分类 到模版中
-        return view('pages.solution.index',compact('solutions','solutioncol'));
+        return view('pages.solution.solutions',compact('solutions','solutioncol'));
     }
 }

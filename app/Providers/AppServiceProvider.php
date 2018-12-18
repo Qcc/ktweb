@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
 		\App\Models\Product::observe(\App\Observers\ProductObserver::class);
 		\App\Models\Solution::observe(\App\Observers\SolutionObserver::class);
 		\App\Models\Conversation::observe(\App\Observers\ConversationObserver::class);
+		\App\Models\Business::observe(\App\Observers\BusinessObserver::class);
         Schema::defaultStringLength(191);
         \Carbon\Carbon::setLocale('zh');
     }
