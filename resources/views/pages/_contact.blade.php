@@ -1,66 +1,112 @@
 <div class="mdui-container-full contact">
-<div class="mdui-container">
-    <div class="mdui-row">
-        <div class="mdui-col-xs-6 mdui-col-sm-3">
-            <div class="contact-head">
-                <div class="contact-icon xhs_col_2">
-                    <i class="mdui-icon material-icons">&#xe61d;</i>
+    <div class="mdui-container">
+        <div class="mdui-row">
+            <div class="mdui-col-xs-6 mdui-col-sm-3">
+                <div class="contact-head">
+                    <div class="contact-icon xhs_col_2">
+                        <i class="mdui-icon material-icons">&#xe61d;</i>
+                    </div>
+                    <div class="contact-title">
+                        <h5>7×24</h5>
+                        <p>小时响应</p>
+                    </div>
                 </div>
-            <div class="contact-title">
-                <h5>7×24</h5>
-                <p>小时响应</p>
             </div>
+            <div class="mdui-col-xs-6 mdui-col-sm-3">
+                <div class="contact-head">
+                    <div class="contact-icon" style="border-left: 1px solid #fff;">
+                        <i class="mdui-icon material-icons">&#xe7ef;</i>
+                    </div>
+                    <div class="contact-title">
+                        <h5>优质</h5>
+                        <p>技术服务</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-col-xs-6 mdui-col-sm-3">
+                <div class="contact-head">
+                    <div class="contact-icon" style="border-left: 1px solid #fff;">
+                        <i class="mdui-icon material-icons">&#xe855;</i>
+                    </div>
+                    <div class="contact-title">
+                        <h5>全年</h5>
+                        <p>运维保障</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-col-xs-6 mdui-col-sm-3">
+                <div class="contact-head">
+                    <div class="contact-icon" style="border-left: 1px solid #fff;">
+                        <i class="mdui-icon material-icons">&#xe428;</i>
+                    </div>
+                    <div class="contact-title">
+                        <h5>多渠道</h5>
+                        <p>服务支持</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="mdui-col-xs-6 mdui-col-sm-3">
-        <div class="contact-head">
-            <div class="contact-icon" style="border-left: 1px solid #fff;">
-                <i class="mdui-icon material-icons">&#xe7ef;</i>
+        <div class="contact-form">
+            <div class="form">
+                <p class="fiald"></p>
+                <form action="">
+                    <div class="name">
+                        <input type="text" id="name" name="name" placeholder="姓名">
+                    </div>
+                    <div class="phone">
+                        <input type="text" id="phone" name="phone" placeholder="手机号码">
+                    </div>
+                    <div class="btn">
+                        <a id="customer" class="mdui-btn mdui-ripple mdui-color-theme-accent">提交需求</a>
+                        <a class="mdui-btn ghostbtn mdui-ripple">在线咨询</a>
+                    </div>
+                </form>
             </div>
-            <div class="contact-title">
-                <h5>优质</h5>
-                <p>技术服务</p>
+            <div class="success">
+                <div>
+                    <i class="kticon">&#xe676;</i>
+                    <p>提交成功!</p>
+                    <p class="msg"></p>
+                </div>
             </div>
-        </div>
-        </div>
-        <div class="mdui-col-xs-6 mdui-col-sm-3">
-        <div class="contact-head">
-            <div class="contact-icon" style="border-left: 1px solid #fff;">
-                <i class="mdui-icon material-icons">&#xe855;</i>
-            </div>
-        <div class="contact-title">
-            <h5>全年</h5>
-            <p>运维保障</p>
-        </div>
-        </div>
-        </div>
-        <div class="mdui-col-xs-6 mdui-col-sm-3">
-        <div class="contact-head">
-            <div class="contact-icon" style="border-left: 1px solid #fff;">
-                <i class="mdui-icon material-icons">&#xe428;</i>
-            </div>
-        <div class="contact-title">
-            <h5>多渠道</h5>
-            <p>服务支持</p>
-        </div>
-        </div>
-        </div>
-    </div>
-    <div class="contact-form">
-        <div class="form">
-        <form action="">
-            <div class="name">
-                <input type="text" name="name" placeholder="姓名">
-            </div>
-            <div class="phone">
-                <input type="text" name="phone" placeholder="手机号码">
-            </div>
-            <div class="btn">
-            <a class="mdui-btn mdui-ripple mdui-color-theme-accent">提交需求</a>
-            <a class="mdui-btn ghostbtn mdui-ripple">在线咨询</a>
-            </div>
-        </form>
         </div>
     </div>
 </div>
-</div>
+
+@section('script')
+<script>
+    $$(document).ready(function () {
+        //加关注 取消关注 粉丝
+        $$("#customer").on("click", function () {
+            $$(this).attr('disabled', true);
+            var name = $$('#name').val();
+            var phone = $$('#phone').val();
+            $$.ajax({
+                method: 'POST',
+                url: '/business/store',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    name: name,
+                    phone: phone,
+                    type: '终端客户',
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if (data.status) {
+                        $$('.form').css('visibility','hidden');
+                        $$('.msg').text(data.msg);
+                        $$('.success').show();
+                    } else {
+                        $$('.fiald').text(data.msg);
+                    }
+                    $$('#customer').removeAttr('disabled');
+                }
+            })
+        });
+    });
+</script>
+
+@stop

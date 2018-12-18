@@ -139,3 +139,4 @@ Route::get('business/partner_info', 'BusinessController@info')->name('business.i
 Route::post('business/store', 'BusinessController@store')->name('business.store');
 Route::get('business/{token}', 'BusinessController@check')->name('business.check');
 Route::put('business/{business}', 'BusinessController@update')->name('business.update');
+Route::delete('business/{business}', 'BusinessController@destroy')->name('business.destroy');

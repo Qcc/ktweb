@@ -46,6 +46,7 @@ class BusinessController extends Controller
             $business = Business::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
+                'type' => $request->type,
                 'city' => $request->city,
             ]);
         }
@@ -61,19 +62,31 @@ class BusinessController extends Controller
     public function check($token)
     {
         $business = Business::where('active_token', $token)->firstOrFail();
+        $this->authorize('update', $business);
         return view('pages.partnercheck',compact('business'));
     }
 
     public function update(Business $business, Request $request)
     {
-        $validator = Validator::make($request->all(), ['coment' => 'required']);
+        
+        $this->authorize('update', $business);
+        $validator = Validator::make($request->all(), ['comment' => 'required|min:3']);
         if (!$validator->fails()){
-
             $business->status = true;
             $business->user_id = Auth::User()->id;
-            $business->coment = $request->coment;
+            $business->comment = $request->comment;
             $business->save();
+            return redirect()->route('business.check',$business->active_token)->with('success', '提交结果成功！');
+        }else{
+            return redirect()->route('business.check',$business->active_token)->with('success', '请填写反馈！');
         }
-        return redirect()->route('business.check',$business->active_token)->with('message', '提交结果成功！');
     }
+
+    public function destroy(Business $business)
+	{
+		$this->authorize('destroy', $business);
+		$business->active_token = null;
+        $business->save();
+		return redirect()->route('home')->with('success', '商机已关闭.');
+	}
 }

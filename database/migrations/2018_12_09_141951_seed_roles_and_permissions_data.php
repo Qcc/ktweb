@@ -26,6 +26,7 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name' => 'manage_products']);
         Permission::create(['name' => 'manage_cdkeys']);
         Permission::create(['name' => 'web_settings']);
+        Permission::create(['name' => 'manage_business']);
 
         // 创建站长角色，并赋予权限
         $founder = Role::create(['name' => 'Founder']);

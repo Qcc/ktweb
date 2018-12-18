@@ -27,6 +27,5 @@ class BusinessObserver
         $user = User::find(1);
         //通知用户有新的商机需要联系
         $user->notify(new BusinessNotice($business));
-        Log::info('已经通知了');
     }
 }

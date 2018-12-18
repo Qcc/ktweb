@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 html {
     color: #666;
     background: #FFF;
@@ -154,6 +155,25 @@ body {
 
 /* 初始化结束 */
 
+/* 阿里巴巴图标字体 */
+
+@font-face {
+    font-family: 'kticon';  /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.eot');
+    src: url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.svg#kticon') format('svg');
+  }
+
+.kticon {
+    font-family: "kticon" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 /* 首页导航栏 */
 
@@ -423,6 +443,7 @@ a:active {
     .kt-nav-header-open {
         height: 100%;
     }
+
     .kt-menu-warp {
         display: none;
     }
@@ -728,9 +749,11 @@ a:active {
     .img-solution-content i {
         font-size: 45px;
     }
+
     .img-solution-content h3 {
         font-size: 25px;
     }
+
     .img-solution-content p {
         font-size: 13px;
     }
@@ -804,6 +827,7 @@ a:active {
         padding-left: 10px;
         overflow: hidden;
     }
+
     .news-big-content-warp .news-date {
         font-size: 12px;
         right: 5px;
@@ -820,6 +844,7 @@ a:active {
         top: 0;
         right: 0;
     }
+
     .news-big-content-warp h3 {
         -webkit-line-clamp: 2;
         padding-left: 10px;
@@ -827,17 +852,21 @@ a:active {
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
     .news-big-item {
         padding: 0 10px;
     }
+
     .news-big-content-warp .news-summary {
         padding-left: 10px;
     }
+
     .news-big-content-warp .news-date {
         font-size: 12px;
         right: 5px;
         bottom: 5px;
     }
+
     .ktnews-tab-warp .mdui-p-a-2 {
         margin-top: 20px;
     }
@@ -850,9 +879,11 @@ a:active {
     .news-big-content-warp h3 {
         font-size: 16px;
     }
+
     .news-big-content-warp .news-date {
         font-size: 12px;
     }
+
     .news-big-content-warp .news-summary {
         font-size: 10px;
         margin: 0 !important;
@@ -959,6 +990,7 @@ a:active {
     0% {
         background-position: -200px 0
     }
+
     100% {
         background-position: 200px 0
     }
@@ -968,6 +1000,7 @@ a:active {
     0% {
         background-position: -200px 0
     }
+
     100% {
         background-position: 200px 0
     }
@@ -980,10 +1013,12 @@ a:active {
     .register-warp {
         max-width: 960px;
     }
+
     .kt-log {
         height: 100px;
         line-height: 100px;
     }
+
     .register-form {
         width: 280px;
         margin: 0 auto;
@@ -1449,6 +1484,7 @@ a:active {
     0% {
         background-position: left;
     }
+
     100% {
         background-position: right;
     }
@@ -2616,6 +2652,36 @@ a:active {
     float: left;
     width: 49%;
 }
+.contact .contact-form{
+    position: relative;
+}
+
+
+.contact-form .success i {
+    font-size: 60px;
+    color: #9CCC65;
+    margin-bottom: 10px;
+}
+.contact-form .success p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #e2e2e2;
+}
+.contact-form .success p.msg {
+    line-height: 25px;
+    font-size: 18px;
+}
+
+.contact-form .success {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    text-align: center;
+    background: #616161;
+    display: none;
+}
 
 .contact-form .phone,
 .contact-form .name,
@@ -2637,6 +2703,11 @@ a:active {
 
 .contact-form .btn>a {
     zoom: 1.1;
+}
+.contact-form .fiald{
+    color: #fff;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 .contact-form .phone>input,
@@ -2732,6 +2803,41 @@ a:active {
     width: 550px;
     height: 350px;
     margin: 150px auto;
+    position: relative;
+}
+
+.partner-warp .success>div {
+    margin-top: 100px;
+}
+
+.partner-warp .success i {
+    font-size: 60px;
+    color: #9CCC65;
+    margin-bottom: 10px;
+}
+.partner-warp .success p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.partner-warp .success p.msg {
+    line-height: 25px;
+    font-size: 18px;
+}
+
+.partner-warp .success {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: #fff;
+    display: none;
+}
+.partner-warp .fiald{
+    color: #EF5350;
+    text-align: center;
+    font-size: 13px;
 }
 
 .partner-warp .title {
@@ -2745,7 +2851,7 @@ a:active {
     line-height: 30px;
 }
 
-.partner-warp .title>p:last-child {
+.partner-warp .title>.last {
     font-size: 15px;
     line-height: 30px;
 }
@@ -2758,7 +2864,7 @@ a:active {
 .partner-warp .form-group>textarea {
     padding: 10px;
     margin: 0px;
-    height: 135px;
+    height: 100px;
     width: 360px;
 }
 
@@ -2774,9 +2880,25 @@ a:active {
     box-shadow: none;
 }
 
+.partner-warp-check>div {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
 .partner-warp .form-group>input:focus {
     border: 1px solid rgb(102, 175, 233);
     box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset, rgba(102, 175, 233, 0.6) 0px 0px 8px;
+}
+
+.partner-warp .message,
+.partner-warp .comment {
+    text-align: center;
+    line-height: 30px;
+}
+
+.partner-warp .delete {
+    text-align: center;
+    margin-top: 30px;
 }
 
 
@@ -2793,6 +2915,7 @@ a:active {
         left: 50%;
         margin-left: -100px;
     }
+
     .products-banner-warp .products-banner {
         width: 100%;
         /*height: 400px;*/
@@ -2801,41 +2924,50 @@ a:active {
         margin-left: 0;
         z-index: 1;
     }
+
     .products-banner-warp {
         height: 400px;
     }
+
     .featrue-arp .product-right {
         margin: 0 auto;
         background: #e2e2e2;
         padding: 50px 0px;
     }
+
     .product-right .product-point-right {
         text-align: left;
         padding-left: 0px;
     }
+
     .featrue-arp .product-left {
         background: #fff;
         margin: 0 auto;
         padding: 50px 0px;
     }
+
     .product-left .product-point-left {
         text-align: right;
         padding-right: 0px;
     }
+
     .contact-form .form {
         margin: 40px auto 30px;
         width: 100%;
         text-align: center;
     }
+
     .contact-form .phone,
     .contact-form .name,
     .contact-form .btn {
         display: block;
         margin: 20px 10px;
     }
+
     .contact-head .xhs_col_2 {
         border-left: 1px solid #fff;
     }
+
     .contact-head .contact-icon {
         margin-bottom: 20px;
     }
@@ -2852,6 +2984,7 @@ a:active {
         left: 200px;
         margin-left: 0px;
     }
+
     .products-banner-warp .products-banner {
         width: 1920px;
         position: absolute;
@@ -2859,41 +2992,50 @@ a:active {
         margin-left: -960px;
         z-index: 1;
     }
+
     .products-banner-warp {
         height: 464px;
     }
+
     .featrue-arp .product-right {
         margin: 0 auto;
         background: #e2e2e2;
         padding: 50px 60px;
     }
+
     .product-right .product-point-right {
         text-align: left;
         padding-left: 50px;
     }
+
     .featrue-arp .product-left {
         background: #fff;
         margin: 0 auto;
         padding: 50px 60px;
     }
+
     .product-left .product-point-left {
         text-align: right;
         padding-right: 50px;
     }
+
     .contact-form .form {
         margin: 90px auto 30px;
         width: 800px;
         text-align: center;
     }
+
     .contact-form .phone,
     .contact-form .name,
     .contact-form .btn {
         display: inline;
         margin: 0 10px;
     }
+
     .contact-head .xhs_col_2 {
         border-left: none;
     }
+
     .contact-head .contact-icon {
         margin-bottom: 0px;
     }
@@ -2910,6 +3052,7 @@ a:active {
         left: 200px;
         margin-left: 0px;
     }
+
     .products-banner-warp .products-banner {
         width: 1920px;
         position: absolute;
@@ -2917,41 +3060,50 @@ a:active {
         margin-left: -960px;
         z-index: 1;
     }
+
     .products-banner-warp {
         height: 464px;
     }
+
     .featrue-arp .product-right {
         margin: 0 auto;
         background: #e2e2e2;
         padding: 50px 60px;
     }
+
     .product-right .product-point-right {
         text-align: left;
         padding-left: 50px;
     }
+
     .featrue-arp .product-left {
         background: #fff;
         margin: 0 auto;
         padding: 50px 60px;
     }
+
     .product-left .product-point-left {
         text-align: right;
         padding-right: 50px;
     }
+
     .contact-form .form {
         margin: 90px auto 30px;
         width: 800px;
         text-align: center;
     }
+
     .contact-form .phone,
     .contact-form .name,
     .contact-form .btn {
         display: inline;
         margin: 0 10px;
     }
+
     .contact-head .xhs_col_2 {
         border-left: none;
     }
+
     .contact-head .contact-icon {
         margin-bottom: 0px;
     }

@@ -36,7 +36,6 @@ class User extends Authenticatable
         if($this->id == Auth::id()){
             return;
         }
-        Log::info('没有收到');
         $this->increment('notification_count');
         $this->laravelNotify($instance);
     }

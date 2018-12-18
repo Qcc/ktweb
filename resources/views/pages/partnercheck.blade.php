@@ -3,25 +3,46 @@
 
 @section('content')
 <div class="mdui-container partnerinfo">
-    <div class="partner-warp mdui-shadow-20">
+        @include('layouts._message')
+    <div class="partner-warp partner-warp-check mdui-shadow-20">
         <div class="title">
             <p>联系客户结果</p>
-            <p></p>
+            @if($business->comment)
+            <p class="last">{{ $business->user->name }} 在 {{ $business->updated_at->diffForHumans() }}联系了客户</p>
+            @else
+            <p class="last">请在{{ $business->created_at->addMinutes(30) }}之前联系客户</p>
+            @endif
+            <div class="mdui-divider"></div>
         </div>
-        <div>
-            <span>客户区域</span>
+       
+        <div class="message">
+            <span>城市 </span>
             <span>{{ $business->city }}</span>
-            <span> - </span>
+            <span>/ 联系人 </span>
             <b>{{ $business->name }}</b>
-            <span> / </span>
+            <span>/ 电话 </span>
             <span>{{ $business->phone }}</span>
-
         </div>
+        @if($business->comment)
+            <div class="comment">
+                <p>反馈: {{ $business->comment }}</p>
+            </div>
+            <div class="delete">
+            <form action="{{ route('business.destroy', $business->id) }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple" style="margin-left: 6px">
+                  <i class="mdui-icon material-icons">&#xe92b;</i>
+                  关闭
+                </button>
+              </form>
+            </div>
+        @else
         <form action="{{ route('business.update', $business->id) }}" method="POST" accept-charset="UTF-8">
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
-                <textarea type="text" name="coment" row='10' value="{{ old('coment') }}" placeholder="联系结果" ></textarea>
+                <textarea type="text" name="comment" row='10' value="{{ old('comment') }}" placeholder="联系结果" ></textarea>
             </div>
 
             <div class="form-group">
@@ -29,6 +50,7 @@
                     <i class="mdui-icon material-icons">&#xe163;</i> 已经联系</button>
             </div>
         </form>
+        @endif
     </div>
 </div>
 @stop

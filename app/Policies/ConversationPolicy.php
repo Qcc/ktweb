@@ -7,7 +7,7 @@ use App\Models\Conversation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Log;
 
-class ConversationPolicy
+class ConversationPolicy extends Policy
 {
     use HandlesAuthorization;
 
@@ -20,9 +20,6 @@ class ConversationPolicy
      */
     public function view(User $user, Conversation $conversation)
     {
-        Log::info('$user->id '.$user->id);
-        Log::info('$conversation->sendUser->id '.$conversation->sendUser->id);
-        Log::info('$conversation->receiveUser->id '.$conversation->receiveUser->id);
         return $user->id === $conversation->sendUser->id || $user->id === $conversation->receiveUser->id;
     }
 

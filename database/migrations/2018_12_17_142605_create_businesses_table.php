@@ -18,6 +18,7 @@ class CreateBusinessesTable extends Migration
             $table->string('name')->comment('姓名');
             $table->string('phone')->comment('电话');
             $table->string('city')->nullable()->comment('城市');
+            $table->string('type')->comment('类型');
             $table->integer('user_id')->unsigned()->nullable()->comment('回访人');
             $table->text('comment')->nullable()->comment('摘要');
             $table->boolean('status')->default(false)->comment('状态');

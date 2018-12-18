@@ -20,12 +20,19 @@
             <div class="form-group">
                 <input id="city" type="text" name="city" value="{{ old('city') }}" placeholder="城市" />
             </div>
-
+            <p class="fiald"></p>
             <div class="form-group">
                 <a href="javascript:;" class="mdui-btn mdui-color-theme-accent mdui-ripple" id="partner">
                     <i class="mdui-icon material-icons">&#xe163;</i> 提交申请</a>
             </div>
         </form>
+        <div class="success">
+            <div>
+                <i class="kticon">&#xe676;</i>
+                <p>提交成功!</p>
+                <p class="msg"></p>
+            </div>
+        </div>
     </div>
 </div>
 @stop
@@ -66,13 +73,15 @@
                 name: name,
                 phone: phone,
                 city: city,
+                type: '代理商',
             },
             success: function (data) {
                 var data = JSON.parse(data);
-                console.log(data);
                 if (data.status) {
+                    $$('.msg').text(data.msg);
+                    $$('.success').show();
                 } else {
-                     
+                    $$('.fiald').text(data.msg);
                 }
                 $$('#partner').removeAttr('disabled');
             }
