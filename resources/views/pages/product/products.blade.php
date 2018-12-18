@@ -26,7 +26,7 @@
         <div class="mdui-row product-featrue-arp">
             @foreach($products as $index => $product)
             @break($loop->index > 3)
-            <div class="mdui-col-xs-3">
+            <div class="mdui-col-sm-3 mdui-col-xs-6">
                 <div class="product-featrue">
                     <a href="{{ route('product.show',$product->id) }}" target="_blank">
                         <div class="images">
@@ -78,7 +78,7 @@
         </div>
             <div class="mdui-row customer-list">
             @foreach($customers as $index => $customer)
-                <div class="mdui-col-xs-3">
+                <div class="mdui-col-xs-12 mdui-col-sm-3">
                     <div class=" customer-item">
                         <div class="customer-img">
                             <a href="{{ route('customer.show',$customer->id) }}">

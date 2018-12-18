@@ -1,9 +1,9 @@
 <div class="mdui-container-full contact">
 <div class="mdui-container">
     <div class="mdui-row">
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-xs-6 mdui-col-sm-3">
             <div class="contact-head">
-                <div class="contact-icon">
+                <div class="contact-icon xhs_col_2">
                     <i class="mdui-icon material-icons">&#xe61d;</i>
                 </div>
             <div class="contact-title">
@@ -12,7 +12,7 @@
             </div>
             </div>
         </div>
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-xs-6 mdui-col-sm-3">
         <div class="contact-head">
             <div class="contact-icon" style="border-left: 1px solid #fff;">
                 <i class="mdui-icon material-icons">&#xe7ef;</i>
@@ -23,7 +23,7 @@
             </div>
         </div>
         </div>
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-xs-6 mdui-col-sm-3">
         <div class="contact-head">
             <div class="contact-icon" style="border-left: 1px solid #fff;">
                 <i class="mdui-icon material-icons">&#xe855;</i>
@@ -34,7 +34,7 @@
         </div>
         </div>
         </div>
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-xs-6 mdui-col-sm-3">
         <div class="contact-head">
             <div class="contact-icon" style="border-left: 1px solid #fff;">
                 <i class="mdui-icon material-icons">&#xe428;</i>
