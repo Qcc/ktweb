@@ -58,7 +58,7 @@
                 </a>
             </div>
         </div>
-        <div class="media-body">
+        <div class=" media-body">
             <div class="media-heading">
                 <a class="category {{ $topic->excellent ?'category-excellent':''}}" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                     {{ $topic->category->name }}

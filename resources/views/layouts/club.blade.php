@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/mdui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     @yield('styles')
     
 </head>

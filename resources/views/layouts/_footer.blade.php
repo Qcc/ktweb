@@ -26,13 +26,13 @@
           <li>供应链解决方案</li>
         </ul>
       </div>
-      <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
-        <h4 class="mdui-text-color-white">友情链接</h4>
+      <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo xhs_a_hover_none">
+        <h4 class="mdui-text-color-white">产品社区</h4>
         <ul>
-          <li>云享智能</li>
-          <li>金蝶国际</li>
-          <li>百度</li>
-          <li>360</li>
+          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">虚拟化</a></li>
+          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">金蝶云</a></li>
+          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">精斗云</a></li>
+          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">金蝶ERP</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
