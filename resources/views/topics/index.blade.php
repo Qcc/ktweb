@@ -45,10 +45,10 @@
                     {{-- 话题列表  $tops 为置顶文章--}}
                     @include('topics._topic_list', ['topics' => $topics,'tops'=>$tops])
                     {{-- 分页 --}}
-                    <div class="pagination-box">
+                    <div class="pagination-box mdui-hidden-xs-down">
                         {!! $topics->appends(Request::except('page'))->render() !!}
                     </div>
-                    <div class="pagination-simple">
+                    <div class="pagination-simple mdui-hidden-sm-up">
                         {!! $topics->appends(Request::except('page'))->render('vendor.pagination.simple-default') !!}
                     </div>
                 </div>

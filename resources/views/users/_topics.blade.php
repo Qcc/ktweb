@@ -3,12 +3,12 @@
 <ul class="topics-group">
     @foreach ($topics as $topic)
     <li class="topic-item">
-        <span>
-            <a class="category {{ $topic->excellent?'category-excellent':'' }}" href="{{ $topic->link() }}" title="文章板块">
+        <span style="max-width: 120px;display: inline-block;">
+            <a class="category xhs_article_list {{ $topic->excellent?'category-excellent':'' }}" href="{{ $topic->link() }}" title="文章板块">
                 {{ $topic->category->name }}
             </a>
         </span>
-        <a class="title" href="{{ $topic->link() }}">
+        <a class="title xhs_article_tit"  href="{{ $topic->link() }}">
             {{ $topic->title }}
         </a>
         @if($topic->excellent)
