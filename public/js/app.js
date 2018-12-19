@@ -1,6 +1,20 @@
 var $$ = mdui.JQ;
 // header部分
 $$(document).ready(function () {
+
+	// 信息提示框样式
+	if ($$('.alert')) {
+		setTimeout(function () {
+			$$('.alert>.bg').css('width', '0');
+			setTimeout(function () {
+				$$('.alert').hide();
+			}, 5000);
+		}, 1000);
+		$$('.alert>.content>a').on('click', function () {
+			$$('.alert').hide();
+		});
+	}
+
 	// 展开导航菜单
 	$$('.kt-products').on('click', function () {
 		$$('.kt-menu-tab-head i').removeClass('active');
@@ -62,6 +76,6 @@ $$(document).ready(function () {
 	// header部分结束
 
 
-	
+
 
 });

@@ -1,10 +1,17 @@
 @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <h4>有错误发生：</h4>
-        <ul>
+<div class="alert alert-error">
+    <div class="opacity"></div>
+    <div class="bg"></div>
+    <div class="content">
+        <i class="kticon">&#xe614;</i>
+        <p class="message">
             @foreach ($errors->all() as $error)
-                <li><i class="glyphicon glyphicon-remove"></i> {{ $error }}</li>
+            {{ $error }}
             @endforeach
-        </ul>
+        </p>
+        <a href="javascript:;">
+            <i class="kticon">&#xe6b9;</i>
+        </a>
     </div>
+</div>
 @endif

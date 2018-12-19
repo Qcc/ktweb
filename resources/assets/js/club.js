@@ -1,6 +1,20 @@
 var $$ = mdui.JQ;
 // header部分
 $$(document).ready(function () {
+
+    // 信息提示框样式
+	if ($$('.alert')) {
+		setTimeout(function () {
+			$$('.alert>.bg').css('width', '0');
+			setTimeout(function () {
+				$$('.alert').hide();
+			}, 5000);
+		}, 1000);
+		$$('.alert>.content>a').on('click', function () {
+			$$('.alert').hide();
+		});
+	}
+    
     // 点赞
     $$('.excellent').on("click", function () {
         var id = $$('#topic_id').attr('data_id');

@@ -15,7 +15,8 @@ mix.copyDirectory('resources/assets/images', 'public/images')
    .copyDirectory('resources/assets/fonts', 'public/fonts')
    .copyDirectory('resources/assets/icons', 'public/icons')
    .copyDirectory('resources/assets/js', 'public/js')
-   .copyDirectory('resources/assets/css', 'public/css');
+   .copyDirectory('resources/assets/css', 'public/css')
+   .copyDirectory('resources/assets/layui', 'public/layui');
 
 	// 生产环境添加版本号
   if (mix.inProduction()) {

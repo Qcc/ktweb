@@ -108,6 +108,91 @@ img {
     border: none;
 }
 
+/* 弹出框样式 */
+.alert {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    -webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+.alert .content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+}
+
+.alert .content a {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: #e2e2e2;
+    width: 30px;
+    height: 30px;
+    display: block;
+    text-align: center;
+}
+
+.alert .content a:hover>i {
+    color: #fff;
+    opacity: 1;
+}
+
+.alert .content>a>i {
+    font-size: 10px;
+    opacity: 0.5;
+    line-height: 30px;
+}
+
+.alert .content>i {
+    position: absolute;
+    left: 30px;
+    font-size: 24px;
+    color: #e2e2e2;
+    line-height: 30px;
+}
+
+.alert .content>.message {
+    margin: 0;
+    text-align: left;
+    padding-left: 70px;
+    font-size: 16px;
+    line-height: 30px;
+    color: #e2e2e2;
+}
+
+.alert>.bg,.alert .opacity{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    transition: width 5s;
+    -webkit-transition: width 5s;
+    transition-timing-function: linear;
+    -webkit-transition-timing-function: linear;
+}
+.alert .opacity{
+    opacity: 0.5;
+}
+.alert-info .opacity,.alert-info>.bg{
+    background: #00B0FF;
+}
+
+.alert-success .opacity, .alert-success>.bg {
+    background: #9CCC65
+}
+
+.alert-danger .opacity, .alert-danger>.bg {
+    background: #FF9800
+}
+
+.alert-error .opacity, .alert-error>.bg {
+    background: #FF5252
+}
+ 
 
 /* 解决chrome浏览器默认黄色背景颜色 */
 
@@ -159,11 +244,11 @@ body {
 
 @font-face {
     font-family: 'kticon';  /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.eot');
-    src: url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_2sgm7qzeybd.svg#kticon') format('svg');
+    src: url('//at.alicdn.com/t/font_916960_6sxcv97e2r5.eot');
+    src: url('//at.alicdn.com/t/font_916960_6sxcv97e2r5.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_6sxcv97e2r5.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_6sxcv97e2r5.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_6sxcv97e2r5.svg#kticon') format('svg');
   }
 
 .kticon {
@@ -2143,10 +2228,6 @@ a:active {
         left: 10px;
     }
 
-    .panel-body .title,
-    .panel-body .title>input {
-        width: 80%
-    }
 
     .panel-body .title,
     .panel-body .select {
@@ -2320,6 +2401,27 @@ a:active {
 
     .news-nav .column-nav-ul .active a {
         color: #F4511E;
+    }
+
+    .article-panel .edit{
+        position: relative;
+    }
+    .article-panel .edit .images{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    .article-panel .form-group{
+        display: block;
+    }
+    .article-panel .edit .images>.layui-upload-list{
+        width: 250px;
+        height: 210px;
+        padding: 10px;
+        border: 1px solid #a2a2a2;
+    }
+    .images>.layui-upload-list>img{
+        max-width:100%; 
     }
 
 

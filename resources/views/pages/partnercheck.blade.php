@@ -3,7 +3,6 @@
 
 @section('content')
 <div class="mdui-container partnerinfo">
-        @include('layouts._message')
     <div class="partner-warp partner-warp-check mdui-shadow-20">
         <div class="title">
             <p>联系客户结果</p>

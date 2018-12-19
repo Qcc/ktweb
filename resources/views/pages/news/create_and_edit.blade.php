@@ -16,52 +16,55 @@
 
             <div class="mdui-divider"></div>
 
-            @include('common.error')
-            @if($news->id)
-            <form action="{{ route('news.update', $news->id) }}" method="POST" accept-charset="UTF-8">
-                <input type="hidden" name="_method" value="PUT">
-                @else
-                <form action="{{ route('news.store') }}" method="POST" accept-charset="UTF-8">
-                    @endif
+            <div class="edit">
+                @include('common.error')
+                @if($news->id)
+                <form action="{{ route('news.update', $news->id) }}" method="POST" accept-charset="UTF-8">
+                    <input type="hidden" name="_method" value="PUT">
+                    @else
+                    <form action="{{ route('news.store') }}" method="POST" accept-charset="UTF-8">
+                        @endif
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group select">
+                            <select class="mdui-select" mdui-select name="column_id" required>
+                                <option value="" hidden disabled {{ $news->id ? '' : 'selected' }}>请选择分类</option>
+                                @foreach ($columns as $value)
+                                <option value="{{ $value->id }}" {{ $news->column_id == $value->id ? 'selected' : '' }}>
+                                    {{$value->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group title">
+                            <input class="form-control" type="text" name="title" value="{{ old('title', $news->title ) }}"
+                                placeholder="请填写标题" required />
+                        </div>
 
+                        <div class="form-group title">
+                            <input class="form-control" type="text" name="keywords" value="{{ old('keywords', $news->keywords ) }}"
+                                placeholder="关键词" required />
+                        </div>
+                        <div class="form-group images">
+                            <div class="layui-upload-list">
+                                <img class="layui-upload-img" src="{{ old('image', $news->image ) }}" id="image">
+                                <p id="status"></p>
+                            </div>
+                            <button type="button" class="layui-btn" id="btn_upload">上传首图</button>
+                            <input type="hidden" name="image" value="{{ old('image', $news->image ) }}" required />
+                        </div>
 
+                        <div class="form-group">
+                            <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少三个字符的内容。"
+                                required>{{ old('body', $news->body ) }}</textarea>
+                        </div>
 
-                    <div class="form-group select">
-                        <select class="mdui-select" mdui-select name="column_id" required>
-                            <option value="" hidden disabled {{ $news->id ? '' : 'selected' }}>请选择分类</option>
-                            @foreach ($columns as $value)
-                            <option value="{{ $value->id }}" {{ $news->column_id == $value->id ? 'selected' : '' }}>
-                                {{$value->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <div class="form-btn">
+                            <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">
+                                <i class="mdui-icon material-icons">&#xe163;</i> 发布</button>
+                        </div>
+                    </form>
 
-                    <div class="form-group title">
-                        <input class="form-control" type="text" name="title" value="{{ old('title', $news->title ) }}"
-                            placeholder="请填写标题" required />
-                    </div>
-                    
-                    <div class="form-group title">
-                        <input class="form-control" type="text" name="keywords" value="{{ old('keywords', $news->keywords ) }}"
-                            placeholder="关键词" required />
-                    </div>
-                    <div class="form-group title">
-                        <input class="form-control" type="text" name="image" value="{{ old('image', $news->image ) }}"
-                            placeholder="首图" required />
-                    </div>
-
-                    <div class="form-group">
-                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少三个字符的内容。"
-                            required>{{ old('body', $news->body ) }}</textarea>
-                    </div>
-
-                    <div class="form-btn">
-                        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">
-                            <i class="mdui-icon material-icons">&#xe163;</i> 发布</button>
-                    </div>
-                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -69,6 +72,7 @@
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('layui/css/layui.css') }}">
 <style>
     .news-edit-page .kt-nav-header .kt-navigetion-sections, .news-create-page .kt-nav-header .kt-navigetion-sections{
         color: #333;
@@ -86,6 +90,7 @@
 <script type="text/javascript" src="{{ asset('js/hotkeys.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/uploader.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/simditor.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/layui/layui.js') }}"></script>
 
 <script>
     $(document).ready(function () {
@@ -106,6 +111,44 @@
                 leaveConfirm: '文件上传中，关闭此页面将取消上传。'
             },
             pasteImage: true,
+        });
+        layui.use(['upload'], function () {
+            var $ = layui.jquery,
+                upload = layui.upload;
+
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#btn_upload',
+                url: "{{ route('news.upload_image') }}",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#image').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (res.code > 0) {
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                },
+                error: function () {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#status');
+                    demoText.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+                    );
+                    demoText.find('.image-reload').on('click', function () {
+                        uploadInst.upload();
+                    });
+                }
+            });
         });
     });
     // <!-- 
