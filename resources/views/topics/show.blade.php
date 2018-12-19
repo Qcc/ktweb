@@ -7,10 +7,10 @@
 @section('content')
 <div class="mdui-container club-artical">
     <div class="mdui-row">
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-sm-3 mdui-col-xs-12">
             @include('users._user_info',['user'=>$topic->user])
         </div>
-        <div class="mdui-col-xs-9 topic-content">
+        <div class="mdui-col-sm-9  mdui-col-xs-12 topic-content">
             <div class="article-warp">
                 <div class="article-body">
                     <div class="article-header">

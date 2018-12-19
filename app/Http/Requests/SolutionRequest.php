@@ -12,7 +12,11 @@ class SolutionRequest extends Request
             case 'POST':
             {
                 return [
-                    // CREATE ROLES
+                    'title'       => 'required|min:2|max:50',
+                    'body'        => 'required|min:3',
+                    'solutioncol_id' => 'required|numeric',
+                    'image' => 'required',
+                    'icon' => 'required',
                 ];
             }
             // UPDATE
@@ -23,6 +27,8 @@ class SolutionRequest extends Request
                     'title'       => 'required|min:2|max:50',
                     'body'        => 'required|min:3',
                     'solutioncol_id' => 'required|numeric',
+                    'image' => 'required',
+                    'icon' => 'required',
                 ];
             }
             case 'GET':
@@ -41,6 +47,8 @@ class SolutionRequest extends Request
             'title.max' => '标题不能超过50个字符',
             'body.min' => '文章内容必须至少三个字符',
             'solutioncol_id.required' => '请选择方案分类',
+            'image.required' => '请上传首图',
+            'icon.required' => '请上传图标',
         ];
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 <div class="mdui-container club-artical">
     <div class="mdui-row">
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-sm-3 mdui-col-xs-12">
             @include('users._user_info',$user)
             <div class="useraction-nav">
                 <ul class="nav-tabs">
@@ -36,7 +36,7 @@
                 </ul>
             </div>
         </div>
-        <div class="mdui-col-xs-9">
+        <div class="mdui-col-sm-9 mdui-col-xs-12">
             <div class="useraction-content">
                 <!-- recent() 方法在数据模型基类 app/Models/Model.php 中定义，并且使用了 本地作用域 的方式进行定义，我们的 Reply 模型，就如代码生成器所生成的数据模型一样，统一继承了此类方法 -->
                 @if (if_query('tab', 'replies'))

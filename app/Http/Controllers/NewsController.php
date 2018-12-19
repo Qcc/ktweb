@@ -122,7 +122,7 @@ class NewsController extends Controller
 			$result = $uploader->save($request->upload_file,'news',\Auth::id(),1024);
 			//图片保存成功的话
 			if($result){
-				$data['code'] = 1;
+				$data['code'] = 0;
 				$data['data']['src'] = $result['path'];
 				$data['msg'] = '上传成功!';
 			}

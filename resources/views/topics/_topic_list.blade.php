@@ -2,7 +2,7 @@
 
 <ul class="media-list">
     @foreach ($tops as $topic)
-    <li class="media mdui-valign">
+    <li class="media mdui-valign xhs_sp_topiclist">
         <div class="media-left">
             <div class="media-avatar">
                 <a href="{{ route('users.show', [$topic->user_id]) }}">
@@ -16,7 +16,7 @@
                 <a class="category"  style="background:#FF9800;" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                     {{ $topic->category->name }}
                 </a>
-                <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
+                <a class="topic_a_tit" href="{{ $topic->link() }}" title="{{ $topic->title }}">
                     {{ $topic->title }}
                 </a>
                 @if($topic->excellent)
@@ -26,6 +26,7 @@
             </div>
         </div>
         <div class="media-footer">
+           
             <a class="" href="{{ $topic->link() }}" title="阅读数">
                 <span> {{ $topic->view_count }} </span>
             </a>
@@ -49,7 +50,7 @@
 
     @endforeach
     @foreach ($topics as $topic)
-    <li class="media mdui-valign">
+    <li class="media mdui-valign xhs_sp_topiclist">
         <div class="media-left">
             <div class="media-avatar">
                 <a href="{{ route('users.show', [$topic->user_id]) }}">
@@ -63,7 +64,7 @@
                 <a class="category {{ $topic->excellent ?'category-excellent':''}}" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                     {{ $topic->category->name }}
                 </a>
-                <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
+                <a class="topic_a_tit" href="{{ $topic->link() }}" title="{{ $topic->title }}">
                     {{ $topic->title }}
                 </a>
                 @if($topic->excellent)
@@ -71,7 +72,7 @@
                 @endif
             </div>
         </div>
-        <div class="media-footer">
+        <div class="media-footer">           
             <a class="" href="{{ $topic->link() }}" title="阅读数">
                 <span> {{ $topic->view_count }} </span>
             </a>

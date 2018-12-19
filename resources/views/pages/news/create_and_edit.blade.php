@@ -2,6 +2,7 @@
 @section('title', isset($news->id) ? $news->title : '新建资讯')
 @section('content')
 <div class="mdui-container" style="margin-top:80px;">
+        @include('common.error')
     <div class="article-panel">
 
         <div class="panel-body">
@@ -17,7 +18,6 @@
             <div class="mdui-divider"></div>
 
             <div class="edit">
-                @include('common.error')
                 @if($news->id)
                 <form action="{{ route('news.update', $news->id) }}" method="POST" accept-charset="UTF-8">
                     <input type="hidden" name="_method" value="PUT">
@@ -48,12 +48,12 @@
                             <div class="layui-upload-list">
                                 <img class="layui-upload-img" src="{{ old('image', $news->image ) }}" id="image">
                                 <p id="status"></p>
+                                <a href="javascript:;" class="btn-upload" id="btn_upload">上传首图(640*400)</a>
                             </div>
-                            <button type="button" class="layui-btn" id="btn_upload">上传首图</button>
-                            <input type="hidden" name="image" value="{{ old('image', $news->image ) }}" required />
+                            <input type="hidden" id="image_path" name="image" value="{{ old('image', $news->image ) }}" required />
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group editor">
                             <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少三个字符的内容。"
                                 required>{{ old('body', $news->body ) }}</textarea>
                         </div>
@@ -112,7 +112,7 @@
             },
             pasteImage: true,
         });
-        layui.use(['upload'], function () {
+        layui.use(['upload','layer'], function () {
             var $ = layui.jquery,
                 upload = layui.upload;
 
@@ -136,7 +136,7 @@
                     if (res.code > 0) {
                         return layer.msg('上传失败');
                     }
-                    //上传成功
+                    $('#image_path').val(res.data.src);
                 },
                 error: function () {
                     //演示失败状态，并实现重传

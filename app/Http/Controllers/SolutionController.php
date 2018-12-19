@@ -32,7 +32,7 @@ class SolutionController extends Controller
     public function create(Solution $solution)
     {
         $solutioncol = Solutioncol::all();
-		return view('pages.solution.create_and_edit', compact('solution', 'solutionscol'));
+		return view('pages.solution.create_and_edit', compact('solution', 'solutioncol'));
     }
 
     /**
@@ -41,7 +41,7 @@ class SolutionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SolutionsRequest $request, Solution $solution)
+    public function store(SolutionRequest $request, Solution $solution)
     {
         $solution->fill($request->all());
 		$solution->user_id = Auth::id();
@@ -73,8 +73,8 @@ class SolutionController extends Controller
     public function edit(Solution $solution)
     {
         $this->authorize('update', $solution);
-		$solutionscol = Solutioncol::all();
-		return view('pages.solution.create_and_edit', compact('solution','solutionscol'));
+		$solutioncol = Solutioncol::all();
+		return view('pages.solution.create_and_edit', compact('solution','solutioncol'));
     }
 
     /**
@@ -84,7 +84,7 @@ class SolutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SolutionsRequest $request, Solution $solution)
+    public function update(SolutionRequest $request, Solution $solution)
     {
         $this->authorize('update', $solution);
 		$solution->update($request->all());
@@ -110,9 +110,11 @@ class SolutionController extends Controller
 	{
 		//初始化数据,默认是失败的
 		$data = [
-			'success' => false,
-			'msg' => '上传失败',
-			'file_path' => ''
+			"code"=> 1
+            ,"msg"=> "上传失败!"
+            ,"data"=>[ 
+              "src"=> ""
+            ]
 		];
 		// 判断是否有文件上传，并赋值给$file
 		if($file = $request->upload_file){
@@ -120,9 +122,9 @@ class SolutionController extends Controller
 			$result = $uploader->save($request->upload_file,'solution',\Auth::id(),1920);
 			//图片保存成功的话
 			if($result){
-				$data['file_path'] = $result['path'];
-				$data['msg'] = '上传成功';
-				$data['success'] = true;
+				$data['code'] = 0;
+				$data['data']['src'] = $result['path'];
+				$data['msg'] = '上传成功!';
 			}
 		}
 		return $data;
