@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
+use Illuminate\Session\Store as Session;
 use App\Handlers\ImageUploadHandler;
 use Auth;
 
 class TopicsController extends Controller
 {
-    public function __construct()
+	public $session;
+    public function __construct(Session $session)
     {
+		$this->session = $session;
 		// 'except' => ['index', 'show'] —— 对除了 index() 和 show() 以外的方法使用 auth 中间件进行认证。
 		// 使用其余方法需要登录
         $this->middleware('auth', ['except' => ['index', 'show']]);
@@ -46,6 +49,14 @@ class TopicsController extends Controller
 	 */
     public function show(Request $request, Topic $topic)
     {
+		// 根据会话阅读增加文章访问量
+		if (!$this->session->has('topic_'.$topic->id))
+		{
+			$topic->timestamps = false;
+			$this->session->put('topic_'.$topic->id,$topic->id);
+			$topic->increment('view_count',1);
+			$topic->timestamps = true;
+		}
 		// 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
