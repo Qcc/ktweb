@@ -48,6 +48,9 @@
                     <div class="pagination-box">
                         {!! $topics->appends(Request::except('page'))->render() !!}
                     </div>
+                    <div class="pagination-simple">
+                        {!! $topics->appends(Request::except('page'))->render('vendor.pagination.simple-default') !!}
+                    </div>
                 </div>
             </div>
         </div>

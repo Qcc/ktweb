@@ -41,7 +41,7 @@ class BusinessController extends Controller
         if (!$validator->fails()){
             $data = [
                 'status'=>true,
-                'msg'=>'提交成功!，工作日我们将在30分钟内联系您!'
+                'msg'=>'我们将在30分钟内联系您,请保持电话畅通!'
             ];
             $business = Business::create([
                 'name' => $request->name,
