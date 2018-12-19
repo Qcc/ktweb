@@ -4,7 +4,7 @@
 
 @section('content')
 @if (!isset($category))
-<div class="mdui-container-full club-banner">
+<div class="mdui-container-full club-banner xhs_topic_swiper">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -24,7 +24,7 @@
 <div class="club-warp mdui-container">
     <div class="mdui-row">
 
-        <div class="mdui-col-xs-9 topic-list">
+        <div class="mdui-col-sm-9 mdui-col-xs-12 topic-list">
 
             @if (isset($category))
             <div class="alert alert-info" role="alert">
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="mdui-col-xs-3 sidebar">
+        <div class="mdui-col-sm-3 sidebar mdui-hidden-sm-down">
             @include('topics._sidebar')
         </div>
     </div>

@@ -2951,6 +2951,9 @@ a:active {
 .xhs_club_box{
    position: absolute;top: 0;left:0;z-index:99;width: 100%;height: 100%;
 }
+.xhs_topic_swiper img{
+        width: 100%;
+    }
 
 /*手机*/
 
@@ -3023,14 +3026,33 @@ a:active {
 
     }
     .product-featrue-arp .featrue-point {
-     height: 100px;
- }
- .xhs_login_pad{
-    padding: 0 20px;
-}
-.xhs_club_padtop{
-    padding-top: 50px;
-}
+         height: 100px;
+    }
+    .xhs_login_pad{
+        padding: 0 20px;
+    }
+    .xhs_club_padtop{
+        padding-top: 50px;
+    }
+    .xhs_sp_topiclist{
+       padding-bottom: 25px; 
+    }
+    .xhs_sp_topiclist .media-footer{
+        bottom:0;
+    }
+    .xhs_sp_topiclist .topic_a_tit{
+        line-height: 1.5em;
+    }
+    .xhs_sp_topiclist .media-heading{
+        margin-left: 5px;
+    }
+     .xhs_sp_topiclist .category{
+        margin-left: 0;
+     }
+    .xhs_sp_topiclist .sp_btm{
+        display: inline-block;
+        margin-right: 20px;
+    }
 
 }
 
@@ -3106,7 +3128,24 @@ a:active {
     .xhs_login_pad{
         padding: 0px;
     }
-    
+    .xhs_sp_topiclist{
+       padding-bottom: 0px; 
+    }
+     .xhs_sp_topiclist .media-footer{
+        bottom:auto;
+    }
+    .xhs_sp_topiclist .topic_a_tit{
+        line-height: 1em;
+    }
+    .xhs_sp_topiclist .media-heading{
+        margin-left: 0px;
+    }
+     .xhs_sp_topiclist .category{
+        margin-left: 10px;
+     }
+     .xhs_sp_topiclist .sp_btm{
+       visibility: hidden;
+    }
 }
 
 
@@ -3181,5 +3220,22 @@ a:active {
     .xhs_login_pad{
         padding: 0px;
     }
-
+    .xhs_sp_topiclist{
+       padding-bottom: 0px; 
+    }
+   .xhs_sp_topiclist .media-footer{
+        bottom:auto;
+    }
+     .xhs_sp_topiclist .topic_a_tit{
+        line-height: 1em;
+    }
+    .xhs_sp_topiclist .media-heading{
+        margin-left: 0px;
+    }
+     .xhs_sp_topiclist .category{
+        margin-left: 10px;
+     }
+     .xhs_sp_topiclist .sp_btm{
+       visibility: hidden;
+    }
 }
