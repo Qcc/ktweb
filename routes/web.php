@@ -92,6 +92,7 @@ Route::get('/management/club/recommend','ClubManagementController@recommend')->n
 Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
 Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
 Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
+Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');
 Route::get('/management/club/articles','ClubManagementController@articles')->name('admin.club.articles');
 Route::get('/management/club/replys','ClubManagementController@replys')->name('admin.club.replys');
 // 网站管理

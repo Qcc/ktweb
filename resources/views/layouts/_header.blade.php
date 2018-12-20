@@ -53,10 +53,10 @@
           <li class="mdui-menu-item">
           <a href="{{ route('logout') }}" class="mdui-ripple"
               onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">
+              document.getElementById('logout-form-pc').submit();">
               <i class="mdui-icon material-icons">&#xe0e4;</i>
               退出</a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <form id="logout-form-pc" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
           </form>
           </li>

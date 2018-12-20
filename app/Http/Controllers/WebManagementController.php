@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class WebManagementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function categorys()
     {
         return view('management.web.categorys');
