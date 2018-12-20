@@ -83,17 +83,17 @@
           </nav>
           <div class="mdui-hidden-md-up ktm-nav-content animated fadeInDown">
             <ul class="ktm-menu-products">
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',1) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe1af;</i>
+              <li class="kt-navigetion-item"><a href="{{ route('topics.index') }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe1af;</i>
               社区</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',3) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe918;</i>
+              <li class="kt-navigetion-item"><a href="{{ route('categories.show',1) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe918;</i>
               虚拟化</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',4) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2c2;</i>
+              <li class="kt-navigetion-item"><a href="{{  route('categories.show',2) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe2c2;</i>
               金蝶云</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',5) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe3dd;</i>
+              <li class="kt-navigetion-item"><a href="{{  route('categories.show',3) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe3dd;</i>
               精斗云</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',10) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe922;</i>
+              <li class="kt-navigetion-item"><a href="{{  route('categories.show',4) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe922;</i>
               金蝶ERP</a></li>
-              <li class="kt-navigetion-item"><a href="{{ route('products.show',6) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe8d1;</i>
+              <li class="kt-navigetion-item"><a href="{{  route('categories.show',5) }}" class="kt-navigetion-sections"><i class="mdui-icon material-icons">&#xe8d1;</i>
               其他</a></li>             
               @guest
               <li class="kt-navigetion-btn"><a class="mdui-btn mdui-ripple mdui-color-white mdui-text-color-blue" href="{{ route('login') }}">登录</a></li>

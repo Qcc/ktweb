@@ -5,7 +5,7 @@
 @section('content')
 <div class="mdui-container useredit-box">
     <div class="mdui-row">
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-sm-3 mdui-col-xs-12">
             <div class="edit-item-warp">
                 <div class="edit-item">
                     <ul class="edit-list">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="mdui-col-xs-9">
+        <div class="mdui-col-sm-9 mdui-col-xs-12">
             <div class="edit-action-warp">
                 <div class="edit-action">
                     @include('common.error')

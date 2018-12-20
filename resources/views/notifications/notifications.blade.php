@@ -6,12 +6,12 @@
 
 <div class="mdui-container useredit-box">
     <div class="mdui-row">
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-sm-3 mdui-col-xs-12">
             <div class="edit-item-warp">
                     @include('notifications._menu')
             </div>
         </div>
-        <div class="mdui-col-xs-8">
+        <div class="mdui-col-sm-8 mdui-col-xs-12">
             <div class="edit-action-warp">
                 @if ($notifications->count())
 
