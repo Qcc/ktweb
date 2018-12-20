@@ -11,9 +11,16 @@ class CustomerRequest extends Request
            // CREATE
            case 'POST':
            {
-               return [
-                   // CREATE ROLES
-               ];
+            return [
+                'title'       => 'required|min:2|max:50',
+                'body'        => 'required|min:3',
+                'keywords'        => 'required|min:3',
+                'productcol_id' => 'required|numeric',
+                'solutioncol_id' => 'required|numeric',
+                'customercol_id' => 'required|numeric',
+                'image' => 'required',
+                'name' => 'required',
+            ];
            }
            // UPDATE
            case 'PUT':
@@ -22,9 +29,12 @@ class CustomerRequest extends Request
                return [
                    'title'       => 'required|min:2|max:50',
                    'body'        => 'required|min:3',
+                   'keywords'        => 'required|min:3',
                    'productcol_id' => 'required|numeric',
                    'solutioncol_id' => 'required|numeric',
                    'customercol_id' => 'required|numeric',
+                   'image' => 'required',
+                   'name' => 'required',
                ];
            }
            case 'GET':
@@ -45,6 +55,10 @@ class CustomerRequest extends Request
             'productcol_id.required' => '请选择所属产品',
             'solutioncol_id.required' => '请选择方案类型',
             'customercol_id.required' => '请选择客户行业',
+            'keywords.required' => '请填写关键词',
+            'keywords.min' => '关键词不能少于3个字符',
+            'name.required' => '请输入公司名称',
+            'image.required' => '请上传首图',
         ];
     }
 }

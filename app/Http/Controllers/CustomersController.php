@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Customercol;
+use App\Models\Productcol;
+use App\Models\Solutioncol;
 use Auth;
 use App\Handlers\ImageUploadHandler;
 
@@ -33,7 +35,9 @@ class CustomersController extends Controller
     public function create(Customer $customer)
     {
         $customercol = Customercol::all();
-		return view('pages.customer.create_and_edit', compact('customer', 'customercol'));
+		$solutioncol = Solutioncol::all();
+		$productcol = Productcol::all();
+		return view('pages.customer.create_and_edit', compact('customer', 'customercol','productcol','solutioncol'));
     }
 
     /**
@@ -75,7 +79,9 @@ class CustomersController extends Controller
     {
         $this->authorize('update', $customer);
 		$customercol = Customercol::all();
-		return view('pages.customer.create_and_edit', compact('customer','customercol'));
+		$solutioncol = Solutioncol::all();
+		$productcol = Productcol::all();
+		return view('pages.customer.create_and_edit', compact('customer','customercol','productcol','solutioncol'));
     }
 
     /**
@@ -90,7 +96,7 @@ class CustomersController extends Controller
         $this->authorize('update', $customer);
 		$customer->update($request->all());
 
-		return redirect()->to($customer->link())->with('success', '产品更新成功！');
+		return redirect()->to($customer->link())->with('success', '案例更新成功！');
     }
 
     /**
@@ -111,9 +117,11 @@ class CustomersController extends Controller
 	{
 		//初始化数据,默认是失败的
 		$data = [
-			'success' => false,
-			'msg' => '上传失败',
-			'file_path' => ''
+			"code"=> 1
+            ,"msg"=> "上传失败!"
+            ,"data"=>[ 
+              "src"=> ""
+            ]
 		];
 		// 判断是否有文件上传，并赋值给$file
 		if($file = $request->upload_file){
@@ -121,9 +129,9 @@ class CustomersController extends Controller
 			$result = $uploader->save($request->upload_file,'customer',\Auth::id(),1920);
 			//图片保存成功的话
 			if($result){
-				$data['file_path'] = $result['path'];
-				$data['msg'] = '上传成功';
-				$data['success'] = true;
+				$data['code'] = 0;
+				$data['data']['src'] = $result['path'];
+				$data['msg'] = '上传成功!';
 			}
 		}
 		return $data;

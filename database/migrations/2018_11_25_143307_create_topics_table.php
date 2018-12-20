@@ -24,7 +24,7 @@ class CreateTopicsTable extends Migration
             $table->dateTime('top_expired')->nullable()->comment('置顶过期');
             $table->integer('last_reply_user_id')->unsigned()->default(0)->comment('最后回复');
             $table->integer('order')->unsigned()->default(0)->comment('排序');
-            $table->text('excerpt')->nullable()->comment('摘要');
+            $table->string('excerpt')->nullable()->comment('摘要');
             $table->string('slug')->nullable()->comment('seo链接');
             $table->timestamps();
         });

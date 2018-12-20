@@ -2399,6 +2399,9 @@ a:active {
     overflow: hidden;
     position: relative;
 }
+.edit .customer-select{
+    display: inline-block;
+}
 
 
 .message-info .time {

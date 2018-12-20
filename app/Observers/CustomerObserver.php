@@ -17,7 +17,7 @@ class CustomerObserver
         
         //excerpt 字段存储的是话题的摘录，将作为文章页面的 description 元标签使用
         //make_excerpt() 是自定义的辅助方法，我们需要在 helpers.php 文件中添加
-        $product->excerpt = make_excerpt($product->body);
+        $customer->excerpt = make_excerpt($customer->body);
     }
 
     public function updating(Customer $customer)

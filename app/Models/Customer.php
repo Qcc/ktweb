@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Customer extends Model
 {
-    protected $fillable = ['title', 'image', 'banner', 'body', 'user_id', 'customercol_id', 'productcol_id', 'solutioncol_id', 'order', 'excerpt', 'slug'];
+    protected $fillable = ['title', 'image','keywords', 'banner', 'body', 'name','user_id', 'customercol_id', 'productcol_id', 'solutioncol_id', 'order', 'excerpt', 'slug'];
 
     // 参数 $params 允许附加 URL 参数的设定。
     // 路由增加可选的翻译语句链接，可支持id和slug

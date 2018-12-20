@@ -20,8 +20,8 @@ class CreateCustomersTable extends Migration
             $table->integer('productcol_id')->unsigned()->index();
             $table->integer('solutioncol_id')->unsigned()->index();
             $table->integer('order')->unsigned()->default(0);
-            $table->text('excerpt')->nullable();
-            $table->text('keywords')->comment('关键词');
+            $table->string('excerpt')->nullable();
+            $table->string('keywords')->comment('关键词');
             $table->string('slug')->nullable();
             $table->timestamps();
         });

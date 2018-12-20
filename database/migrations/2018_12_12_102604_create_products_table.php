@@ -24,8 +24,8 @@ class CreateProductsTable extends Migration
             $table->integer('user_id')->unsigned()->index()->comment('作者');
             $table->integer('productcol_id')->unsigned()->index()->comment('分类');
             $table->integer('order')->unsigned()->default(0)->comment('排序');
-            $table->text('keywords')->comment('关键词');
-            $table->text('excerpt')->nullable()->comment('摘要');
+            $table->string('keywords')->comment('关键词');
+            $table->string('excerpt')->nullable()->comment('摘要');
             $table->string('slug')->nullable()->comment('seo链接');
             $table->timestamps();
         });

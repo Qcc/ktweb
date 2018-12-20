@@ -1,5 +1,5 @@
 @if (Session::has('message'))
-<div class="alert alert-info">
+<div class="alert alert-info" style="margin-top:64px">
     <div class="opacity"></div>
     <div class="bg"></div>
     <div class="content">
@@ -15,7 +15,7 @@
 @endif
 
 @if (Session::has('success'))
-<div class="alert alert-success">
+<div class="alert alert-success" style="margin-top:64px">
     <div class="opacity"></div>
     <div class="bg"></div>
     <div class="content">
@@ -31,7 +31,7 @@
 @endif
 
 @if (Session::has('danger'))
-<div class="alert alert-danger">
+<div class="alert alert-danger" style="margin-top:64px">
     <div class="opacity"></div>
     <div class="bg"></div>
     <div class="content">
@@ -46,7 +46,7 @@
 </div>
 @endif
 @if (Session::has('error'))
-<div class="alert alert-error">
+<div class="alert alert-error" style="margin-top:64px">
     <div class="opacity"></div>
     <div class="bg"></div>
     <div class="content">

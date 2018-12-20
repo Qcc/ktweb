@@ -124,9 +124,12 @@ Route::resource('solution', 'SolutionController', ['only' => ['index', 'create',
 Route::get('solution/{solution}/{slug?}', 'SolutionController@show')->name('solution.show');
 // 方案分类
 Route::get('solutions/{solutioncol}', 'SolutioncolController@show')->name('solutions.show');
+
 //客户案例
-Route::resource('customer', 'CustomersController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('customer', 'CustomersController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('customer/{customer}/{slug?}', 'CustomersController@show')->name('customer.show');
 Route::get('customers/{customercol}', 'CustomercolController@show')->name('customers.show');
+
 //上传图片
 Route::post('news/upload_image', 'NewsController@uploadImage')->name('news.upload_image');
 Route::post('product/upload_image', 'ProductController@uploadImage')->name('product.upload_image');

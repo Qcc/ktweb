@@ -19,7 +19,9 @@
     <div class="{{ route_class() }}-page">
         @include('layouts._club_header')
         <div class="mdui-container-full">
-            @include('layouts._message')
+            <div style="margin-top:64px;">
+                @include('layouts._message')
+            </div>
             @yield('content')
         </div>    
         @include('layouts._footer')
