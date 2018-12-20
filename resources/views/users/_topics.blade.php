@@ -40,6 +40,12 @@
 @endif
 
 {{-- 分页 --}}
-<div class="pagination-box">
+<!-- <div class="pagination-box">
     {!! $topics->render() !!}
+</div> -->
+ <div class="pagination-box mdui-hidden-xs-down">
+    {!! $topics->appends(Request::except('page'))->render() !!}
+</div>
+<div class="pagination-simple mdui-hidden-sm-up">
+    {!! $topics->appends(Request::except('page'))->render('vendor.pagination.simple-default') !!}
 </div>

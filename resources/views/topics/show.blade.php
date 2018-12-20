@@ -20,7 +20,7 @@
                             </h1>
                         </div>
                         @guest
-                        <div class="article-like-guest" mdui-dialog="{target: '#require-login'}" title="喜欢就点个赞吧">
+                        <div class="article-like-guest xhs_zan_hide" mdui-dialog="{target: '#require-login'}" title="喜欢就点个赞吧">
                             <div class="heart"></div>
                             @else
                             <div class="article-like excellent" title="喜欢就点个赞吧">
