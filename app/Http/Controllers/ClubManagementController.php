@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Hash;
+use Spatie\Permission\Models\Role;
 
 class ClubManagementController extends Controller
 {
@@ -31,7 +32,13 @@ class ClubManagementController extends Controller
         $users = User::paginate(8);
         return view('management.club.users',compact('users'));
     }
-
+    /**
+     * 修改用户
+     *
+     * @param Request $request
+     * @param User $user
+     * @return void
+     */
     public function userstore(Request $request, User $user)
     {
         $data = $request->all();
@@ -40,6 +47,11 @@ class ClubManagementController extends Controller
         }
         $user = User::find($data['id']);
         $user->fill($data);
+        if($data['activated'] == '1'){
+            $user->activated = true;
+        }else{
+            $user->activated = false;
+        }
         $user->save();
         $res = [
             'code'=>0,
@@ -47,9 +59,39 @@ class ClubManagementController extends Controller
         ];
         return $res;
     }
-    public function roles()
+    /**
+     * 展示所有角色
+     *
+     * @param Role $role
+     * @return void
+     */
+    public function roles(Role $role)
     {
-        return view('management.club.roles');
+        $roles = Role::paginate(10);
+        return view('management.club.roles',compact('roles'));
+    }
+    /**
+     * 展示拥有角色的用户
+     *
+     * @return void
+     */
+    public function roleusers(Request $request, Role $role){
+        // 获取所有权限用户
+        $users = User::role($request->id)->get(); 
+        return $users;
+    }
+    /**
+     * 获得角色所拥有的权限
+     *
+     * @param Request $request
+     * @param Role $role
+     * @return void
+     */
+    public function rolepermission(Request $request, Role $role){
+        // 获取所有权限用户
+        $role = Role::find($request->id);
+        $permissions = $role->permissions;
+        return $permissions;
     }
     public function settings()
     {

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('layui/css/layui.css') }}">
     @yield('styles')
     
 </head>
@@ -27,6 +28,7 @@
         @include('layouts._footer')
     </div>
   <script src="{{ asset('js/mdui.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/layui/layui.js') }}"></script>
   <script src="{{ asset('js/iconfont.js') }}"></script>
   <script src="{{ asset('js/club.js') }}"></script>
   @if (app()->isLocal())

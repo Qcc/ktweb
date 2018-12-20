@@ -90,6 +90,8 @@ Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.
 Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
 Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
 Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
+Route::post('/management/club/roleusers','ClubManagementController@roleusers')->name('admin.club.roleusers');
+Route::post('/management/club/rolepermission','ClubManagementController@rolepermission')->name('admin.club.rolepermission');
 Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
 Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
 Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');

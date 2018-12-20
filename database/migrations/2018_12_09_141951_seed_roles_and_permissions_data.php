@@ -29,13 +29,13 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name' => 'manage_business']);
 
         // 创建站长角色，并赋予权限
-        $founder = Role::create(['name' => 'Founder']);
+        $founder = Role::create(['name' => '站长']);
         $founder->givePermissionTo('manage_contents');
         $founder->givePermissionTo('manage_users');
         $founder->givePermissionTo('web_settings');
 
         // 创建管理员角色，并赋予权限
-        $maintainer = Role::create(['name' => 'Maintainer']);
+        $maintainer = Role::create(['name' => '管理员']);
         $maintainer->givePermissionTo('manage_contents');
     }
 
