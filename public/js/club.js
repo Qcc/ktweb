@@ -290,6 +290,7 @@ $$(document).ready(function () {
             table.on('tool(roles-table)', function (obj) {
                 var data = obj.data;
                 if (obj.event === 'users') {
+                    $('.user-cureent-role').attr('data-id', data.id).text(data.name);
                     $.ajax({
                         method: 'POST',
                         url: '/management/club/roleusers',
@@ -298,19 +299,38 @@ $$(document).ready(function () {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
                                 'content')
                         },
-                        data: {id: data.id},
+                        data: {
+                            id: data.id
+                        },
                         success: function (data) {
                             table.render({
-                                elem: '#usertable'
-                                ,cols: [[
-                                    {field: 'id', title: 'ID', width:80, fixed: 'left'}
-                                    ,{field: 'name', title: '姓名'}
-                                    ,{field: 'nickname', title: '昵称'}
-                                    ,{field: 'email', title: '邮箱'}
-                                    ,{field: 'phone', title: '手机'}
-                                ]]
-                                ,data: data,
-                              });    
+                                elem: '#usertable',
+                                toolbar: '#toolbarAdd',
+                                cols: [
+                                    [{
+                                        field: 'id',
+                                        title: 'ID',
+                                        width: 80,
+                                        fixed: 'left'
+                                    }, {
+                                        field: 'name',
+                                        title: '姓名'
+                                    }, {
+                                        field: 'nickname',
+                                        title: '昵称'
+                                    }, {
+                                        field: 'email',
+                                        title: '邮箱'
+                                    }, {
+                                        field: 'phone',
+                                        title: '手机'
+                                    }, {
+                                        toolbar: '#barDel',
+                                        title: '操作'
+                                    }]
+                                ],
+                                data: data,
+                            });
                         }
                     });
                 } else if (obj.event === 'delete') {
@@ -319,6 +339,7 @@ $$(document).ready(function () {
                         layer.close(index);
                     });
                 } else if (obj.event === 'permission') {
+                    $('.permission-cureent-role').attr('data-id', data.id).text(data.name);
                     $.ajax({
                         method: 'POST',
                         url: '/management/club/rolepermission',
@@ -327,22 +348,211 @@ $$(document).ready(function () {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
                                 'content')
                         },
-                        data: {id: data.id},
+                        data: {
+                            id: data.id
+                        },
                         success: function (data) {
                             table.render({
-                                elem: '#permissiontable'
-                                ,cols: [[
-                                    {field: 'id', title: 'ID', width:80, fixed: 'left'}
-                                    ,{field: 'name', title: '权限'}
-                                    ,{field: 'created_at', title: '创建时间'}
-                                ]]
-                                ,data: data,
-                              });
+                                elem: '#permissiontable',
+                                toolbar: '#toolbarAdd',
+                                cols: [
+                                    [{
+                                        field: 'id',
+                                        title: 'ID',
+                                        width: 80,
+                                        fixed: 'left'
+                                    }, {
+                                        field: 'name',
+                                        title: '权限'
+                                    }, {
+                                        field: 'created_at',
+                                        title: '创建时间'
+                                    }, {
+                                        toolbar: '#barDel',
+                                        title: '操作'
+                                    }]
+                                ],
+                                data: data,
+                            });
                         }
                     });
                 }
             });
+            //监听工具条 删除角色下的用户
+            table.on('tool(usertable)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'delete') {
+                    layer.confirm('真的移除么', function (index) {
+                        $.ajax({
+                            method: 'POST',
+                            url: '/management/club/userandpermission',
+                            ContentType: 'application/json',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content')
+                            },
+                            data: {
+                                userid: data.id,
+                                roleid: $('.user-cureent-role').attr('data-id'),
+                                type: 'user',
+                                action: 'delete',
+                            },
+                            success: function (data) {
+                                if (data.code == 0) {
+                                    obj.del();
+                                } else {
+                                    layer.msg(data.msg, {
+                                        icon: 2
+                                    });
+                                }
+                            },
+                        });
+                        layer.close(index);
+
+                    });
+                }
+            });
+            //头工具栏事件 给角色添加用户
+            table.on('toolbar(usertable)', function (obj) {
+                if (obj.event == 'add') {
+                    layer.prompt({
+                        title: '输入用户ID，并确认',
+                        formType: 4
+                    }, function (id, index) {
+                        $.ajax({
+                            method: 'POST',
+                            url: '/management/club/userandpermission',
+                            ContentType: 'application/json',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content')
+                            },
+                            data: {
+                                userid: id,
+                                roleid: $('.user-cureent-role').attr('data-id'),
+                                type: 'user',
+                                action: 'add',
+                            },
+                            success: function (data) {
+                                if (data.code == 0) {
+                                    layer.msg(data.msg, {
+                                        icon: 1
+                                    });
+                                } else {
+                                    layer.msg(data.msg, {
+                                        icon: 2
+                                    });
+                                }
+                            },
+                        });
+                        layer.close(index);
+                    });
+                }
+            });
+            //头工具栏事件 给角色添加权限
+            table.on('toolbar(permissiontable)', function (obj) {
+                if (obj.event == 'add') {
+                    var permissionform = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请选择要添加的权限',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#permission-form")
+                    });
+                    $.ajax({
+                        method: 'POST',
+                        url: '/management/club/permissions',
+                        ContentType: 'application/json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
+                        },
+                        data: {},
+                        success: function (data) {
+                            var permission = $('.permission-form-input');
+                            permission.empty();
+                            for (let index = 0; index < data.length; index++) {
+                                data[index];
+                                permission.append("<input type='checkbox' name=" + data[index].id + " lay-skin='primary' title=" + data[index].name + "></input>")
+                            }
+                            form.render('checkbox');
+                        },
+                    });
+                    //监听提交 确认添加权限
+                    form.on('submit(permission-btn)', function (data) {
+                        $('.submit').addClass('layui-btn-disabled');
+                        var field = data.field;
+                        $.ajax({
+                            method: 'POST',
+                            url: '/management/club/userandpermission',
+                            ContentType: 'application/json',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content')
+                            },
+                            data: {
+                                permissionid: field,
+                                roleid: $('.permission-cureent-role').attr('data-id'),
+                                type: 'permission',
+                                action: 'add',
+                            },
+                            success: function (data) {
+                                $('.submit').removeClass('layui-btn-disabled');
+                                if (data.code == 0) {
+                                    layer.msg(data.msg, {
+                                        icon: 1
+                                    });
+                                } else {
+                                    layer.msg(data.msg, {
+                                        icon: 2
+                                    });
+                                }
+                                layer.close(permissionform);
+                            }
+                        });
+                        return false;
+                    });
+                }
+            });
+
+            //监听工具条 删除角色下的权限
+            table.on('tool(permissiontable)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'delete') {
+                    layer.confirm('真的移除么', function (index) {
+                        $.ajax({
+                            method: 'POST',
+                            url: '/management/club/userandpermission',
+                            ContentType: 'application/json',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content')
+                            },
+                            data: {
+                                permissionid: data.id,
+                                roleid: $('.permission-cureent-role').attr('data-id'),
+                                type: 'permission',
+                                action: 'delete',
+                            },
+                            success: function (data) {
+                                if (data.code == 0) {
+                                    obj.del();
+                                } else {
+                                    layer.msg(data.msg, {
+                                        icon: 2
+                                    });
+                                }
+                            },
+                        });
+                        layer.close(index);
+                    });
+                }
+            });
+
+
         });
     }
+    // 角色管理结束
 
 });

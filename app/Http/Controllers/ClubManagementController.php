@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Hash;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class ClubManagementController extends Controller
 {
@@ -17,11 +18,15 @@ class ClubManagementController extends Controller
      
     public function system()
     {
-        return view('management.club.system');
+        return view('management.system');
     }
     public function recommend()
     {
-        return view('management.club.recommend');
+        return view('management.recommend');
+    }
+    public function webRecommend()
+    {
+        return view('management.web_recommend');
     }
     /**
      * 后台批量展示用户
@@ -30,7 +35,7 @@ class ClubManagementController extends Controller
      */
     public function users(){
         $users = User::paginate(8);
-        return view('management.club.users',compact('users'));
+        return view('management.users',compact('users'));
     }
     /**
      * 修改用户
@@ -68,14 +73,26 @@ class ClubManagementController extends Controller
     public function roles(Role $role)
     {
         $roles = Role::paginate(10);
-        return view('management.club.roles',compact('roles'));
+        return view('management.roles',compact('roles'));
+    }
+    /**
+     * 展示所有权限
+     *
+     * @param Role $role
+     * @return void
+     */
+    public function permissions(Permission $permission)
+    {
+        $permissions = Permission::all();
+        return $permissions;
     }
     /**
      * 展示拥有角色的用户
      *
      * @return void
      */
-    public function roleusers(Request $request, Role $role){
+    public function roleusers(Request $request, Role $role)
+    {
         // 获取所有权限用户
         $users = User::role($request->id)->get(); 
         return $users;
@@ -87,23 +104,75 @@ class ClubManagementController extends Controller
      * @param Role $role
      * @return void
      */
-    public function rolepermission(Request $request, Role $role){
-        // 获取所有权限用户
+    public function rolepermission(Request $request, Role $role)
+    {
+        // 获取所有角色拥有的所有权限
         $role = Role::find($request->id);
         $permissions = $role->permissions;
         return $permissions;
     }
+    /**
+     * 角色新增 删除
+     *
+     * @return void
+     */
+    public function roleedit()
+    {
+
+    }
+    /**
+     * 角色添加/删除用户，角色添加删除权限
+     *
+     * @return void
+     */
+    public function userandpermission(Request $request, Role $role, Permission $permission, User $user)
+    {
+        $data = [
+            'code' => 1,
+            'msg' => '操作失败！',
+        ];
+        $role = Role::find($request->roleid);
+        if($request->type == 'user'){
+            $user = User::find($request->userid);
+            if($request->action == 'delete'){
+                $user->removeRole($role);
+                $data = [
+                    'code' => 0,
+                    'msg' => '移除用户成功！',
+                ];
+            }else if($request->action == 'add'){
+                $user->assignRole($role);
+                $data = [
+                    'code' => 0,
+                    'msg' => '添加用户成功！',
+                ];
+            }
+        }else if($request->type == 'permission'){
+            // 得到权限
+            $permissions = $request->permissionid;
+            if(is_array($permissions)){
+                $permissions = array_keys($permissions);
+            };
+            $permission = Permission::find($permissions);
+            if($request->action == 'delete'){
+                $role->revokePermissionTo($permission);
+                $data = [
+                    'code' => 0,
+                    'msg' => '移除权限成功！',
+                ];
+            }else if($request->action == 'add'){
+                $role->givePermissionTo($permission);
+                $data = [
+                    'code' => 0,
+                    'msg' => '添加权限成功！',
+                ];
+            }
+        }
+        return $data;
+    }
     public function settings()
     {
-        return view('management.club.settings');
+        return view('management.settings');
     }
      
-    public function articles()
-    {
-        return view('management.club.articles');
-    }
-    public function replys()
-    {
-        return view('management.club.replys');
-    }
 }

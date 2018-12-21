@@ -42,10 +42,6 @@
           @role('站长')
           <li class="mdui-menu-item">
             <a href="{{ route('admin.club.system') }}"   class="mdui-ripple">
-            <i class="mdui-icon material-icons">&#xe8b8;</i> 社区管理</a>
-          </li>
-          <li class="mdui-menu-item">
-            <a href="{{ route('admin.web.system') }}"   class="mdui-ripple">
               <i class="mdui-icon material-icons">&#xe894;</i> 网站管理</a>
           </li>
           @endrole

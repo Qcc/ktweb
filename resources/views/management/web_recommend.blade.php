@@ -1,6 +1,6 @@
 @extends('layouts.club')
 
-@section('title', '社区设置')
+@section('title', '主站推荐')
 
 @section('content')
 <div class="mdui-container useredit-box">
@@ -12,7 +12,7 @@
         </div>
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
-                社区设置
+                主站推荐
             </div>
         </div>
     </div>

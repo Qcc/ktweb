@@ -31,10 +31,10 @@
                         @endforeach
                     </tbody>
                 </table>
-                <p>用户列表</p>
+                <p>用户列表 - <span class="user-cureent-role"></span></p>
                 <table class="layui-table" lay-filter="usertable" id="usertable">
                 </table>
-                <p>权限列表</p>
+                <p>权限列表 - <span class="permission-cureent-role"></span></p>
                 <table class="layui-table" lay-filter="permissiontable" id="permissiontable">
                 </table>
             </div>
@@ -54,9 +54,26 @@
         </div>
     </div>
 </form>
+<form class="layui-form" id="permission-form" action="" lay-filter="permission-form" style="display:none;">
+    <div class="layui-form-item" >
+        <div class="layui-input-block permission-form-input" style="margin: 20px 80px 50px">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn submit" lay-submit="" lay-filter="permission-btn">确认添加</button>
+        </div>
+    </div>
+</form>
 <script type="text/html" id="barAction">
     <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="users">角色用户</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="permission">角色权限</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-  </script>
+</script>
+<script type="text/html" id="barDel">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">移除</a>
+</script>
+<script type="text/html" id="toolbarAdd">
+      <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+</script>
 @stop

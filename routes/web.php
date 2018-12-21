@@ -86,23 +86,21 @@ Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('exce
 //将文章设置置顶
 Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');
 
-// 社区管理
+// 网站管理
 Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
 Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
+Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');
+// 角色管理
 Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
+Route::post('/management/club/permissions','ClubManagementController@permissions')->name('admin.club.permissions');
 Route::post('/management/club/roleusers','ClubManagementController@roleusers')->name('admin.club.roleusers');
 Route::post('/management/club/rolepermission','ClubManagementController@rolepermission')->name('admin.club.rolepermission');
+Route::post('/management/club/userandpermission','ClubManagementController@userandpermission')->name('admin.club.userandpermission');
+Route::post('/management/club/roleedit','ClubManagementController@roleedit')->name('admin.club.roleedit');
+
 Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
 Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
 Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');
-Route::get('/management/club/articles','ClubManagementController@articles')->name('admin.club.articles');
-Route::get('/management/club/replys','ClubManagementController@replys')->name('admin.club.replys');
-// 网站管理
-Route::get('/management/web/settings','WebManagementController@settings')->name('admin.web.settings');
-Route::get('/management/web/recommend','WebManagementController@recommend')->name('admin.web.recommend');
-Route::get('/management/web/create','WebManagementController@create')->name('admin.web.create');
-Route::get('/management/web/categorys','WebManagementController@categorys')->name('admin.web.categorys');
-Route::get('/management/web/system','WebManagementController@system')->name('admin.web.system');
 
 //主站新闻
 Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
