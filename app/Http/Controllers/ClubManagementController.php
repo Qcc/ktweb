@@ -8,6 +8,10 @@ use App\Models\User;
 use Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Category;
+use App\Models\Productcol;
+use App\Models\Solutioncol;
+use App\Models\Customercol;
 
 class ClubManagementController extends Controller
 {
@@ -15,7 +19,37 @@ class ClubManagementController extends Controller
     {
         $this->middleware('auth');
     }  
-     
+     /**
+      * 默认社区类目
+      *
+      * @return void
+      */
+    public function column()
+    {
+        $categorys = Category::all();
+        return view('management.column',compact('categorys'));
+    }
+    /**
+     * 获取产品 解决方案 客户案例类名
+     *
+     * @return void
+     */
+    public function columns(Request $request)
+    {
+        // 获取分类失败
+        $data = [
+            'code'=>1,
+            'msg'=>'获取分类失败'
+        ];
+        if($request->type == 'productcol'){
+            $data = Productcol::all();
+        }else if($request->type == 'solutioncol'){
+            $data = Solutioncol::all();
+        }else if($request->type == 'customercol'){
+            $data = Customercol::all();
+        }
+        return $data;
+    }
     public function system()
     {
         return view('management.system');

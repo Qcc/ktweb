@@ -15,16 +15,18 @@
                 <table lay-filter="roles-table" id="roles-table">
                     <thead>
                         <tr>
-                            <th lay-data="{field:'id', width:100}">ID</th>
-                            <th lay-data="{field:'name'}">名称</th>
+                            <th lay-data="{field:'id', width:70}">ID</th>
+                            <th lay-data="{field:'cn_name'}">名称</th>
+                            <th lay-data="{field:'name'}">标识</th>
                             <th lay-data="{field:'created_at'}">创建时间</th>
-                            <th lay-data="{toolbar: '#barAction'}">操作</th>
+                            <th lay-data="{toolbar: '#barAction', width:220}">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($roles as $index => $role)
                         <tr>
                             <td>{{ $role->id }}</td>
+                            <td>{{ $role->cn_name }}</td>
                             <td>{{ $role->name }}</td>
                             <td>{{ $role->created_at }}</td>
                         </tr>

@@ -87,6 +87,8 @@ Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('exce
 Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');
 
 // 网站管理
+Route::get('/management/club/column','ClubManagementController@column')->name('admin.club.column');
+Route::post('/management/club/columns','ClubManagementController@columns')->name('admin.club.columns');
 Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
 Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
 Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');

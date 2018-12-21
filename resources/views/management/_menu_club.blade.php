@@ -6,6 +6,8 @@
                 <i class="mdui-icon material-icons">&#xe7fc;</i> 用户管理</a></li>
         <li><a href="{{ route('admin.club.roles') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('admin.club.roles'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
                 <i class="mdui-icon material-icons">&#xe7ef;</i> 角色管理</a></li>
+        <li><a href="{{ route('admin.club.column') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('admin.club.column'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
+                <i class="mdui-icon material-icons">&#xe8af;</i> 类目管理</a></li>
         <li><a href="{{ route('admin.club.web_recommend') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('admin.club.web_recommend'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
                 <i class="mdui-icon material-icons">&#xe8af;</i> 主站推荐</a></li>
         <li><a href="{{ route('admin.club.recommend') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('admin.club.recommend'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
