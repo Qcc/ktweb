@@ -62,9 +62,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
@@ -84,10 +81,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图标(80*80)</label>
+        <label class="layui-form-label">图标</label>
         <div class="layui-input-block">
-            <input type="text" name="icon" lay-verify="required" placeholder="请输入图标" class="layui-input">
-            <a href="javascript:;" class="upload-btn">上传</a>
+            <input type="text" name="icon" lay-verify="required" placeholder="请上传图标(80*80)" class="layui-input">
+            <a href="javascript:;" id="upload-icon">上传</a>
         </div>
     </div>
     <div class="layui-form-item">
@@ -97,10 +94,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">大图(1920*400)</label>
+        <label class="layui-form-label">大图</label>
         <div class="layui-input-block">
-            <input type="text" name="banner"  lay-verify="required" placeholder="请输入大图" class="layui-input">
-            <a href="javascript:;" class="upload-btn">上传</a>
+            <input type="text" name="banner"  lay-verify="required" placeholder="请上传大图(1920*400)" class="layui-input">
+            <a href="javascript:;" id="upload-banner">上传</a>
         </div>
     </div>
     <div class="layui-form-item">
@@ -112,51 +109,11 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn pro_solu_cus_form_btn" lay-submit="" lay-filter="pro_solu_cus_form_btn">确认修改</button>
+            <button class="layui-btn pro_solu_cus_form_btn" lay-submit="" lay-filter="pro_solu_cus_form_btn">确认</button>
         </div>
     </div>
 </form>
-<!-- 产品 解决方案 客户案例 添加form -->
-<form class="layui-form" id="pro_solu_cus_add_form" action="" lay-filter="pro_solu_cus_form" style="display:none;margin-right: 80px;">
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">图标(80*80)</label>
-        <div class="layui-input-block">
-            <input type="text" name="icon" lay-verify="required" placeholder="请输入图标" class="layui-input">
-            <a href="javascript:;" class="upload-btn">上传</a>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">大图(1920*400)</label>
-        <div class="layui-input-block">
-            <input type="text" name="banner"  lay-verify="required" placeholder="请输入大图" class="layui-input">
-            <a href="javascript:;" class="upload-btn">上传</a>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">介绍</label>
-        <div class="layui-input-block">
-            <textarea name="description" lay-verify="required" placeholder="请输入介绍" class="layui-textarea"></textarea>
-        </div>
-    </div>
 
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn pro_solu_cus_add_btn" lay-submit="" lay-filter="pro_solu_cus_add_btn">确认添加</button>
-        </div>
-    </div>
-</form>
 <!-- 修改社区类目form -->
 <form class="layui-form" id="club_form" action="" lay-filter="club_form" style="display:none;margin-right: 80px;">
     <div class="layui-form-item">
@@ -171,10 +128,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图标(80*80)</label>
+        <label class="layui-form-label">首图</label>
         <div class="layui-input-block">
-            <input type="text" name="icon" lay-verify="required" placeholder="请输入图标" class="layui-input">
-            <a href="javascript:;" class="upload-btn">上传</a>
+            <input type="text" name="icon" lay-verify="required" placeholder="请上传首图(960*200)" class="layui-input">
+            <a href="javascript:;" id="upload-club-icon">上传</a>
         </div>
     </div>
     <div class="layui-form-item">
@@ -186,35 +143,27 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn club_form_btn" lay-submit="" lay-filter="club_form_btn">确认修改</button>
+            <button class="layui-btn club_form_btn" lay-submit="" lay-filter="club_form_btn">确认</button>
         </div>
     </div>
 </form>
-<!-- 添加社区类目form -->
-<form class="layui-form" id="club_form_add" action="" lay-filter="club_form_add" style="display:none;margin-right: 80px;">
+<!-- seo城市 -->
+<form class="layui-form" id="seo_form" action="" lay-filter="seo_form" style="display:none;margin-right: 80px;">
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <input type="hidden" name="id">
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">名称</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">图标(80*80)</label>
-        <div class="layui-input-block">
-            <input type="text" name="icon" lay-verify="required" placeholder="请输入图标" class="layui-input">
-            <a href="javascript:;" class="upload-btn">上传</a>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">介绍</label>
-        <div class="layui-input-block">
-            <textarea name="description" lay-verify="required" placeholder="请输入介绍" class="layui-textarea"></textarea>
+            <input type="text" name="city" lay-verify="required" autocomplete="off" placeholder="请输入城市名称" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn club_form_btn_add" lay-submit="" lay-filter="club_form_btn_add">确认添加</button>
+            <button class="layui-btn seo_form_btn" lay-submit="" lay-filter="seo_form_btn">确认</button>
         </div>
     </div>
 </form>

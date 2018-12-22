@@ -1,7 +1,6 @@
 var $$ = mdui.JQ;
 // header部分
 $$(document).ready(function () {
-
     // 信息提示框样式
     if ($$('.alert')) {
         setTimeout(function () {
@@ -14,165 +13,144 @@ $$(document).ready(function () {
             $$('.alert').hide();
         });
     }
+    // 社区页面
+    if ($$('.topics-show-page').length == 1) {
 
-    // 点赞
-    $$('.excellent').on("click", function () {
-        var id = $$('#topic_id').attr('data_id');
-        $$(this).attr('disabled', true);
-        if ($$('.heartAnimation').length === 0) {
-            $$('.heart').addClass("heartAnimation");
-            $$('#likeCount').text(parseInt($$('#likeCount').text()) + 1);
-            $$('.excellent-footer').removeClass('mdui-color-theme-accent').empty().append('<i class="mdui-icon material-icons">&#xe8dc;</i> 已赞');
-        } else {
-            $$('.heart').removeClass("heartAnimation");
-            $$('#likeCount').text(parseInt($$('#likeCount').text()) - 1);
-            $$('.excellent-footer').addClass('mdui-color-theme-accent').empty().append('<i class="mdui-icon material-icons">&#xe8dc;</i> 点赞');
-        }
-        $$.ajax({
-            method: 'POST',
-            url: '/topic/greats/action',
-            ContentType: 'application/json',
-            headers: {
-                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: id
-            },
-            success: function (data) {
-                $$('.excellent').removeAttr('disabled');
-            }
-        })
-    });
-    //加关注 取消关注 粉丝
-    $$(".user-follower").on("click", function () {
-        $$(this).attr('disabled', true);
-        var id = $$('#author_id').attr('data_id');
-        $$.ajax({
-            method: 'POST',
-            url: '/users/followers/action',
-            ContentType: 'application/json',
-            headers: {
-                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: id
-            },
-            success: function (data) {
-                var data = JSON.parse(data);
-                if (data.result) {
-                    $$('.user-follower').empty().append(
-                        "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
-                        'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
-                } else {
-                    $$('.user-follower').empty().append(
-                        "<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr(
-                        'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
-                }
-                $$('.user-follower').removeAttr('disabled');
-            }
-        })
-    });
-    //加关注 取消关注 文章
-    $$(".topic-follower").on("click", function () {
-        $$(this).attr('disabled', true);
-        var id = $$('#topic_id').attr('data_id');
-        $$.ajax({
-            method: 'POST',
-            url: '/users/followers/action',
-            ContentType: 'application/json',
-            headers: {
-                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: id
-            },
-            success: function (data) {
-                var data = JSON.parse(data);
-                if (data.result) {
-                    $$('.topic-follower').empty().append(
-                        "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
-                        'title', '取消关注将不会再收到新的回复通知').css('color', '#00C853');
-                } else {
-                    $$('.topic-follower').empty().append(
-                        "<i class='mdui-icon material-icons'>&#xe8f4;</i> 加关注").attr(
-                        'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
-                }
-                $$('.topic-follower').removeAttr('disabled');
-            }
-        })
-    });
-    //设置精华 取消精华帖
-    $$('.topic-excellent').on('click', function () {
-        $$(this).attr('disabled', true);
-        var id = $$('#topic_id').attr('data_id');
-        $$.ajax({
-            method: 'POST',
-            url: '/topic/excellent/action',
-            ContentType: 'application/json',
-            headers: {
-                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: id
-            },
-            success: function (data) {
-                var data = JSON.parse(data);
-                if (data.result) {
-                    if (data.status) {
-                        $$('.topic-excellent').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已加精")
-                            .attr('title', '取消文章精华设置').css('color', '#00C853');
-                    } else {
-                        $$('.topic-excellent').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe83a;</i> 加精华")
-                            .attr('title', '将文章设置为精华').css('color', '#a2a2a2');
-                    }
-                }
-                $$('.topic-excellent').removeAttr('disabled');
-            }
+        layui.use(['element', 'layer', 'form'], function () {
+            var $ = layui.jquery,
+                element = layui.element,
+                layer = layui.layer,
+                form = layui.form;
+            $('.club-report').on('click',function(){
+                var userform = layer.open({
+                    type: 1,
+                    title: '共建品质社区，欢迎举报不良信息',
+                    content: $('#report-form'),
+                });
+            });
         });
-    });
-    //置顶帖
-    $$('.topping-submit').on('click', function () {
-        var id = $$('#topic_id').attr('data_id');
-        var expired = $$('#top_expired').val();
-        $$(this).attr('disabled', true);
-        $$.ajax({
-            method: 'POST',
-            url: '/topic/topping/action',
-            ContentType: 'application/json',
-            headers: {
-                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: id,
-                expired: expired
-            },
-            success: function (data) {
-                var data = JSON.parse(data);
-                if (data.result) {
-                    if (data.status) {
-                        $$('.topic-topping').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
-                            .attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
-                    } else {
-                        $$('.topic-topping').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
-                            .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
-                    }
-                }
-                $$('.topexpired-warp').css('display', 'none');
-                $$('.topping-submit').removeAttr('disabled');
+        // 点赞
+        $$('.excellent').on("click", function () {
+            var id = $$('#topic_id').attr('data_id');
+            $$(this).attr('disabled', true);
+            if ($$('.heartAnimation').length === 0) {
+                $$('.heart').addClass("heartAnimation");
+                $$('#likeCount').text(parseInt($$('#likeCount').text()) + 1);
+                $$('.excellent-footer').removeClass('mdui-color-theme-accent').empty().append('<i class="mdui-icon material-icons">&#xe8dc;</i> 已赞');
+            } else {
+                $$('.heart').removeClass("heartAnimation");
+                $$('#likeCount').text(parseInt($$('#likeCount').text()) - 1);
+                $$('.excellent-footer').addClass('mdui-color-theme-accent').empty().append('<i class="mdui-icon material-icons">&#xe8dc;</i> 点赞');
             }
+            $$.ajax({
+                method: 'POST',
+                url: '/topic/greats/action',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $$('.excellent').removeAttr('disabled');
+                }
+            })
         });
-    });
-    // 置顶或者 取消置顶
-    $$('.topic-topping').on('click', function () {
-        var topping = $$(this).attr('topping');
-        //当前置顶状态标记1已经置顶，0未置顶
-        if (topping === '1') {
+        //加关注 取消关注 粉丝
+        $$(".user-follower").on("click", function () {
+            $$(this).attr('disabled', true);
+            var id = $$('#author_id').attr('data_id');
+            $$.ajax({
+                method: 'POST',
+                url: '/users/followers/action',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if (data.result) {
+                        $$('.user-follower').empty().append(
+                            "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
+                            'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
+                    } else {
+                        $$('.user-follower').empty().append(
+                            "<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr(
+                            'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
+                    }
+                    $$('.user-follower').removeAttr('disabled');
+                }
+            })
+        });
+        //加关注 取消关注 文章
+        $$(".topic-follower").on("click", function () {
             $$(this).attr('disabled', true);
             var id = $$('#topic_id').attr('data_id');
+            $$.ajax({
+                method: 'POST',
+                url: '/users/followers/action',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if (data.result) {
+                        $$('.topic-follower').empty().append(
+                            "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
+                            'title', '取消关注将不会再收到新的回复通知').css('color', '#00C853');
+                    } else {
+                        $$('.topic-follower').empty().append(
+                            "<i class='mdui-icon material-icons'>&#xe8f4;</i> 加关注").attr(
+                            'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
+                    }
+                    $$('.topic-follower').removeAttr('disabled');
+                }
+            })
+        });
+        //设置精华 取消精华帖
+        $$('.topic-excellent').on('click', function () {
+            $$(this).attr('disabled', true);
+            var id = $$('#topic_id').attr('data_id');
+            $$.ajax({
+                method: 'POST',
+                url: '/topic/excellent/action',
+                ContentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if (data.result) {
+                        if (data.status) {
+                            $$('.topic-excellent').empty().append(
+                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已加精")
+                                .attr('title', '取消文章精华设置').css('color', '#00C853');
+                        } else {
+                            $$('.topic-excellent').empty().append(
+                                    "<i class='mdui-icon material-icons'>&#xe83a;</i> 加精华")
+                                .attr('title', '将文章设置为精华').css('color', '#a2a2a2');
+                        }
+                    }
+                    $$('.topic-excellent').removeAttr('disabled');
+                }
+            });
+        });
+        //置顶帖
+        $$('.topping-submit').on('click', function () {
+            var id = $$('#topic_id').attr('data_id');
+            var expired = $$('#top_expired').val();
+            $$(this).attr('disabled', true);
             $$.ajax({
                 method: 'POST',
                 url: '/topic/topping/action',
@@ -181,7 +159,8 @@ $$(document).ready(function () {
                     'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
-                    id: id
+                    id: id,
+                    expired: expired
                 },
                 success: function (data) {
                     var data = JSON.parse(data);
@@ -196,13 +175,50 @@ $$(document).ready(function () {
                                 .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
                         }
                     }
-                    $$('.topic-topping').removeAttr('disabled');
+                    $$('.topexpired-warp').css('display', 'none');
+                    $$('.topping-submit').removeAttr('disabled');
                 }
             });
-        } else {
-            $$('.topexpired-warp').css('display', 'block');
-        }
-    });
+        });
+        // 置顶或者 取消置顶
+        $$('.topic-topping').on('click', function () {
+            var topping = $$(this).attr('topping');
+            //当前置顶状态标记1已经置顶，0未置顶
+            if (topping === '1') {
+                $$(this).attr('disabled', true);
+                var id = $$('#topic_id').attr('data_id');
+                $$.ajax({
+                    method: 'POST',
+                    url: '/topic/topping/action',
+                    ContentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        id: id
+                    },
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                        if (data.result) {
+                            if (data.status) {
+                                $$('.topic-topping').empty().append(
+                                        "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
+                                    .attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
+                            } else {
+                                $$('.topic-topping').empty().append(
+                                        "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
+                                    .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
+                            }
+                        }
+                        $$('.topic-topping').removeAttr('disabled');
+                    }
+                });
+            } else {
+                $$('.topexpired-warp').css('display', 'block');
+            }
+        });
+    }
+
     // laydate.render({
     //     elem: '#top_expired'
     // });
@@ -283,9 +299,25 @@ $$(document).ready(function () {
             layer = layui.layer;
             form = layui.form;
             table.init('roles-table', { //转化静态表格
-                //height: 'full-500'
+                toolbar: '#toolbarAdd',
             });
 
+            //监听工具条 查看角色用户 查看角色权限
+            table.on('toolbar(roles-table)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'add') {
+                    document.getElementById('roles-form').reset();
+                    var relo_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请输入要添加的角色',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#roles-form")
+                    });
+                    rolesSubmit('/management/club/roleStore', relo_form);
+                }
+            });
             //监听工具条 查看角色用户 查看角色权限
             table.on('tool(roles-table)', function (obj) {
                 var data = obj.data;
@@ -381,8 +413,57 @@ $$(document).ready(function () {
                             });
                         }
                     });
+                } else if (obj.event === 'edit') {
+
+                    var relo_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请修改角色',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#roles-form")
+                    });
+                    //表单初始赋值
+                    form.val('roles-form', {
+                        "id": data.id,
+                        "name": data.name,
+                        "cn_name": data.cn_name,
+                    })
+                    rolesSubmit('/management/club/roleStore', relo_form);
                 }
             });
+
+            function rolesSubmit(api, layerOpen) {
+                //监听提交 修改分类
+                form.on("submit(roles-btn)", function (data) {
+                    $(".roles-btn").addClass('layui-btn-disabled');
+                    var field = data.field;
+                    $.ajax({
+                        method: 'POST',
+                        url: api,
+                        ContentType: 'application/json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
+                        },
+                        data: field,
+                        success: function (data) {
+                            $(".roles-btn").removeClass('layui-btn-disabled');
+                            if (data.code == 0) {
+                                layer.msg(data.msg, {
+                                    icon: 1
+                                });
+                            } else {
+                                layer.msg(data.msg, {
+                                    icon: 2
+                                });
+                            }
+                            layer.close(layerOpen);
+                        }
+                    });
+                    return false;
+                });
+            }
             //监听工具条 删除角色下的用户
             table.on('tool(usertable)', function (obj) {
                 var data = obj.data;
@@ -572,10 +653,10 @@ $$(document).ready(function () {
                 toolbar: '#toolbarAdd',
                 page: true,
             });
-            //功能图标 banner上传
 
+            //功能图标上传
             var uploadIcon = upload.render({
-                elem: btn,
+                elem: "#upload-icon",
                 url: "/upload/uploadImage",
                 field: 'upload_file',
                 accept: 'images',
@@ -587,7 +668,47 @@ $$(document).ready(function () {
                     if (res.code > 0) {
                         return layer.msg('上传失败');
                     }
-                    $(btn).prev().val(res.data.src);
+                    $('#upload-icon').prev().val(res.data.src);
+                },
+                error: function () {
+                    layer.msg('上传失败');
+                }
+            });
+            //banner大图上传
+            var uploadIcon = upload.render({
+                elem: "#upload-banner",
+                url: "/upload/uploadImage",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (res.code > 0) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#upload-banner').prev().val(res.data.src);
+                },
+                error: function () {
+                    layer.msg('上传失败');
+                }
+            });
+            //社区图上传上传
+            var uploadIcon = upload.render({
+                elem: "#upload-club-icon",
+                url: "/upload/uploadImage",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (res.code > 0) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#upload-club-icon').prev().val(res.data.src);
                 },
                 error: function () {
                     layer.msg('上传失败');
@@ -805,12 +926,12 @@ $$(document).ready(function () {
                         title: '请输入要添加的分类',
                         area: '500px',
                         shadeClose: true, //开启遮罩关闭
-                        content: $("#club_form_add")
+                        content: $("#club_form")
                     });
-
+                    document.getElementById('club_form').reset();
                     //监听提交 确认添加分类
-                    form.on('submit(club_form_btn_add)', function (data) {
-                        $('.submit').addClass('layui-btn-disabled');
+                    form.on('submit(club_form_btn)', function (data) {
+                        $('.club_form_btn').addClass('layui-btn-disabled');
                         var field = data.field;
                         $.ajax({
                             method: 'POST',
@@ -822,7 +943,7 @@ $$(document).ready(function () {
                             },
                             data: field,
                             success: function (data) {
-                                $('.submit').removeClass('layui-btn-disabled');
+                                $('.club_form_btn').removeClass('layui-btn-disabled');
                                 if (data.code == 0) {
                                     layer.msg(data.msg, {
                                         icon: 1
@@ -843,14 +964,13 @@ $$(document).ready(function () {
             table.on('tool(categorys-table)', function (obj) {
                 if (obj.event == 'edit') {
                     var data = obj.data;
-                    console.log(data);
                     //表单初始赋值
                     form.val('club_form', {
                         "id": data.id,
                         "name": data.name,
                         "icon": data.icon,
                         "description": data.description,
-                    })
+                    });
                     // 产品社区form
                     var club_form = layer.open({
                         type: 1,
@@ -891,88 +1011,29 @@ $$(document).ready(function () {
                         return false;
                     });
                 } else if (obj.event == 'delete') {
-                    layer.confirm('真的移除么', function (index) {
-                        $.ajax({
-                            method: 'POST',
-                            url: '/categories/destroy',
-                            ContentType: 'application/json',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                    'content')
-                            },
-                            data: {
-                                id: obj.data.id
-                            },
-                            success: function (data) {
-                                if (data.code == 0) {
-                                    obj.del();
-                                } else {
-                                    layer.msg(data.msg, {
-                                        icon: 2
-                                    });
-                                }
-                            },
-                        });
-                        layer.close(index);
-                    });
+                    deleteLine('/categories/destroy', obj);
                 }
             });
             //头工具栏事件 添加产品类目
             table.on('toolbar(producttable)', function (obj) {
                 if (obj.event == 'add') {
-                    var pro_solu_cus_add_form = layer.open({
+                    var pro_solu_cus_form = layer.open({
                         type: 1,
                         anim: 2,
                         title: '请输入要添加的分类',
                         area: '500px',
                         shadeClose: true, //开启遮罩关闭
-                        content: $("#pro_solu_cus_add_form")
+                        content: $("#pro_solu_cus_form")
                     });
-
-                    //监听提交 确认添加权限
-                    form.on('submit(pro_solu_cus_add_btn)', function (data) {
-                        $('.pro_solu_cus_add_btn').addClass('layui-btn-disabled');
-                        var field = data.field;
-                        $.ajax({
-                            method: 'POST',
-                            url: '/products/store',
-                            ContentType: 'application/json',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                    'content')
-                            },
-                            data: field,
-                            success: function (data) {
-                                $('.pro_solu_cus_add_btn').removeClass('layui-btn-disabled');
-                                if (data.code == 0) {
-                                    layer.msg(data.msg, {
-                                        icon: 1
-                                    });
-                                } else {
-                                    layer.msg(data.msg, {
-                                        icon: 2
-                                    });
-                                }
-                                layer.close(pro_solu_cus_add_form);
-                            }
-                        });
-                        return false;
-                    });
+                    document.getElementById('pro_solu_cus_form').reset()
+                    //监听提交 确认添加产品类目
+                    proSoluCusFormSubmit('/products/store', pro_solu_cus_form);
                 }
             });
             //工具栏事件 修改产品类目
             table.on('tool(producttable)', function (obj) {
                 if (obj.event == 'edit') {
                     var data = obj.data;
-                    //表单初始赋值
-                    form.val('pro_solu_cus_form', {
-                        "id": data.id,
-                        "name": data.name,
-                        "icon": data.icon,
-                        "title": data.title,
-                        "banner": data.banner,
-                        "description": data.description,
-                    })
                     // 产品解决方案 客户案例 共用一个form
                     var pro_solu_cus_form = layer.open({
                         type: 1,
@@ -982,65 +1043,248 @@ $$(document).ready(function () {
                         shadeClose: true, //开启遮罩关闭
                         content: $("#pro_solu_cus_form")
                     });
+                    //表单初始赋值
+                    form.val('pro_solu_cus_form', {
+                        "id": data.id,
+                        "name": data.name,
+                        "icon": data.icon,
+                        "title": data.title,
+                        "banner": data.banner,
+                        "description": data.description,
+                    });
+                    proSoluCusFormSubmit('/products/update', pro_solu_cus_form);
 
-                    //监听提交 修改分类
-                    form.on('submit(pro_solu_cus_form_btn)', function (data) {
-                        $('.pro_solu_cus_form_btn').addClass('layui-btn-disabled');
-                        var field = data.field;
-                        $.ajax({
-                            method: 'POST',
-                            url: '/products/update',
-                            ContentType: 'application/json',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                    'content')
-                            },
-                            data: field,
-                            success: function (data) {
-                                $('.pro_solu_cus_form_btn').removeClass('layui-btn-disabled');
-                                if (data.code == 0) {
-                                    layer.msg(data.msg, {
-                                        icon: 1
-                                    });
-                                } else {
-                                    layer.msg(data.msg, {
-                                        icon: 2
-                                    });
-                                }
-                                layer.close(pro_solu_cus_form);
-                            }
-                        });
-                        return false;
-                    });
                 } else if (obj.event == 'delete') {
-                    layer.confirm('真的移除么', function (index) {
-                        $.ajax({
-                            method: 'POST',
-                            url: '/products/destroy',
-                            ContentType: 'application/json',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                    'content')
-                            },
-                            data: {
-                                id: obj.data.id
-                            },
-                            success: function (data) {
-                                if (data.code == 0) {
-                                    obj.del();
-                                } else {
-                                    layer.msg(data.msg, {
-                                        icon: 2
-                                    });
-                                }
-                            },
-                        });
-                        layer.close(index);
+                    deleteLine('/products/destroy', obj);
+                }
+            });
+            //头工具栏事件 添加解决方案类目
+            table.on('toolbar(solutiontable)', function (obj) {
+                if (obj.event == 'add') {
+                    var pro_solu_cus_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请输入要添加的分类',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#pro_solu_cus_form")
                     });
+                    document.getElementById('pro_solu_cus_form').reset()
+                    //监听提交 确认添加解决方案类目
+                    proSoluCusFormSubmit('/solutions/store', pro_solu_cus_form);
+                }
+            });
+            //工具栏事件 修改解决方案类目
+            table.on('tool(solutiontable)', function (obj) {
+                if (obj.event == 'edit') {
+                    var data = obj.data;
+                    // 产品解决方案 客户案例 共用一个form
+                    var pro_solu_cus_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请选修改分类',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#pro_solu_cus_form")
+                    });
+                    //表单初始赋值
+                    form.val('pro_solu_cus_form', {
+                        "id": data.id,
+                        "name": data.name,
+                        "icon": data.icon,
+                        "title": data.title,
+                        "banner": data.banner,
+                        "description": data.description,
+                    });
+                    proSoluCusFormSubmit('/solutions/update', pro_solu_cus_form);
+
+                } else if (obj.event == 'delete') {
+                    deleteLine('/solutions/destroy', obj);
+                }
+            });
+            //头工具栏事件 添加客户案例类目
+            table.on('toolbar(customertable)', function (obj) {
+                if (obj.event == 'add') {
+                    var pro_solu_cus_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请输入要添加的分类',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#pro_solu_cus_form")
+                    });
+                    document.getElementById('pro_solu_cus_form').reset()
+                    //监听提交 确认添加客户案例类目
+                    proSoluCusFormSubmit('/customers/store', pro_solu_cus_form);
+                }
+            });
+            //工具栏事件 修改客户案例类目
+            table.on('tool(customertable)', function (obj) {
+                if (obj.event == 'edit') {
+                    var data = obj.data;
+                    // 产品解决方案 客户案例 共用一个form
+                    var pro_solu_cus_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请选修改分类',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#pro_solu_cus_form")
+                    });
+                    //表单初始赋值
+                    form.val('pro_solu_cus_form', {
+                        "id": data.id,
+                        "name": data.name,
+                        "icon": data.icon,
+                        "title": data.title,
+                        "banner": data.banner,
+                        "description": data.description,
+                    });
+                    proSoluCusFormSubmit('/customers/update', pro_solu_cus_form);
+
+                } else if (obj.event == 'delete') {
+                    deleteLine('/customers/destroy', obj);
+                }
+            });
+            //头工具栏事件 添加SEO城市
+            table.on('toolbar(seotable)', function (obj) {
+                if (obj.event == 'add') {
+                    var seo_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请输入要添加城市名称',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#seo_form")
+                    });
+                    document.getElementById('seo_form').reset();
+                    //监听提交 确认添加SEO城市
+                    seoFormSubmit('/management/club/seoStore', seo_form);
+                }
+            });
+            //工具栏事件 修改SEO城市
+            table.on('tool(seotable)', function (obj) {
+                if (obj.event == 'edit') {
+                    var data = obj.data;
+                    // 产品解决方案 客户案例 共用一个form
+                    var seo_form = layer.open({
+                        type: 1,
+                        anim: 2,
+                        title: '请选修城市',
+                        area: '500px',
+                        shadeClose: true, //开启遮罩关闭
+                        content: $("#seo_form")
+                    });
+                    console.log(data);
+                    //表单初始赋值
+                    form.val('seo_form', {
+                        "id": data.id,
+                        "city": data.city,
+                    });
+                    seoFormSubmit('/management/club/seoStore', seo_form);
+
+                } else if (obj.event == 'delete') {
+                    deleteLine('/management/club/seoDestroy', obj);
                 }
             });
 
-
+            // 表单提交监听
+            function proSoluCusFormSubmit(api, layerOpen) {
+                //监听提交 修改分类
+                form.on("submit(pro_solu_cus_form_btn)", function (data) {
+                    $(".pro_solu_cus_form_btn").addClass('layui-btn-disabled');
+                    var field = data.field;
+                    $.ajax({
+                        method: 'POST',
+                        url: api,
+                        ContentType: 'application/json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
+                        },
+                        data: field,
+                        success: function (data) {
+                            $(".pro_solu_cus_form_btn").removeClass('layui-btn-disabled');
+                            if (data.code == 0) {
+                                layer.msg(data.msg, {
+                                    icon: 1
+                                });
+                            } else {
+                                layer.msg(data.msg, {
+                                    icon: 2
+                                });
+                            }
+                            layer.close(layerOpen);
+                        }
+                    });
+                    return false;
+                });
+            }
+            // 表单提交监听结束
+            // 表单SEO提交监听
+            function seoFormSubmit(api, layerOpen) {
+                //监听提交 修改分类
+                form.on("submit(seo_form_btn)", function (data) {
+                    $(".seo_form_btn").addClass('layui-btn-disabled');
+                    var field = data.field;
+                    $.ajax({
+                        method: 'POST',
+                        url: api,
+                        ContentType: 'application/json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
+                        },
+                        data: field,
+                        success: function (data) {
+                            $(".seo_form_btn").removeClass('layui-btn-disabled');
+                            if (data.code == 0) {
+                                layer.msg(data.msg, {
+                                    icon: 1
+                                });
+                            } else {
+                                layer.msg(data.msg, {
+                                    icon: 2
+                                });
+                            }
+                            layer.close(layerOpen);
+                        }
+                    });
+                    return false;
+                });
+            }
+            // 表单提交监听结束
+            /**
+             * 
+             * @param {api} api 
+             * @param {表格行元素} obj 
+             */
+            function deleteLine(api, obj) {
+                layer.confirm('真的移除么', function (index) {
+                    $.ajax({
+                        method: 'POST',
+                        url: api,
+                        ContentType: 'application/json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
+                        },
+                        data: {
+                            id: obj.data.id
+                        },
+                        success: function (data) {
+                            if (data.code == 0) {
+                                obj.del();
+                            } else {
+                                layer.msg(data.msg, {
+                                    icon: 2
+                                });
+                            }
+                        },
+                    });
+                    layer.close(index);
+                });
+            }
         });
     }
     // 类目管理页面结束

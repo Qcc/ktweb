@@ -97,6 +97,7 @@ Route::get('/management/club/recommend','ClubManagementController@recommend')->n
 Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');
 // 角色管理
 Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
+Route::post('/management/club/roleStore','ClubManagementController@roleStore')->name('admin.club.roleStore');
 Route::post('/management/club/permissions','ClubManagementController@permissions')->name('admin.club.permissions');
 Route::post('/management/club/roleusers','ClubManagementController@roleusers')->name('admin.club.roleusers');
 Route::post('/management/club/rolepermission','ClubManagementController@rolepermission')->name('admin.club.rolepermission');
@@ -106,6 +107,9 @@ Route::post('/management/club/roleedit','ClubManagementController@roleedit')->na
 Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
 Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
 Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');
+// SEO修改
+Route::post('/management/club/seoStore','ClubManagementController@seoStore')->name('admin.club.seoStore');
+Route::post('/management/club/seoDestroy','ClubManagementController@seoDestroy')->name('admin.club.seoDestroy');
 
 //主站新闻
 Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
@@ -132,14 +136,19 @@ Route::post('upload/uploadImage', 'ProductcolController@uploadImage')->name('upl
 //解决方案
 Route::resource('solution', 'SolutionController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('solution/{solution}/{slug?}', 'SolutionController@show')->name('solution.show');
+
 // 方案分类
 Route::get('solutions/{solutioncol}', 'SolutioncolController@show')->name('solutions.show');
-
+Route::post('solutions/update', 'SolutioncolController@update')->name('solutions.update');
+Route::post('solutions/store', 'SolutioncolController@store')->name('solutions.store');
+Route::post('solutions/destroy', 'SolutioncolController@destroy')->name('solutions.destroy');
 //客户案例
 Route::resource('customer', 'CustomersController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('customer/{customer}/{slug?}', 'CustomersController@show')->name('customer.show');
 Route::get('customers/{customercol}', 'CustomercolController@show')->name('customers.show');
-
+Route::post('customers/update', 'CustomercolController@update')->name('customers.update');
+Route::post('customers/store', 'CustomercolController@store')->name('customers.store');
+Route::post('customers/destroy', 'CustomercolController@destroy')->name('customers.destroy');
 //上传图片
 Route::post('news/upload_image', 'NewsController@uploadImage')->name('news.upload_image');
 Route::post('product/upload_image', 'ProductController@uploadImage')->name('product.upload_image');

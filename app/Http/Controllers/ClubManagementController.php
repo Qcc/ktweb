@@ -66,6 +66,37 @@ class ClubManagementController extends Controller
         return view('management.web_recommend');
     }
     /**
+     * 添加 更新SEO 城市名称
+     *
+     * @return void
+     */
+    public function seoStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'操作失败!'];
+        if($request->id){
+            DB::table('seos')->where('id', $request->id)->update($request->all());
+            $res = ['code'=>0,'msg'=>'更新城市成功!'];
+        }else{
+            $id = DB::table('seos')->insertGetId($request->all());
+            $res = ['code'=>0,'msg'=>'新增城市成功!'];
+        }
+        return $res;
+    }
+    /**
+     * 删除SEO城市
+     *
+     * @return void
+     */
+    public function seoDestroy(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'删除城市失败!'];
+        if($request->id){
+            DB::table('seos')->where('id', $request->id)->delete();
+            $res = ['code'=>1,'msg'=>'删除城市成功!'];
+        }
+        return $request;
+    }
+    /**
      * 后台批量展示用户
      *
      * @return void
@@ -111,6 +142,29 @@ class ClubManagementController extends Controller
     {
         $roles = Role::paginate(10);
         return view('management.roles',compact('roles'));
+    }
+    public function roleStore(Request $request, Role $role)
+    {
+        $res = [
+            'code'=>1,
+            'msg'=>'操作失败！'
+        ];
+        if($request->id){
+            $role->where('id',$request->id)
+                ->update($request->all());
+            $res = [
+                'code'=>0,
+                'msg'=>'操修改角色成功！'
+            ];
+        }else{
+            $role->fill($request->all());
+            $role->save();
+            $res = [
+                'code'=>0,
+                'msg'=>'创建角色成功！'
+            ];
+        }
+        return $res;
     }
     /**
      * 展示所有权限

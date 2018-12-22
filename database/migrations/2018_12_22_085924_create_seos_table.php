@@ -16,7 +16,6 @@ class CreateSeosTable extends Migration
         Schema::create('seos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('city')->unique();
-            $table->timestamps();
         });
     }
 

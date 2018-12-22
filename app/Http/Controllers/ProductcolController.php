@@ -63,6 +63,7 @@ class ProductcolController extends Controller
 		return $data;
     }
     
+    // 产品类目图片 解决方案类目图片，客户案例类目图片，网站设置轮播图 广告图片 共用
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
 	{
 		//初始化数据,默认是失败的

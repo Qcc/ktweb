@@ -19,7 +19,7 @@
                             <th lay-data="{field:'cn_name'}">名称</th>
                             <th lay-data="{field:'name'}">标识</th>
                             <th lay-data="{field:'created_at'}">创建时间</th>
-                            <th lay-data="{toolbar: '#barAction', width:220}">操作</th>
+                            <th lay-data="{toolbar: '#barAction', width:260}">操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,18 @@
     <div class="layui-form-item">
         <label class="layui-form-label">角色名称</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入角色名称" class="layui-input">
+            <input type="text" name="cn_name" lay-verify="required" autocomplete="off" placeholder="请输入角色名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色标识</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="英文标识" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn roles-btn" lay-submit="" lay-filter="roles-btn">确认</button>
         </div>
     </div>
 </form>
@@ -70,6 +81,7 @@
 <script type="text/html" id="barAction">
     <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="users">角色用户</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="permission">角色权限</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
 </script>
 <script type="text/html" id="barDel">

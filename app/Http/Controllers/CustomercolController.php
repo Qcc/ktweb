@@ -17,4 +17,37 @@ class CustomercolController extends Controller
         // 传参变量话题和分类 到模版中
         return view('pages.customer.index',compact('customers','customercol'));
     }
+
+    public function update(Request $request,Customercol $customercol)
+    {
+        $data = [
+            'code'=>0,
+            'msg'=>'类目更新成功!'
+        ];
+        $customercol = Customercol::find($request->id);
+        $customercol->update($request->all());
+        return $data;
+    }
+
+    public function store(Request $request, Customercol $customercol)
+	{
+        $data = [
+            'code'=>0,
+            'msg'=>'新建类目成功!'
+        ];
+		$customercol->fill($request->all());
+		$customercol->save();
+		return $data;
+    }
+    
+    public function destroy(Request $request, Customercol $customercol)
+	{
+        $data = [
+            'code'=>0,
+            'msg'=>'删除类目成功!'
+        ];
+		$customercol = Customercol::find($request->id);
+		$customercol->delete();
+		return $data;
+    }
 }
