@@ -68,6 +68,9 @@ Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'st
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 // 分类话题列表
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
+Route::post('categories/update', 'CategoriesController@update')->name('categories.update');
+Route::post('categories/store', 'CategoriesController@store')->name('categories.store');
+Route::post('categories/destroy', 'CategoriesController@destroy')->name('categories.destroy');
 //上传图片
 Route::post('topics/upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 //发表社区回复
@@ -121,6 +124,10 @@ Route::resource('product', 'ProductController', ['only' => ['index', 'create', '
 Route::get('product/{product}/{slug?}', 'ProductController@show')->name('product.show');
 // 产品分类
 Route::get('products/{productcol}', 'ProductcolController@show')->name('products.show');
+Route::post('products/update', 'ProductcolController@update')->name('products.update');
+Route::post('products/store', 'ProductcolController@store')->name('products.store');
+Route::post('products/destroy', 'ProductcolController@destroy')->name('products.destroy');
+Route::post('upload/uploadImage', 'ProductcolController@uploadImage')->name('upload.uploadImage');
 
 //解决方案
 Route::resource('solution', 'SolutionController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);

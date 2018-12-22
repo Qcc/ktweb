@@ -28,4 +28,37 @@ class CategoriesController extends Controller
         // 传参变量话题和分类 到模版中
         return view('topics.index',compact('topics','category','tops'));
     }
+
+    public function update(Request $request,Category $category)
+    {
+        $data = [
+            'code'=>0,
+            'msg'=>'类目更新成功!'
+        ];
+        $category = Category::find($request->id);
+        $category->update($request->all());
+        return $data;
+    }
+
+    public function store(Request $request, Category $category)
+	{
+        $data = [
+            'code'=>0,
+            'msg'=>'新建类目成功!'
+        ];
+		$category->fill($request->all());
+		$category->save();
+		return $data;
+    }
+    
+    public function destroy(Request $request, Category $category)
+	{
+        $data = [
+            'code'=>0,
+            'msg'=>'删除类目成功!'
+        ];
+		$category = Category::find($request->id);
+		$category->delete();
+		return $data;
+	}
 }

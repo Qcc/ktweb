@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Hash;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Category;
@@ -47,6 +48,8 @@ class ClubManagementController extends Controller
             $data = Solutioncol::all();
         }else if($request->type == 'customercol'){
             $data = Customercol::all();
+        }else if($request->type == 'seo'){
+            $data = DB::table('seos')->get();
         }
         return $data;
     }

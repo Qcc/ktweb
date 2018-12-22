@@ -23,6 +23,7 @@ class SeedRolesAndPermissionsData extends Migration
         // 先创建权限
         Permission::create(['name' => 'manage_club_contents','cn_name'=>'管理社区帖子']);
         Permission::create(['name' => 'club_recommend','cn_name'=>'社区推荐']);
+        Permission::create(['name' => 'web_manage','cn_name'=>'网站管理']);
         Permission::create(['name' => 'club_advertising','cn_name'=>'社区侧边广告']);
         Permission::create(['name' => 'web_advertising','cn_name'=>'主站广告']);
         Permission::create(['name' => 'web_recommend','cn_name'=>'主站推荐']);
@@ -47,6 +48,7 @@ class SeedRolesAndPermissionsData extends Migration
         // 创建站长角色，并赋予权限
         $founder = Role::create(['name' => 'Webmaster','cn_name'=>'超级管理员']);
         $founder->givePermissionTo('manage_club_contents');
+        $founder->givePermissionTo('web_manage');
         $founder->givePermissionTo('club_recommend');
         $founder->givePermissionTo('club_advertising');
         $founder->givePermissionTo('web_advertising');

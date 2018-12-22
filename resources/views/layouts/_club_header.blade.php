@@ -47,12 +47,12 @@
               <a href="{{ route('users.edit', Auth::id()) }}" class="mdui-ripple">
                 <i class="mdui-icon material-icons">&#xe14f;</i> 编辑资料</a>
             </li>
-            @role('站长')
+            @can('web_manage')
             <li class="mdui-menu-item">
               <a href="{{ route('admin.club.system') }}" class="mdui-ripple">
                 <i class="mdui-icon material-icons">&#xe894;</i> 网站管理</a>
             </li>
-            @endrole
+            @endcan
             <li class="mdui-divider"></li>
             <li class="mdui-menu-item">
               <a href="{{ route('logout') }}" class="mdui-ripple" onclick="event.preventDefault();
