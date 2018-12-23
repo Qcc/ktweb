@@ -44,9 +44,7 @@
         </div>
     </li>
 
-    <div class="mdui-typo">
-        <hr />
-    </div>
+    <div class="mdui-divider"></div>
 
     @endforeach
     @foreach ($topics as $topic)
@@ -91,9 +89,7 @@
     </li>
 
     @if ( ! $loop->last)
-    <div class="mdui-typo">
-        <hr />
-    </div>
+    <div class="mdui-divider"></div>
     @endif
 
     @endforeach

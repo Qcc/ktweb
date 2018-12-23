@@ -184,7 +184,7 @@ class ClubManagementController extends Controller
      */
     public function roleusers(Request $request, Role $role)
     {
-        // 获取所有权限用户
+        // 获取角色所有用户
         $users = User::role($request->id)->get(); 
         return $users;
     }

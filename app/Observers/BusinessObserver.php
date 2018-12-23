@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\Business;
 use App\Models\User;
 use App\Notifications\BusinessNotice;
-use Illuminate\Support\Facades\Log;
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
 /**
@@ -22,10 +21,14 @@ class BusinessObserver
         
     }
 
-    public function created(Business $business)
+    public function created(Business $business,User $user)
     {
-        $user = User::find(1);
+        // $user = User::find(1);
+        $users = $user->permission("manage_report")->get();
         //通知用户有新的商机需要联系
-        $user->notify(new BusinessNotice($business));
+        foreach ($users as $key => $user) {
+			//通知用户有新的商机需要联系
+            $user->notify(new BusinessNotice($business));
+		}
     }
 }

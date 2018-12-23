@@ -21,13 +21,67 @@ $$(document).ready(function () {
                 element = layui.element,
                 layer = layui.layer,
                 form = layui.form;
-            $('.club-report').on('click',function(){
-                var userform = layer.open({
+            $('.club-report').on('click', function () {
+                var reportform = layer.open({
                     type: 1,
+                    area: '600px',
                     title: '共建品质社区，欢迎举报不良信息',
                     content: $('#report-form'),
                 });
+                $('.report-type').val('话题');
+                $('.report-link').val(window.location.href);
+                reportForm(reportform);
             });
+            $('.club-reply-report').on('click', function () {
+                var reportform = layer.open({
+                    type: 1,
+                    area: '600px',
+                    title: '共建品质社区，欢迎举报不良信息',
+                    content: $('#report-form'),
+                });
+                $('.report-type').val('回复');
+                $('.report-link').val(window.location.href+'?#'+$(this).attr('reply-item'));
+                reportForm(reportform);
+            });
+            function reportForm(reportform){
+                // 监听单选框
+                form.on('radio(reason)', function (data) {
+                    if (data.value == '其他理由') {
+                        $('.report-form-other').attr('lay-verify', 'required').focus();
+                    } else {
+                        $('.report-form-other').attr('lay-verify', '');
+                    }
+                });
+                // 提交举报
+                form.on('submit(report-btn)', function (data) {
+                    $('.report-btn').addClass('layui-btn-disabled');
+                    var field = data.field;
+                    $.ajax({
+                        method: 'POST',
+                        url: '/topics/topic/report',
+                        ContentType: 'application/json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
+                        },
+                        data: field,
+                        success: function (data) {
+                            $('.report-btn').removeClass('layui-btn-disabled');
+                            if (data.code == 0) {
+                                layer.msg(data.msg, {
+                                    icon: 1
+                                });
+                            } else {
+                                layer.msg(data.msg, {
+                                    icon: 2
+                                });
+                            }
+                            layer.close(reportform);
+                        }
+                    });
+                    return false;
+                });
+            };
         });
         // 点赞
         $$('.excellent').on("click", function () {
@@ -76,11 +130,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         $$('.user-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
-                            'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
+                                'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
                     } else {
                         $$('.user-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr(
-                            'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
+                                'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
                     }
                     $$('.user-follower').removeAttr('disabled');
                 }
@@ -105,11 +159,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         $$('.topic-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
-                            'title', '取消关注将不会再收到新的回复通知').css('color', '#00C853');
+                                'title', '取消关注将不会再收到新的回复通知').css('color', '#00C853');
                     } else {
                         $$('.topic-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe8f4;</i> 加关注").attr(
-                            'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
+                                'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
                     }
                     $$('.topic-follower').removeAttr('disabled');
                 }
@@ -134,11 +188,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         if (data.status) {
                             $$('.topic-excellent').empty().append(
-                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已加精")
+                                "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已加精")
                                 .attr('title', '取消文章精华设置').css('color', '#00C853');
                         } else {
                             $$('.topic-excellent').empty().append(
-                                    "<i class='mdui-icon material-icons'>&#xe83a;</i> 加精华")
+                                "<i class='mdui-icon material-icons'>&#xe83a;</i> 加精华")
                                 .attr('title', '将文章设置为精华').css('color', '#a2a2a2');
                         }
                     }
@@ -167,11 +221,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         if (data.status) {
                             $$('.topic-topping').empty().append(
-                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
+                                "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
                                 .attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
                         } else {
                             $$('.topic-topping').empty().append(
-                                    "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
+                                "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
                                 .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
                         }
                     }
@@ -202,11 +256,11 @@ $$(document).ready(function () {
                         if (data.result) {
                             if (data.status) {
                                 $$('.topic-topping').empty().append(
-                                        "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
+                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
                                     .attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
                             } else {
                                 $$('.topic-topping').empty().append(
-                                        "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
+                                    "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
                                     .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
                             }
                         }

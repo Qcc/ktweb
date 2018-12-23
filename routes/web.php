@@ -65,6 +65,8 @@ Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'st
 // URI 最后一个参数表达式 {slug?} ，? 意味着参数可选，这是为了兼容我们数据库中 Slug 为空的话题数据。这种写法可以同时兼容以下两种链接：
 // http://larabbs.test/topics/119
 // http://larabbs.test/topics/119/slug-translation-test
+//用户举报违规信息
+Route::post('topics/topic/report', 'TopicsController@report')->name('topics.report');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 // 分类话题列表
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);

@@ -47,9 +47,7 @@
                             <span><i class="mdui-icon material-icons" title="该主题已被置顶" style="color:#FF9800;">&#xeb45;</i></span>
                             @endif
                         </div>
-                        <div class="mdui-typo">
-                            <hr />
-                        </div>
+                        <div class="mdui-divider"></div>
                         <div class="topic-body">
                             {!! $topic->body !!}
                         </div>

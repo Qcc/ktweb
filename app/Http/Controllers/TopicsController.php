@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Session\Store as Session;
 use App\Handlers\ImageUploadHandler;
+use App\Notifications\ReportNotice;
 use Auth;
 
 class TopicsController extends Controller
@@ -207,5 +209,16 @@ class TopicsController extends Controller
 		}
 		return $data;
 	}
-
+	/**	用户举报违规内容 */
+	public function report(Request $request, User $user){
+		$report = $request->all();
+		// 获得拥有处理举报权限的用户
+		$users = $user->permission("manage_report")->get();
+		foreach ($users as $key => $user) {
+			//通知用户有新的商机需要联系
+			$user->notify(new ReportNotice($report));
+		}
+		$res = ['code'=>0,'msg'=>'举报成功！我们将核实违规内容后进行处理。'];
+		return $res;
+	}
 }

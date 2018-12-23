@@ -1483,10 +1483,11 @@ a:active {
     .article-panel,
     .reply-box {
         margin-bottom: 30px;
+        padding: 10px;
         background: #fff;
         border: 1px solid #f2f2f2;
         box-shadow: 0 0 2px #dedada;
-        box-shadow: 0 0 2px #000;
+        /* box-shadow: 0 0 2px #000; */
         border-radius: 4px;
         text-align: justify;
     }
@@ -3319,11 +3320,11 @@ a:active {
         }
 
         .xhs_sp_topiclist {
-            padding-bottom: 25px;
+            padding: 10px 0 20px;
         }
 
         .xhs_sp_topiclist .media-footer {
-            bottom: 0;
+            bottom: 5px;
         }
 
         .xhs_sp_topiclist .topic_a_tit {
@@ -3469,7 +3470,7 @@ a:active {
         }
 
         .xhs_sp_topiclist {
-            padding-bottom: 0px;
+            padding: 10px 0;
         }
 
         .xhs_sp_topiclist .media-footer {
@@ -3619,7 +3620,7 @@ a:active {
         }
 
         .xhs_sp_topiclist {
-            padding-bottom: 0px;
+            padding: 10px 0;
         }
 
         .xhs_sp_topiclist .media-footer {

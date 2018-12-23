@@ -7,9 +7,9 @@
 
     <div class="infos xhs_sp_infos">
         <div class="media-heading">
-            <a href="{{ route('users.show', $notification->data['user_id']) }}">{{ $notification->data['user_nickname'] }}</a>
+            <a href="{{ route('users.show', $notification->data['user_id']) }}" target="_blank">{{ $notification->data['user_nickname'] }}</a>
             评论了
-            <a href="{{ $notification->data['topic_link'] }}">{{ $notification->data['topic_title'] }}</a>
+            <a href="{{ $notification->data['topic_link'] }}" target="_blank">{{ $notification->data['topic_title'] }}</a>
 
             {{-- 回复删除按钮 --}}
             <span class="meta pull-right mdui-hidden-sm-down" title="{{ $notification->created_at }}">

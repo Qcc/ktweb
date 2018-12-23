@@ -31,7 +31,7 @@
                         <button class="mdui-btn mdui-ripple"> <i class="mdui-icon material-icons">&#xe8dc;</i> 点赞</button>
                     </div>
                     <div class="reply-report">
-                        <button class="mdui-btn mdui-ripple"> <i class="mdui-icon material-icons">&#xe002;</i> 举报</button>
+                        <button class="mdui-btn mdui-ripple club-reply-report" reply-item="reply{{ $reply->id }}"> <i class="mdui-icon material-icons">&#xe002;</i> 举报</button>
                     </div>
                     @can('destroy', $reply)
                     <div class="reply-delete">

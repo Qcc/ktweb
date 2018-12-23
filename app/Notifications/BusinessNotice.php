@@ -7,7 +7,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\Business;
-use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Permission;
+
 class BusinessNotice extends Notification implements ShouldQueue
 {
     use Queueable;
