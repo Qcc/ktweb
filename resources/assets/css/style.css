@@ -1500,8 +1500,8 @@ a:active {
         padding: 10px;
         background: #fff;
         border: 1px solid #f2f2f2;
-        /* box-shadow: 0 0 2px #dedada; */
-        box-shadow: 0 0 2px #000;
+        box-shadow: 0 0 2px #dedada;
+        /* box-shadow: 0 0 2px #000; */
         border-radius: 4px;
         text-align: justify;
     }
@@ -3709,9 +3709,33 @@ a:active {
     }
 
 /* 侧边广告栏样式 */
+.side-link-box{
+    margin: 20px 0;
+}
 .side-link-box .list .item{
     margin: 10px 10px;
 }
 .side-link-box .list .item>a>img{
 width: 100%;
+}
+/* 侧边推荐栏 */
+.side-page-warp{
+    margin: 20px 0;
+}
+.side-page-warp .head{
+    font-size: 17px;
+    line-height: 30px;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+}
+.side-page-warp .list{
+    margin: 10px;
+
+}
+.side-page-warp .list .item{
+    margin: 10px 0;
+}
+.side-page-warp .list .item>span{
+    font-size: 12px;
+    color: #a2a2a2;
 }

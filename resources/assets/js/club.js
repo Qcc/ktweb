@@ -1,6 +1,7 @@
 var $$ = mdui.JQ;
 // header部分
 $$(document).ready(function () {
+    
     // 信息提示框样式
     if ($$('.alert')) {
         setTimeout(function () {
@@ -15,11 +16,15 @@ $$(document).ready(function () {
     }
     // 社区页面
     if ($$('.topics-show-page').length == 1) {
-        layui.use(['element', 'layer', 'form'], function () {
+        layui.use(['element', 'layer', 'form','laydate'], function () {
             var $ = layui.jquery,
                 element = layui.element,
                 layer = layui.layer,
+                laydate = layui.laydate,
                 form = layui.form;
+                laydate.render({
+                    elem: '#top_expired'
+                });
             $('.club-report').on('click', function () {
                 var reportform = layer.open({
                     type: 1,
@@ -273,9 +278,7 @@ $$(document).ready(function () {
         });
     }
 
-    // laydate.render({
-    //     elem: '#top_expired'
-    // });
+    
     // 展开移动端菜单导航
     $$('.ktm-nav-menu').on('click', function () {
         $$('.club-header').toggleClass('kt-nav-header-open')
@@ -1343,10 +1346,10 @@ $$(document).ready(function () {
     }
     // 类目管理页面结束
 
-    if ($('.topics-show-page').length == 1) {
+    if ($$('.topics-show-page').length == 1) {
 
         var editor = new Simditor({
-            textarea: $('#reply-editor'),
+            textarea: $$('#reply-editor'),
             toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
             upload: {
                 url: "{{ route('topics.upload_image') }}",
@@ -1361,10 +1364,10 @@ $$(document).ready(function () {
             pasteImage: true,
         });
 
-        $('.reply-reply').on('click', function () {
-            $(document).scrollTop($('.reply-box').offset().top);
-            var user = $(this).attr('replay-user');
-            var link = $(this).attr('replay-link');
+        $$('.reply-reply').on('click', function () {
+            $$(document).scrollTop($$('.reply-box').offset().top);
+            var user = $$(this).attr('replay-user');
+            var link = $$(this).attr('replay-link');
             var value = editor.getValue();
             editor.setValue(value + "<a href=" + link + ">@" + user + "</a> &nbsp;");
             editor.focus();

@@ -21,10 +21,10 @@ class BusinessObserver
         
     }
 
-    public function created(Business $business,User $user)
+    public function created(Business $business)
     {
         // $user = User::find(1);
-        $users = $user->permission("manage_report")->get();
+        $users = User::permission('manage_report')->get();
         //通知用户有新的商机需要联系
         foreach ($users as $key => $user) {
 			//通知用户有新的商机需要联系

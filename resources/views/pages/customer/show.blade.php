@@ -43,10 +43,13 @@
             @endcan
         </div>
         <div class="mdui-col-xs-3">
-            推荐
+            @include('pages.side_page')
+            @include('pages.side_page')
+            @include('pages.side_advertising')
         </div>
     </div>
 </div>
+@include('pages._contact')
 @stop
 
 @section('styles')

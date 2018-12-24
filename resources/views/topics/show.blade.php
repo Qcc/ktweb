@@ -24,6 +24,7 @@
             </div>
             @include('pages.side_advertising')
         </div>
+        {{ $topic }}
         <div class="mdui-col-sm-9  mdui-col-xs-12 topic-content">
             <div class="article-warp">
                 <div class="article-body">
@@ -88,14 +89,4 @@
 </div>
 <!-- 需要登录操作 -->
 @include('common.require_login')
-@endsection
-
-@section('script')
-<script src="{{ asset('js/laydate.js')}}"></script>
-<script>
-    var $$ = mdui.JQ;
-    $$(document).ready(function () {
-
-    });
-</script>
 @stop
