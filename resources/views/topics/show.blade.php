@@ -9,6 +9,20 @@
     <div class="mdui-row">
         <div class="mdui-col-sm-3 mdui-col-xs-12">
             @include('users._user_info',['user'=>$topic->user])
+            <div class="new-article-warp">
+                <div class="new-article">最新发表</div>
+                <div class="list">
+                    @foreach($topics as $topic)
+                    <div class="item">
+                        <span>{{ $topic->created_at->diffForHumans() }} </span>
+                        <a href="{{ route('topics.show',$topic->id)}}" target="_blank" title="{{ $topic->title}}">
+                            <p>{{ $topic->title }}</p>
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @include('pages.side_advertising')
         </div>
         <div class="mdui-col-sm-9  mdui-col-xs-12 topic-content">
             <div class="article-warp">

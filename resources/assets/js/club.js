@@ -15,7 +15,6 @@ $$(document).ready(function () {
     }
     // 社区页面
     if ($$('.topics-show-page').length == 1) {
-
         layui.use(['element', 'layer', 'form'], function () {
             var $ = layui.jquery,
                 element = layui.element,
@@ -40,10 +39,11 @@ $$(document).ready(function () {
                     content: $('#report-form'),
                 });
                 $('.report-type').val('回复');
-                $('.report-link').val(window.location.href+'?#'+$(this).attr('reply-item'));
+                $('.report-link').val(window.location.href + '?#' + $(this).attr('reply-item'));
                 reportForm(reportform);
             });
-            function reportForm(reportform){
+
+            function reportForm(reportform) {
                 // 监听单选框
                 form.on('radio(reason)', function (data) {
                     if (data.value == '其他理由') {
@@ -76,9 +76,9 @@ $$(document).ready(function () {
                                     icon: 2
                                 });
                             }
-                            layer.close(reportform);
                         }
                     });
+                    layer.close(reportform);
                     return false;
                 });
             };
@@ -130,11 +130,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         $$('.user-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
-                                'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
+                            'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
                     } else {
                         $$('.user-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe145;</i> 加关注").attr(
-                                'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
+                            'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
                     }
                     $$('.user-follower').removeAttr('disabled');
                 }
@@ -159,11 +159,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         $$('.topic-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已关注").attr(
-                                'title', '取消关注将不会再收到新的回复通知').css('color', '#00C853');
+                            'title', '取消关注将不会再收到新的回复通知').css('color', '#00C853');
                     } else {
                         $$('.topic-follower').empty().append(
                             "<i class='mdui-icon material-icons'>&#xe8f4;</i> 加关注").attr(
-                                'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
+                            'title', '关注后能收到文章的最新回复通知').css('color', '#a2a2a2');;
                     }
                     $$('.topic-follower').removeAttr('disabled');
                 }
@@ -188,11 +188,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         if (data.status) {
                             $$('.topic-excellent').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已加精")
+                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已加精")
                                 .attr('title', '取消文章精华设置').css('color', '#00C853');
                         } else {
                             $$('.topic-excellent').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe83a;</i> 加精华")
+                                    "<i class='mdui-icon material-icons'>&#xe83a;</i> 加精华")
                                 .attr('title', '将文章设置为精华').css('color', '#a2a2a2');
                         }
                     }
@@ -221,11 +221,11 @@ $$(document).ready(function () {
                     if (data.result) {
                         if (data.status) {
                             $$('.topic-topping').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
+                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
                                 .attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
                         } else {
                             $$('.topic-topping').empty().append(
-                                "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
+                                    "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
                                 .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
                         }
                     }
@@ -256,11 +256,11 @@ $$(document).ready(function () {
                         if (data.result) {
                             if (data.status) {
                                 $$('.topic-topping').empty().append(
-                                    "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
+                                        "<i class='mdui-icon material-icons'>&#xe5ca;</i> 已置顶")
                                     .attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
                             } else {
                                 $$('.topic-topping').empty().append(
-                                    "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
+                                        "<i class='mdui-icon material-icons'>&#xe25a;</i> 置顶")
                                     .attr('title', '将文章置顶').css('color', '#a2a2a2').attr('topping', '0');
                             }
                         }
@@ -1342,5 +1342,33 @@ $$(document).ready(function () {
         });
     }
     // 类目管理页面结束
+
+    if ($('.topics-show-page').length == 1) {
+
+        var editor = new Simditor({
+            textarea: $('#reply-editor'),
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
+            upload: {
+                url: "{{ route('topics.upload_image') }}",
+                //工具条都包含哪些内容
+                params: {
+                    _token: '{{ csrf_token() }}'
+                },
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true,
+        });
+
+        $('.reply-reply').on('click', function () {
+            $(document).scrollTop($('.reply-box').offset().top);
+            var user = $(this).attr('replay-user');
+            var link = $(this).attr('replay-link');
+            var value = editor.getValue();
+            editor.setValue(value + "<a href=" + link + ">@" + user + "</a> &nbsp;");
+            editor.focus();
+        });
+    }
 
 });

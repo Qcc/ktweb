@@ -1470,10 +1470,24 @@ a:active {
         margin-top: 20px;
         color: #555;
     }
+    .new-article-warp .new-article{
+        font-size: 17px;
+    line-height: 30px;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+    }
+    .new-article-warp .list .item{
+        margin: 10px 0;
+    }
+    .new-article-warp .list .item>span{
+        font-size: 12px;
+    color: #a2a2a2;
+    }
 
 
     /* 边框样式 */
 
+    .new-article-warp,
     .usercard-warp,
     .article-warp,
     .useraction-nav,
@@ -1486,8 +1500,8 @@ a:active {
         padding: 10px;
         background: #fff;
         border: 1px solid #f2f2f2;
-        box-shadow: 0 0 2px #dedada;
-        /* box-shadow: 0 0 2px #000; */
+        /* box-shadow: 0 0 2px #dedada; */
+        box-shadow: 0 0 2px #000;
         border-radius: 4px;
         text-align: justify;
     }
@@ -3693,3 +3707,11 @@ a:active {
             display: block;
         }
     }
+
+/* 侧边广告栏样式 */
+.side-link-box .list .item{
+    margin: 10px 10px;
+}
+.side-link-box .list .item>a>img{
+width: 100%;
+}

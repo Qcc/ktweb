@@ -19,7 +19,7 @@
                         <b>{{ $reply->user->nickname }}</b>
                     </a>
                     <span class="introduction"> {{ $reply->user->introduction }} </span>
-                    <a class="reply-reply" title="回复{{ $reply->user->nickname }}" href="javascript:;"><i class="mdui-icon material-icons">&#xe15e;</i></a>
+                    <a class="reply-reply" replay-user="{{ $reply->user->nickname }}" replay-link="{{ route('users.show',$reply->user->id) }}" title="回复{{ $reply->user->nickname }}" href="javascript:;"><i class="mdui-icon material-icons">&#xe15e;</i></a>
                 </div>
                 <div class="reply-content topic-body">
                     {!! $reply->content !!}

@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Session\Store as Session;
 use App\Handlers\ImageUploadHandler;
 use App\Notifications\ReportNotice;
+use Illuminate\Support\Facades\Cache;
 use Auth;
 
 class TopicsController extends Controller
@@ -59,11 +60,18 @@ class TopicsController extends Controller
 			$topic->increment('view_count',1);
 			$topic->timestamps = true;
 		}
+		$topics = $topic->user->topics()->with('category')->recent()->paginate(5);
+		$advertisings = Cache::remember('side_advertising1',600, function (){
+			$result = \DB::table('settings')->where('key','side_advertising')->get();
+			$allAdv = $result->all(); 
+			return unserialize($allAdv[0]->value);
+		});
 		// 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
-        }
-        return view('topics.show', compact('topic'));
+		}
+		// dd(compact('advertisings'));
+        return view('topics.show', compact('topic','topics','advertisings'));
     }
 
 	public function create(Topic $topic)

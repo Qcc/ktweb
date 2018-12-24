@@ -8,6 +8,7 @@ use App\Models\Productcol;
 use App\Http\Requests\ProductRequest;
 use Auth;
 use App\Handlers\ImageUploadHandler;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -57,11 +58,16 @@ class ProductController extends Controller
      */
     public function show(Request $request, Product $product)
     {
+        $advertisings = Cache::remember('side_advertising1',600, function (){
+			$result = \DB::table('settings')->where('key','side_advertising')->get();
+			$allAdv = $result->all(); 
+			return unserialize($allAdv[0]->value);
+		});
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($product->slug) && $product->slug != $request->slug) {
             return redirect($product->link(), 301);
         }
-        return view('pages.product.show', compact('product'));
+        return view('pages.product.show', compact('product','advertisings'));
     }
 
     /**

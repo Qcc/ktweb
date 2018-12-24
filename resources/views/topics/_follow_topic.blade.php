@@ -82,7 +82,7 @@
 
     <div class="layui-form-item">
       <div class="layui-input-block">
-        <button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="report-btn">确认举报</button>
+        <button class="layui-btn layui-btn-danger report-btn" lay-submit="" lay-filter="report-btn">确认举报</button>
       </div>
     </div>
   </form>

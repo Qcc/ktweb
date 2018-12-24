@@ -14,15 +14,9 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->comment('标题');
-            $table->string('sub')->comment('副标题');
-            $table->string('introdction')->comment('介绍');
-            $table->integer('number')->comment('里程碑数字');
-            $table->string('icon')->comment('图标');
-            $table->string('image')->comment('大图');
-            $table->string('link')->comment('链接');
-            $table->timestamps();
+            $table->string('key')->unique();
+            $table->text('value');
+            $table->integer('expiration')->nullable();
         });
     }
 
