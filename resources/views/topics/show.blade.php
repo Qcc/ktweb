@@ -12,11 +12,11 @@
             <div class="new-article-warp">
                 <div class="new-article">最新发表</div>
                 <div class="list">
-                    @foreach($topics as $topic)
+                @foreach($topics as $article)
                     <div class="item">
-                        <span>{{ $topic->created_at->diffForHumans() }} </span>
-                        <a href="{{ route('topics.show',$topic->id)}}" target="_blank" title="{{ $topic->title}}">
-                            <p>{{ $topic->title }}</p>
+                        <span>{{ $article->created_at->diffForHumans() }} </span>
+                        <a href="{{ route('topics.show',$article->id)}}" target="_blank" title="{{ $article->title}}">
+                            <p>{{ $article->title }}</p>
                         </a>
                     </div>
                     @endforeach
@@ -24,7 +24,6 @@
             </div>
             @include('pages.side_advertising')
         </div>
-        {{ $topic }}
         <div class="mdui-col-sm-9  mdui-col-xs-12 topic-content">
             <div class="article-warp">
                 <div class="article-body">
