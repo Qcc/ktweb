@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Productcol;
+use App\Models\Solution;
+use App\Models\Customer;
 use App\Http\Requests\ProductRequest;
 use Auth;
 use App\Handlers\ImageUploadHandler;
@@ -12,18 +14,6 @@ use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Product $product, Request $request)
-    {
-		// 分页获取21条记录。默认获取15条
-		$products = $product->withOrder($request->order)->paginate(21);
-
-		return view('pages.product.index', compact('products'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +37,7 @@ class ProductController extends Controller
         $product->fill($request->all());
 		$product->user_id = Auth::id();
 		$product->save();
-		return redirect()->to($product->link())->with('success', '成功创建话题！');
+		return redirect()->to($product->link())->with('success', '成功创建产品！');
     }
 
     /**
@@ -62,12 +52,14 @@ class ProductController extends Controller
 			$result = \DB::table('settings')->where('key','side_advertising')->get();
 			$allAdv = $result->all(); 
 			return unserialize($allAdv[0]->value);
-		});
+        });
+        $sulotions = Solution::where('productcol_id',$product->productcol_id)->paginate(5);
+        $customers = Customer::where('productcol_id',$product->productcol_id)->paginate(5);
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($product->slug) && $product->slug != $request->slug) {
             return redirect($product->link(), 301);
         }
-        return view('pages.product.show', compact('product','advertisings'));
+        return view('pages.product.show', compact('product','advertisings','sulotions','customers'));
     }
 
     /**

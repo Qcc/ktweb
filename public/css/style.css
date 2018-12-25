@@ -3735,7 +3735,53 @@ width: 100%;
 .side-page-warp .list .item{
     margin: 10px 0;
 }
-.side-page-warp .list .item>span{
-    font-size: 12px;
-    color: #a2a2a2;
+.side-page-warp .list .item>a{
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.side-page-warp .list .item>a>p:hover{
+    color: #2196F3;
+}
+.side-page-warp .list .item>a>img{
+    width: 100%;
+}
+.side-page-warp .list .item>a>.title{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #2196F3;
+    opacity: 0.8;
+    color: #fff;
+    padding: 10px;
+}
+.side-page-warp .list .item>a>.title:hover{
+color:#fff;
+}
+.customer-index-page .customer-nav{
+    margin: 20px auto 10px;
+    line-height: 30px;
+    height: 30px;
+}
+.customer-nav .customer-nav-ul>li{
+ width: 33.3%;
+ text-align: center;
+ float: left;
+}
+.customer-nav .customer-nav-ul>li a{
+    width: 100%;
+    height: 30px;
+    display: block;
+}
+.customer-nav .customer-nav-ul>li a:hover{
+    background: #e2e2e2;
+    opacity: 0.6;
+}
+.customer-nav .customer-nav-ul>.active{
+    background: #2196f3;
+}
+
+.customer-nav .customer-nav-ul>.active>a{
+    color: #fff;
 }

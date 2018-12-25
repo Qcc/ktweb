@@ -11,6 +11,9 @@ use App\Models\Productcol;
 use App\Models\Solutioncol;
 use Auth;
 use App\Handlers\ImageUploadHandler;
+use App\Models\Solution;
+use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 
 class CustomersController extends Controller
 {
@@ -62,11 +65,18 @@ class CustomersController extends Controller
      */
     public function show(Request $request, Customer $customer)
     {
+        $advertisings = Cache::remember('side_advertising1',600, function (){
+			$result = \DB::table('settings')->where('key','side_advertising')->get();
+			$allAdv = $result->all(); 
+			return unserialize($allAdv[0]->value);
+        });
+        $sulotions = Solution::where('productcol_id',$customer->productcol_id)->paginate(5);
+        $products = Product::where('productcol_id',$customer->productcol_id)->paginate(5);
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($customer->slug) && $customer->slug != $request->slug) {
             return redirect($customer->link(), 301);
         }
-        return view('pages.customer.show', compact('customer'));
+        return view('pages.customer.show', compact('customer','advertisings','sulotions','products'));
     }
 
     /**

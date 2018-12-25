@@ -88,6 +88,30 @@ $$(document).ready(function () {
                 });
             };
         });
+        var editor = new Simditor({
+            textarea: $('#reply-editor'),
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
+            upload: {
+                url: "{{ route('topics.upload_image') }}",
+                //工具条都包含哪些内容
+                params: {
+                    _token: '{{ csrf_token() }}'
+                },
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true,
+        });
+
+        $('.reply-reply').on('click', function () {
+            $(document).scrollTop($('.reply-box').offset().top);
+            var user = $(this).attr('replay-user');
+            var link = $(this).attr('replay-link');
+            var value = editor.getValue();
+            editor.setValue(value + "<a href=" + link + ">@" + user + "</a> &nbsp;");
+            editor.focus();
+        });
         // 点赞
         $$('.excellent').on("click", function () {
             var id = $$('#topic_id').attr('data_id');
@@ -1345,33 +1369,5 @@ $$(document).ready(function () {
         });
     }
     // 类目管理页面结束
-
-    if ($$('.topics-show-page').length == 1) {
-
-        var editor = new Simditor({
-            textarea: $$('#reply-editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
-            upload: {
-                url: "{{ route('topics.upload_image') }}",
-                //工具条都包含哪些内容
-                params: {
-                    _token: '{{ csrf_token() }}'
-                },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-            },
-            pasteImage: true,
-        });
-
-        $$('.reply-reply').on('click', function () {
-            $$(document).scrollTop($$('.reply-box').offset().top);
-            var user = $$(this).attr('replay-user');
-            var link = $$(this).attr('replay-link');
-            var value = editor.getValue();
-            editor.setValue(value + "<a href=" + link + ">@" + user + "</a> &nbsp;");
-            editor.focus();
-        });
-    }
 
 });

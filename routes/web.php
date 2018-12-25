@@ -120,7 +120,7 @@ Route::get('news/{news}/{slug?}', 'NewsController@show')->name('news.show');
 Route::resource('columns', 'ColumnsController', ['only' => ['show']]);
 
 //产品介绍
-Route::resource('product', 'ProductController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
 // Route::get('/product', 'ProductController@index')->name('product.index');
 // Route::get('/product/create', 'ProductController@create')->name('product.create');
 // Route::post('/product', 'ProductController@store')->name('product.store');
@@ -136,7 +136,7 @@ Route::post('products/destroy', 'ProductcolController@destroy')->name('products.
 Route::post('upload/uploadImage', 'ProductcolController@uploadImage')->name('upload.uploadImage');
 
 //解决方案
-Route::resource('solution', 'SolutionController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('solution', 'SolutionController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('solution/{solution}/{slug?}', 'SolutionController@show')->name('solution.show');
 
 // 方案分类

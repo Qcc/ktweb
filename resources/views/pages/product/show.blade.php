@@ -44,8 +44,8 @@
             @endcan
         </div>
         <div class="mdui-col-xs-3">
-            @include('pages.side_page')
-            @include('pages.side_page')
+            @include('pages.solution.side_solution',$sulotions)
+            @include('pages.customer.side_customer',$customers)
             @include('pages.side_advertising')
         </div>
     </div>

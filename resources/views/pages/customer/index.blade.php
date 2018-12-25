@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',isset($customercol)?$customercol->name:'所有产品')
+@section('title',isset($customercol)?$customercol->name:'所有客户案例')
 
 @section('content')
 <div class="mdui-container-full">
@@ -19,19 +19,17 @@
     </div>
     @include('common.error')
     <div class="mdui-container">
-        <div class="news-nav">
-            <ul class="column-nav-ul">
-                <li class="{{ active_class(if_route('customer.index')) }}">
-                    <a href="{{ route('customer.index') }}">全部</a></li>
+        <div class="customer-nav">
+            <ul class="customer-nav-ul">
                 
-                <li class="{{ active_class(if_route('columns.show') && if_route_param('column', 1)) }}">
-                    <a href="{{ route('columns.show', 1) }}">沟通动态</a></li>
+                <li class="active">
+                    <a href="">产品</a></li>
 
-                <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 2)), $activeClass = 'active', $inactiveClass = '') }}">
-                    <a href="{{ route('columns.show', 2) }}">行业资讯</a></li>
+                <li class="">
+                    <a href="">行业</a></li>
 
-                <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 3)), $activeClass = 'active', $inactiveClass = '') }}">
-                    <a href="{{ route('columns.show', 3) }}">管理智库</a></li>
+                <li class="">
+                    <a href="">业务</a></li>
             </ul>
         </div>
         <div class="mdui-divider"></div>

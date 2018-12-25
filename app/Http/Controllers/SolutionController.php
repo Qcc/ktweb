@@ -8,21 +8,12 @@ use App\Models\Solution;
 use App\Http\Requests\SolutionRequest;
 use Auth;
 use App\Handlers\ImageUploadHandler;
+use App\Models\Customer;
+use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 
 class SolutionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Solution $solution, Request $request)
-    {
-		// 分页获取21条记录。默认获取15条
-		$solutions = $solution->withOrder($request->order)->paginate(21);
-
-		return view('pages.solution.index', compact('solutions'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -57,11 +48,18 @@ class SolutionController extends Controller
      */
     public function show(Request $request, Solution $solution)
     {
+        $advertisings = Cache::remember('side_advertising1',600, function (){
+			$result = \DB::table('settings')->where('key','side_advertising')->get();
+			$allAdv = $result->all(); 
+			return unserialize($allAdv[0]->value);
+        });
+        $customers = Customer::where('productcol_id',$solution->productcol_id)->paginate(5);
+        $products = Product::where('productcol_id',$solution->productcol_id)->paginate(5);
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($solution->slug) && $solution->slug != $request->slug) {
             return redirect($solution->link(), 301);
         }
-        return view('pages.solution.show', compact('solution'));
+        return view('pages.solution.show', compact('solution','advertisings','customers','products'));
     }
 
     /**
