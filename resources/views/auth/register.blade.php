@@ -32,7 +32,7 @@
                             <input id="vercode" class="mdui-textfield-input" type="text" required name="vercode" />
                             <div class="mdui-textfield-error">短信验证码不正确</div>
                             <div class="mdui-spinner mdui-spinner-colorful smscode-check-icon"></div>
-                            <i class="mdui-icon material-icons mdui-text-color-light-green smscode-success-icon">&#xe5ca;</i>
+                            <i class="kticon smscode-success-icon">&#xe6ae;</i>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <div class="mdui-textfield-error">图形证码不正确</div>
                             @endif
                             <div class="mdui-spinner mdui-spinner-colorful captcha-check-icon"></div>
-                            <i class="mdui-icon material-icons mdui-text-color-light-green captcha-success-icon">&#xe5ca;</i>
+                            <i class="kticon captcha-success-icon">&#xe6ae;</i>
                         </div>
                     </div>
 

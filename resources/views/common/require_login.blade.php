@@ -1,6 +1,6 @@
 <div class="mdui-dialog require-warp" id="require-login">
     <div class="require-icon">
-        <i class="mdui-icon material-icons">&#xe913;</i>
+        <i class="kticon">&#xe899;</i>
     </div>
     <div class="require-tips">
         <p>你需要登录后才能继续操作！</p>

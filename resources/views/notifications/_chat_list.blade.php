@@ -13,7 +13,7 @@
                     <a href="{{ route('users.show',$message->sendUser->id) }}">
                         <b>{{ $message->sendUser->id == Auth::User()->id?'我':$message->sendUser->nickname }}</b></a>
                         <p>
-                            <i class="mdui-icon material-icons">&#xe192;</i>
+                            <i class="kticon">&#xe631;</i>
                             {{ $message->created_at->diffForHumans() }}
                         </p>
                 </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="link">
                     <a href="{{ route('message.conversation',$message->id)}}">
-                        <i class="mdui-icon material-icons">&#xe0bf;</i>
+                        <i class="kticon">&#xe620;</i>
                         查看对话
                     </a>
                 </div>

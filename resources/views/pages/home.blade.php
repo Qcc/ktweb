@@ -75,7 +75,7 @@
           <div class="mdui-card-content-number mdui-text-color-blue"><span id="ctbs">1</span>+</div>
           <div class="mdui-card-actions">
             <button class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">免费试用</button>
-            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="mdui-icon material-icons mdui-icon-right">&#xe5cc;</i></a>
+            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
           <div class="mdui-card-content-number mdui-text-color-blue">-<span id="kingdee">1</span>%</div>
           <div class="mdui-card-actions">
             <button class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">免费试用</button>
-            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="mdui-icon material-icons mdui-icon-right">&#xe5cc;</i></a>
+            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
           <div class="mdui-card-content-number mdui-text-color-blue">+<span id="yzj"></span>%</div>
           <div class="mdui-card-actions">
             <button class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">免费试用</button>
-            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="mdui-icon material-icons mdui-icon-right">&#xe5cc;</i></a>
+            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
           <div class="mdui-card-content-number mdui-text-color-blue">+<span id="jdy">1</span>%</div>
           <div class="mdui-card-actions">
             <button class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">免费试用</button>
-            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="mdui-icon material-icons mdui-icon-right">&#xe5cc;</i></a>
+            <a class="mdui-text-color-blue mdui-float-right">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>

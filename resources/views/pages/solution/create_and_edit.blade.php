@@ -6,7 +6,7 @@
 
         <div class="panel-body">
             <h2 class="head">
-                <i class="mdui-icon material-icons">&#xe254;</i>
+                <i class="mdui-icon material-icons">&#xe67f;</i>
                 @if($solution->id)
                 编辑解决方案
                 @else
@@ -79,7 +79,7 @@
 
                         <div class="form-btn">
                             <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">
-                                <i class="mdui-icon material-icons">&#xe163;</i> 发布</button>
+                                <i class="kticon">&#xe61f;</i> 发布</button>
                         </div>
                     </form>
             </div>

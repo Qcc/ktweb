@@ -29,13 +29,13 @@
             @can('update', $customer)
             <div class="article-edit">
                 <a href="{{ route('customer.edit', $customer->id) }}" class="mdui-btn mdui-ripple" role="button">
-                    <i class="mdui-icon material-icons">&#xe3c9;</i> 编辑
+                    <i class="kticon">&#xe67f;</i> 编辑
                 </a>
                 <form action="{{ route('customer.destroy', $customer->id) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button type="submit" class="mdui-btn mdui-ripple" style="margin-left: 6px">
-                        <i class="mdui-icon material-icons">&#xe92b;</i>
+                        <i class="kticon">&#xe625;</i>
                         删除
                     </button>
                 </form>

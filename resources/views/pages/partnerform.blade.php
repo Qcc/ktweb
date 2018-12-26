@@ -23,7 +23,7 @@
             <p class="fiald"></p>
             <div class="form-group">
                 <a href="javascript:;" class="mdui-btn mdui-color-theme-accent mdui-ripple" id="partner">
-                    <i class="mdui-icon material-icons">&#xe163;</i> 提交申请</a>
+                    <i class="kticon">&#xe61f;</i> 提交申请</a>
             </div>
         </form>
         <div class="success">

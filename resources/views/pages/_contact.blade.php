@@ -4,7 +4,7 @@
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
                     <div class="contact-icon xhs_col_2">
-                        <i class="mdui-icon material-icons">&#xe61d;</i>
+                        <i class="kticon">&#xe60a;</i>
                     </div>
                     <div class="contact-title">
                         <h5>7×24</h5>
@@ -15,7 +15,7 @@
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
                     <div class="contact-icon" style="border-left: 1px solid #fff;">
-                        <i class="mdui-icon material-icons">&#xe7ef;</i>
+                        <i class="kticon">&#xe61b;</i>
                     </div>
                     <div class="contact-title">
                         <h5>优质</h5>
@@ -26,7 +26,7 @@
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
                     <div class="contact-icon" style="border-left: 1px solid #fff;">
-                        <i class="mdui-icon material-icons">&#xe855;</i>
+                        <i class="kticon">&#xe631;</i>
                     </div>
                     <div class="contact-title">
                         <h5>全年</h5>
@@ -37,7 +37,7 @@
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
                     <div class="contact-icon" style="border-left: 1px solid #fff;">
-                        <i class="mdui-icon material-icons">&#xe428;</i>
+                        <i class="kticon">&#xe72c;</i>
                     </div>
                     <div class="contact-title">
                         <h5>多渠道</h5>

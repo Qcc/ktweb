@@ -17,7 +17,7 @@
                     {!! $message->content !!}
                 </div>
                 <div class="time">
-                    <i class="mdui-icon material-icons">&#xe192;</i>
+                    <i class="kticon">&#xe631;</i>
                     {{ $message->created_at->diffForHumans() }}
                 </div>
             </div>

@@ -31,7 +31,7 @@
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple" style="margin-left: 6px">
-                  <i class="mdui-icon material-icons">&#xe92b;</i>
+                  <i class="kticon">&#xe6b9;</i>
                   关闭
                 </button>
               </form>
@@ -46,7 +46,7 @@
 
             <div class="form-group">
                 <button submit class="mdui-btn mdui-color-theme-accent mdui-ripple" id="partner">
-                    <i class="mdui-icon material-icons">&#xe163;</i> 已经联系</button>
+                    <i class="kticon">&#xe61f;</i> 已经联系</button>
             </div>
         </form>
         @endif

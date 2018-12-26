@@ -15,7 +15,7 @@
                 <div class="edit-action">
                     @include('common.error')
                     <h2 class="title">
-                        <i class="mdui-icon material-icons">&#xe8b8;</i> 发私信
+                        <i class="kticon">&#xe6b5;</i> 发私信
                     </h2>
                     <div class="mdui-divider"></div>
                     <div class="send-avatar">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-btn">
                             <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">
-                                <i class="mdui-icon material-icons">&#xe163;</i> 发送</button>
+                                <i class="kticon">&#xe61f;</i> 发送</button>
                         </div>
                     </form>
                     <div class="mdui-divider"></div>

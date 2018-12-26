@@ -252,14 +252,13 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';
-    /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_25ozey4smyxj.eot');
-    src: url('//at.alicdn.com/t/font_916960_25ozey4smyxj.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_25ozey4smyxj.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_25ozey4smyxj.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_25ozey4smyxj.svg#kticon') format('svg');
-}
+    font-family: 'kticon';  /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.eot');
+    src: url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.svg#kticon') format('svg');
+  }
 
 .kticon {
     font-family: "kticon" !important;
