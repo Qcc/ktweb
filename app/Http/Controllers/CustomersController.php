@@ -25,9 +25,16 @@ class CustomersController extends Controller
     public function index(Customer $customer, Request $request)
     {
 		// 分页获取21条记录。默认获取15条
-		$customers = $customer->withOrder($request->order)->paginate(21);
-
-		return view('pages.customer.index', compact('customers'));
+        $customers = $customer->withOrder($request->order,$request->particular)->paginate(16);
+        if($request->order == 'industry'){
+            $columns = Solutioncol::all();
+        } else if($request->order == 'profession'){
+            $columns = Customercol::all();
+        }else{
+            $columns = Productcol::all();
+        }
+        $order=['order'=>$request->order];
+		return view('pages.customer.index', compact('customers','order','columns'));
     }
 
     /**

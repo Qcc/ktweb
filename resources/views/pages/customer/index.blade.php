@@ -22,20 +22,26 @@
         <div class="customer-nav">
             <ul class="customer-nav-ul">
                 
-                <li class="active">
-                    <a href="">产品</a></li>
+                <li class="{{ active_class(if_query('order','')||if_query('order','product'), $activeClass = 'active', $inactiveClass = '')}}">
+                    <a href="{{ Request::url() }}?order=product">产品</a></li>
 
-                <li class="">
-                    <a href="">行业</a></li>
+                <li class="{{ active_class(if_query('order','industry'), $activeClass = 'active', $inactiveClass = '')}}">
+                    <a href="{{ Request::url() }}?order=industry">行业</a></li>
 
-                <li class="">
-                    <a href="">业务</a></li>
+                <li class="{{ active_class(if_query('order','profession'), $activeClass = 'active', $inactiveClass = '')}}">
+                    <a href="{{ Request::url() }}?order=profession">业务</a></li>
             </ul>
         </div>
         <div class="mdui-divider"></div>
+        <div class="customer-article-nav">
+            <a class="{{ active_class(if_query('particular',''), $activeClass = 'active', $inactiveClass = '')}}" href="{{ Request::url() }}?order={{ $order['order'] }}">全部</a>
+            @foreach($columns as $item)
+            <a class="{{ active_class(if_query('particular',$item->id), $activeClass = 'active', $inactiveClass = '')}}" href="{{ Request::url() }}?order={{ $order['order'] }}&particular={{ $item->id }}">{{ $item->name }}</a>
+            @endforeach
+        </div>
         <div class="mdui-row">
             @foreach($customers as $index => $customer)
-            <div class="mdui-col-xs-4">
+            <div class="mdui-col-xs-3">
                 <div class="article-list">
                     <a href="{{ route('customer.show',$customer->id) }}" target="_blank">
                         <div class="images">

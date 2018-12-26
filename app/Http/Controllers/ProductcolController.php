@@ -14,15 +14,16 @@ class ProductcolController extends Controller
     public function show(Product $product,Solution $solution, Request $request,Customer $customer, Productcol $productcol)
     {
         // 读取分类 ID  关联的话题， 并按照每20条分页
-        $products = $product->withOrder($request->order)
-                        ->where('productcol_id',$productcol->id)
+        $products = $product->where('productcol_id',$productcol->id)
+                        ->orderby('updated_at','desc')
                         ->paginate(8);
         //读取产品相关解决方案
-        $solutions = $solution->withOrder($request->order)
-                        ->where('productcol_id',$productcol->id)
-                        ->paginate(8);
+        $solutions = $solution->where('productcol_id',$productcol->id)
+                            ->orderby('updated_at','desc')
+                            ->paginate(8);
+        
         //读取产品相关客户案例
-        $customers = $customer->withOrder($request->order)
+        $customers = $customer->orderby('updated_at','desc')
                         ->where('productcol_id',$productcol->id)
                         ->paginate(8);
         

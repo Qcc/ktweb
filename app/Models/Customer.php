@@ -28,31 +28,51 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeWithOrder($query,$order)
+    public function scopeWithOrder($query,$order,$particular)
     {
         //不同排序使用不同的数据读取逻辑
         switch($order){
-            case 'recent':
-                $query->recent();
+            case 'industry':
+                $query->Industry($particular);
+                break;
+            case 'profession':
+                $query->Profession($particular);
                 break;
 
             default:
-                $query->recentReplied();
+                $query->Product($particular);
                 break;
         }
         // 预防n+1问题
         return $query->with('user','customercol');
     }
 
-    public function scopeRecentReplied($query)
+    // 按产品查询
+    public function scopeProduct($query,$particular)
     {
-        // 按照更新时间排序
-        return $query->orderBy('updated_at','desc');
+        if($particular){
+            return $query->where('productcol_id',$particular);
+        }else{
+            return $query;
+        }
     }
 
-    public function scopeRecent($query)
+    // 按行业查询
+    public function scopeIndustry($query,$particular)
     {
-        //按照创建时间排序
-        return $query->orderBy('created_at','desc');
+        if($particular){
+            return $query->where('solutioncol_id',$particular);
+        }else{
+            return $query;
+        }
+    }
+    // 按业务查询
+    public function scopeProfession($query,$particular)
+    {
+        if($particular){
+            return $query->where('customercol_id',$particular);
+        }else{
+            return $query;
+        }
     }
 }
