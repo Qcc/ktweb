@@ -69,8 +69,8 @@
                 </div>
             @endforeach
             </div>
-            <div class="swiper-button-prev"><i class="mdui-icon material-icons">&#xe5cb;</i></div>
-            <div class="swiper-button-next"><i class="mdui-icon material-icons">&#xe5cc;</i></div>
+            <div class="swiper-button-prev"><i class="kticon">&#xe779;</i></div>
+            <div class="swiper-button-next"><i class="kticon">&#xe638;</i></div>
         </div>
     </div>
     <div class="mdui-container customer-warp">

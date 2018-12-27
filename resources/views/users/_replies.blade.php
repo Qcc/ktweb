@@ -11,7 +11,7 @@
 
         <div class="reply-content">
             <span class="icon">
-                <i class="mdui-icon material-icons">&#xe15e;</i>
+                <i class="kticon">&#xe60c;</i>
             </span>
             <a href="{{ $reply->topic->link(['#reply' . $reply->id]) }}">
                     {!! $reply->content !!}
@@ -19,7 +19,7 @@
         </div>
 
         <div class="reply-time">
-            <i class="mdui-icon material-icons">&#xe192;</i>
+            <i class="kticon">&#xe631;</i>
             <span>
                 {{ $reply->created_at->diffForHumans() }}
             </span>

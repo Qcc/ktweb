@@ -1,7 +1,7 @@
 @include('common.error')
 <div class="reply-box">
     <div class="reply-tips">
-        <p><i class="mdui-icon material-icons">&#xe645;</i> 请勿发布不友善或与主题无关的内容,共建和谐社区需要你我一起努力!</p>
+        <p><i class="kticon">&#xe68b;</i> 请勿发布不友善或与主题无关的内容,共建和谐社区需要你我一起努力!</p>
     </div>
     <div class="reply-form">
         <form action="{{ route('replies.store') }}" method="POST" accept-charset="UTF-8">
@@ -12,7 +12,7 @@
                         {{ old('content') }}
                 </textarea>
             </div>
-            <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">&#xe15e;</i> 回复</button>
+            <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple"><i class="kticon">&#xe60c;</i> 回复</button>
         </form>
     </div>
 </div>

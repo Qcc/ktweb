@@ -13,7 +13,7 @@
     <div class="mdui-container">
         <div class="mdui-row partner-list">
             <div class="mdui-col-xs-3">
-                <div class="icon"><i class="mdui-icon material-icons">&#xe7f0;</i></div>
+                <div class="icon"><i class="kticon">&#xe600;</i></div>
                 <div class="title">
                     <p>技术和服务支持</p>
                 </div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="mdui-col-xs-3">
-                <div class="icon"><i class="mdui-icon material-icons">&#xe413;</i></div>
+                <div class="icon"><i class="kticon">&#xe621;</i></div>
                 <div class="title">
                     <p>市场和营销支持</p>
                 </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="mdui-col-xs-3">
-                <div class="icon"><i class="mdui-icon material-icons">&#xe03f;</i></div>
+                <div class="icon"><i class="kticon">&#xe703;</i></div>
                 <div class="title">
                     <p>培训支持</p>
                 </div>
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="mdui-col-xs-3">
-                <div class="icon"><i class="mdui-icon material-icons">&#xe6c5;</i></div>
+                <div class="icon"><i class="kticon">&#xe609;</i></div>
                 <div class="title">
                     <p>管理支持</p>
                 </div>

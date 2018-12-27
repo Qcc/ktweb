@@ -6,7 +6,7 @@
 
         <div class="panel-body">
             <h2 class="head">
-                <i class="mdui-icon material-icons">&#xe67f;</i>
+                <i class="kticon">&#xe67f;</i>
                 @if($solution->id)
                 编辑解决方案
                 @else

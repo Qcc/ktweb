@@ -54,11 +54,11 @@
                             更新于 {{ $topic->updated_at->diffForHumans() }}
                             @if($topic->excellent)
                             <span> / </span>
-                            <span><i class="mdui-icon material-icons" title="该主题已被设置为精华" style="color:#00C853;">&#xe83a;</i></span>
+                            <span><i class="kticon" title="该主题已被设置为精华" style="color:#00C853;">&#xe62d;</i></span>
                             @endif
                             @if($topic->topping)
                             <span> / </span>
-                            <span><i class="mdui-icon material-icons" title="该主题已被置顶" style="color:#FF9800;">&#xeb45;</i></span>
+                            <span><i class="kticon" title="该主题已被置顶" style="color:#FF9800;">&#xe636;</i></span>
                             @endif
                         </div>
                         <div class="mdui-divider"></div>

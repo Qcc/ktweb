@@ -6,7 +6,7 @@
 
         <div class="panel-body">
             <h2 class="head">
-                <i class="mdui-icon material-icons">&#xe254;</i>
+                <i class="kticon">&#xe67f;</i>
                 @if($topic->id)
                 编辑话题
                 @else

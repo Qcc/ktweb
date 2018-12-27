@@ -10,9 +10,9 @@
                 <div class="edit-item">
                     <ul class="edit-list">
                         <li><a href="{{ route('users.edit', Auth::id()) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">
-                                <i class="mdui-icon material-icons">&#xe85d;</i> 账户信息</a></li>
+                                <i class="kticon">&#xe643;</i> 账户信息</a></li>
                         <li><a href="{{ route('users.password', Auth::id()) }}" class="mdui-btn mdui-ripple">
-                                <i class="mdui-icon material-icons">&#xe0da;</i> 修改密码</a></li>
+                                <i class="kticon">&#xe622;</i> 修改密码</a></li>
                     </ul>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="edit-action">
                     @include('common.error')
                     <h2 class="title">
-                        <i class="mdui-icon material-icons">&#xe8b8;</i> 编辑个人资料
+                        <i class="kticon">&#xe74d;</i> 编辑个人资料
                     </h2>
                     <div class="mdui-divider"></div>
                     <div class="edit-form">

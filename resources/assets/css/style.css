@@ -253,16 +253,16 @@ body {
 
 @font-face {
     font-family: 'kticon';  /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.eot');
-    src: url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_dmoiadz1xc9.svg#kticon') format('svg');
+    src: url('//at.alicdn.com/t/font_916960_019nq5s6njcg.eot');
+    src: url('//at.alicdn.com/t/font_916960_019nq5s6njcg.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_019nq5s6njcg.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_019nq5s6njcg.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_019nq5s6njcg.svg#kticon') format('svg');
   }
 
 .kticon {
     font-family: "kticon" !important;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;

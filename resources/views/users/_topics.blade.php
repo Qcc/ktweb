@@ -12,7 +12,7 @@
             {{ $topic->title }}
         </a>
         @if($topic->excellent)
-                <span><i class="mdui-icon material-icons" title="该主题已被设置为精华" style="color:#00C853;">&#xe83a;</i></span>
+                <span><i class="kticon" title="该主题已被设置为精华" style="color:#00C853;">&#xe62d;</i></span>
         @endif
         <div class="topic-info">
             <a class="" href="{{ $topic->link() }}" title="阅读数">
