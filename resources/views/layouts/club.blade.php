@@ -9,7 +9,6 @@
     <meta name="description" content="@yield('description', '深圳市沟通科技有限公司官方网站')" />
     <title>@yield('title') - 深圳市沟通科技有限公司</title>
     <link rel="stylesheet" href="{{ asset('css/mdui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('layui/css/layui.css') }}">
@@ -25,10 +24,10 @@
         </div>    
         @include('layouts._footer')
     </div>
+  <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
   <script src="{{ asset('js/mdui.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/layui/layui.js') }}"></script>
-  <script src="{{ asset('js/iconfont.js') }}"></script>
-  <script src="{{ asset('js/club.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   @if (app()->isLocal())
         @include('sudosu::user-selector')
     @endif

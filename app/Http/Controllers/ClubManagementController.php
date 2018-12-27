@@ -266,10 +266,8 @@ class ClubManagementController extends Controller
     }
     public function settings()
     {
-        $result = \DB::table('settings')->where('key','side_advertising')->get();
+        $advertisings = \DB::table('settings')->where('key','side_advertising')->get();
         //反序列号 得到广告列表
-        $advertising = $result->all();
-        $advertisings = unserialize($advertising[0]->value);
         return view('management.settings',compact('advertisings'));
     }
      

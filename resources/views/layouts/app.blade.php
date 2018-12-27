@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <meta name="description" content="@yield('description', '深圳市沟通科技有限公司官方网站')" />
     <title>@yield('title') - 深圳市沟通科技有限公司</title>
+    <link rel="stylesheet" href="{{ asset('layui/css/layui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mdui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('styles')
     
@@ -25,9 +25,10 @@
         </div>    
         @include('layouts._footer')
     </div>
+  <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
+  <script src="{{ asset('layui/layui.js') }}"></script>
   <script src="{{ asset('js/mdui.min.js') }}"></script>
   <script src="{{ asset('js/swiper.min.js') }}"></script>
-  <script src="{{ asset('js/iconfont.js') }}"></script>
   <script src="{{ asset('js/countUp.min.js') }}"></script>
   <script src="{{ asset('js/wow.min.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
