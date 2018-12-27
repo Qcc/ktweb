@@ -17,4 +17,8 @@ class ProductPolicy extends Policy
     {
         return $user->isAuthorOf($product);
     }
+    public function create(User $user, Product $product)
+    {   
+        return $user->can('manage_contents');
+    }
 }

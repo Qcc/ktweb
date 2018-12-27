@@ -18,4 +18,9 @@ class SolutionPolicy extends Policy
     {
         return $user->isAuthorOf($solution);
     }
+    
+    public function create(User $user, Solution $solution)
+    {   
+        return $user->can('manage_contents');
+    }
 }

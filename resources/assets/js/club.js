@@ -1370,4 +1370,9 @@ $$(document).ready(function () {
     }
     // 类目管理页面结束
 
+    // 网站设置页面
+    if($$('.admin-club-settings-page').length == 1){
+        alert('admin-club-settings-page');
+    }
+
 });

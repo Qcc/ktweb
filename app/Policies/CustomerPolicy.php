@@ -16,4 +16,8 @@ class CustomerPolicy extends Policy
     {
         return $user->isAuthorOf($customer);
     }
+    public function create(User $user, Customer $customer)
+    {   
+        return $user->can('manage_contents');
+    }
 }

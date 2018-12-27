@@ -31,6 +31,7 @@ class NewsController extends Controller
      */
     public function create(News $news)
     {
+        $this->authorize('create',$news);
         $columns = Column::all();
 		return view('pages.news.create_and_edit', compact('news', 'columns'));
     }
@@ -43,6 +44,7 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request, News $news)
     {
+        $this->authorize('create',$news);
         $news->fill($request->all());
 		$news->user_id = Auth::id();
 		$news->save();

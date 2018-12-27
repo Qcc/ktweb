@@ -13,7 +13,7 @@ class SeedSettingsTable extends Migration
      */
     public function up()
     {
-        $seos = [
+        $seos = 
             [
                 'key'        => 'side_advertising',
                 'value'        => serialize([
@@ -26,7 +26,6 @@ class SeedSettingsTable extends Migration
                     'img'=>'/images/side-1-image.png',
                     ],
                 ]),
-            ],
         ];
 
         DB::table('settings')->insert($seos);

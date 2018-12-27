@@ -31,7 +31,7 @@
       加关注</button>
     @endif
     @endif
-    @can('update', $topic)
+    @can('manage_contents')
     @if($topic->topping)
     <!-- 当前置顶状态标记1已经置顶，0未置顶 -->
     <button class="mdui-btn mdui-ripple topic-topping mdui-float-right" topping='1' title="取消话题置顶" style="color:#00C853"><i class="kticon">&#xe659;</i>

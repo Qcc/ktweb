@@ -12,7 +12,10 @@
         </div>
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
-                网站设置
+                @foreach($advertisings as $advertising)
+                    {{$advertising['link']}}
+                    {{$advertising['img']}}
+                @endforeach
             </div>
         </div>
     </div>

@@ -44,6 +44,7 @@ class CustomersController extends Controller
      */
     public function create(Customer $customer)
     {
+        $this->authorize('create',$customer);
         $customercol = Customercol::all();
 		$solutioncol = Solutioncol::all();
 		$productcol = Productcol::all();
@@ -58,6 +59,7 @@ class CustomersController extends Controller
      */
     public function store(CustomerRequest $request, Customer $customer)
     {
+        $this->authorize('create',$customer);
         $customer->fill($request->all());
 		$customer->user_id = Auth::id();
 		$customer->save();

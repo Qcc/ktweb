@@ -91,27 +91,36 @@ Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('exce
 //将文章设置置顶
 Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');
 
-// 网站管理
-Route::get('/management/club/column','ClubManagementController@column')->name('admin.club.column');
-Route::post('/management/club/columns','ClubManagementController@columns')->name('admin.club.columns');
-Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
-Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
-Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');
-// 角色管理
-Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
-Route::post('/management/club/roleStore','ClubManagementController@roleStore')->name('admin.club.roleStore');
-Route::post('/management/club/permissions','ClubManagementController@permissions')->name('admin.club.permissions');
-Route::post('/management/club/roleusers','ClubManagementController@roleusers')->name('admin.club.roleusers');
-Route::post('/management/club/rolepermission','ClubManagementController@rolepermission')->name('admin.club.rolepermission');
-Route::post('/management/club/userandpermission','ClubManagementController@userandpermission')->name('admin.club.userandpermission');
-Route::post('/management/club/roleedit','ClubManagementController@roleedit')->name('admin.club.roleedit');
-
-Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
-Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
-Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');
-// SEO修改
-Route::post('/management/club/seoStore','ClubManagementController@seoStore')->name('admin.club.seoStore');
-Route::post('/management/club/seoDestroy','ClubManagementController@seoDestroy')->name('admin.club.seoDestroy');
+// 网站管理需要 web_manage 权限
+Route::group(['middleware' => ['permission:web_manage']], function () {
+    // 网站管理
+    Route::get('/management/club/column','ClubManagementController@column')->name('admin.club.column');
+    Route::post('/management/club/columns','ClubManagementController@columns')->name('admin.club.columns');
+    Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
+    Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
+    Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');
+    // 网站设置
+    Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
+    // SEO修改
+    Route::post('/management/club/seoStore','ClubManagementController@seoStore')->name('admin.club.seoStore');
+    Route::post('/management/club/seoDestroy','ClubManagementController@seoDestroy')->name('admin.club.seoDestroy');
+});
+// 用户管理需要 manage_users 权限
+Route::group(['middleware' => ['permission:manage_users']], function () {
+    Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
+    Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');
+});
+// 角色管理需要 manage_roles 权限
+Route::group(['middleware' => ['permission:manage_roles']], function () {
+   // 角色管理
+    Route::get('/management/club/roles','ClubManagementController@roles')->name('admin.club.roles');
+    Route::post('/management/club/roleStore','ClubManagementController@roleStore')->name('admin.club.roleStore');
+    Route::post('/management/club/permissions','ClubManagementController@permissions')->name('admin.club.permissions');
+    Route::post('/management/club/roleusers','ClubManagementController@roleusers')->name('admin.club.roleusers');
+    Route::post('/management/club/rolepermission','ClubManagementController@rolepermission')->name('admin.club.rolepermission');
+    Route::post('/management/club/userandpermission','ClubManagementController@userandpermission')->name('admin.club.userandpermission');
+    Route::post('/management/club/roleedit','ClubManagementController@roleedit')->name('admin.club.roleedit');
+});
 
 //主站新闻
 Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);

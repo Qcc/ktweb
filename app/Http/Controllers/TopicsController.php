@@ -169,6 +169,7 @@ class TopicsController extends Controller
 		if($request->id){
 			$topic = Topic::find($request->id);
 			// 设置精华时禁止更新updated_at字段
+			$this->authorize('manage', $topic);
 			$topic->timestamps = false;
 			if($topic->excellent){
 				$topic->excellent = false;
@@ -201,6 +202,7 @@ class TopicsController extends Controller
 		$data = ['result' => false,'status' => false,'top_expired' => '','msg' => '设置置顶失败!'];
 		if($request->id){
 			$topic = Topic::find($request->id);
+			$this->authorize('manage', $topic);
 			// 设置置顶时禁止更新updated_at字段
 			$topic->timestamps = false;
 			if($topic->topping){
@@ -229,7 +231,7 @@ class TopicsController extends Controller
 		// 获得拥有处理举报权限的用户
 		$users = $user->permission("manage_report")->get();
 		foreach ($users as $key => $user) {
-			//通知用户有新的商机需要联系
+			//通知管理员处理举报
 			$user->notify(new ReportNotice($report));
 		}
 		$res = ['code'=>0,'msg'=>'举报成功！我们将核实违规内容后进行处理。'];

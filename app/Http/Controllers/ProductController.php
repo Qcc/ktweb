@@ -22,6 +22,7 @@ class ProductController extends Controller
      */
     public function create(Product $product)
     {
+        $this->authorize('create',$product);
         $productcol = Productcol::all();
 		return view('pages.product.create_and_edit', compact('product', 'productcol'));
     }
@@ -34,6 +35,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request, Product $product)
     {
+        $this->authorize('create',$product);
         $product->fill($request->all());
 		$product->user_id = Auth::id();
 		$product->save();
@@ -48,7 +50,7 @@ class ProductController extends Controller
      */
     public function show(Request $request, Product $product)
     {
-        $advertisings = Cache::remember('side_advertising1',600, function (){
+        $advertisings = Cache::remember('side_advertising',60*24, function (){
 			$result = \DB::table('settings')->where('key','side_advertising')->get();
 			$allAdv = $result->all(); 
 			return unserialize($allAdv[0]->value);

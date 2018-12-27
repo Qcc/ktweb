@@ -25,12 +25,12 @@ class BusinessPolicy extends Policy
         if($business->status){
             return $user->isAuthorOf($business);
         }else{
-            return true;
+            return $user->can('manage_business');
         }
     }
 
-    public function destroy()
+    public function destroy(User $user, Business $business)
     {
-        return false;
+        return $user->can('manage_business');
     }
 }

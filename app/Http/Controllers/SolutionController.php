@@ -22,6 +22,7 @@ class SolutionController extends Controller
      */
     public function create(Solution $solution)
     {
+        $this->authorize('create',$solution);
         $solutioncol = Solutioncol::all();
 		return view('pages.solution.create_and_edit', compact('solution', 'solutioncol'));
     }
@@ -34,6 +35,7 @@ class SolutionController extends Controller
      */
     public function store(SolutionRequest $request, Solution $solution)
     {
+        $this->authorize('create',$solution);
         $solution->fill($request->all());
 		$solution->user_id = Auth::id();
 		$solution->save();

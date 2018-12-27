@@ -30,4 +30,9 @@ class NewsPolicy extends Policy
     {
         return $user->isAuthorOf($news);
     }
+
+    public function create(User $user, News $news)
+    {   
+        return $user->can('manage_contents');
+    }
 }

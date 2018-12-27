@@ -55,12 +55,23 @@ class ClubManagementController extends Controller
     }
     public function system()
     {
+			
         return view('management.system');
     }
+    /**
+     * 社区推荐管理
+     *
+     * @return void
+     */
     public function recommend()
     {
         return view('management.recommend');
     }
+    /**
+     * 主站推荐管理
+     *
+     * @return void
+     */
     public function webRecommend()
     {
         return view('management.web_recommend');
@@ -202,15 +213,7 @@ class ClubManagementController extends Controller
         $permissions = $role->permissions;
         return $permissions;
     }
-    /**
-     * 角色新增 删除
-     *
-     * @return void
-     */
-    public function roleedit()
-    {
-
-    }
+    
     /**
      * 角色添加/删除用户，角色添加删除权限
      *
@@ -263,7 +266,11 @@ class ClubManagementController extends Controller
     }
     public function settings()
     {
-        return view('management.settings');
+        $result = \DB::table('settings')->where('key','side_advertising')->get();
+        //反序列号 得到广告列表
+        $advertising = $result->all();
+        $advertisings = unserialize($advertising[0]->value);
+        return view('management.settings',compact('advertisings'));
     }
      
 }
