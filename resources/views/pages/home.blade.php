@@ -2,59 +2,57 @@
 @section('title','沟通科技')
 
 @section('content')
-<section>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide blue-slide">
+      <div class="banner-cell">
+        <div class="banner-content">
 
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide blue-slide">
-        <div class="banner-cell">
-          <div class="banner-content">
-            <div class="title  wow fadeInUp">
-              <h3>每天超过 <span id="enterprises">1</span>+ 企业 <span id="users">1</span>+ 用户在使用沟通科技提供的应用虚拟化服务</h3>
-            </div>
-
-            <div class="banner-products mdui-hidden-sm-down">
-              <a href="/sms" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-kuapingtai"></i>
-                <span>跨平台</span>
-              </a>
-              <a href="/internationalsms" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-vpn1"></i>
-                <span>跨网络</span>
-              </a>
-              <a href="/mail" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-anquan1"></i>
-                <span>安全</span>
-              </a>
-              <a href="/mobiledata" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-huojian"></i>
-                <span>速度快</span>
-              </a>
-              <a href="/voice" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-yunwei"></i>
-                <span>轻运维</span>
-              </a>
-            </div>
-            <div class="banner-signup">
-              <a class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
-                免费试用<span class=""></span></a>
-              </a>
-            </div>
+          <div class="title  wow fadeInUp" style="visibility: hidden;">
+            <h3>每天超过 <span id="enterprises">1</span>+ 企业 <span id="users">1</span>+ 用户在使用沟通科技提供的应用虚拟化服务</h3>
           </div>
+          <div class="banner-products mdui-hidden-sm-down">
+            <a href="/sms" class=" wow fadeInUp mdui-text-color-white-secondary">
+              <i class="kticon kticon-kuapingtai"></i>
+              <span>跨平台</span>
+            </a>
+            <a href="/internationalsms" class=" wow fadeInUp mdui-text-color-white-secondary">
+              <i class="kticon kticon-vpn1"></i>
+              <span>跨网络</span>
+            </a>
+            <a href="/mail" class=" wow fadeInUp mdui-text-color-white-secondary">
+              <i class="kticon kticon-anquan1"></i>
+              <span>安全</span>
+            </a>
+            <a href="/mobiledata" class=" wow fadeInUp mdui-text-color-white-secondary">
+              <i class="kticon kticon-huojian"></i>
+              <span>速度快</span>
+            </a>
+            <a href="/voice" class=" wow fadeInUp mdui-text-color-white-secondary">
+              <i class="kticon kticon-yunwei"></i>
+              <span>轻运维</span>
+            </a>
+          </div>
+          <div class="banner-signup">
+            <a class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
+              免费试用<span class=""></span></a>
+            </a>
+          </div>
+
         </div>
       </div>
-      <div class="swiper-slide red-slide">
-        <div class="title">Slide 2</div>
-      </div>
-      <div class="swiper-slide green-slide">
-        <div class="title">Slide 2</div>
-      </div>
-      <div class="swiper-slide pink-slide">
-        <div class="title">Slide 2</div>
-      </div>
+    </div>
+    <div class="swiper-slide red-slide">
+      <div class="title">Slide 2</div>
+    </div>
+    <div class="swiper-slide green-slide">
+      <div class="title">Slide 2</div>
+    </div>
+    <div class="swiper-slide pink-slide">
+      <div class="title">Slide 2</div>
     </div>
   </div>
-</section>
+</div>
 <section>
   <div class="mdui-container">
     <div class="mdui-typo mdui-text-center">
