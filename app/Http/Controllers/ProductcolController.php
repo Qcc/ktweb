@@ -78,7 +78,7 @@ class ProductcolController extends Controller
 		// 判断是否有文件上传，并赋值给$file
 		if($file = $request->upload_file){
 			// 保存图片到本地
-			$result = $uploader->save($request->upload_file,'Categories',\Auth::id(),1920);
+			$result = $uploader->save($request->upload_file,'Categories',\Auth::id());
 			//图片保存成功的话
 			if($result){
 				$data['code'] = 0;

@@ -7,17 +7,16 @@
 <div class="mdui-container-full club-banner xhs_topic_swiper">
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            @foreach($clubbanners as $item)
             <div class="swiper-slide">
-                <div>
-                    <img src="{{ asset('images/topics1.jpg') }}" alt="">
+                <div class="swiper-item" style="background-image:url('{{ $item->banner }}')">
+                    <a href="{{ $item->link }}" title="{{ $item->title }}"></a>
                 </div>
+                
             </div>
-            <div class="swiper-slide">
-                <div>
-                    <img src="{{ asset('images/topics2.png') }}" alt="">
-                </div>
-            </div>
+            @endforeach
         </div>
+        <div class="swiper-pagination"></div>
     </div>
 </div>
 @endif
@@ -42,7 +41,7 @@
                 </div>
 
                 <div class="club-panel-body">
-                    {{-- 话题列表  $tops 为置顶文章--}}
+                    {{-- 话题列表 $tops 为置顶文章--}}
                     @include('topics._topic_list', ['topics' => $topics,'tops'=>$tops])
                     {{-- 分页 --}}
                     <div class="pagination-box mdui-hidden-xs-down">
@@ -69,13 +68,4 @@
 
 @section('script')
 <script src="{{ asset('js/swiper.min.js') }}"></script>
-
-<script>
-    $$(document).ready(function () {
-        // 初始化首页轮播图
-    if ($$('.swiper-container').length === 1) {
-      var swiper = new Swiper('.swiper-container', {});
-    }
-    });
-</script>
 @stop

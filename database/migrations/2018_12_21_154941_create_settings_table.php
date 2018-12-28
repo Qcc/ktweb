@@ -25,6 +25,7 @@ class CreateSettingsTable extends Migration
             $table->string('icon3')->nullable();
             $table->string('icon4')->nullable();
             $table->string('icon5')->nullable();
+            $table->timestamps();
         });
     }
 

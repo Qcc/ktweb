@@ -30,13 +30,16 @@ class TopicsController extends Controller
 	// $request->order 是获取 URI http://keweb.test/topics?order=recent 中的 order 参数
 	public function index(Request $request, Topic $topic)
 	{
+		$clubbanners = Cache::rememberForever('club_banner', function (){
+			return \DB::table('settings')->where('key','club_banner')->orderBy('updated_at','desc')->get();
+        });
 		//获取置顶文章
 		// $tops = Topic::where('topping', 1)->get();
 		$tops = $topic->withOrder($request->order)->where('topping', 1)->get();
 		// 分页获取20条记录。默认获取15条
 		$topics = $topic->withOrder($request->order)->paginate(20);
 
-		return view('topics.index', compact('topics','tops'));
+		return view('topics.index', compact('topics','tops','clubbanners'));
 	}
 
 	/**
@@ -66,11 +69,9 @@ class TopicsController extends Controller
 			Log::info('有');
 		}
 		$topics = $topic->user->topics()->with('category')->recent()->paginate(5);
-		$advertisings = Cache::remember('side_advertising1',600, function (){
-			$result = \DB::table('settings')->where('key','side_advertising')->get();
-			$allAdv = $result->all(); 
-			return unserialize($allAdv[0]->value);
-		});
+		$advertisings = Cache::rememberForever('side_advertising', function (){
+			return \DB::table('settings')->where('key','side_advertising')->get();
+        });
 		// 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);

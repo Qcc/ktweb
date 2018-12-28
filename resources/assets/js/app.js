@@ -211,7 +211,21 @@ $(document).ready(function () {
 	});
 	// header部分结束
 
-	// 社区页面
+	// 社区首页列表
+	if($('.topics-index-page').length == 1){
+		// 初始化首页轮播图
+		if ($('.swiper-container').length === 1) {
+			var swiper = new Swiper('.swiper-container', {
+				loop : true,
+				autoplay:true,
+				pagination: {
+					el: '.swiper-pagination',
+					dynamicBullets: true,
+				  },
+			});
+		}
+	}
+	// 社区详情页面
 	if ($('.topics-show-page').length == 1) {
 		layui.use(['element', 'layer', 'form', 'laydate'], function () {
 			var $ = layui.jquery,
@@ -381,7 +395,7 @@ $(document).ready(function () {
 					id: id
 				},
 				success: function (data) {
-					var data = JSON.parse(data);
+					// var data = JSON.parse(data);
 					if (data.result) {
 						$('.topic-follower').empty().append(
 							"<i class='kticon'>&#xe659;</i> 已关注").attr(
@@ -410,7 +424,7 @@ $(document).ready(function () {
 					id: id
 				},
 				success: function (data) {
-					var data = JSON.parse(data);
+					// var data = JSON.parse(data);
 					if (data.result) {
 						if (data.status) {
 							$('.topic-excellent').empty().append(
@@ -443,7 +457,7 @@ $(document).ready(function () {
 					expired: expired
 				},
 				success: function (data) {
-					var data = JSON.parse(data);
+					// var data = JSON.parse(data);
 					if (data.result) {
 						if (data.status) {
 							$('.topic-topping').empty().append(
@@ -478,7 +492,7 @@ $(document).ready(function () {
 						id: id
 					},
 					success: function (data) {
-						var data = JSON.parse(data);
+						// var data = JSON.parse(data);
 						if (data.result) {
 							if (data.status) {
 								$('.topic-topping').empty().append(
@@ -1569,10 +1583,11 @@ $(document).ready(function () {
 
 	// 网站设置页面
 	if ($('.admin-club-settings-page').length == 1) {
-		layui.use(['layer', 'form','table'], function () {
+		layui.use(['layer', 'form', 'table', 'upload'], function () {
 			var layer = layui.layer;
 			table = layui.table,
-			form = layui.form;
+				upload = layui.upload,
+				form = layui.form;
 
 			table.init('advertising-table', { //转化静态表格
 				toolbar: '#toolbarAdd',
@@ -1583,7 +1598,7 @@ $(document).ready(function () {
 				var data = obj.data;
 				if (obj.event === 'add') {
 					document.getElementById('advertising-form').reset();
-					var relo_form = layer.open({
+					var advertising_form = layer.open({
 						type: 1,
 						anim: 2,
 						title: '添加广告',
@@ -1591,42 +1606,83 @@ $(document).ready(function () {
 						shadeClose: true, //开启遮罩关闭
 						content: $("#advertising-form")
 					});
-					advertisingSubmit('/management/club/roleStore', relo_form);
+					advertisingSubmit('/management/club/settings/store', advertising_form,'add');
 				}
 			});
 			//监听工具条 查看角色用户 查看角色权限
 			table.on('tool(advertising-table)', function (obj) {
 				var data = obj.data;
 				if (obj.event === 'delete') {
+					data.action = 'delete';
 					layer.confirm('真的删除行么', function (index) {
-						obj.del();
+						$.ajax({
+							method: 'POST',
+							url: '/management/club/settings/store',
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: data,
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							}
+						});
 						layer.close(index);
 					});
 				} else if (obj.event === 'edit') {
-
-					var relo_form = layer.open({
+					var advertising_form = layer.open({
 						type: 1,
 						anim: 2,
-						title: '请修改角色',
+						title: '请修改广告',
 						area: '500px',
 						shadeClose: true, //开启遮罩关闭
-						content: $("#roles-form")
+						content: $("#advertising-form")
 					});
 					//表单初始赋值
-					form.val('roles-form', {
+					form.val('advertising-form', {
 						"id": data.id,
-						"name": data.name,
-						"cn_name": data.cn_name,
+						"key": data.key,
+						"banner": data.banner,
+						"title": data.title,
+						"link": data.link,
 					})
-					advertisingSubmit('/management/club/roleStore', relo_form);
+					advertisingSubmit('/management/club/settings/store', advertising_form,'update');
+				}
+			});
+			//上传图片
+			var uploadIcon = upload.render({
+				elem: "#upload-banner",
+				url: "/upload/uploadImage",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				done: function (res) {
+					//如果上传失败
+					if (res.code > 0) {
+						return layer.msg('上传失败');
+					}
+					$('#upload-banner').prev().val(res.data.src);
+				},
+				error: function () {
+					layer.msg('上传失败');
 				}
 			});
 
-			function advertisingSubmit(api, layerOpen) {
+			function advertisingSubmit(api, layerOpen,action) {
 				//监听提交 修改分类
 				form.on("submit(advertising-btn)", function (data) {
 					$(".roles-btn").addClass('layui-btn-disabled');
 					var field = data.field;
+					field.action = action;
 					$.ajax({
 						method: 'POST',
 						url: api,
@@ -1654,19 +1710,268 @@ $(document).ready(function () {
 				});
 			}
 
-			//表单初始赋值
-			form.val('example', {
-				"username": "贤心" // "name": "value"
-					,
-				"password": "123456",
-				"interest": 1,
-				"like[write]": true //复选框选中状态
-					,
-				"close": true //开关状态
-					,
-				"sex": "女",
-				"desc": "我爱 layui"
-			})
+		});
+	}
+	// 社区推荐页面
+	if ($('.admin-club-recommend-page').length == 1) {
+		layui.use(['layer', 'form', 'table', 'upload'], function () {
+			var layer = layui.layer;
+			table = layui.table,
+				upload = layui.upload,
+				form = layui.form;
+
+			table.init('clubbanner-table', { //转化静态表格
+				toolbar: '#toolbarAdd',
+			});
+
+			//监听工具条 查看角色用户 查看角色权限
+			table.on('toolbar(clubbanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'add') {
+					document.getElementById('clubbanner-form').reset();
+					var clubbanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '添加广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#clubbanner-form")
+					});
+					clubbannerSubmit('/management/club/recommend/store', clubbanner_form,'add');
+				}
+			});
+			//监听工具条 查看角色用户 查看角色权限
+			table.on('tool(clubbanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'delete') {
+					data.action = 'delete';
+					layer.confirm('真的删除行么', function (index) {
+						$.ajax({
+							method: 'POST',
+							url: '/management/club/recommend/store',
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: data,
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							}
+						});
+						layer.close(index);
+					});
+				} else if (obj.event === 'edit') {
+					var clubbanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '请修改广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#clubbanner-form")
+					});
+					//表单初始赋值
+					form.val('clubbanner-form', {
+						"id": data.id,
+						"banner": data.banner,
+						"title": data.title,
+						"subtitle": data.subtitle,
+						"link": data.link,
+					})
+					clubbannerSubmit('/management/club/recommend/store', clubbanner_form,'update');
+				}
+			});
+			//上传图片
+			var uploadIcon = upload.render({
+				elem: "#upload-banner",
+				url: "/upload/uploadImage",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				done: function (res) {
+					//如果上传失败
+					if (res.code > 0) {
+						return layer.msg('上传失败');
+					}
+					$('#upload-banner').prev().val(res.data.src);
+				},
+				error: function () {
+					layer.msg('上传失败');
+				}
+			});
+
+			function clubbannerSubmit(api, layerOpen,action) {
+				//监听提交 修改分类
+				form.on("submit(clubbanner-btn)", function (data) {
+					$(".roles-btn").addClass('layui-btn-disabled');
+					var field = data.field;
+					field.action = action;
+					$.ajax({
+						method: 'POST',
+						url: api,
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: field,
+						success: function (data) {
+							$(".clubbanner-btn").removeClass('layui-btn-disabled');
+							if (data.code == 0) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							layer.close(layerOpen);
+						}
+					});
+					return false;
+				});
+			}
+
+		});
+	}
+	// 主站推荐页面
+	if ($('.admin-club-web_recommend-page').length == 1) {
+		layui.use(['layer', 'form', 'table', 'upload'], function () {
+			var layer = layui.layer;
+			table = layui.table,
+				upload = layui.upload,
+				form = layui.form;
+
+			table.init('homebanner-table', { //转化静态表格
+				toolbar: '#toolbarAdd',
+			});
+
+			//监听工具条 查看角色用户 查看角色权限
+			table.on('toolbar(homebanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'add') {
+					document.getElementById('homebanner-form').reset();
+					var homebanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '添加广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#homebanner-form")
+					});
+					homebannerSubmit('/management/club/web_recommend/store', homebanner_form,'add');
+				}
+			});
+			//监听工具条 查看角色用户 查看角色权限
+			table.on('tool(homebanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'delete') {
+					data.action = 'delete';
+					layer.confirm('真的删除行么', function (index) {
+						$.ajax({
+							method: 'POST',
+							url: '/management/club/web_recommend/store',
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: data,
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							}
+						});
+						layer.close(index);
+					});
+				} else if (obj.event === 'edit') {
+					var homebanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '请修改广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#homebanner-form")
+					});
+					//表单初始赋值
+					form.val('homebanner-form', {
+						"id": data.id,
+						"banner": data.banner,
+						"title": data.title,
+						"subtitle": data.subtitle,
+						"link": data.link,
+					})
+					homebannerSubmit('/management/club/web_recommend/store', homebanner_form,'update');
+				}
+			});
+			//上传图片
+			var uploadIcon = upload.render({
+				elem: "#upload-banner",
+				url: "/upload/uploadImage",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				done: function (res) {
+					//如果上传失败
+					if (res.code > 0) {
+						return layer.msg('上传失败');
+					}
+					$('#upload-banner').prev().val(res.data.src);
+				},
+				error: function () {
+					layer.msg('上传失败');
+				}
+			});
+
+			function homebannerSubmit(api, layerOpen,action) {
+				//监听提交 修改分类
+				form.on("submit(homebanner-btn)", function (data) {
+					$(".roles-btn").addClass('layui-btn-disabled');
+					var field = data.field;
+					field.action = action;
+					$.ajax({
+						method: 'POST',
+						url: api,
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: field,
+						success: function (data) {
+							$(".homebanner-btn").removeClass('layui-btn-disabled');
+							if (data.code == 0) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							layer.close(layerOpen);
+						}
+					});
+					return false;
+				});
+			}
+
 		});
 	}
 });

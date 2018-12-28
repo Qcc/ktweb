@@ -1,6 +1,6 @@
 @extends('layouts.club')
 
-@section('title', '社区设置')
+@section('title', '网站设置')
 
 @section('content')
 <div class="mdui-container useredit-box">
@@ -13,23 +13,27 @@
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
                 <div>
-                    <p>全站广告</p>
+                    <p>全站侧边栏广告</p>
                 </div>
                 <table lay-filter="advertising-table" id="advertising-table">
                         <thead>
                             <tr>
-                                <th lay-data="{field:'id', width:70}">ID</th>
+                                <th lay-data="{field:'id', width:40}">ID</th>
+                                <th lay-data="{field:'key', width:70}">key</th>
                                 <th lay-data="{field:'link'}">链接</th>
                                 <th lay-data="{field:'banner'}">图片</th>
-                                <th lay-data="{toolbar: '#barAction', width:260}">操作</th>
+                                <th lay-data="{field:'title'}">标题</th>
+                                <th lay-data="{toolbar: '#barAction', width:110}">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($advertisings as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
+                                <td>{{ $item->key }}</td>
                                 <td>{{ $item->link }}</td>
                                 <td>{{ $item->banner }}</td>
+                                <td>{{ $item->title }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -41,10 +45,16 @@
 <form class="layui-form" id="advertising-form" lay-filter="advertising-form" style="display:none;margin-right: 80px;">
 
         <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <input type="hidden" name="id" >
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">图片</label>
             <div class="layui-input-block">
-                <input type="text" name="img" lay-verify="required"
+                <input type="text" name="banner" lay-verify="required"
                     autocomplete="off" placeholder="请上传图片300*70" class="layui-input">
+                    <a href="javascript:;" id="upload-banner">上传</a>
             </div>
         </div>
         <div class="layui-form-item">
@@ -52,6 +62,13 @@
             <div class="layui-input-block">
                 <input type="text" name="link" lay-verify="required"
                     autocomplete="off" placeholder="请输入链接" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="required"
+                    autocomplete="off" placeholder="请输入标题" class="layui-input">
             </div>
         </div>
 

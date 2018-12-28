@@ -98,9 +98,12 @@ Route::group(['middleware' => ['permission:web_manage']], function () {
     Route::post('/management/club/columns','ClubManagementController@columns')->name('admin.club.columns');
     Route::get('/management/club/system','ClubManagementController@system')->name('admin.club.system');
     Route::get('/management/club/recommend','ClubManagementController@recommend')->name('admin.club.recommend');
+    Route::post('/management/club/recommend/store','ClubManagementController@recommendStore')->name('admin.club.recommend.store');
     Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');
+    Route::get('/management/club/web_recommend/store','ClubManagementController@webRecommendStore')->name('admin.club.web_recommend.store');
     // 网站设置
     Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
+    Route::post('/management/club/settings/store','ClubManagementController@settingsStore')->name('admin.club.setting.store');
     // SEO修改
     Route::post('/management/club/seoStore','ClubManagementController@seoStore')->name('admin.club.seoStore');
     Route::post('/management/club/seoDestroy','ClubManagementController@seoDestroy')->name('admin.club.seoDestroy');

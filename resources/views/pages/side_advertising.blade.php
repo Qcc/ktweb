@@ -1,9 +1,9 @@
 <div class="side-link-box">
     <div class="list">
-        @foreach($advertisings as $value)
+        @foreach($advertisings as $item)
         <div class="item">
-            <a href="{{ $value['link'] }}">
-                <img src="{{ $value['img'] }}" alt="{{ $value['link'] }}">
+            <a href="{{ $item->link }}" title="{{ $item->title }}">
+                <img src="{{ $item->banner }}" alt="{{ $item->title }}">
             </a>
         </div>
         @endforeach

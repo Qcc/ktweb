@@ -74,10 +74,8 @@ class CustomersController extends Controller
      */
     public function show(Request $request, Customer $customer)
     {
-        $advertisings = Cache::remember('side_advertising1',600, function (){
-			$result = \DB::table('settings')->where('key','side_advertising')->get();
-			$allAdv = $result->all(); 
-			return unserialize($allAdv[0]->value);
+        $advertisings = Cache::rememberForever('side_advertising', function (){
+			return \DB::table('settings')->where('key','side_advertising')->get();
         });
         $sulotions = Solution::where('productcol_id',$customer->productcol_id)->paginate(5);
         $products = Product::where('productcol_id',$customer->productcol_id)->paginate(5);

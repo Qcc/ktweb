@@ -8,7 +8,7 @@ use App\Models\Column;
 use App\Http\Requests\NewsRequest;
 use Auth;
 use App\Handlers\ImageUploadHandler;
-
+use Illuminate\Support\Facades\Cache;
 class NewsController extends Controller
 {
     /**
@@ -59,11 +59,14 @@ class NewsController extends Controller
      */
     public function show(Request $request, News $news)
     {
+        $advertisings = Cache::rememberForever('side_advertising', function (){
+			return \DB::table('settings')->where('key','side_advertising')->get();
+        });
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($news->slug) && $news->slug != $request->slug) {
             return redirect($news->link(), 301);
         }
-        return view('pages.news.show', compact('news'));
+        return view('pages.news.show', compact('news','advertisings'));
     }
 
     /**

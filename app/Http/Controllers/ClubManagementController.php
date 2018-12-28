@@ -9,6 +9,8 @@ use Hash;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Productcol;
 use App\Models\Solutioncol;
@@ -65,7 +67,38 @@ class ClubManagementController extends Controller
      */
     public function recommend()
     {
-        return view('management.recommend');
+        $clubbanners = \DB::table('settings')->where('key','club_banner')->get();
+        return view('management.recommend',compact('clubbanners'));
+    }
+    public function recommendStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'保存失败！'];
+        $data = $request->all();
+        if($request->action == 'add'){
+            $id = DB::table('settings')->insertGetId([
+                'key'=>'club_banner',
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'subtitle'=>$request->subtitle,
+                'created_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'新增成功！'];
+        }else if($request->action == 'update'){
+            DB::table('settings')->where('id', $request->id)->update([
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'subtitle'=>$request->subtitle,
+                'updated_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'更新banner成功!'];
+        }else if($request->action == 'delete'){
+            DB::table('settings')->where('id', $request->id)->delete();
+            $res = ['code'=>0,'msg'=>'删除banner成功!'];
+        }
+        Cache::forget('club_banner');
+        return $res;
     }
     /**
      * 主站推荐管理
@@ -74,7 +107,38 @@ class ClubManagementController extends Controller
      */
     public function webRecommend()
     {
-        return view('management.web_recommend');
+        $homebanners = \DB::table('settings')->where('key','home_banner')->get();
+        return view('management.web_recommend',compact('homebanners'));
+    }
+    public function webRecommendStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'保存失败！'];
+        $data = $request->all();
+        if($request->action == 'add'){
+            $id = DB::table('settings')->insertGetId([
+                'key'=>'home_banner',
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'subtitle'=>$request->subtitle,
+                'created_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'新增成功！'];
+        }else if($request->action == 'update'){
+            DB::table('settings')->where('id', $request->id)->update([
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'subtitle'=>$request->subtitle,
+                'updated_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'更新banner成功!'];
+        }else if($request->action == 'delete'){
+            DB::table('settings')->where('id', $request->id)->delete();
+            $res = ['code'=>0,'msg'=>'删除banner成功!'];
+        }
+        Cache::forget('club_banner');
+        return $res;
     }
     /**
      * 添加 更新SEO 城市名称
@@ -103,9 +167,9 @@ class ClubManagementController extends Controller
         $res = ['code'=>1,'msg'=>'删除城市失败!'];
         if($request->id){
             DB::table('seos')->where('id', $request->id)->delete();
-            $res = ['code'=>1,'msg'=>'删除城市成功!'];
+            $res = ['code'=>0,'msg'=>'删除城市成功!'];
         }
-        return $request;
+        return $res;
     }
     /**
      * 后台批量展示用户
@@ -269,6 +333,34 @@ class ClubManagementController extends Controller
         $advertisings = \DB::table('settings')->where('key','side_advertising')->get();
         //反序列号 得到广告列表
         return view('management.settings',compact('advertisings'));
+    }
+    public function settingsStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'保存失败！'];
+        $data = $request->all();
+        if($request->action == 'add'){
+            $id = DB::table('settings')->insertGetId([
+                'key'=>'side_advertising',
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'created_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'新增成功！'];
+        }else if($request->action == 'update'){
+            DB::table('settings')->where('id', $request->id)->update([
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'updated_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'更新广告成功!'];
+        }else if($request->action == 'delete'){
+            DB::table('settings')->where('id', $request->id)->delete();
+            $res = ['code'=>0,'msg'=>'删除广告成功!'];
+        }
+        Cache::forget('side_advertising');
+        return $res;
     }
      
 }
