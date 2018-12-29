@@ -18,7 +18,6 @@ $(document).ready(function () {
 				type: '终端客户',
 			},
 			success: function (data) {
-				var data = JSON.parse(data);
 				if (data.status) {
 					$('.form').css('visibility', 'hidden');
 					$('.msg').text(data.msg);
@@ -53,7 +52,6 @@ $(document).ready(function () {
 					type: '代理商',
 				},
 				success: function (data) {
-					var data = JSON.parse(data);
 					if (data.status) {
 						$('.msg').text(data.msg);
 						$('.success').show();
@@ -79,27 +77,24 @@ $(document).ready(function () {
 			usersRun = true;
 		// body 动画结束
 		// header部分
-		$(document).ready(function () {
-			// 添加导航菜单背景色
-			$(document).on("scroll", function () {
-				runNumberAnimat(); // 添加body内容数字动画
-			});
-			// 初始化首页轮播图
-			if ($('.swiper-container').length === 1) {
-				var swiper = new Swiper('.swiper-container', {
-					height : window.innerHeight,
-				});
-				$('.banner-content .title').show();
-				// 初始化元素可视运行动画
-				wow = new WOW({
-					animateClass: 'animated',
-				});
-				wow.init();
-
-				// 执行数字动画
-				runNumberAnimat();
-			}
+		// 添加导航菜单背景色
+		$(document).on("scroll", function () {
+			runNumberAnimat(); // 添加body内容数字动画
 		});
+		// 初始化首页轮播图
+		if ($('.swiper-container').length === 1) {
+			var swiper = new Swiper('.swiper-container', {
+			});
+			$('.banner-content .title').show();
+			// 初始化元素可视运行动画
+			wow = new WOW({
+				animateClass: 'animated',
+			});
+			wow.init();
+
+			// 执行数字动画
+			runNumberAnimat();
+		}
 
 		// 检查元素是否可见
 		function isVisible(element, winScrollTop) {
@@ -215,16 +210,16 @@ $(document).ready(function () {
 	// header部分结束
 
 	// 社区首页列表
-	if($('.topics-index-page').length == 1){
+	if ($('.topics-index-page').length == 1) {
 		// 初始化首页轮播图
 		if ($('.swiper-container').length === 1) {
 			var swiper = new Swiper('.swiper-container', {
-				loop : true,
-				autoplay:true,
+				loop: true,
+				autoplay: true,
 				pagination: {
 					el: '.swiper-pagination',
 					dynamicBullets: true,
-				  },
+				},
 			});
 		}
 	}
@@ -1609,7 +1604,7 @@ $(document).ready(function () {
 						shadeClose: true, //开启遮罩关闭
 						content: $("#advertising-form")
 					});
-					advertisingSubmit('/management/club/settings/store', advertising_form,'add');
+					advertisingSubmit('/management/club/settings/store', advertising_form, 'add');
 				}
 			});
 			//监听工具条 查看角色用户 查看角色权限
@@ -1656,7 +1651,7 @@ $(document).ready(function () {
 						"title": data.title,
 						"link": data.link,
 					})
-					advertisingSubmit('/management/club/settings/store', advertising_form,'update');
+					advertisingSubmit('/management/club/settings/store', advertising_form, 'update');
 				}
 			});
 			//上传图片
@@ -1680,7 +1675,7 @@ $(document).ready(function () {
 				}
 			});
 
-			function advertisingSubmit(api, layerOpen,action) {
+			function advertisingSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
 				form.on("submit(advertising-btn)", function (data) {
 					$(".roles-btn").addClass('layui-btn-disabled');
@@ -1740,7 +1735,7 @@ $(document).ready(function () {
 						shadeClose: true, //开启遮罩关闭
 						content: $("#clubbanner-form")
 					});
-					clubbannerSubmit('/management/club/recommend/store', clubbanner_form,'add');
+					clubbannerSubmit('/management/club/recommend/store', clubbanner_form, 'add');
 				}
 			});
 			//监听工具条 查看角色用户 查看角色权限
@@ -1787,7 +1782,7 @@ $(document).ready(function () {
 						"subtitle": data.subtitle,
 						"link": data.link,
 					})
-					clubbannerSubmit('/management/club/recommend/store', clubbanner_form,'update');
+					clubbannerSubmit('/management/club/recommend/store', clubbanner_form, 'update');
 				}
 			});
 			//上传图片
@@ -1811,7 +1806,7 @@ $(document).ready(function () {
 				}
 			});
 
-			function clubbannerSubmit(api, layerOpen,action) {
+			function clubbannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
 				form.on("submit(clubbanner-btn)", function (data) {
 					$(".roles-btn").addClass('layui-btn-disabled');
@@ -1871,7 +1866,7 @@ $(document).ready(function () {
 						shadeClose: true, //开启遮罩关闭
 						content: $("#homebanner-form")
 					});
-					homebannerSubmit('/management/club/web_recommend/store', homebanner_form,'add');
+					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'add');
 				}
 			});
 			//监听工具条 查看角色用户 查看角色权限
@@ -1917,32 +1912,48 @@ $(document).ready(function () {
 						"title": data.title,
 						"subtitle": data.subtitle,
 						"link": data.link,
+						"icon1": data.icon1,
+						"icon_title1": data.icon_title1,
+						"icon_link1": data.icon_link1,
+						"icon2": data.icon2,
+						"icon_title2": data.icon_title2,
+						"icon_link2": data.icon_link2,
+						"icon3": data.icon3,
+						"icon_title3": data.icon_title3,
+						"icon_link3": data.icon_link3,
+						"icon4": data.icon4,
+						"icon_title4": data.icon_title4,
+						"icon_link4": data.icon_link4,
+						"icon5": data.icon5,
+						"icon_title5": data.icon_title5,
+						"icon_link5": data.icon_link5,
 					})
-					homebannerSubmit('/management/club/web_recommend/store', homebanner_form,'update');
+					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'update');
 				}
 			});
 			//上传图片
 			var uploadIcon = upload.render({
-				elem: "#upload-banner",
+				elem: ".upload-banner",
 				url: "/upload/uploadImage",
 				field: 'upload_file',
 				accept: 'images',
 				data: {
 					_token: $('meta[name="csrf-token"]').attr('content')
 				},
-				done: function (res) {
+				done: function (res, index, upload) {
 					//如果上传失败
 					if (res.code > 0) {
 						return layer.msg('上传失败');
 					}
-					$('#upload-banner').prev().val(res.data.src);
+					// this.item 可获取到触发上传动作的按钮;
+					$(this.item).prev().val(res.data.src);
 				},
 				error: function () {
 					layer.msg('上传失败');
 				}
 			});
 
-			function homebannerSubmit(api, layerOpen,action) {
+			function homebannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
 				form.on("submit(homebanner-btn)", function (data) {
 					$(".roles-btn").addClass('layui-btn-disabled');

@@ -1,56 +1,81 @@
 @extends('layouts.app')
-@section('title','沟通科技')
+@section('title','深圳市沟通科技有限公司')
 
 @section('content')
 <div class="swiper-container">
   <div class="swiper-wrapper">
+    @foreach($homebanners as $banner)
     <div class="swiper-slide blue-slide">
-      <div class="banner-cell">
-        <div class="banner-content">
-
-          <div class="title  wow fadeInUp" style="visibility: hidden;">
-            <h3>每天超过 <span id="enterprises">1</span>+ 企业 <span id="users">1</span>+ 用户在使用沟通科技提供的应用虚拟化服务</h3>
-          </div>
-          <div class="banner-products mdui-hidden-sm-down">
-            <a href="/sms" class=" wow fadeInUp mdui-text-color-white-secondary">
-              <i class="kticon kticon-kuapingtai"></i>
-              <span>跨平台</span>
-            </a>
-            <a href="/internationalsms" class=" wow fadeInUp mdui-text-color-white-secondary">
-              <i class="kticon kticon-vpn1"></i>
-              <span>跨网络</span>
-            </a>
-            <a href="/mail" class=" wow fadeInUp mdui-text-color-white-secondary">
-              <i class="kticon kticon-anquan1"></i>
-              <span>安全</span>
-            </a>
-            <a href="/mobiledata" class=" wow fadeInUp mdui-text-color-white-secondary">
-              <i class="kticon kticon-huojian"></i>
-              <span>速度快</span>
-            </a>
-            <a href="/voice" class=" wow fadeInUp mdui-text-color-white-secondary">
-              <i class="kticon kticon-yunwei"></i>
-              <span>轻运维</span>
-            </a>
-          </div>
-          <div class="banner-signup">
-            <a class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
-              免费试用<span class=""></span></a>
-            </a>
-          </div>
-
+      <div class="banner-content" style="background-image:url('{{ $banner->banner }}')">
+        <div class="title  wow fadeInUp">
+          <h3>{{ $banner->title }}</h3>
         </div>
+        <div class="banner-products mdui-hidden-sm-down">
+          <a href="{{ $banner->icon_link1}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+            <i class="kticon" style="background-image:url('{{ $banner->icon1 }}')"></i>
+            <span>{{ $banner->icon_title1 }}</span>
+          </a>
+          <a href="{{ $banner->icon_link2}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+            <i class="kticon" style="background-image:url('{{ $banner->icon2 }}')"></i>
+            <span>{{ $banner->icon_title2 }}</span>
+          </a>
+          <a href="{{ $banner->icon_link3}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+            <i class="kticon" style="background-image:url('{{ $banner->icon3 }}')"></i>
+            <span>{{ $banner->icon_title3 }}</span>
+          </a>
+          <a href="{{ $banner->icon_link4}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+            <i class="kticon" style="background-image:url('{{ $banner->icon4 }}')"></i>
+            <span>{{ $banner->icon_title4 }}</span>
+          </a>
+          <a href="{{ $banner->icon_link5}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+            <i class="kticon" style="background-image:url('{{ $banner->icon5 }}')"></i>
+            <span>{{ $banner->icon_title5 }}</span>
+          </a>
+          
+        </div>
+        <div class="banner-signup">
+          <a  href="{{ $banner->link }}" class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
+            {{ $banner->subtitle }}</a>
+          </a>
+        </div>
+
       </div>
     </div>
-    <div class="swiper-slide red-slide">
-      <div class="title">Slide 2</div>
+    @endforeach
+    <div class="swiper-slide blue-slide">
+        <div class="banner-content">
+            <div class="title  wow fadeInUp">
+              <h3>每天超过 <span id="enterprises">1</span>+ 企业 <span id="users">1</span>+ 用户在使用沟通科技提供的应用虚拟化服务</h3>
+            </div>
+            <div class="banner-products mdui-hidden-sm-down">
+              <a href="/sms" class=" wow fadeInUp mdui-text-color-white-secondary">
+                <i class="kticon"></i>
+                <span>跨平台</span>
+              </a>
+              <a href="/internationalsms" class=" wow fadeInUp mdui-text-color-white-secondary">
+                <i class="kticon kticon-vpn1"></i>
+                <span>跨网络</span>
+              </a>
+              <a href="/mail" class=" wow fadeInUp mdui-text-color-white-secondary">
+                <i class="kticon kticon-anquan1"></i>
+                <span>安全</span>
+              </a>
+              <a href="/mobiledata" class=" wow fadeInUp mdui-text-color-white-secondary">
+                <i class="kticon kticon-huojian"></i>
+                <span>速度快</span>
+              </a>
+              <a href="/voice" class=" wow fadeInUp mdui-text-color-white-secondary">
+                <i class="kticon kticon-yunwei"></i>
+                <span>轻运维</span>
+              </a>
+            </div>
+            <div class="banner-signup">
+              <a class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
+                免费试用<span class=""></span></a>
+              </a>
+            </div>
     </div>
-    <div class="swiper-slide green-slide">
-      <div class="title">Slide 2</div>
-    </div>
-    <div class="swiper-slide pink-slide">
-      <div class="title">Slide 2</div>
-    </div>
+     
   </div>
 </div>
 <section>

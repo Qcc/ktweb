@@ -637,6 +637,7 @@ a:active {
 .swiper-wrapper .title {
     padding-top: 150px;
     max-width: 740px;
+    min-height: 100px;
     margin: 0 auto;
     line-height: 50px;
     font-size: 32px;
@@ -688,6 +689,9 @@ a:active {
     color: #fff;
 }
 
+.banner-content title {
+    visibility: hidden;
+}
 .banner-content h3 {
     color: #fff;
 }
@@ -728,8 +732,14 @@ a:active {
     transition: 0.2s;
     position: relative;
     top: 0px;
-    font-size: 100px;
-    font-weight: 100;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    opacity: 0.6;
 }
 
 .banner-products a i:hover {

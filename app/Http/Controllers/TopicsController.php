@@ -12,7 +12,6 @@ use Illuminate\Session\Store as Session;
 use App\Handlers\ImageUploadHandler;
 use App\Notifications\ReportNotice;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 use Auth;
 
 class TopicsController extends Controller
@@ -59,14 +58,10 @@ class TopicsController extends Controller
 		// 根据会话阅读增加文章访问量
 		if (!$this->session->has('topic_'.$topic->id))
 		{
-			Log::info('没有,添加前'.$topic->view_count.' id->'.$topic->id);
 			$topic->timestamps = false;
 			$this->session->put('topic_'.$topic->id,$topic->id);
 			$topic->increment('view_count');
-			Log::info('没有，添加后'.$topic->view_count.' id->'.$topic->id);
 			$topic->timestamps = true;
-		}else{
-			Log::info('有');
 		}
 		$topics = $topic->user->topics()->with('category')->recent()->paginate(5);
 		$advertisings = Cache::rememberForever('side_advertising', function (){
@@ -77,7 +72,6 @@ class TopicsController extends Controller
             return redirect($topic->link(), 301);
 		}
 		// dd(compact('advertisings'));
-		Log::info('最后'.$topic->view_count.' id->'.$topic->id);
         return view('topics.show', compact('topic','topics','advertisings'));
     }
 

@@ -121,6 +121,21 @@ class ClubManagementController extends Controller
                 'banner'=>$request->banner,
                 'title'=>$request->title,
                 'subtitle'=>$request->subtitle,
+                'icon1'=>$request->icon1,
+                'icon_title1'=>$request->icon_title1,
+                'icon_link1'=>$request->icon_link1,
+                'icon2'=>$request->icon2,
+                'icon_title2'=>$request->icon_title2,
+                'icon_link2'=>$request->icon_link2,
+                'icon3'=>$request->icon3,
+                'icon_title3'=>$request->icon_title3,
+                'icon_link3'=>$request->icon_link3,
+                'icon4'=>$request->icon4,
+                'icon_title4'=>$request->icon_title4,
+                'icon_link4'=>$request->icon_link4,
+                'icon5'=>$request->icon5,
+                'icon_title5'=>$request->icon_title5,
+                'icon_link5'=>$request->icon_link5,
                 'created_at'=>Carbon::now(),
                 ]);
             $res = ['code'=>0,'msg'=>'新增成功！'];
@@ -130,6 +145,21 @@ class ClubManagementController extends Controller
                 'banner'=>$request->banner,
                 'title'=>$request->title,
                 'subtitle'=>$request->subtitle,
+                'icon1'=>$request->icon1,
+                'icon_title1'=>$request->icon_title1,
+                'icon_link1'=>$request->icon_link1,
+                'icon2'=>$request->icon2,
+                'icon_title2'=>$request->icon_title2,
+                'icon_link2'=>$request->icon_link2,
+                'icon3'=>$request->icon3,
+                'icon_title3'=>$request->icon_title3,
+                'icon_link3'=>$request->icon_link3,
+                'icon4'=>$request->icon4,
+                'icon_title4'=>$request->icon_title4,
+                'icon_link4'=>$request->icon_link4,
+                'icon5'=>$request->icon5,
+                'icon_title5'=>$request->icon_title5,
+                'icon_link5'=>$request->icon_link5,
                 'updated_at'=>Carbon::now(),
                 ]);
             $res = ['code'=>0,'msg'=>'更新banner成功!'];
@@ -137,7 +167,7 @@ class ClubManagementController extends Controller
             DB::table('settings')->where('id', $request->id)->delete();
             $res = ['code'=>0,'msg'=>'删除banner成功!'];
         }
-        Cache::forget('club_banner');
+        Cache::forget('home_banner');
         return $res;
     }
     /**

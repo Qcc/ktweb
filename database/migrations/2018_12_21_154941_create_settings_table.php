@@ -21,10 +21,20 @@ class CreateSettingsTable extends Migration
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
             $table->string('icon1')->nullable();
+            $table->string('icon_title1')->nullable();
+            $table->string('icon_link1')->nullable();
             $table->string('icon2')->nullable();
+            $table->string('icon_title2')->nullable();
+            $table->string('icon_link2')->nullable();
             $table->string('icon3')->nullable();
+            $table->string('icon_title3')->nullable();
+            $table->string('icon_link3')->nullable();
             $table->string('icon4')->nullable();
+            $table->string('icon_title4')->nullable();
+            $table->string('icon_link4')->nullable();
             $table->string('icon5')->nullable();
+            $table->string('icon_title5')->nullable();
+            $table->string('icon_link5')->nullable();
             $table->timestamps();
         });
     }
