@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="mdui-col-xs-8">
-            <div class="edit-action-warp">
+            <div class="edit-action-warp"  style="margin-bottom:0">
                 <p>首页banner</p>
             </div>
             <table lay-filter="homebanner-table" id="homebanner-table">
@@ -63,6 +63,34 @@
                         <td>{{ $item->icon5 }}</td>
                         <td>{{ $item->icon_title5 }}</td>
                         <td>{{ $item->icon_link5 }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="edit-action-warp" style="margin-bottom:0">
+                <p>首页解决方案</p>
+            </div>
+            <table lay-filter="solutionbanner-table" id="solutionbanner-table">
+                <thead>
+                    <tr>
+                        <th lay-data="{field:'id', width:40}">ID</th>
+                        <th lay-data="{field:'link'}">链接</th>
+                        <th lay-data="{field:'banner'}">banner</th>
+                        <th lay-data="{field:'title'}">标题</th>
+                        <th lay-data="{field:'subtitle'}">副标题</th>
+                        <th lay-data="{field:'icon1'}">图标</th>
+                        <th lay-data="{toolbar: '#barAction', width:110}">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($solutionbanners as $solution)
+                    <tr>
+                        <td>{{ $solution->id }}</td>
+                        <td>{{ $solution->link }}</td>
+                        <td>{{ $solution->banner }}</td>
+                        <td>{{ $solution->title }}</td>
+                        <td>{{ $solution->subtitle }}</td>
+                        <td>{{ $solution->icon1 }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -216,6 +244,56 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn homebanner-btn" lay-submit="" lay-filter="homebanner-btn">保存</button>
+        </div>
+    </div>
+</form>
+<!-- 解决方案banner -->
+<form class="layui-form" id="solutionbanner-form" lay-filter="solutionbanner-form" style="display:none;margin-right: 80px;">
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <input type="hidden" name="id">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">banner图片</label>
+        <div class="layui-input-block">
+            <input type="text" name="banner" lay-verify="required" autocomplete="off" placeholder="请上传图片640*400"
+                class="layui-input">
+            <a href="javascript:;" class="upload-banner">上传</a>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接</label>
+        <div class="layui-input-block">
+            <input type="text" name="link" lay-verify="required" autocomplete="off" placeholder="请输入链接" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+            <label class="layui-form-label">副标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="subtitle" lay-verify="required" autocomplete="off" placeholder="请输入链接" class="layui-input">
+            </div>
+        </div>
+        <hr/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图标</label>
+        <div class="layui-input-block">
+            <input type="text" name="icon1" lay-verify="required" autocomplete="off" placeholder="请上传图片png-白色-200*200"
+                class="layui-input">
+            <a href="javascript:;" class="upload-banner">上传</a>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn solutionbanner-btn" lay-submit="" lay-filter="solutionbanner-btn">保存</button>
         </div>
     </div>
 </form>

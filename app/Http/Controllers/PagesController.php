@@ -15,7 +15,10 @@ class PagesController extends Controller
         $homebanners = Cache::rememberForever('home_banner', function (){
 			return \DB::table('settings')->where('key','home_banner')->orderBy('updated_at','desc')->get();
         });
-        return view('pages.home',compact('kouton','industry','think','homebanners'));
+        $solutionbanners = Cache::rememberForever('solution_banner', function (){
+			return \DB::table('settings')->where('key','solution_banner')->orderBy('updated_at','desc')->get();
+        });
+        return view('pages.home',compact('kouton','industry','think','homebanners','solutionbanners'));
     }
 
     public function managernews(){

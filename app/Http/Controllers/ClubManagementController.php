@@ -107,8 +107,9 @@ class ClubManagementController extends Controller
      */
     public function webRecommend()
     {
+        $solutionbanners = \DB::table('settings')->where('key','solution_banner')->get();
         $homebanners = \DB::table('settings')->where('key','home_banner')->get();
-        return view('management.web_recommend',compact('homebanners'));
+        return view('management.web_recommend',compact('homebanners','solutionbanners'));
     }
     public function webRecommendStore(Request $request)
     {
@@ -168,6 +169,38 @@ class ClubManagementController extends Controller
             $res = ['code'=>0,'msg'=>'删除banner成功!'];
         }
         Cache::forget('home_banner');
+        return $res;
+    }
+    public function webSolutionStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'保存失败！'];
+        $data = $request->all();
+        if($request->action == 'add'){
+            $id = DB::table('settings')->insertGetId([
+                'key'=>'solution_banner',
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'subtitle'=>$request->subtitle,
+                'icon1'=>$request->icon1,
+                'created_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'新增成功！'];
+        }else if($request->action == 'update'){
+            DB::table('settings')->where('id', $request->id)->update([
+                'link'=>$request->link,
+                'banner'=>$request->banner,
+                'title'=>$request->title,
+                'subtitle'=>$request->subtitle,
+                'icon1'=>$request->icon1,
+                'updated_at'=>Carbon::now(),
+                ]);
+            $res = ['code'=>0,'msg'=>'更新banner成功!'];
+        }else if($request->action == 'delete'){
+            DB::table('settings')->where('id', $request->id)->delete();
+            $res = ['code'=>0,'msg'=>'删除banner成功!'];
+        }
+        Cache::forget('solution_banner');
         return $res;
     }
     /**

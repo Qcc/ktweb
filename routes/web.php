@@ -101,6 +101,7 @@ Route::group(['middleware' => ['permission:web_manage']], function () {
     Route::post('/management/club/recommend/store','ClubManagementController@recommendStore')->name('admin.club.recommend.store');
     Route::get('/management/club/web_recommend','ClubManagementController@webRecommend')->name('admin.club.web_recommend');
     Route::post('/management/club/web_recommend/store','ClubManagementController@webRecommendStore')->name('admin.club.web_recommend.store');
+    Route::post('/management/club/solution/store','ClubManagementController@webSolutionStore')->name('admin.club.web_solution.store');
     // 网站设置
     Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
     Route::post('/management/club/settings/store','ClubManagementController@settingsStore')->name('admin.club.setting.store');

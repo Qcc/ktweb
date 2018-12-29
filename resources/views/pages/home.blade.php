@@ -42,40 +42,6 @@
       </div>
     </div>
     @endforeach
-    <div class="swiper-slide blue-slide">
-        <div class="banner-content">
-            <div class="title  wow fadeInUp">
-              <h3>每天超过 <span id="enterprises">1</span>+ 企业 <span id="users">1</span>+ 用户在使用沟通科技提供的应用虚拟化服务</h3>
-            </div>
-            <div class="banner-products mdui-hidden-sm-down">
-              <a href="/sms" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon"></i>
-                <span>跨平台</span>
-              </a>
-              <a href="/internationalsms" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-vpn1"></i>
-                <span>跨网络</span>
-              </a>
-              <a href="/mail" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-anquan1"></i>
-                <span>安全</span>
-              </a>
-              <a href="/mobiledata" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-huojian"></i>
-                <span>速度快</span>
-              </a>
-              <a href="/voice" class=" wow fadeInUp mdui-text-color-white-secondary">
-                <i class="kticon kticon-yunwei"></i>
-                <span>轻运维</span>
-              </a>
-            </div>
-            <div class="banner-signup">
-              <a class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
-                免费试用<span class=""></span></a>
-              </a>
-            </div>
-    </div>
-     
   </div>
 </div>
 <section>
@@ -166,37 +132,37 @@
     <div class="mdui-row">
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
         <a href="" class="wow fadeInUp mdui-text-center solution-item  mdui-text-color-grey-600">
-          <i class="kticon kticon-gongyinglian2 mdui-text-color-cyan"></i>
+          <i class="kticon mdui-text-color-cyan">&#xe61e;</i>
           <p class="mdui-typo-title">远程接入</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
         <a href="" class="wow fadeInUp mdui-text-center solution-item  mdui-text-color-grey-600">
-          <i class="kticon kticon-caiwu mdui-text-color-yellow"></i>
+          <i class="kticon mdui-text-color-yellow">&#xe62a;</i>
           <p class="mdui-typo-title">财务管理</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
         <a href="" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
-          <i class="kticon kticon-shengchanhuanjie mdui-text-color-orange"></i>
+          <i class="kticon mdui-text-color-orange">&#xe621;</i>
           <p class="mdui-typo-title">生产制造</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
         <a href="" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
-          <i class="kticon kticon-lingshoushangpin mdui-text-color-red"></i>
+          <i class="kticon mdui-text-color-red">&#xe65a;</i>
           <p class="mdui-typo-title">零售</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
         <a href="" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
-          <i class="kticon kticon-xunihua mdui-text-color-light-green"></i>
+          <i class="kticon mdui-text-color-light-green">&#xe63c;</i>
           <p class="mdui-typo-title">快消品</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
         <a href="" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
-          <i class="kticon kticon-gongyinglian1 mdui-text-color-indigo"></i>
+          <i class="kticon mdui-text-color-indigo">&#xe64a;</i>
           <p class="mdui-typo-title">供应链</p>
         </a>
       </div>
@@ -207,36 +173,18 @@
 <section>
   <div class="mdui-container-fluid">
     <div class="mdui-row img-solution-warp">
+      @foreach($solutionbanners as $solution)
       <div class="wow fadeInLeft img-solution-item mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
         <div class="img-solution-background mdui-color-grey"></div>
-        <img src="./images/solution1.jpg" alt="">
+        <img src="{{ $solution->banner }}" alt="{{ $solution->title }}">
         <div class="img-solution-content  mdui-text-color-white">
-          <i class="kticon kticon-gongyinglian2"></i>
-          <h3 class="mdui-typo-display-1">智慧桌面RAS</h3>
-          <p class="mdui-typo-subheading">集团化企业应用集中发布，统一交付解决方案。</p>
+          <i class="kticon" style="background-image:url('{{ $banner->icon1 }}')"></i>
+          <h3 class="mdui-typo-display-1">{{ $solution->title }}</h3>
+          <p class="mdui-typo-subheading">{{ $solution->subtitle }}</p>
         </div>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</button>
+        <a href="{{ $solution->link }}" class="link mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</a>
       </div>
-      <div class="wow fadeInUp img-solution-item mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
-        <div class="img-solution-background mdui-color-grey"></div>
-        <img src="./images/solution2.jpg" alt="">
-        <div class="img-solution-content  mdui-text-color-white">
-          <i class="kticon kticon-kuaisuxiaofeipin"></i>
-          <h3 class="mdui-typo-display-1">快速消费品解决方案</h3>
-          <p class="mdui-typo-subheading">管人、管车、管生意，打通快速消费品各个环节。</p>
-        </div>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</button>
-      </div>
-      <div class="wow fadeInRight img-solution-item mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
-        <div class="img-solution-background mdui-color-black"></div>
-        <img src="./images/solution3.jpg" alt="">
-        <div class="img-solution-content  mdui-text-color-white">
-          <i class="kticon kticon-workshop"></i>
-          <h3 class="mdui-typo-display-1">工业3.0，智慧工厂</h3>
-          <p class="mdui-typo-subheading">大规模个性化制造、网络协同制造、智慧工厂</p>
-        </div>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</button>
-      </div>
+      @endforeach
     </div>
   </div>
 </section>

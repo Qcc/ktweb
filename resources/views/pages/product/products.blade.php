@@ -112,25 +112,4 @@
 
 @section('script')
 <script src="{{ asset('js/swiper.min.js') }}"></script>
-
-<script>
-    $$(document).ready(function () {
-        $$(document).ready(function () {
-        // 初始化首页轮播图
-        if ($$('.swiper-container').length === 1) {
-            var solutionSwiper = new Swiper ('#solutionSwiper', {
-              centeredSlides : true,
-            	slidesPerView : 'auto',
-                spaceBetween : 40,
-                loop : true,
-                autoplay:true,
-              navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              },
-            }) 
-        }
-        });
-    });
-</script>
 @stop

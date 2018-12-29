@@ -84,23 +84,67 @@ $(document).ready(function () {
 		// 初始化首页轮播图
 		if ($('.swiper-container').length === 1) {
 			var swiper = new Swiper('.swiper-container', {
+				loop: true,
+				autoplay: true,
 			});
-			$('.banner-content .title').show();
-			// 初始化元素可视运行动画
-			wow = new WOW({
-				animateClass: 'animated',
-			});
-			wow.init();
-
-			// 执行数字动画
-			runNumberAnimat();
 		}
+		$('.banner-content>.title>h3').each(function () {
+			var title = $(this).text();
+			var numbers = getNumber(title);
+			for (let index = 0; index < numbers.length; index++) {
+				title = title.replace(numbers[index], "<span id=CountUp" + numbers[index] + ">" + numbers[index] + "</span>+");
+				$(this).empty();
+				$(this).append(title);
+				runCountUp(numbers[index]);
+			}
+		});
+		function runCountUp(number){
+			setTimeout(function(){
+				var countUp = new CountUp('CountUp'+number, 1, number, 0, 3).start();
+			},100)
+		}
+		function getNumber(Str, isFilter) {
+			//用来判断是否把连续的0去掉
+			isFilter = isFilter || false;
+			if (typeof Str === "string") {
+				// var arr = Str.match(/(0\d{2,})|([1-9]\d+)/g);
+				//"/[1-9]\d{1,}/g",表示匹配1到9,一位数以上的数字(不包括一位数).
+				//"/\d{2,}/g",  表示匹配至少二个数字至多无穷位数字
+				var arr = Str.match(isFilter ? /[1-9]\d{1,}/g : /\d{2,}/g);
+				if (arr) {
+					return arr.map(function (item) {
+						//转换为整数，
+						//但是提取出来的数字，如果是连续的多个0会被改为一个0，如000---->0，
+						//或者0开头的连续非零数字，比如015，会被改为15，这是一个坑
+						// return parseInt(item);
+						//字符串，连续的多个0也会存在，不会被去掉
+						return parseInt(item);;
+					});
+				}else{
+					return [];
+				}
+			} else {
+				return [];
+			}
+		}
+		$('.banner-content .title').show();
+		// 初始化元素可视运行动画
+		wow = new WOW({
+			animateClass: 'animated',
+		});
+		wow.init();
+
+		// 执行数字动画
+		runNumberAnimat();
 
 		// 检查元素是否可见
-		function isVisible(element, winScrollTop) {
+		function isVisible(element) {
+			if($("#"+element).length == 0){return false;}
+			var winScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 			var mainOffsetTop = $("#" + element).offset().top;
 			var mainHeight = $("#" + element).height();
 			var winHeight = $(window).height();
+
 			if (winScrollTop > mainOffsetTop + mainHeight || winScrollTop < mainOffsetTop - winHeight) {
 				return false;
 			} else {
@@ -110,42 +154,30 @@ $(document).ready(function () {
 
 		// 启动数字动画
 		function runNumberAnimat() {
-			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-			if (isVisible('ctbs', scrollTop) && ctbsRun) {
+
+			if (isVisible('ctbs') && ctbsRun) {
 				// 初始化数字动态动画
 				var ctbs = new CountUp('ctbs', 1, 10000, 0, 3);
 				ctbs.start();
 				ctbsRun = false;
 			}
-			if (isVisible('kingdee', scrollTop) && kingdeeRun) {
+			if (isVisible('kingdee') && kingdeeRun) {
 				// 初始化数字动态动画
 				var kingdee = new CountUp('kingdee', 1, 70, 0, 3);
 				kingdee.start();
 				kingdeeRun = false;
 			}
-			if (isVisible('yzj', scrollTop) && yzjRun) {
+			if (isVisible('yzj') && yzjRun) {
 				// 初始化数字动态动画
 				var yzj = new CountUp('yzj', 1, 99, 0, 3);
 				yzj.start();
 				yzjRun = false;
 			}
-			if (isVisible('jdy', scrollTop) && jdyRun) {
+			if (isVisible('jdy') && jdyRun) {
 				// 初始化数字动态动画
 				var jdy = new CountUp('jdy', 1, 80, 0, 3);
 				jdy.start();
 				jdyRun = false;
-			}
-			if (isVisible('enterprises', scrollTop) && enterprisesRun) {
-				// 初始化数字动态动画
-				var enterprises = new CountUp('enterprises', 1, 10000, 0, 3);
-				enterprises.start();
-				enterprisesRun = false;
-			}
-			if (isVisible('users', scrollTop) && usersRun) {
-				// 初始化数字动态动画
-				var users = new CountUp('users', 1, 100000, 0, 3);
-				users.start();
-				usersRun = false;
 			}
 		}
 	}
@@ -1852,8 +1884,11 @@ $(document).ready(function () {
 			table.init('homebanner-table', { //转化静态表格
 				toolbar: '#toolbarAdd',
 			});
+			table.init('solutionbanner-table', { //转化静态表格
+				toolbar: '#toolbarAdd',
+			});
 
-			//监听工具条 查看角色用户 查看角色权限
+			//监听工具条 首页大图banner
 			table.on('toolbar(homebanner-table)', function (obj) {
 				var data = obj.data;
 				if (obj.event === 'add') {
@@ -1869,7 +1904,7 @@ $(document).ready(function () {
 					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'add');
 				}
 			});
-			//监听工具条 查看角色用户 查看角色权限
+			//监听工具条 首页大图banner
 			table.on('tool(homebanner-table)', function (obj) {
 				var data = obj.data;
 				if (obj.event === 'delete') {
@@ -1931,28 +1966,28 @@ $(document).ready(function () {
 					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'update');
 				}
 			});
-			//上传图片
-			var uploadIcon = upload.render({
-				elem: ".upload-banner",
-				url: "/upload/uploadImage",
-				field: 'upload_file',
-				accept: 'images',
-				data: {
-					_token: $('meta[name="csrf-token"]').attr('content')
-				},
-				done: function (res, index, upload) {
-					//如果上传失败
-					if (res.code > 0) {
-						return layer.msg('上传失败');
-					}
-					// this.item 可获取到触发上传动作的按钮;
-					$(this.item).prev().val(res.data.src);
-				},
-				error: function () {
-					layer.msg('上传失败');
-				}
-			});
-
+			// //上传图片
+			// var uploadIcon = upload.render({
+			// 	elem: ".upload-banner",
+			// 	url: "/upload/uploadImage",
+			// 	field: 'upload_file',
+			// 	accept: 'images',
+			// 	data: {
+			// 		_token: $('meta[name="csrf-token"]').attr('content')
+			// 	},
+			// 	done: function (res, index, upload) {
+			// 		//如果上传失败
+			// 		if (res.code > 0) {
+			// 			return layer.msg('上传失败');
+			// 		}
+			// 		// this.item 可获取到触发上传动作的按钮;
+			// 		$(this.item).prev().val(res.data.src);
+			// 	},
+			// 	error: function () {
+			// 		layer.msg('上传失败');
+			// 	}
+			// });
+			// 首页大图提交
 			function homebannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
 				form.on("submit(homebanner-btn)", function (data) {
@@ -1986,6 +2021,144 @@ $(document).ready(function () {
 				});
 			}
 
+			//监听工具条 首页解决方案
+			table.on('toolbar(solutionbanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'add') {
+					document.getElementById('solutionbanner-form').reset();
+					var solutionbanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '添加广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#solutionbanner-form")
+					});
+					solutionbannerSubmit('/management/club/solution/store', solutionbanner_form, 'add');
+				}
+			});
+			//监听工具条 首页大图banner
+			table.on('tool(solutionbanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'delete') {
+					data.action = 'delete';
+					layer.confirm('真的删除行么', function (index) {
+						$.ajax({
+							method: 'POST',
+							url: '/management/club/solution/store',
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: data,
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							}
+						});
+						layer.close(index);
+					});
+				} else if (obj.event === 'edit') {
+					var solutionbanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '请修改广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#solutionbanner-form")
+					});
+					//表单初始赋值
+					form.val('solutionbanner-form', {
+						"id": data.id,
+						"banner": data.banner,
+						"title": data.title,
+						"subtitle": data.subtitle,
+						"link": data.link,
+						"icon1": data.icon1,
+					})
+					solutionbannerSubmit('/management/club/solution/store', solutionbanner_form, 'update');
+				}
+			});
+			//上传图片
+			var uploadIcon = upload.render({
+				elem: ".upload-banner",
+				url: "/upload/uploadImage",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				done: function (res, index, upload) {
+					//如果上传失败
+					if (res.code > 0) {
+						return layer.msg('上传失败');
+					}
+					// this.item 可获取到触发上传动作的按钮;
+					$(this.item).prev().val(res.data.src);
+				},
+				error: function () {
+					layer.msg('上传失败');
+				}
+			});
+
+			function solutionbannerSubmit(api, layerOpen, action) {
+				//监听提交 修改分类
+				form.on("submit(solutionbanner-btn)", function (data) {
+					$(".roles-btn").addClass('layui-btn-disabled');
+					var field = data.field;
+					field.action = action;
+					$.ajax({
+						method: 'POST',
+						url: api,
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: field,
+						success: function (data) {
+							$(".solutionbanner-btn").removeClass('layui-btn-disabled');
+							if (data.code == 0) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							layer.close(layerOpen);
+						}
+					});
+					return false;
+				});
+			}
+			
+
 		});
+	}
+
+	// 产品页面
+	if($('.products-show-page').length == 1){
+		// 初始化产品页面轮播图
+        if ($('.swiper-container').length === 1) {
+            var solutionSwiper = new Swiper ('#solutionSwiper', {
+              centeredSlides : true,
+            	slidesPerView : 'auto',
+                spaceBetween : 40,
+                loop : true,
+                autoplay:true,
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+            }) 
+        }
 	}
 });

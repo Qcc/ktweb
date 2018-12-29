@@ -254,11 +254,11 @@ body {
 @font-face {
     font-family: 'kticon';
     /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_019nq5s6njcg.eot');
-    src: url('//at.alicdn.com/t/font_916960_019nq5s6njcg.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_916960_019nq5s6njcg.woff') format('woff'),
-        url('//at.alicdn.com/t/font_916960_019nq5s6njcg.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_916960_019nq5s6njcg.svg#kticon') format('svg');
+    src: url('//at.alicdn.com/t/font_916960_88wux91y4mb.eot');
+    src: url('//at.alicdn.com/t/font_916960_88wux91y4mb.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_916960_88wux91y4mb.woff') format('woff'),
+        url('//at.alicdn.com/t/font_916960_88wux91y4mb.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_916960_88wux91y4mb.svg#kticon') format('svg');
 }
 
 .kticon {
@@ -641,6 +641,7 @@ a:active {
     margin: 0 auto;
     line-height: 50px;
     font-size: 32px;
+    visibility: hidden;
 }
 
 @media screen and (max-width: 768px) {
@@ -692,6 +693,7 @@ a:active {
 .banner-content title {
     visibility: hidden;
 }
+
 .banner-content h3 {
     color: #fff;
 }
@@ -836,7 +838,7 @@ a:active {
     transition: all 0.6s;
 }
 
-.img-solution-item button {
+.img-solution-item .link {
     position: absolute;
     right: 20px;
     bottom: 20px;
@@ -856,7 +858,16 @@ a:active {
 
 @media screen and (max-width: 500px) {
     .img-solution-content i {
-        font-size: 45px;
+        transition: 0.2s;
+        position: relative;
+        top: 0px;
+        display: block;
+        width: 80px;
+        height: 80px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
     }
 
     .img-solution-content h3 {
@@ -884,7 +895,16 @@ a:active {
 }
 
 .img-solution-content i {
-    font-size: 65px;
+    transition: 0.2s;
+        position: relative;
+        top: 0px;
+        display: block;
+        width: 80px;
+        height: 80px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
 }
 
 .img-solution-content h3,
@@ -3219,14 +3239,14 @@ a:active {
     height: 400px;
     position: relative;
 }
-.swiper-item a{
+
+.swiper-item a {
     width: 100%;
     height: 100%;
     display: block;
 }
-.topics-index-page .swiper-wrapper .swiper-slide
 
-.kt-nav-header-open .xhs_cpsq_menu {
+.topics-index-page .swiper-wrapper .swiper-slide .kt-nav-header-open .xhs_cpsq_menu {
     height: 50px;
     z-index: 3;
     position: fixed;
