@@ -28,7 +28,7 @@
                 </div>
                 <div class="reply-footer">
                     <div class="reply-excellent">
-                        <button class="mdui-btn mdui-ripple"> <i class="kticon">&#xe606;</i> 点赞</button>
+                        <button class="mdui-btn mdui-ripple greatReply" reply_id="{{ $reply->id }}"> <i class="kticon">&#xe606;</i> 点赞 <span>{{ $reply->great_count>0?$reply->great_count:'' }}</span></button>
                     </div>
                     <div class="reply-report">
                         <button class="mdui-btn mdui-ripple club-reply-report" reply-item="reply{{ $reply->id }}"> <i class="kticon">&#xe651;</i> 举报</button>

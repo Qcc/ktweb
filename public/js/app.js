@@ -1,5 +1,17 @@
 // header部分
 $(document).ready(function () {
+	// 信息提示框样式
+	if ($('.alert')) {
+		setTimeout(function () {
+			$('.alert>.bg').css('width', '0');
+			setTimeout(function () {
+				$('.alert').hide();
+			}, 5000);
+		}, 1000);
+		$('.alert>.content>a').on('click', function () {
+			$('.alert').hide();
+		});
+	}
 	// 底部客户提交信息模块
 	$("#customer").on("click", function () {
 		$(this).attr('disabled', true);
@@ -549,6 +561,34 @@ $(document).ready(function () {
 			} else {
 				$('.topexpired-warp').css('display', 'block');
 			}
+		});
+		// 点赞回复 或者取消点赞回复
+		$('.greatReply').on('click', function () {
+			$(this).attr('disabled', true);
+			var that = this;
+			$.ajax({
+				method: 'POST',
+				url: '/replies/greatReply',
+				ContentType: 'application/json',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data: {
+					reply_id: $('.greatReply').attr('reply_id')
+				},
+				success: function (data) {
+					var number = parseInt($(that).find('span').text());
+					if (data.success) {
+						if(data.action == 'add'){
+							$(that).find('span').text(number + 1)
+						}else if(data.action == 'delete'){
+							$(that).find('span').text(number - 1)
+						}
+					}
+					$('.greatReply').removeAttr('disabled');
+				}
+			});
+
 		});
 	}
 
@@ -2184,61 +2224,61 @@ $(document).ready(function () {
 	// 发布客户案例页面
 	if ($('.customer-edit-page').length == 1) {
 		var editor = new Simditor({
-            textarea: $('#editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
-                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
-                'indent', 'outdent', 'alignment'
-            ],
-            upload: {
-                url: "/customer/upload_image",
-                //工具条都包含哪些内容
-                params: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-            },
-            pasteImage: true,
-        });
-        layui.use(['upload', 'layer'], function () {
-            var $ = layui.jquery,
-                upload = layui.upload;
+			textarea: $('#editor'),
+			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+				'|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+				'indent', 'outdent', 'alignment'
+			],
+			upload: {
+				url: "/customer/upload_image",
+				//工具条都包含哪些内容
+				params: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				fileKey: 'upload_file',
+				connectionCount: 3,
+				leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+			},
+			pasteImage: true,
+		});
+		layui.use(['upload', 'layer'], function () {
+			var $ = layui.jquery,
+				upload = layui.upload;
 
-            //首图上传
-            var uploadImage = upload.render({
-                elem: '#btn-image',
-                url: "/customer/upload_image",
-                field: 'upload_file',
-                accept: 'images',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                before: function (obj) {
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function (index, file, result) {
-                        $('#image').attr('src', result); //图片链接（base64）
-                    });
-                },
-                done: function (res) {
-                    //如果上传失败
-                    if (!res.success) {
-                        return layer.msg('上传失败');
-                    }
-                    $('#image_path').val(res.file_path);
-                },
-                error: function () {
-                    //演示失败状态，并实现重传
-                    var imageText = $('#status');
-                    imageText.html(
-                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
-                    );
-                    imageText.find('.image-reload').on('click', function () {
-                        uploadImage.upload();
-                    });
-                }
-            });
-        
+			//首图上传
+			var uploadImage = upload.render({
+				elem: '#btn-image',
+				url: "/customer/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						$('#image').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#image_path').val(res.file_path);
+				},
+				error: function () {
+					//演示失败状态，并实现重传
+					var imageText = $('#status');
+					imageText.html(
+						'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+					);
+					imageText.find('.image-reload').on('click', function () {
+						uploadImage.upload();
+					});
+				}
+			});
+
 			//banner大图上传
 			var uploadIcon = upload.render({
 				elem: "#upload-banner",
@@ -2263,206 +2303,206 @@ $(document).ready(function () {
 	}
 	// 解决方案页面
 	if ($('.solutions-show-page').length == 1) {
-		
+
 	}
 	// 产品添加编辑页面
 	if ($('.product-edit-page').length == 1) {
 		// 主要内容描述
 		var editor = new Simditor({
-            textarea: $('#editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
-                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
-                'indent', 'outdent', 'alignment'
+			textarea: $('#editor'),
+			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+				'|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+				'indent', 'outdent', 'alignment'
 			],
-			defaultImage : '/images/undefined.png',
-            upload: {
-                url: "/product/upload_image",
-                //工具条都包含哪些内容
-                params: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-            },
-            pasteImage: true,
+			defaultImage: '/images/undefined.png',
+			upload: {
+				url: "/product/upload_image",
+				//工具条都包含哪些内容
+				params: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				fileKey: 'upload_file',
+				connectionCount: 3,
+				leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+			},
+			pasteImage: true,
 		});
 		// 关键点描述编辑器
-        var pointeditor = new Simditor({
-            textarea: $('#pointeditor'),
+		var pointeditor = new Simditor({
+			textarea: $('#pointeditor'),
 		});
 		//     pasteImage —— 设定是否支持图片黏贴上传，这里我们使用 true 进行开启；
-    // url —— 处理上传图片的 URL；
-    // params —— 表单提交的参数，Laravel 的 POST 请求必须带防止 CSRF 跨站请求伪造的 _token 参数；
-    // fileKey —— 是服务器端获取图片的键值，我们设置为 upload_file;
-    // connectionCount —— 最多只能同时上传 3 张图片；
-    // leaveConfirm —— 上传过程中，用户关闭页面时的提醒。
-        layui.use(['upload', 'layer'], function () {
-            var $ = layui.jquery,
-                upload = layui.upload;
+		// url —— 处理上传图片的 URL；
+		// params —— 表单提交的参数，Laravel 的 POST 请求必须带防止 CSRF 跨站请求伪造的 _token 参数；
+		// fileKey —— 是服务器端获取图片的键值，我们设置为 upload_file;
+		// connectionCount —— 最多只能同时上传 3 张图片；
+		// leaveConfirm —— 上传过程中，用户关闭页面时的提醒。
+		layui.use(['upload', 'layer'], function () {
+			var $ = layui.jquery,
+				upload = layui.upload;
 
-            //首图上传
-            var uploadImage = upload.render({
-                elem: '#btn-image',
-                url: "/product/upload_image",
-                field: 'upload_file',
-                accept: 'images',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                before: function (obj) {
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function (index, file, result) {
-                        $('#image').attr('src', result); //图片链接（base64）
-                    });
-                },
-                done: function (res) {
-                    //如果上传失败
-                    if (!res.success) {
-                        return layer.msg('上传失败');
-                    }
-                    $('#image_path').val(res.file_path);
-                },
-                error: function () {
-                    //演示失败状态，并实现重传
-                    var imageText = $('#status');
-                    imageText.html(
-                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
-                    );
-                    imageText.find('.image-reload').on('click', function () {
-                        uploadImage.upload();
-                    });
-                }
-            });
-            //功能图标上传
-            var uploadIcon = upload.render({
-                elem: '#btn-icon',
-                url: "/product/upload_image",
-                field: 'upload_file',
-                accept: 'images',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                before: function (obj) {
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function (index, file, result) {
-                        $('#icon').attr('src', result); //图片链接（base64）
-                    });
-                },
-                done: function (res) {
-                    //如果上传失败
-                    if (!res.success) {
-                        return layer.msg('上传失败');
-                    }
-                    $('#icon_path').val(res.file_path);
-                },
-                error: function () {
-                    //演示失败状态，并实现重传
-                    var iconText = $('#status');
-                    iconText.html(
-                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs icon-reload">重试</a>'
-                    );
-                    iconText.find('.icon-reload').on('click', function () {
-                        uploadIcon.upload();
-                    });
-                }
-            });
-        });
+			//首图上传
+			var uploadImage = upload.render({
+				elem: '#btn-image',
+				url: "/product/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						$('#image').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#image_path').val(res.file_path);
+				},
+				error: function () {
+					//演示失败状态，并实现重传
+					var imageText = $('#status');
+					imageText.html(
+						'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+					);
+					imageText.find('.image-reload').on('click', function () {
+						uploadImage.upload();
+					});
+				}
+			});
+			//功能图标上传
+			var uploadIcon = upload.render({
+				elem: '#btn-icon',
+				url: "/product/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						$('#icon').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#icon_path').val(res.file_path);
+				},
+				error: function () {
+					//演示失败状态，并实现重传
+					var iconText = $('#status');
+					iconText.html(
+						'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs icon-reload">重试</a>'
+					);
+					iconText.find('.icon-reload').on('click', function () {
+						uploadIcon.upload();
+					});
+				}
+			});
+		});
 	}
 	// 解决方案编辑新建页面
-	if($('.solution-edit-page').length == 1){
+	if ($('.solution-edit-page').length == 1) {
 		var editor = new Simditor({
-            textarea: $('#editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
-                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
-                'indent', 'outdent', 'alignment'
-            ],
-            upload: {
-                url: "/solution/upload_image",
-                //工具条都包含哪些内容
-                params: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-            },
-            pasteImage: true,
-        });
-        var editor = new Simditor({
-            textarea: $('#pointeditor'),
-        });
-        layui.use(['upload', 'layer'], function () {
-            var $ = layui.jquery,
-                upload = layui.upload;
+			textarea: $('#editor'),
+			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+				'|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+				'indent', 'outdent', 'alignment'
+			],
+			upload: {
+				url: "/solution/upload_image",
+				//工具条都包含哪些内容
+				params: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				fileKey: 'upload_file',
+				connectionCount: 3,
+				leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+			},
+			pasteImage: true,
+		});
+		var editor = new Simditor({
+			textarea: $('#pointeditor'),
+		});
+		layui.use(['upload', 'layer'], function () {
+			var $ = layui.jquery,
+				upload = layui.upload;
 
-            //首图上传
-            var uploadImage = upload.render({
-                elem: '#btn-image',
-                url: "/solution/upload_image",
-                field: 'upload_file',
-                accept: 'images',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                before: function (obj) {
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function (index, file, result) {
-                        $('#image').attr('src', result); //图片链接（base64）
-                    });
-                },
-                done: function (res) {
-                    //如果上传失败
-                    if (!res.success) {
-                        return layer.msg('上传失败');
-                    }
-                    $('#image_path').val(res.file_path);
-                },
-                error: function () {
-                    //演示失败状态，并实现重传
-                    var imageText = $('#status');
-                    imageText.html(
-                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
-                    );
-                    imageText.find('.image-reload').on('click', function () {
-                        uploadImage.upload();
-                    });
-                }
-            });
-            //功能图标上传
-            var uploadIcon = upload.render({
-                elem: '#btn-icon',
-                url: "/solution/upload_image",
-                field: 'upload_file',
-                accept: 'images',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                before: function (obj) {
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function (index, file, result) {
-                        $('#icon').attr('src', result); //图片链接（base64）
-                    });
-                },
-                done: function (res) {
-                    //如果上传失败
-                    if (!res.success) {
-                        return layer.msg('上传失败');
-                    }
-                    $('#icon_path').val(res.file_path);
-                },
-                error: function () {
-                    //演示失败状态，并实现重传
-                    var iconText = $('#status');
-                    iconText.html(
-                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs icon-reload">重试</a>'
-                    );
-                    iconText.find('.icon-reload').on('click', function () {
-                        uploadIcon.upload();
-                    });
-                }
-            });
-        });
+			//首图上传
+			var uploadImage = upload.render({
+				elem: '#btn-image',
+				url: "/solution/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						$('#image').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#image_path').val(res.file_path);
+				},
+				error: function () {
+					//演示失败状态，并实现重传
+					var imageText = $('#status');
+					imageText.html(
+						'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+					);
+					imageText.find('.image-reload').on('click', function () {
+						uploadImage.upload();
+					});
+				}
+			});
+			//功能图标上传
+			var uploadIcon = upload.render({
+				elem: '#btn-icon',
+				url: "/solution/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						$('#icon').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#icon_path').val(res.file_path);
+				},
+				error: function () {
+					//演示失败状态，并实现重传
+					var iconText = $('#status');
+					iconText.html(
+						'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs icon-reload">重试</a>'
+					);
+					iconText.find('.icon-reload').on('click', function () {
+						uploadIcon.upload();
+					});
+				}
+			});
+		});
 	}
 
 });

@@ -5,7 +5,7 @@ namespace App\Models;
 class Reply extends Model
 {
     // 只允许用户修改content字段
-    protected $fillable = ['content'];
+    protected $fillable = ['content','great_count'];
 
     //一条回复只属于一个话题，属于一对一关系
     public function topic()

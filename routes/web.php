@@ -77,6 +77,8 @@ Route::post('categories/destroy', 'CategoriesController@destroy')->name('categor
 Route::post('topics/upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 //发表社区回复
 Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);
+// 点赞回复
+Route::post('replies/greatReply', 'RepliesController@greatReply')->name('replies.greatReply'); 
 // 发表回复后 消息通知话题创建者
 Route::get('notifications/notice', 'NotificationsController@notifications')->name('notifications.notice'); 
 Route::get('notifications/message', 'NotificationsController@message')->name('notifications.message'); 
