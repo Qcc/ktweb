@@ -108,20 +108,18 @@ class SolutionController extends Controller
 	{
 		//初始化数据,默认是失败的
 		$data = [
-			"code"=> 1
-            ,"msg"=> "上传失败!"
-            ,"data"=>[ 
-              "src"=> ""
-            ]
-		];
+            'success'   => false,
+            'msg'       => '上传失败!',
+            'file_path' => ''
+        ];
 		// 判断是否有文件上传，并赋值给$file
 		if($file = $request->upload_file){
 			// 保存图片到本地
 			$result = $uploader->save($request->upload_file,'solution',\Auth::id(),1920);
 			//图片保存成功的话
 			if($result){
-				$data['code'] = 0;
-				$data['data']['src'] = $result['path'];
+				$data['success'] = true;
+				$data['file_path'] = $result['path'];
 				$data['msg'] = '上传成功!';
 			}
 		}

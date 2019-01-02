@@ -26,9 +26,9 @@
         <div class="mdui-row product-featrue-arp">
             @foreach($solutions as $index => $solution)
             @break($loop->index > 3)
-            <div class="mdui-col-xs-3">
+            <div class="mdui-col-xs-6 mdui-col-md-3">
                 <div class="product-featrue">
-                    <a href="{{ route('product.show',$solution->id) }}" target="_blank">
+                    <a href="{{ route('solution.show',$solution->id) }}" target="_blank">
                         <div class="images">
                             <img src="{{ $solution->icon }}" alt="{{ $solution->title }}">
                         </div>
@@ -51,33 +51,4 @@
     </div>
 </div>
 @include('pages._contact')
-@stop
-
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
-@stop
-
-@section('script')
-<script src="{{ asset('js/swiper.min.js') }}"></script>
-
-<script>
-    $$(document).ready(function () {
-        $$(document).ready(function () {
-        // 初始化首页轮播图
-        if ($$('.swiper-container').length === 1) {
-            var solutionSwiper = new Swiper ('#solutionSwiper', {
-              centeredSlides : true,
-            	slidesPerView : 'auto',
-                spaceBetween : 40,
-                loop : true,
-                autoplay:true,
-              navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              },
-            }) 
-        }
-        });
-    });
-</script>
 @stop

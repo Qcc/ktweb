@@ -86,7 +86,7 @@
                             </a>
                         </div>
                         <div class="customer-col">
-                            <a href="{{ route('customers.show',$customer->customercol->id) }}">{{ $customer->customercol->name }}</a>
+                            <a href="{{ route('customer.index')}}?order=profession&particular={{$customer->customercol->id}}">{{ $customer->customercol->name }}</a>
                             <span> | </span>
                             <a href="{{ route('customer.show',$customer->id) }}">{{ $customer->name }}</a>
                         </div>

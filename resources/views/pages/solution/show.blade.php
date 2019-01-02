@@ -5,7 +5,7 @@
 <div class="mdui-container" style="margin-top:70px;">
     <div class="mdui-row">
 
-        <div class="mdui-col-xs-9 topic-content">
+        <div class="mdui-col-xs-12 mdui-col-sm-9 topic-content">
             <div class="navigation">
                 <span><a href="{{ route('home') }}">首页</a></span> /
                 <span><a href="{{ route('solutions.show',$solution->solutioncol->id) }}">{{ $solution->solutioncol->name }}</a></span> /
@@ -41,7 +41,7 @@
             </div>
             @endcan
         </div>
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
                 @include('pages.product.side_product',$products)
                 @include('pages.customer.side_customer',$customers)
             @include('pages.side_advertising')

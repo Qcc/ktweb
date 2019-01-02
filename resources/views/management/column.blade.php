@@ -96,7 +96,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">大图</label>
         <div class="layui-input-block">
-            <input type="text" name="banner"  lay-verify="required" placeholder="请上传大图(1920*400)" class="layui-input">
+            <input type="text" name="banner"  lay-verify="required" placeholder="请上传大图(1920*464)" class="layui-input">
             <a href="javascript:;" id="upload-banner">上传</a>
         </div>
     </div>

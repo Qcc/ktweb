@@ -28,7 +28,7 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeWithOrder($query,$order,$particular)
+    public function scopeWithOrder($query,$order,$particular='default')
     {
         //不同排序使用不同的数据读取逻辑
         switch($order){

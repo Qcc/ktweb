@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html {
-    color: #666;
+    /* color: #666; */
     background: #FFF;
 }
 
@@ -824,7 +824,7 @@ a:active {
     overflow: hidden;
 }
 
-.img-solution-item:hover button {
+.img-solution-item:hover .link {
     display: block;
 }
 
@@ -845,14 +845,28 @@ a:active {
 }
 
 @media screen and (min-width: 1024px) {
-    .img-solution-item button {
+    .img-solution-item .link {
         display: none;
+    }
+    .img-solution-item:hover .img-solution-background{
+        display: block;
     }
 }
 
 @media screen and (max-width: 1024px) {
     .img-solution-item {
         line-height: 5px;
+    }
+    .img-solution-content h3 {
+        font-size: 25px;
+    }
+
+    .img-solution-content p {
+        font-size: 13px;
+    }
+    .img-solution-content i{
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -862,8 +876,8 @@ a:active {
         position: relative;
         top: 0px;
         display: block;
-        width: 80px;
-        height: 80px;
+        width: 40px;
+        height: 40px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -871,11 +885,15 @@ a:active {
     }
 
     .img-solution-content h3 {
-        font-size: 25px;
+        font-size: 18px;
     }
 
     .img-solution-content p {
-        font-size: 13px;
+        font-size: 11px;
+    }
+    .img-solution-content i{
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -885,6 +903,7 @@ a:active {
     height: 100%;
     opacity: 0.3;
     filter: Alpha(opacity=30);
+    display: none;
 }
 
 .img-solution-content {
@@ -910,6 +929,7 @@ a:active {
 .img-solution-content h3,
 .img-solution-content p {
     color: #fff;
+    padding-right: 15%;
 }
 
 
@@ -1011,6 +1031,10 @@ a:active {
 
     .news-big-content-warp .news-date {
         font-size: 12px;
+    }
+    .img-solution-content i {
+        width: 60px;
+        height: 60px;
     }
 
     .news-big-content-warp .news-summary {
@@ -1519,7 +1543,6 @@ a:active {
     font-size: 12px;
     color: #a2a2a2;
 }
-
 
 /* 边框样式 */
 
@@ -2551,8 +2574,8 @@ a:active {
 }
 
 .article-list .article-header {
-    min-height: 80px;
-    max-height: 80px;
+    min-height: 70px;
+    max-height: 70px;
     margin: 0 10px;
     overflow: hidden;
 }
@@ -2670,6 +2693,7 @@ a:active {
 .product-featrue-arp .featrue-point {
     margin-top: 10px;
     padding: 0 20px;
+    text-align: center;
 }
 
 .featrue-arp .product-left {
@@ -3013,7 +3037,7 @@ a:active {
 }
 
 .contact-form .form {
-    margin: 90px auto 30px;
+    margin: 30px auto;
     width: 800px;
     text-align: center;
 }
@@ -3314,6 +3338,21 @@ a:active {
 
 /*手机*/
 
+@media only screen and (max-width: 750px) {
+}
+/* 客户案例轮播图 */
+.customer-banner .banner{
+    transition: 0.2s;
+    display: block;
+    width: 100%;
+    height: 464px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+/*手机*/
+
 @media only screen and (min-width: 320px) {
     .products-banner-warp .products-action {
         z-index: 2;
@@ -3363,6 +3402,12 @@ a:active {
         width: 100%;
         text-align: center;
     }
+    .contact .tips{
+        margin-top: 20px;
+    }
+    .contact .tips>p{
+        font-size: 19px;
+    }
 
     .contact-form .phone,
     .contact-form .name,
@@ -3370,9 +3415,15 @@ a:active {
         display: block;
         margin: 20px 10px;
     }
+    .contact-head .contact-title p{
+        font-size: 13px;
+    }
+    .contact-head .contact-title h5{
+        font-size: 20px;
+    }
 
-    .contact-head .xhs_col_2 {
-        border-left: 1px solid #fff;
+    .contact .contact-head .xhs_col_2 {
+        border-left: none;
     }
 
     .contact-head .contact-icon {
@@ -3520,10 +3571,17 @@ a:active {
     }
 
     .contact-form .form {
-        margin: 90px auto 30px;
+        margin: 30px auto;
         width: 800px;
         text-align: center;
     }
+    .contact .tips{
+        margin-top: 30px;
+    }
+    .contact .tips>p{
+        font-size: 20px;
+    }
+    
 
     .contact-form .phone,
     .contact-form .name,
@@ -3624,8 +3682,16 @@ a:active {
     .xhs_zan_hide {
         display: none;
     }
+   
 }
-
+.contact .tips{
+    text-align: center
+}
+.contact .tips>p{
+    color: #fff;
+    font-size: 28px;
+    text-align: center
+}
 
 /*电脑*/
 
@@ -3673,9 +3739,15 @@ a:active {
     }
 
     .contact-form .form {
-        margin: 90px auto 30px;
+        margin: 30px auto;
         width: 800px;
         text-align: center;
+    }
+    .contact .tips{
+        margin-top: 30px;
+    }
+    .contact .tips>p{
+        font-size: 28px;
     }
 
     .contact-form .phone,
@@ -3684,6 +3756,7 @@ a:active {
         display: inline;
         margin: 0 10px;
     }
+    
 
     .contact-head .xhs_col_2 {
         border-left: none;
@@ -3691,6 +3764,7 @@ a:active {
 
     .contact-head .contact-icon {
         margin-bottom: 0px;
+        border-left: 1px solid #fff;
     }
 
     .product-featrue-arp .featrue-point {
@@ -3777,6 +3851,7 @@ a:active {
     .xhs_zan_hide {
         display: block;
     }
+
 }
 
 /* 侧边广告栏样式 */
@@ -3884,4 +3959,22 @@ a:active {
 
 .customer-article-nav>a.active {
     background: #e2e2e2;
+}
+
+/* 小于650px */
+@media screen and (max-width: 650px) {
+.solutions-show-page .featrue-title>p{
+    font-size: 20px;
+}
+.products-show-page .featrue-title>p{
+    font-size: 20px;
+}
+}
+/* 小于1024大于650px */
+@media screen and (max-width: 1024px) and (min-width:650px) {
+
+}
+/* 大于1024px */
+@media screen and (min-width: 1024px) {
+
 }

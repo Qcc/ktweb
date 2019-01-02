@@ -179,7 +179,7 @@
         <img src="{{ $solution->banner }}" alt="{{ $solution->title }}">
         <div class="img-solution-content  mdui-text-color-white">
           <i class="kticon" style="background-image:url('{{ $banner->icon1 }}')"></i>
-          <h3 class="mdui-typo-display-1">{{ $solution->title }}</h3>
+          <h3 class="mdui-typo-headline">{{ $solution->title }}</h3>
           <p class="mdui-typo-subheading">{{ $solution->subtitle }}</p>
         </div>
         <a href="{{ $solution->link }}" class="link mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</a>

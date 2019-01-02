@@ -7,7 +7,7 @@
         <p class="message">
             {{ Session::get('message') }}
         </p>
-        <a href="javascript:;">
+        <a  class="close_alert" href="javascript:;">
             <i class="kticon">&#xe6b9;</i>
         </a>
     </div>
@@ -23,7 +23,7 @@
         <p class="message">
             {{ Session::get('success') }}
         </p>
-        <a href="javascript:;">
+        <a class="close_alert" href="javascript:;">
             <i class="kticon">&#xe6b9;</i>
         </a>
     </div>
@@ -39,7 +39,7 @@
         <p class="message">
             {{ Session::get('danger') }}
         </p>
-        <a href="javascript:;">
+        <a class="close_alert" href="javascript:;">
             <i class="kticon">&#xe6b9;</i>
         </a>
     </div>
@@ -54,7 +54,7 @@
         <p class="message">
             {{ Session::get('error') }}
         </p>
-        <a href="javascript:;">
+        <a class="close_alert" href="javascript:;">
             <i class="kticon">&#xe6b9;</i>
         </a>
     </div>

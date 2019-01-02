@@ -5,10 +5,10 @@
 <div class="mdui-container" style="margin-top:70px;">
     <div class="mdui-row">
 
-        <div class="mdui-col-xs-9 topic-content">
+        <div class="mdui-col-xs-12 mdui-col-sm-9 topic-content">
             <div class="navigation">
                 <span><a href="{{ route('home') }}">首页</a></span> /
-                <span><a href="{{ route('customers.show',$customer->customercol->id) }}">{{ $customer->customercol->name }}</a></span> /
+                <span><a href="{{ route('customer.index')}}?order=profession&particular={{$customer->customercol->id }}">{{ $customer->customercol->name }}</a></span> /
                 <span class="now">{{ $customer->title }}</span>
             </div>
             <div class="article-body">
@@ -42,7 +42,7 @@
             </div>
             @endcan
         </div>
-        <div class="mdui-col-xs-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
                 @include('pages.solution.side_solution',$sulotions)
                 @include('pages.product.side_product',$products)
             @include('pages.side_advertising')

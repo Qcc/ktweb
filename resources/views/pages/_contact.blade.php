@@ -14,7 +14,7 @@
             </div>
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
-                    <div class="contact-icon" style="border-left: 1px solid #fff;">
+                    <div class="contact-icon" >
                         <i class="kticon">&#xe61b;</i>
                     </div>
                     <div class="contact-title">
@@ -25,7 +25,7 @@
             </div>
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
-                    <div class="contact-icon" style="border-left: 1px solid #fff;">
+                    <div class="contact-icon" >
                         <i class="kticon">&#xe631;</i>
                     </div>
                     <div class="contact-title">
@@ -36,7 +36,7 @@
             </div>
             <div class="mdui-col-xs-6 mdui-col-sm-3">
                 <div class="contact-head">
-                    <div class="contact-icon" style="border-left: 1px solid #fff;">
+                    <div class="contact-icon">
                         <i class="kticon">&#xe72c;</i>
                     </div>
                     <div class="contact-title">
@@ -45,6 +45,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="tips">
+            <p>留下您的联系方式，让我们联系您。</p>
         </div>
         <div class="contact-form">
             <div class="form">
@@ -68,6 +71,9 @@
                     <p>提交成功!</p>
                     <p class="msg"></p>
                 </div>
+            </div>
+            <div class="tips">
+                <p>咨询热线:800-999-6619</p>
             </div>
         </div>
     </div>

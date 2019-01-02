@@ -24,8 +24,12 @@ class CustomersController extends Controller
      */
     public function index(Customer $customer, Request $request)
     {
+        // 获取带有banner的推荐案例
+        $greatcustomers = Cache::rememberForever('greatcustomers', function (){
+			return Customer::whereNotNull('banner')->orderBy('updated_at','desc')->paginate(6);
+        });
 		// 分页获取21条记录。默认获取15条
-        $customers = $customer->withOrder($request->order,$request->particular)->paginate(16);
+        $customers = $customer->withOrder($request->order,$request->particular)->orderby('updated_at','desc')->paginate(16);
         if($request->order == 'industry'){
             $columns = Solutioncol::all();
         } else if($request->order == 'profession'){
@@ -34,7 +38,7 @@ class CustomersController extends Controller
             $columns = Productcol::all();
         }
         $order=['order'=>$request->order];
-		return view('pages.customer.index', compact('customers','order','columns'));
+		return view('pages.customer.index', compact('customers','order','columns','greatcustomers'));
     }
 
     /**
@@ -77,6 +81,7 @@ class CustomersController extends Controller
         $advertisings = Cache::rememberForever('side_advertising', function (){
 			return \DB::table('settings')->where('key','side_advertising')->get();
         });
+        
         $sulotions = Solution::where('productcol_id',$customer->productcol_id)->paginate(5);
         $products = Product::where('productcol_id',$customer->productcol_id)->paginate(5);
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
@@ -97,7 +102,9 @@ class CustomersController extends Controller
         $this->authorize('update', $customer);
 		$customercol = Customercol::all();
 		$solutioncol = Solutioncol::all();
-		$productcol = Productcol::all();
+        $productcol = Productcol::all();
+        // 清除案例推荐缓存
+        Cache::forget('greatcustomers');
 		return view('pages.customer.create_and_edit', compact('customer','customercol','productcol','solutioncol'));
     }
 
@@ -134,20 +141,18 @@ class CustomersController extends Controller
 	{
 		//初始化数据,默认是失败的
 		$data = [
-			"code"=> 1
-            ,"msg"=> "上传失败!"
-            ,"data"=>[ 
-              "src"=> ""
-            ]
-		];
+            'success'   => false,
+            'msg'       => '上传失败!',
+            'file_path' => ''
+        ];
 		// 判断是否有文件上传，并赋值给$file
 		if($file = $request->upload_file){
 			// 保存图片到本地
 			$result = $uploader->save($request->upload_file,'customer',\Auth::id(),1920);
 			//图片保存成功的话
 			if($result){
-				$data['code'] = 0;
-				$data['data']['src'] = $result['path'];
+				$data['success'] = true;
+				$data['file_path'] = $result['path'];
 				$data['msg'] = '上传成功!';
 			}
 		}

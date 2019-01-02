@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Solution extends Model
 {
     // 允许修改的字段
-    protected $fillable = ['title', 'body', 'solutioncol_id', 'excerpt', 'slug','icon', 'keywords', 'image'];
+    protected $fillable = ['title', 'body', 'solutioncol_id', 'excerpt', 'slug','icon','point', 'keywords', 'image'];
 
     // 参数 $params 允许附加 URL 参数的设定。
     // 路由增加可选的翻译语句链接，可支持id和slug

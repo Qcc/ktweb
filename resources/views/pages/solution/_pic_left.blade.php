@@ -1,5 +1,5 @@
 <div class="mdui-row product-left">
-    <div class="mdui-col-xs-6">
+    <div class="mdui-col-xs-12 mdui-col-md-6">
         <div class="product-point-left">
             <div class="product-title">
                 <h3 class="product-title-h3">
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="mdui-col-xs-6">
+    <div class="mdui-col-xs-12 mdui-col-md-6">
         <div class="product-featrue-image">
                     <img src="{{ $solution->image }}" alt="{{ $solution->title }}">
         </div>

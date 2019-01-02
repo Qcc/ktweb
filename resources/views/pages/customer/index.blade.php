@@ -3,19 +3,18 @@
 
 @section('content')
 <div class="mdui-container-full">
-    <div class="swiper-container">
+    
+    <div class="swiper-container customer-banner">
         <div class="swiper-wrapper">
+            @foreach($greatcustomers as $great)
             <div class="swiper-slide">
-                <div>
-                    <img src="{{ asset('images/topics1.jpg') }}" alt="">
-                </div>
+                <a  href="{{ route('customer.show',$great->id) }}" title="{{ $great->title }}">
+                <div class="banner" style="background-image:url('{{ $great->banner }}')"></div>
+                </a>
             </div>
-            <div class="swiper-slide">
-                <div>
-                    <img src="{{ asset('images/topics2.png') }}" alt="">
-                </div>
-            </div>
+            @endforeach
         </div>
+        <div class="swiper-pagination"></div>
     </div>
     @include('common.error')
     <div class="mdui-container">
@@ -67,7 +66,7 @@
         </div>
     </div>
 </div>
-
+@include('pages._contact')
 @stop
 
 @section('styles')
@@ -76,14 +75,4 @@
 
 @section('script')
 <script src="{{ asset('js/swiper.min.js') }}"></script>
-
-<script>
-    $$(document).ready(function () {
-        // 初始化首页轮播图
-        if ($$('.swiper-container').length === 1) {
-            var swiper = new Swiper('.swiper-container', {});
-        }
-    });
-</script>
-
 @stop

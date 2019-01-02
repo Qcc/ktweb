@@ -26,6 +26,7 @@ $(document).ready(function () {
 					$('.fiald').text(data.msg);
 				}
 				$('#customer').removeAttr('disabled');
+				$('.tips').hide();
 			}
 		})
 	});
@@ -86,6 +87,10 @@ $(document).ready(function () {
 			var swiper = new Swiper('.swiper-container', {
 				loop: true,
 				autoplay: true,
+				pagination: {
+					el: '.swiper-pagination',
+					dynamicBullets: true,
+				},
 			});
 		}
 		$('.banner-content>.title>h3').each(function () {
@@ -98,11 +103,13 @@ $(document).ready(function () {
 				runCountUp(numbers[index]);
 			}
 		});
-		function runCountUp(number){
-			setTimeout(function(){
-				var countUp = new CountUp('CountUp'+number, 1, number, 0, 3).start();
-			},100)
+
+		function runCountUp(number) {
+			setTimeout(function () {
+				var countUp = new CountUp('CountUp' + number, 1, number, 0, 3).start();
+			}, 100)
 		}
+
 		function getNumber(Str, isFilter) {
 			//用来判断是否把连续的0去掉
 			isFilter = isFilter || false;
@@ -120,7 +127,7 @@ $(document).ready(function () {
 						//字符串，连续的多个0也会存在，不会被去掉
 						return parseInt(item);;
 					});
-				}else{
+				} else {
 					return [];
 				}
 			} else {
@@ -139,7 +146,9 @@ $(document).ready(function () {
 
 		// 检查元素是否可见
 		function isVisible(element) {
-			if($("#"+element).length == 0){return false;}
+			if ($("#" + element).length == 0) {
+				return false;
+			}
 			var winScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 			var mainOffsetTop = $("#" + element).offset().top;
 			var mainHeight = $("#" + element).height();
@@ -336,7 +345,7 @@ $(document).ready(function () {
 				url: "{{ route('topics.upload_image') }}",
 				//工具条都包含哪些内容
 				params: {
-					_token: '{{ csrf_token() }}'
+					_token: $('meta[name="csrf-token"]').attr('content')
 				},
 				fileKey: 'upload_file',
 				connectionCount: 3,
@@ -987,10 +996,10 @@ $(document).ready(function () {
 				},
 				done: function (res) {
 					//如果上传失败
-					if (res.code > 0) {
+					if (!res.success) {
 						return layer.msg('上传失败');
 					}
-					$('#upload-icon').prev().val(res.data.src);
+					$('#upload-icon').prev().val(res.file_path);
 				},
 				error: function () {
 					layer.msg('上传失败');
@@ -1007,10 +1016,10 @@ $(document).ready(function () {
 				},
 				done: function (res) {
 					//如果上传失败
-					if (res.code > 0) {
+					if (!res.success) {
 						return layer.msg('上传失败');
 					}
-					$('#upload-banner').prev().val(res.data.src);
+					$('#upload-banner').prev().val(res.file_path);
 				},
 				error: function () {
 					layer.msg('上传失败');
@@ -1027,10 +1036,10 @@ $(document).ready(function () {
 				},
 				done: function (res) {
 					//如果上传失败
-					if (res.code > 0) {
+					if (!res.success) {
 						return layer.msg('上传失败');
 					}
-					$('#upload-club-icon').prev().val(res.data.src);
+					$('#upload-club-icon').prev().val(res.file_path);
 				},
 				error: function () {
 					layer.msg('上传失败');
@@ -1697,10 +1706,10 @@ $(document).ready(function () {
 				},
 				done: function (res) {
 					//如果上传失败
-					if (res.code > 0) {
+					if (!res.success) {
 						return layer.msg('上传失败');
 					}
-					$('#upload-banner').prev().val(res.data.src);
+					$('#upload-banner').prev().val(res.file_path);
 				},
 				error: function () {
 					layer.msg('上传失败');
@@ -1828,10 +1837,10 @@ $(document).ready(function () {
 				},
 				done: function (res) {
 					//如果上传失败
-					if (res.code > 0) {
+					if (!res.success) {
 						return layer.msg('上传失败');
 					}
-					$('#upload-banner').prev().val(res.data.src);
+					$('#upload-banner').prev().val(res.file_path);
 				},
 				error: function () {
 					layer.msg('上传失败');
@@ -1977,11 +1986,11 @@ $(document).ready(function () {
 			// 	},
 			// 	done: function (res, index, upload) {
 			// 		//如果上传失败
-			// 		if (res.code > 0) {
+			// 		if (!res.success) {
 			// 			return layer.msg('上传失败');
 			// 		}
 			// 		// this.item 可获取到触发上传动作的按钮;
-			// 		$(this.item).prev().val(res.data.src);
+			// 		$(this.item).prev().val(res.file_path);
 			// 	},
 			// 	error: function () {
 			// 		layer.msg('上传失败');
@@ -2096,11 +2105,11 @@ $(document).ready(function () {
 				},
 				done: function (res, index, upload) {
 					//如果上传失败
-					if (res.code > 0) {
+					if (!res.success) {
 						return layer.msg('上传失败');
 					}
 					// this.item 可获取到触发上传动作的按钮;
-					$(this.item).prev().val(res.data.src);
+					$(this.item).prev().val(res.file_path);
 				},
 				error: function () {
 					layer.msg('上传失败');
@@ -2139,26 +2148,321 @@ $(document).ready(function () {
 					return false;
 				});
 			}
-			
+
 
 		});
 	}
 
 	// 产品页面
-	if($('.products-show-page').length == 1){
+	if ($('.products-show-page').length == 1) {
 		// 初始化产品页面轮播图
-        if ($('.swiper-container').length === 1) {
-            var solutionSwiper = new Swiper ('#solutionSwiper', {
-              centeredSlides : true,
-            	slidesPerView : 'auto',
-                spaceBetween : 40,
-                loop : true,
-                autoplay:true,
-              navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              },
-            }) 
-        }
+		if ($('.swiper-container').length === 1) {
+			var solutionSwiper = new Swiper('#solutionSwiper', {
+				centeredSlides: true,
+				slidesPerView: 'auto',
+				spaceBetween: 40,
+				loop: true,
+				autoplay: true,
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+			})
+		}
 	}
+	// 客户案例列表
+	if ($('.customer-index-page').length == 1) {
+		var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			autoplay: true,
+			pagination: {
+				el: '.swiper-pagination',
+				dynamicBullets: true,
+			},
+		});
+	}
+	// 发布客户案例页面
+	if ($('.customer-edit-page').length == 1) {
+		var editor = new Simditor({
+            textarea: $('#editor'),
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+                'indent', 'outdent', 'alignment'
+            ],
+            upload: {
+                url: "/customer/upload_image",
+                //工具条都包含哪些内容
+                params: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true,
+        });
+        layui.use(['upload', 'layer'], function () {
+            var $ = layui.jquery,
+                upload = layui.upload;
+
+            //首图上传
+            var uploadImage = upload.render({
+                elem: '#btn-image',
+                url: "/customer/upload_image",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#image').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (!res.success) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#image_path').val(res.file_path);
+                },
+                error: function () {
+                    //演示失败状态，并实现重传
+                    var imageText = $('#status');
+                    imageText.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+                    );
+                    imageText.find('.image-reload').on('click', function () {
+                        uploadImage.upload();
+                    });
+                }
+            });
+        
+			//banner大图上传
+			var uploadIcon = upload.render({
+				elem: "#upload-banner",
+				url: "/customer/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#upload-banner').prev().val(res.file_path);
+				},
+				error: function () {
+					layer.msg('上传失败');
+				}
+			});
+		});
+	}
+	// 解决方案页面
+	if ($('.solutions-show-page').length == 1) {
+		
+	}
+	// 产品添加编辑页面
+	if ($('.product-edit-page').length == 1) {
+		// 主要内容描述
+		var editor = new Simditor({
+            textarea: $('#editor'),
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+                'indent', 'outdent', 'alignment'
+			],
+			defaultImage : '/images/undefined.png',
+            upload: {
+                url: "/product/upload_image",
+                //工具条都包含哪些内容
+                params: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true,
+		});
+		// 关键点描述编辑器
+        var pointeditor = new Simditor({
+            textarea: $('#pointeditor'),
+		});
+		//     pasteImage —— 设定是否支持图片黏贴上传，这里我们使用 true 进行开启；
+    // url —— 处理上传图片的 URL；
+    // params —— 表单提交的参数，Laravel 的 POST 请求必须带防止 CSRF 跨站请求伪造的 _token 参数；
+    // fileKey —— 是服务器端获取图片的键值，我们设置为 upload_file;
+    // connectionCount —— 最多只能同时上传 3 张图片；
+    // leaveConfirm —— 上传过程中，用户关闭页面时的提醒。
+        layui.use(['upload', 'layer'], function () {
+            var $ = layui.jquery,
+                upload = layui.upload;
+
+            //首图上传
+            var uploadImage = upload.render({
+                elem: '#btn-image',
+                url: "/product/upload_image",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#image').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (!res.success) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#image_path').val(res.file_path);
+                },
+                error: function () {
+                    //演示失败状态，并实现重传
+                    var imageText = $('#status');
+                    imageText.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+                    );
+                    imageText.find('.image-reload').on('click', function () {
+                        uploadImage.upload();
+                    });
+                }
+            });
+            //功能图标上传
+            var uploadIcon = upload.render({
+                elem: '#btn-icon',
+                url: "/product/upload_image",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#icon').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (!res.success) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#icon_path').val(res.file_path);
+                },
+                error: function () {
+                    //演示失败状态，并实现重传
+                    var iconText = $('#status');
+                    iconText.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs icon-reload">重试</a>'
+                    );
+                    iconText.find('.icon-reload').on('click', function () {
+                        uploadIcon.upload();
+                    });
+                }
+            });
+        });
+	}
+	// 解决方案编辑新建页面
+	if($('.solution-edit-page').length == 1){
+		var editor = new Simditor({
+            textarea: $('#editor'),
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+                'indent', 'outdent', 'alignment'
+            ],
+            upload: {
+                url: "/solution/upload_image",
+                //工具条都包含哪些内容
+                params: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true,
+        });
+        var editor = new Simditor({
+            textarea: $('#pointeditor'),
+        });
+        layui.use(['upload', 'layer'], function () {
+            var $ = layui.jquery,
+                upload = layui.upload;
+
+            //首图上传
+            var uploadImage = upload.render({
+                elem: '#btn-image',
+                url: "/solution/upload_image",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#image').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (!res.success) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#image_path').val(res.file_path);
+                },
+                error: function () {
+                    //演示失败状态，并实现重传
+                    var imageText = $('#status');
+                    imageText.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+                    );
+                    imageText.find('.image-reload').on('click', function () {
+                        uploadImage.upload();
+                    });
+                }
+            });
+            //功能图标上传
+            var uploadIcon = upload.render({
+                elem: '#btn-icon',
+                url: "/solution/upload_image",
+                field: 'upload_file',
+                accept: 'images',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#icon').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function (res) {
+                    //如果上传失败
+                    if (!res.success) {
+                        return layer.msg('上传失败');
+                    }
+                    $('#icon_path').val(res.file_path);
+                },
+                error: function () {
+                    //演示失败状态，并实现重传
+                    var iconText = $('#status');
+                    iconText.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs icon-reload">重试</a>'
+                    );
+                    iconText.find('.icon-reload').on('click', function () {
+                        uploadIcon.upload();
+                    });
+                }
+            });
+        });
+	}
+
 });

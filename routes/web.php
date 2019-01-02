@@ -160,7 +160,7 @@ Route::post('solutions/destroy', 'SolutioncolController@destroy')->name('solutio
 //客户案例
 Route::resource('customer', 'CustomersController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('customer/{customer}/{slug?}', 'CustomersController@show')->name('customer.show');
-Route::get('customers/{customercol}', 'CustomercolController@show')->name('customers.show');
+// Route::get('customers/{customercol}', 'CustomercolController@show')->name('customers.show');
 Route::post('customers/update', 'CustomercolController@update')->name('customers.update');
 Route::post('customers/store', 'CustomercolController@store')->name('customers.store');
 Route::post('customers/destroy', 'CustomercolController@destroy')->name('customers.destroy');
