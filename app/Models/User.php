@@ -199,5 +199,37 @@ class User extends Authenticatable
         }
         $this->topicGreats()->detach($topic_ids);
     }
+
+
+    /** 获取当前用户点赞的回复列表 */
+    public function replyGreats()
+    {
+        return $this->belongsToMany(Reply::Class,'greatreplys','user_id','reply_id');
+    }
+    /** 判断当前用户是否点赞了回复 */
+    public function isReplyGreat($reply_ids)
+    {
+        return $this->replyGreats->contains($reply_ids);
+    }
+
+    /** 点赞回复 */
+    public function replyGreat($reply_ids)
+    {
+        if(!is_array($reply_ids)){
+            $reply_ids = compact('reply_ids');
+        }
+        $this->replyGreats()->sync($reply_ids,false);
+    }
+    /** 
+     * 
+     * 取消点赞回复
+     */
+    public function replyUnGreat($reply_ids)
+    {
+        if(!is_array($reply_ids)){
+            $reply_ids = compact('reply_ids');
+        }
+        $this->replyGreats()->detach($reply_ids);
+    }
     
 }

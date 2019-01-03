@@ -27,12 +27,21 @@
                         $reply->created_at->diffForHumans() }}</div>
                 </div>
                 <div class="reply-footer">
+                    @guest
                     <div class="reply-excellent">
-                        <button class="mdui-btn mdui-ripple greatReply" reply_id="{{ $reply->id }}"> <i class="kticon">&#xe606;</i> 点赞 <span>{{ $reply->great_count>0?$reply->great_count:'' }}</span></button>
+                        <button mdui-dialog="{target: '#require-login'}" class="mdui-btn mdui-ripple" > <i class="kticon">&#xe606;</i> 点赞 <span>{{ $reply->great_count>0?$reply->great_count:'' }}</span></button>
                     </div>
                     <div class="reply-report">
-                        <button class="mdui-btn mdui-ripple club-reply-report" reply-item="reply{{ $reply->id }}"> <i class="kticon">&#xe651;</i> 举报</button>
+                        <button mdui-dialog="{target: '#require-login'}" class="mdui-btn mdui-ripple" > <i class="kticon">&#xe651;</i> 举报</button>
                     </div>
+                    @else
+                    <div class="reply-excellent">
+                            <button class="mdui-btn mdui-ripple greatReply" reply_id="{{ $reply->id }}"> <i class="kticon">&#xe606;</i> 点赞 <span>{{ $reply->great_count>0?$reply->great_count:'' }}</span></button>
+                        </div>
+                        <div class="reply-report">
+                            <button class="mdui-btn mdui-ripple club-reply-report" reply-item="reply{{ $reply->id }}"> <i class="kticon">&#xe651;</i> 举报</button>
+                        </div>
+                    @endguest
                     @can('destroy', $reply)
                     <div class="reply-delete">
                         <form action="{{ route('replies.destroy', $reply->id) }}" method="post">

@@ -16,5 +16,10 @@ class Reply extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    } 
+    // 点赞回复的用户
+    public function replyGreats()
+    {
+        return $this->belongsToMany(User::Class,'greatreplys','reply_id','user_id');
     }
 }

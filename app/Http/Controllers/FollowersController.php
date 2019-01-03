@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Topic;
+use App\Models\Reply;
 use Auth;
 
 class FollowersController extends Controller
@@ -66,9 +67,9 @@ class FollowersController extends Controller
         $topic->timestamps = false;
         $data = ['result'=>false,'status' => false,'msg'=>'用户点赞失败!'];
         //用户不能给自己点赞
-        if(Auth::user()->id === $topic->id){
-            return $data;
-        }
+        // if(Auth::user()->id === $topic->id){
+        //     return $data;
+        // }
         //用户未点赞时才能点赞
         if(!Auth::user()->isTopicGreat($topic->id)){
             Auth::user()->topicGreat($topic->id);
@@ -91,6 +92,31 @@ class FollowersController extends Controller
             $data['status'] = false;
             $data['msg'] = '取消用户点赞成功';
         }
+        return $data;
+    }
+    /** 点赞 取消点赞 回复 */
+    public function replyGreats(Request $request)
+    {
+        $reply = Reply::find($request->id);
+        //点赞时不更新updated_at时间戳
+        $reply->timestamps = false;
+        $data = ['success'=>false,'action'=>'','msg'=>'用户点赞失败!'];
+        //用户未点赞时才能点赞
+        if(!Auth::user()->isReplyGreat($reply->id)){
+            Auth::user()->replyGreat($reply->id);
+            $reply->increment('great_count',1);
+            $data['success']= true;
+            $data['action']= 'add';
+            $data['msg']= '用户点赞成功！';
+        //用户关注后才能取消
+        }else if(Auth::user()->isReplyGreat($reply->id)){
+            Auth::user()->replyUnGreat($reply->id);
+            $reply->decrement('great_count', 1);
+            $data['success']= true;
+            $data['action']= 'delete';
+            $data['msg'] = '取消用户点赞成功';
+        }
+        $reply->timestamps = true;
         return $data;
     }
 }

@@ -52,6 +52,8 @@ Route::post('/topic/followers/action', 'FollowersController@topicFollowers')->na
 
 // 点赞 取消点赞 文章
 Route::post('/topic/greats/action', 'FollowersController@topicGreats')->name('topicgreats.action');
+// 点赞 取消点赞 回复
+Route::post('/reply/greats/action', 'FollowersController@replyGreats')->name('replygreats.action');
 
 //用户个人页面
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
@@ -77,8 +79,7 @@ Route::post('categories/destroy', 'CategoriesController@destroy')->name('categor
 Route::post('topics/upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 //发表社区回复
 Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);
-// 点赞回复
-Route::post('replies/greatReply', 'RepliesController@greatReply')->name('replies.greatReply'); 
+ 
 // 发表回复后 消息通知话题创建者
 Route::get('notifications/notice', 'NotificationsController@notifications')->name('notifications.notice'); 
 Route::get('notifications/message', 'NotificationsController@message')->name('notifications.message'); 

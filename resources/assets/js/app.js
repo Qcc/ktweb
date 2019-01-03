@@ -350,21 +350,24 @@ $(document).ready(function () {
 				});
 			};
 		});
-		var editor = new Simditor({
-			textarea: $('#reply-editor'),
-			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
-			upload: {
-				url: "{{ route('topics.upload_image') }}",
-				//工具条都包含哪些内容
-				params: {
-					_token: $('meta[name="csrf-token"]').attr('content')
+		if ($('#reply-editor').length == 1) {
+			var editor = new Simditor({
+				textarea: $('#reply-editor'),
+				toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
+				upload: {
+					url: "{{ route('topics.upload_image') }}",
+					//工具条都包含哪些内容
+					params: {
+						_token: $('meta[name="csrf-token"]').attr('content')
+					},
+					fileKey: 'upload_file',
+					connectionCount: 3,
+					leaveConfirm: '文件上传中，关闭此页面将取消上传。'
 				},
-				fileKey: 'upload_file',
-				connectionCount: 3,
-				leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-			},
-			pasteImage: true,
-		});
+				pasteImage: true,
+			});
+		}
+
 
 		$('.reply-reply').on('click', function () {
 			$(document).scrollTop($('.reply-box').offset().top);
@@ -568,20 +571,20 @@ $(document).ready(function () {
 			var that = this;
 			$.ajax({
 				method: 'POST',
-				url: '/replies/greatReply',
+				url: '/reply/greats/action',
 				ContentType: 'application/json',
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				},
 				data: {
-					reply_id: $('.greatReply').attr('reply_id')
+					id: $(that).attr('reply_id')
 				},
 				success: function (data) {
 					var number = parseInt($(that).find('span').text());
 					if (data.success) {
-						if(data.action == 'add'){
+						if (data.action == 'add') {
 							$(that).find('span').text(number + 1)
-						}else if(data.action == 'delete'){
+						} else if (data.action == 'delete') {
 							$(that).find('span').text(number - 1)
 						}
 					}
