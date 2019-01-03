@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 
 class CategoriesController extends Controller
 {
@@ -25,8 +26,20 @@ class CategoriesController extends Controller
         $topics = $topic->withOrder($request->order)
                         ->where('category_id',$category->id)
                         ->paginate(20);
+        // 热门主题，点赞最多的主题 每天更新
+		$hottopics = Cache::remember('hottopics',60*24,function () use($topic){
+			return $topic->orderBy('great_count','desc')->paginate(8);
+        });
+        // 热门主题，点赞最多的主题 每天更新
+		$replysmores = Cache::remember('replysmores',60*24,function () use($topic){
+			return $topic->orderBy('reply_count','desc')->paginate(8);
+        });
+        // 侧边栏广告
+		$advertisings = Cache::rememberForever('side_advertising', function (){
+			return \DB::table('settings')->where('key','side_advertising')->get();
+        });
         // 传参变量话题和分类 到模版中
-        return view('topics.index',compact('topics','category','tops'));
+        return view('topics.index',compact('topics','category','tops','hottopics','replysmores','advertisings'));
     }
 
     public function update(Request $request,Category $category)

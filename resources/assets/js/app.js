@@ -1,5 +1,33 @@
 // header部分
 $(document).ready(function () {
+	//  cookie操作
+	var cookie = {
+		set: function (key, val, time = 30) { //设置cookie方法
+			var date = new Date(); //获取当前时间
+			var expiresDays = time; //将date设置为n天以后的时间
+			date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000); //格式化为cookie识别的时间
+			document.cookie = key + "=" + val + ";expires=" + date.toGMTString(); //设置cookie
+		},
+		get: function (key) { //获取cookie方法
+			/*获取cookie参数*/
+			var getCookie = document.cookie.replace(/[ ]/g, ""); //获取cookie，并且将获得的cookie格式化，去掉空格字符
+			var arrCookie = getCookie.split(";") //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
+			var tips=null; //声明变量tips
+			for (var i = 0; i < arrCookie.length; i++) { //使用for循环查找cookie中的tips变量
+				var arr = arrCookie[i].split("="); //将单条cookie用"等号"为标识，将单条cookie保存为arr数组
+				if (key == arr[0]) { //匹配变量名称，其中arr[0]是指的cookie名称，如果该条变量为tips则执行判断语句中的赋值操作
+					tips = arr[1]; //将cookie的值赋给变量tips
+					break; //终止for循环遍历
+				}
+			}
+			return tips;
+		},
+		del: function (key) { //删除cookie方法
+			var date = new Date(); //获取当前时间
+			date.setTime(date.getTime() - 10000); //将date设置为过去的时间
+			document.cookie = key + "=v; expires =" + date.toGMTString(); //设置cookie
+		}
+	}
 	// 信息提示框样式
 	if ($('.alert')) {
 		setTimeout(function () {
@@ -98,7 +126,7 @@ $(document).ready(function () {
 		if ($('.swiper-container').length === 1) {
 			var swiper = new Swiper('.swiper-container', {
 				loop: true,
-				autoplay: true,
+				// autoplay: true,
 				pagination: {
 					el: '.swiper-pagination',
 					dynamicBullets: true,
@@ -249,14 +277,15 @@ $(document).ready(function () {
 			} else {
 				$('.kt-nav-header').addClass('kt-header-top');
 			}
+			$('.ktm-logo').removeClass('ktm-logo-white').addClass('ktm-logo-blue')
 		} else {
+			$('.ktm-logo').removeClass('ktm-logo-blue').addClass('ktm-logo-white');
 			$('.kt-nav-header').removeClass('kt-header-top kt-header-top-and-open');
 		};
 		// runNumberAnimat(); // 添加body内容数字动画
 	});
 	// 展开移动端菜单导航
 	$('.ktm-nav-menu').on('click', function () {
-		console.log("123")
 		$('.kt-nav-header').toggleClass('kt-nav-header-open')
 
 	});
@@ -275,7 +304,45 @@ $(document).ready(function () {
 				},
 			});
 		}
+		$('.topic_a_tit').on('click', function () {
+			$(this).css('color', '#a2a2a2');
+			var id = $(this).attr('id');
+			var topics_reading = [];
+			if(cookie.get('topics_reading')){
+				topics_reading = JSON.parse(cookie.get('topics_reading'));
+			}
+			topics_reading.push(id);
+			cookie.set('topics_reading',JSON.stringify(topics_reading),30);
+		});
+		// 已读的话题灰色显示
+		var topics_readings = JSON.parse(cookie.get('topics_reading'));
+		if(topics_readings){
+			for (let index = 0; index < topics_readings.length; index++) {
+				$('#'+topics_readings[index]).css('color','#a2a2a2');
+			}
+		}
 	}
+	if($('.categories-show-page').length == 1){
+		$('.topic_a_tit').on('click', function () {
+			$(this).css('color', '#a2a2a2');
+			var id = $(this).attr('id');
+			var topics_reading = [];
+			if(cookie.get('topics_reading')){
+				topics_reading = JSON.parse(cookie.get('topics_reading'));
+			}
+			topics_reading.push(id);
+			cookie.set('topics_reading',JSON.stringify(topics_reading),30);
+		});
+		// 已读的话题灰色显示
+		var topics_readings = JSON.parse(cookie.get('topics_reading'));
+		if(topics_readings){
+			for (let index = 0; index < topics_readings.length; index++) {
+				$('#'+topics_readings[index]).css('color','#a2a2a2');
+			}
+		}
+	}
+	
+
 	// 社区详情页面
 	if ($('.topics-show-page').length == 1) {
 		layui.use(['element', 'layer', 'form', 'laydate'], function () {

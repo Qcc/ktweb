@@ -1,8 +1,8 @@
 <header class="kt-nav-header">
   <div class="kt-nav-background"></div>
   <div class="kt-nav-warp">
-    <div class="kt-nav-log mdui-typo-title mdui-inline mdui-m-l-5 mdui-hidden-sm-down">
-      <a href="{{ route('home') }}" class="kt-navigetion-sections">沟通科技</a>
+    <div class="kt-nav-log mdui-inline mdui-m-l-5 mdui-hidden-sm-down">
+      <a href="{{ route('home') }}" class="kt-navigetion-sections ktm-logo"></a>
     </div>
     <nav class="kt-nav mdui-typo-title mdui-inline mdui-hidden-sm-down kt-menu-tab-head ">
       <a href="javascript:;" class="kt-products mdui-m-l-5 mdui-m-r-3 kt-navigetion-sections mdui-typo-title">
@@ -206,7 +206,7 @@
   </div>
   <div class="ktm-nav-warp">
     <div class="mdui-hidden-md-up mdui-float-left">
-      <a href="{{ route('home') }} " class=" ktm-logo kt-navigetion-sections">沟通科技</a>
+      <a href="{{ route('home') }} " class=" ktm-logo kt-navigetion-sections"></a>
     </div>
     <nav class="ktm-nav-menu mdui-hidden-md-up mdui-float-right">
       <i class="kticon kt-navigetion-sections active">&#xe60b;</i>

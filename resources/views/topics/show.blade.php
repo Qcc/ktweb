@@ -23,6 +23,7 @@
                 </div>
             </div>
             @include('pages.side_advertising')
+            @include('pages._side_conact')
         </div>
         <div class="mdui-col-sm-9  mdui-col-xs-12 topic-content">
             <div class="article-warp">

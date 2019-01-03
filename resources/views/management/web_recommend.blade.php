@@ -136,7 +136,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标1</label>
         <div class="layui-input-block">
-            <input type="text" name="icon1" lay-verify="required" autocomplete="off" placeholder="请上传图片png-白色-200*200"
+            <input type="text" name="icon1"  autocomplete="off" placeholder="请上传图片png-白色-200*200"
                 class="layui-input">
             <a href="javascript:;" class="upload-banner">上传</a>
         </div>
@@ -144,11 +144,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标标题链接1</label>
         <div class="layui-input-inline">
-            <input type="text" name="icon_title1" lay-verify="required" autocomplete="off" placeholder="请输入标题"
+            <input type="text" name="icon_title1"  autocomplete="off" placeholder="请输入标题"
                 class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="icon_link1" lay-verify="required" autocomplete="off" placeholder="请输入链接"
+            <input type="text" name="icon_link1"  autocomplete="off" placeholder="请输入链接"
                 class="layui-input">
         </div>
     </div>
@@ -158,7 +158,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标2</label>
         <div class="layui-input-block">
-            <input type="text" name="icon2" lay-verify="required" autocomplete="off" placeholder="请上传图片png-白色-200*200"
+            <input type="text" name="icon2"  autocomplete="off" placeholder="请上传图片png-白色-200*200"
                 class="layui-input">
             <a href="javascript:;" class="upload-banner">上传</a>
         </div>
@@ -166,11 +166,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标标题链接2</label>
         <div class="layui-input-inline">
-            <input type="text" name="icon_title2" lay-verify="required" autocomplete="off" placeholder="请输入标题"
+            <input type="text" name="icon_title2"  autocomplete="off" placeholder="请输入标题"
                 class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="icon_link2" lay-verify="required" autocomplete="off" placeholder="请输入链接"
+            <input type="text" name="icon_link2"  autocomplete="off" placeholder="请输入链接"
                 class="layui-input">
         </div>
     </div>
@@ -180,7 +180,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标3</label>
         <div class="layui-input-block">
-            <input type="text" name="icon3" lay-verify="required" autocomplete="off" placeholder="请上传图片png-白色-200*200"
+            <input type="text" name="icon3"  autocomplete="off" placeholder="请上传图片png-白色-200*200"
                 class="layui-input">
             <a href="javascript:;" class="upload-banner">上传</a>
         </div>
@@ -188,11 +188,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标标题链接3</label>
         <div class="layui-input-inline">
-            <input type="text" name="icon_title3" lay-verify="required" autocomplete="off" placeholder="请输入标题"
+            <input type="text" name="icon_title3"  autocomplete="off" placeholder="请输入标题"
                 class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="icon_link3" lay-verify="required" autocomplete="off" placeholder="请输入链接"
+            <input type="text" name="icon_link3"  autocomplete="off" placeholder="请输入链接"
                 class="layui-input">
         </div>
     </div>
@@ -202,7 +202,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标4</label>
         <div class="layui-input-block">
-            <input type="text" name="icon4" lay-verify="required" autocomplete="off" placeholder="请上传图片png-白色-200*200"
+            <input type="text" name="icon4"  autocomplete="off" placeholder="请上传图片png-白色-200*200"
                 class="layui-input">
             <a href="javascript:;" class="upload-banner">上传</a>
         </div>
@@ -210,11 +210,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标标题链接4</label>
         <div class="layui-input-inline">
-            <input type="text" name="icon_title4" lay-verify="required" autocomplete="off" placeholder="请输入标题"
+            <input type="text" name="icon_title4"  autocomplete="off" placeholder="请输入标题"
                 class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="icon_link4" lay-verify="required" autocomplete="off" placeholder="请输入链接"
+            <input type="text" name="icon_link4"  autocomplete="off" placeholder="请输入链接"
                 class="layui-input">
         </div>
     </div>
@@ -224,7 +224,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标5</label>
         <div class="layui-input-block">
-            <input type="text" name="icon5" lay-verify="required" autocomplete="off" placeholder="请上传图片png-白色-200*200"
+            <input type="text" name="icon5"  autocomplete="off" placeholder="请上传图片png-白色-200*200"
                 class="layui-input">
             <a href="javascript:;" class="upload-banner">上传</a>
         </div>
@@ -232,11 +232,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图标标题链接5</label>
         <div class="layui-input-inline">
-            <input type="text" name="icon_title5" lay-verify="required" autocomplete="off" placeholder="请输入标题"
+            <input type="text" name="icon_title5"  autocomplete="off" placeholder="请输入标题"
                 class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="icon_link5" lay-verify="required" autocomplete="off" placeholder="请输入链接"
+            <input type="text" name="icon_link5"  autocomplete="off" placeholder="请输入链接"
                 class="layui-input">
         </div>
     </div>

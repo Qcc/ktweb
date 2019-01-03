@@ -12,7 +12,7 @@
                 <div class="swiper-item" style="background-image:url('{{ $item->banner }}')">
                     <a href="{{ $item->link }}" title="{{ $item->title }}"></a>
                 </div>
-                
+
             </div>
             @endforeach
         </div>
@@ -24,10 +24,12 @@
     <div class="mdui-row">
 
         <div class="mdui-col-sm-9 mdui-col-xs-12 topic-list">
-
             @if (isset($category))
-            <div class="alert alert-info" role="alert">
-                {{ $category->name }} ：{{ $category->description }}
+            <div class="category-comment" style="background-image:url('{{ $category->icon }}')">
+                <div class="cell">
+                    <h3>{{ $category->name }} </h3>
+                    <p>{{ $category->description }}</p>
+                </div>
             </div>
             @endif
 
@@ -56,6 +58,7 @@
 
         <div class="mdui-col-sm-3 sidebar mdui-hidden-sm-down">
             @include('topics._sidebar')
+            @include('pages._side_conact')
         </div>
     </div>
 </div>

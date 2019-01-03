@@ -30,7 +30,6 @@ th,
 td {
     margin: 0;
     padding: 0;
-    color: #666;
 }
 
 table {
@@ -520,9 +519,24 @@ a:active {
 }
 
 .ktm-logo {
-    font-size: 30px;
-    line-height: 64px;
-    padding: 0px 20px;
+    width: 135px;
+    height: 45px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    display: inline-block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(/images/logo-white.png);
+}
+.ktm-logo-blue {
+    background-image: url(/images/logo-blue.png);
+}
+.ktm-logo-white {
+    background-image: url(/images/logo-white.png);
 }
 
 .ktm-nav-content {
@@ -709,6 +723,9 @@ a:active {
 .banner-signup {
     margin-top: 50px;
 }
+.banner-products{
+    min-height: 210px;
+}
 
 .banner-signup {
     padding-bottom: 18px;
@@ -853,24 +870,60 @@ a:active {
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1024px) {
+    .img-solution-content i {
+        transition: 0.2s;
+        position: relative;
+        top: 0px;
+        display: block;
+        width: 80px;
+        height: 80px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+    }
     .img-solution-item {
         line-height: 5px;
     }
     .img-solution-content h3 {
         font-size: 25px;
+        line-height: 40px;
     }
 
     .img-solution-content p {
         font-size: 13px;
+        line-height: 30px;
     }
-    .img-solution-content i{
+}
+@media screen and (max-width: 1024px) {
+    .img-solution-content i {
+        transition: 0.2s;
+        position: relative;
+        top: 0px;
+        display: block;
         width: 60px;
         height: 60px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+    }
+    .img-solution-item {
+        line-height: 5px;
+    }
+    .img-solution-content h3 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .img-solution-content p {
+        font-size: 13px;
+        line-height: 20px;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 650px) {
     .img-solution-content i {
         transition: 0.2s;
         position: relative;
@@ -886,14 +939,12 @@ a:active {
 
     .img-solution-content h3 {
         font-size: 18px;
+        line-height: 25px;
     }
 
     .img-solution-content p {
         font-size: 11px;
-    }
-    .img-solution-content i{
-        width: 40px;
-        height: 40px;
+        line-height: 20px;
     }
 }
 
@@ -913,7 +964,7 @@ a:active {
     line-height: 40px;
 }
 
-.img-solution-content i {
+/* .img-solution-content i {
     transition: 0.2s;
         position: relative;
         top: 0px;
@@ -924,7 +975,7 @@ a:active {
         background-position: center;
         background-size: cover;
         overflow: hidden;
-}
+} */
 
 .img-solution-content h3,
 .img-solution-content p {
@@ -1024,7 +1075,7 @@ a:active {
 
 /* 小于1024px宽度 */
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 650px) {
     .news-big-content-warp h3 {
         font-size: 16px;
     }
@@ -1730,6 +1781,7 @@ a:active {
 .topic-body {
     line-height: 34px;
     margin-bottom: 30px;
+    font-size: 15px;
 }
 
 .topic-body b,
@@ -1745,6 +1797,12 @@ a:active {
 .topic-body ul {
     margin: 10px 0;
 }
+.topic-body ol>li,.simditor .simditor-body ol>li{
+    list-style: disc;
+}
+.topic-body ul>li,.simditor .simditor-body ul>li{
+    list-style:decimal;
+}
 
 .topic-body blockquote {
     border-left: 6px solid #ddd;
@@ -1753,6 +1811,7 @@ a:active {
 }
 
 .topic-body img {
+    height: auto;
     max-width: 100%;
     max-height: 100%;
     margin: 10px 0;
@@ -3978,3 +4037,63 @@ a:active {
 @media screen and (min-width: 1024px) {
 
 }
+.new-topic-btn{
+    text-align: center;
+}
+.hot-topic-box,.reply-more-box, .conact-box{
+    margin: 20px auto;
+}
+.hot-topic-box .head,.reply-more-box .head{
+    border: 1px solid #e2e2e2;
+    padding: 10px;
+    text-align: center;
+    border-radius: 2px;
+}
+.hot-topic-box .content,.reply-more-box .content{
+    margin: 10px;
+}
+.hot-topic-box .content .list>li,.reply-more-box .content .list>li{
+    margin: 10px 0;
+    line-height: 20px;
+}
+.hot-topic-box .content .list>li>a,.reply-more-box .content .list>li>a{
+color:#666;
+}
+.category-comment{
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    display: table;
+    margin-bottom: 20px;
+}
+.category-comment .cell{
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 60px;
+}
+.category-comment .cell>h3{
+    color: #fff;
+    font-size: 25px;
+    line-height: 30px;
+}
+.category-comment .cell>p{
+    color: #fff;
+    font-size: 18px;
+    line-height: 25px;
+}
+.conact-box{
+    text-align: center
+}
+.conact-box .head{
+    line-height: 30px;
+    font-size: 20px;
+    margin: 10px 0;
+}
+.conact-box .content>p{
+    line-height: 30px;
+    font-size: 16px;
+}
+

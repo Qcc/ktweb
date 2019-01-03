@@ -29,16 +29,28 @@ class TopicsController extends Controller
 	// $request->order 是获取 URI http://keweb.test/topics?order=recent 中的 order 参数
 	public function index(Request $request, Topic $topic)
 	{
+		// 社区首页banner图
 		$clubbanners = Cache::rememberForever('club_banner', function (){
 			return \DB::table('settings')->where('key','club_banner')->orderBy('updated_at','desc')->get();
+		});
+		// 热门主题，点赞最多的主题 每天更新
+		$hottopics = Cache::remember('hottopics',60*24,function () use($topic){
+			return $topic->orderBy('great_count','desc')->paginate(8);
+        });
+		// 热门主题，回复最多的主题 每天更新
+		$replysmores = Cache::remember('replysmores',60*24,function () use($topic){
+			return $topic->orderBy('reply_count','desc')->paginate(8);
+		});
+		// 侧边栏广告
+		$advertisings = Cache::rememberForever('side_advertising', function (){
+			return \DB::table('settings')->where('key','side_advertising')->get();
         });
 		//获取置顶文章
-		// $tops = Topic::where('topping', 1)->get();
 		$tops = $topic->withOrder($request->order)->where('topping', 1)->get();
 		// 分页获取20条记录。默认获取15条
 		$topics = $topic->withOrder($request->order)->paginate(20);
 
-		return view('topics.index', compact('topics','tops','clubbanners'));
+		return view('topics.index', compact('topics','tops','clubbanners','hottopics','replysmores','advertisings'));
 	}
 
 	/**

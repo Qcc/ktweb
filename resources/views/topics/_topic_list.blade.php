@@ -16,7 +16,7 @@
                 <a class="category"  style="background:#FF9800;" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                     {{ $topic->category->name }}
                 </a>
-                <a class="topic_a_tit" href="{{ $topic->link() }}" title="{{ $topic->title }}">
+                <a class="topic_a_tit" id="topic_id_top_{{$topic->id}}" href="{{ $topic->link() }}" title="{{ $topic->title }}">
                     {{ $topic->title }}
                 </a>
                 @if($topic->excellent)
@@ -62,7 +62,7 @@
                 <a class="category {{ $topic->excellent ?'category-excellent':''}}" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                     {{ $topic->category->name }}
                 </a>
-                <a class="topic_a_tit" href="{{ $topic->link() }}" title="{{ $topic->title }}">
+                <a class="topic_a_tit" id="topic_id_{{$topic->id}}" href="{{ $topic->link() }}" title="{{ $topic->title }}">
                     {{ $topic->title }}
                 </a>
                 @if($topic->excellent)
