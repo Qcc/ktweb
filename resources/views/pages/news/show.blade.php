@@ -59,5 +59,8 @@
     .news-show-page .kt-nav-header .kt-navigetion-sections {
         color: #333;
     }
+    .news-show-page .ktm-logo {
+    background-image: url(/images/logo-blue.png);
+    }
 </style>
 @stop

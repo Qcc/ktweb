@@ -96,6 +96,9 @@
         background: rgba(255, 255, 255, 0.9);
         border-bottom: 1px solid rgba(200, 200, 200, 0.5);
     }
+    .product-create-page .ktm-logo, .product-edit-page .ktm-logo {
+    background-image: url(/images/logo-blue.png);
+    }
 </style>
 @stop
 

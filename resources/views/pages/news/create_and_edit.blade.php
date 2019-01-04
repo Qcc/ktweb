@@ -33,6 +33,11 @@
                                     {{$value->name }}</option>
                                 @endforeach
                             </select>
+                            <label class="mdui-checkbox" title="勾选此项会使用seo表中关键字替换批量生成文章" style="margin-left: 40px;">
+                                    <input type="checkbox" name="seo"/>
+                                    <i class="mdui-checkbox-icon"></i>
+                                    SEO批量生成
+                                  </label>
                         </div>
 
                         <div class="form-group title">
@@ -44,13 +49,20 @@
                             <input class="form-control" type="text" name="keywords" value="{{ old('keywords', $news->keywords ) }}"
                                 placeholder="关键词" required />
                         </div>
+                        
+                        <div class="form-group title">
+                            <input class="form-control" type="text" name="banner" value="{{ old('banner', $news->banner ) }}"
+                                placeholder="推荐轮播图（可选）" />
+                                <a href="javascript:;" id="upload-banner">上传</a>
+                        </div>
+                        
                         <div class="form-group images">
                             <div class="layui-upload-list">
                                 <img class="layui-upload-img" src="{{ old('image', $news->image ) }}" id="image">
                                 <p id="status"></p>
-                                <a href="javascript:;" class="btn-upload" id="btn_upload">上传首图(640*400)</a>
                             </div>
                             <input type="hidden" id="image_path" name="image" value="{{ old('image', $news->image ) }}" required />
+                            <a href="javascript:;" class="btn-upload" id="btn_upload">上传首图(640*400)</a>
                         </div>
 
                         <div class="form-group editor">
@@ -72,7 +84,6 @@
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('layui/css/layui.css') }}">
 <style>
     .news-edit-page .kt-nav-header .kt-navigetion-sections, .news-create-page .kt-nav-header .kt-navigetion-sections{
         color: #333;
@@ -80,6 +91,9 @@
     .news-create-page .kt-nav-header .kt-nav-background,.news-create-page .kt-nav-header .kt-nav-background{
         background: rgba(255, 255, 255, 0.9);
         border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+    }
+    .news-create-page .ktm-logo, .news-edit-page .ktm-logo {
+    background-image: url(/images/logo-blue.png);
     }
 </style>
 @stop
@@ -90,75 +104,4 @@
 <script type="text/javascript" src="{{ asset('js/hotkeys.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/uploader.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/simditor.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/layui/layui.js') }}"></script>
-
-<script>
-    $(document).ready(function () {
-        var editor = new Simditor({
-            textarea: $('#editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
-                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
-                'indent', 'outdent', 'alignment'
-            ],
-            upload: {
-                url: "{{ route('news.upload_image') }}",
-                //工具条都包含哪些内容
-                params: {
-                    _token: '{{ csrf_token() }}'
-                },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-            },
-            pasteImage: true,
-        });
-        layui.use(['upload','layer'], function () {
-            var $ = layui.jquery,
-                upload = layui.upload;
-
-            //普通图片上传
-            var uploadInst = upload.render({
-                elem: '#btn_upload',
-                url: "{{ route('news.upload_image') }}",
-                field: 'upload_file',
-                accept: 'images',
-                data: {
-                    _token: '{{ csrf_token() }}'
-                },
-                before: function (obj) {
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function (index, file, result) {
-                        $('#image').attr('src', result); //图片链接（base64）
-                    });
-                },
-                done: function (res) {
-                    //如果上传失败
-                    if (res.code > 0) {
-                        return layer.msg('上传失败');
-                    }
-                    $('#image_path').val(res.data.src);
-                },
-                error: function () {
-                    //演示失败状态，并实现重传
-                    var demoText = $('#status');
-                    demoText.html(
-                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
-                    );
-                    demoText.find('.image-reload').on('click', function () {
-                        uploadInst.upload();
-                    });
-                }
-            });
-        });
-    });
-    // <!-- 
-    //     pasteImage —— 设定是否支持图片黏贴上传，这里我们使用 true 进行开启；
-    // url —— 处理上传图片的 URL；
-    // params —— 表单提交的参数，Laravel 的 POST 请求必须带防止 CSRF 跨站请求伪造的 _token 参数；
-    // fileKey —— 是服务器端获取图片的键值，我们设置为 upload_file;
-    // connectionCount —— 最多只能同时上传 3 张图片；
-    // leaveConfirm —— 上传过程中，用户关闭页面时的提醒。
-    //  -->
-</script>
-
 @stop

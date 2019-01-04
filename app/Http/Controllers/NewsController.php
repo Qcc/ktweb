@@ -9,6 +9,9 @@ use App\Http\Requests\NewsRequest;
 use Auth;
 use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 class NewsController extends Controller
 {
     /**
@@ -19,7 +22,7 @@ class NewsController extends Controller
     public function index(News $news, Request $request)
     {
 		// 分页获取21条记录。默认获取15条
-		$newss = $news->withOrder($request->order)->paginate(21);
+		$newss = $news->withOrder($request->order)->paginate(15);
 
 		return view('pages.news.index', compact('newss'));
     }
@@ -45,9 +48,27 @@ class NewsController extends Controller
     public function store(NewsRequest $request, News $news)
     {
         $this->authorize('create',$news);
-        $news->fill($request->all());
-		$news->user_id = Auth::id();
-		$news->save();
+        // 行业资讯和管理智库允许批量发布SEO填充文章
+        if($request->column_id != 1 && $request->seo){
+            $seos = \DB::table('seos')->get();
+            $seos->each(function ($item, $key) use($request,$news){
+                $title = str_replace('**',$item->city,$request->title);
+                $body = str_replace('**',$item->city,$request->body);
+                $keywords = str_replace('**',$item->city,$request->keywords);
+                News::create([
+                    'title'=>$title,
+                    'image'=>$request->image,
+                    'body'=>$body,
+                    'user_id'=>Auth::id(),
+                    'column_id'=>$request->column_id,
+                    'keywords'=>$keywords
+                    ]);
+            });
+        }else{
+            $news->fill($request->all());
+            $news->user_id = Auth::id();
+            $news->save();
+        }
 		return redirect()->to($news->link())->with('success', '成功创建话题！');
     }
 
@@ -122,7 +143,7 @@ class NewsController extends Controller
 		// 判断是否有文件上传，并赋值给$file
 		if($file = $request->upload_file){
 			// 保存图片到本地
-			$result = $uploader->save($request->upload_file,'news',\Auth::id(),1024);
+			$result = $uploader->save($request->upload_file,'news',\Auth::id(),1920);
 			//图片保存成功的话
 			if($result){
 				$data['success'] = true;

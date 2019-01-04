@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->string('title')->index()->comment('标题');
             $table->string('image')->comment('首图');
+            $table->string('banner')->nullable()->comment('banner');
             $table->text('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index()->comment('作者');
             $table->integer('column_id')->unsigned()->index()->comment('栏目');

@@ -1798,10 +1798,10 @@ a:active {
     margin: 10px 0;
 }
 .topic-body ol>li,.simditor .simditor-body ol>li{
-    list-style: disc;
+    list-style: decimal;
 }
 .topic-body ul>li,.simditor .simditor-body ul>li{
-    list-style:decimal;
+    list-style:disc;
 }
 
 .topic-body blockquote {
@@ -2508,7 +2508,7 @@ a:active {
 
 .article-panel .edit .images>.layui-upload-list {
     width: 250px;
-    height: 170px;
+    height: 160px;
     padding: 10px;
     border: 1px solid #e2e2e2;
     overflow: hidden;
@@ -2616,6 +2616,8 @@ a:active {
 
 .article-list .images {
     margin: 20px 10px 0;
+    width: 375px;
+    height: 235px;
 }
 
 .article-list .images img {

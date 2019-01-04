@@ -2625,4 +2625,89 @@ $(document).ready(function () {
 		});
 	});
 
+	if ($('.news-create-page').length == 1 || $('.news-edit-page').length == 1) {
+		var editor = new Simditor({
+			textarea: $('#editor'),
+			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+				'|', 'ul', 'ol', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+				'indent', 'outdent', 'alignment'
+			],
+			upload: {
+				url: "/news/upload_image",
+				//工具条都包含哪些内容
+				params: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				fileKey: 'upload_file',
+				connectionCount: 3,
+				leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+			},
+			pasteImage: true,
+		});
+		layui.use(['upload', 'layer'], function () {
+			var upload = layui.upload;
+			var layer = layui.layer;
+
+			//普通图片上传
+			var uploadInst = upload.render({
+				elem: '#btn_upload',
+				url: "/news/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						$('#image').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#image_path').val(res.file_path);
+				},
+				error: function () {
+					//演示失败状态，并实现重传
+					var demoText = $('#status');
+					demoText.html(
+						'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs image-reload">重试</a>'
+					);
+					demoText.find('.image-reload').on('click', function () {
+						uploadInst.upload();
+					});
+				}
+			});
+			//banner大图上传
+			var uploadIcon = upload.render({
+				elem: "#upload-banner",
+				url: "/news/upload_image",
+				field: 'upload_file',
+				accept: 'images',
+				data: {
+					_token: $('meta[name="csrf-token"]').attr('content')
+				},
+				done: function (res) {
+					//如果上传失败
+					if (!res.success) {
+						return layer.msg('上传失败');
+					}
+					$('#upload-banner').prev().val(res.file_path);
+				},
+				error: function () {
+					layer.msg('上传失败');
+				}
+			});
+
+		});
+	}
+	if ($('.columns-show-page').length == 1) {
+		// 初始化首页轮播图
+		if ($('.swiper-container').length === 1) {
+			var swiper = new Swiper('.swiper-container', {});
+		}
+	}
 });

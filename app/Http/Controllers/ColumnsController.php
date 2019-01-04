@@ -12,7 +12,7 @@ class ColumnsController extends Controller
         // 读取分类 ID  关联的话题， 并按照每20条分页
         $newss = $news->withOrder($request->order)
                         ->where('column_id',$column->id)
-                        ->paginate(21);
+                        ->paginate(15);
         // 传参变量话题和分类 到模版中
         return view('pages.news.index',compact('newss','column'));
     }

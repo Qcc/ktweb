@@ -5,7 +5,7 @@ namespace App\Models;
 class News extends Model
 {
     // 允许修改的字段
-    protected $fillable = ['title', 'body', 'column_id', 'excerpt', 'slug', 'keywords', 'image'];
+    protected $fillable = ['title', 'body','column_id','user_id', 'banner','column_id', 'excerpt', 'slug', 'keywords', 'image'];
 
     /**
      * 与模型关联的数据表。

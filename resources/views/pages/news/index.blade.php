@@ -37,7 +37,7 @@
         <div class="mdui-divider"></div>
         <div class="mdui-row">
             @foreach($newss as $index => $news)
-            <div class="mdui-col-xs-4">
+            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
                 <div class="article-list">
                     <a href="{{ route('news.show',$news->id) }}" target="_blank">
                         <div class="images">
@@ -72,14 +72,4 @@
 
 @section('script')
 <script src="{{ asset('js/swiper.min.js') }}"></script>
-
-<script>
-    $$(document).ready(function () {
-        // 初始化首页轮播图
-        if ($$('.swiper-container').length === 1) {
-            var swiper = new Swiper('.swiper-container', {});
-        }
-    });
-</script>
-
 @stop
