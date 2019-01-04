@@ -4112,6 +4112,18 @@ color:#666;
     font-size: 16px;
 }
 
-.club-search .search{
+.club-search .search-bar{
     color: #fff;
+}
+.search-input{
+    display: none;
+}
+.search-input input{
+    height: 75px;
+    line-height: 75px;
+    width: 500px;
+    padding: 0 15px;
+    font-size: 20px;
+    border: none 0;
+    background: none;
 }

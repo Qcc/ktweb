@@ -17,7 +17,7 @@
           </ul>
         </div>
         <div class="club-search mdui-hidden-sm-down">
-          <a href="javascrippt:;" class="search"><i class="kticon">&#xe60e;</i></a>
+          <a href="javascrippt:;" class="search-bar"><i class="kticon">&#xe60e;</i></a>
         </div>
         <div class="mdui-hidden-sm-down club-longin">
           @guest
@@ -110,4 +110,8 @@
       </div>
     </div>
   </header>
+  <div id="search-input" class="search-input">
+    <form class="search-form" action="http://www.baidu.com/s"><input autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="q1"></form>
+  </div>
+
 </div>

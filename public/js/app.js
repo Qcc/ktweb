@@ -2604,5 +2604,25 @@ $(document).ready(function () {
 			});
 		});
 	}
+	// 搜索栏
+	$('.search-bar').on('click', function () {
+		layui.use(['layer'], function () {
+			var layer = layui.layer;
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: 0,
+				area: '530px',
+				shadeClose: true,
+				skin: 'yourclass',
+				content: $('#search-input')
+			});
+		});
+		$('.search-form').keydown(function (e) {
+			if (e.keyCode == 13) {
+				e.target.value = "site:kouton.com " + e.target.value;
+			}
+		});
+	});
 
 });
