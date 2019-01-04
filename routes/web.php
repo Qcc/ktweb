@@ -84,6 +84,7 @@ Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']])
 Route::get('notifications/notice', 'NotificationsController@notifications')->name('notifications.notice'); 
 Route::get('notifications/message', 'NotificationsController@message')->name('notifications.message'); 
 Route::get('notifications/system', 'NotificationsController@system')->name('notifications.system'); 
+Route::post('notifications/destroy', 'NotificationsController@destroy')->name('notifications.destroy'); 
 
 // 发送私信
 Route::get('notifications/message/to/{user}', 'NotificationsController@sendtouser')->name('message.to'); 

@@ -724,7 +724,7 @@ a:active {
     margin-top: 50px;
 }
 .banner-products{
-    min-height: 210px;
+    min-height: 230px;
 }
 
 .banner-signup {
@@ -980,7 +980,7 @@ a:active {
 .img-solution-content h3,
 .img-solution-content p {
     color: #fff;
-    padding-right: 15%;
+    padding-right: 5%;
 }
 
 
@@ -2133,6 +2133,9 @@ a:active {
     font-size: 12px;
     float: right;
     border-left: 1px solid #e2e2e2;
+}
+.notifucation-content{
+    margin: 5px 10px;
 }
 
 
@@ -3388,7 +3391,19 @@ a:active {
 }
 
 .xhs_sp_media {
-    padding: 8px;
+    padding: 15px 8px;
+    border-bottom: 1px solid #e2e2e2;
+    position: relative;
+}
+.notifications-box:hover>.notifications-del{
+   display: inline; 
+}
+.notifications-box .notifications-del{
+    display: none;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    color: #a2a2a2;
 }
 
 .xhs_sp_infos {
@@ -4097,3 +4112,6 @@ color:#666;
     font-size: 16px;
 }
 
+.club-search .search{
+    color: #fff;
+}

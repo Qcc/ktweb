@@ -17,11 +17,7 @@
           </ul>
         </div>
         <div class="club-search mdui-hidden-sm-down">
-          <div class="mdui-textfield mdui-textfield-expandable">
-            <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="kticon">&#xe60e;</i></button>
-            <input class="mdui-textfield-input" type="text" placeholder="请输入搜索内容" />
-            <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="kticon">&#xe6b9;</i></button>
-          </div>
+          <a href="javascrippt:;" class="search"><i class="kticon">&#xe60e;</i></a>
         </div>
         <div class="mdui-hidden-sm-down club-longin">
           @guest

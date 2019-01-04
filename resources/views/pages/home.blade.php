@@ -178,7 +178,7 @@
         <div class="img-solution-background mdui-color-grey"></div>
         <img src="{{ $solution->banner }}" alt="{{ $solution->title }}">
         <div class="img-solution-content  mdui-text-color-white">
-          <i class="kticon" style="background-image:url('{{ $banner->icon1 }}')"></i>
+          <i class="kticon" style="background-image:url('{{ $solution->icon1 }}')"></i>
           <h3 class="mdui-typo-headline">{{ $solution->title }}</h3>
           <p class="mdui-typo-subheading">{{ $solution->subtitle }}</p>
         </div>

@@ -12,7 +12,7 @@ $(document).ready(function () {
 			/*获取cookie参数*/
 			var getCookie = document.cookie.replace(/[ ]/g, ""); //获取cookie，并且将获得的cookie格式化，去掉空格字符
 			var arrCookie = getCookie.split(";") //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
-			var tips=null; //声明变量tips
+			var tips = null; //声明变量tips
 			for (var i = 0; i < arrCookie.length; i++) { //使用for循环查找cookie中的tips变量
 				var arr = arrCookie[i].split("="); //将单条cookie用"等号"为标识，将单条cookie保存为arr数组
 				if (key == arr[0]) { //匹配变量名称，其中arr[0]是指的cookie名称，如果该条变量为tips则执行判断语句中的赋值操作
@@ -126,7 +126,7 @@ $(document).ready(function () {
 		if ($('.swiper-container').length === 1) {
 			var swiper = new Swiper('.swiper-container', {
 				loop: true,
-				// autoplay: true,
+				autoplay: true,
 				pagination: {
 					el: '.swiper-pagination',
 					dynamicBullets: true,
@@ -308,40 +308,40 @@ $(document).ready(function () {
 			$(this).css('color', '#a2a2a2');
 			var id = $(this).attr('id');
 			var topics_reading = [];
-			if(cookie.get('topics_reading')){
+			if (cookie.get('topics_reading')) {
 				topics_reading = JSON.parse(cookie.get('topics_reading'));
 			}
 			topics_reading.push(id);
-			cookie.set('topics_reading',JSON.stringify(topics_reading),30);
+			cookie.set('topics_reading', JSON.stringify(topics_reading), 30);
 		});
 		// 已读的话题灰色显示
 		var topics_readings = JSON.parse(cookie.get('topics_reading'));
-		if(topics_readings){
+		if (topics_readings) {
 			for (let index = 0; index < topics_readings.length; index++) {
-				$('#'+topics_readings[index]).css('color','#a2a2a2');
+				$('#' + topics_readings[index]).css('color', '#a2a2a2');
 			}
 		}
 	}
-	if($('.categories-show-page').length == 1){
+	if ($('.categories-show-page').length == 1) {
 		$('.topic_a_tit').on('click', function () {
 			$(this).css('color', '#a2a2a2');
 			var id = $(this).attr('id');
 			var topics_reading = [];
-			if(cookie.get('topics_reading')){
+			if (cookie.get('topics_reading')) {
 				topics_reading = JSON.parse(cookie.get('topics_reading'));
 			}
 			topics_reading.push(id);
-			cookie.set('topics_reading',JSON.stringify(topics_reading),30);
+			cookie.set('topics_reading', JSON.stringify(topics_reading), 30);
 		});
 		// 已读的话题灰色显示
 		var topics_readings = JSON.parse(cookie.get('topics_reading'));
-		if(topics_readings){
+		if (topics_readings) {
 			for (let index = 0; index < topics_readings.length; index++) {
-				$('#'+topics_readings[index]).css('color','#a2a2a2');
+				$('#' + topics_readings[index]).css('color', '#a2a2a2');
 			}
 		}
 	}
-	
+
 
 	// 社区详情页面
 	if ($('.topics-show-page').length == 1) {
@@ -2571,6 +2571,36 @@ $(document).ready(function () {
 						uploadIcon.upload();
 					});
 				}
+			});
+		});
+	}
+	if ($('.notifications-notice-page').length == 1) {
+		layui.use(['layer'], function () {
+			var layer = layui.layer;
+			$('.notifications-del').on('click', function () {
+				var id = $(this).attr('data_id')
+				var that = this;
+				$(this).hide();
+				$.ajax({
+					method: 'POST',
+					url: '/notifications/destroy',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {
+						notice: id,
+					},
+					success: function (data) {
+						if (data.success) {
+							$(that).parent().hide();
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+						}
+					}
+				});
 			});
 		});
 	}

@@ -7,6 +7,7 @@ use Auth;
 use App\Models\User;
 use App\Models\Conversation;
 use App\Models\Message;
+use Illuminate\Support\Facades\DB;
 
 class NotificationsController extends Controller
 {
@@ -87,4 +88,14 @@ class NotificationsController extends Controller
         Auth::User()->markAsRead();
         return view('notifications.system',compact('notifications'));
     }
+
+    public function destroy(Request $request)
+	{
+        $data = ['success'=>false,'msg'=>'删除通知失败!'];
+        $notification = \DB::table('notifications')->where('id',$request->notice)->delete();
+        if($notification == 1){
+            $data = ['success'=>true,'msg'=>'删除通知成功!'];
+        }
+		return $data;
+	}
 }
