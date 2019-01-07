@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -55,5 +56,14 @@ class LoginController extends Controller
         if($this->request->input('phone')){
             return 'phone';
         }
+    }
+
+    public function showLoginForm()
+    {
+        // 社区首页banner图
+		$loginbanners = Cache::rememberForever('login_banner', function (){
+			return \DB::table('settings')->where('key','login_banner')->orderBy('updated_at','desc')->get();
+		});
+        return view('auth.login',compact('loginbanners'));
     }
 }

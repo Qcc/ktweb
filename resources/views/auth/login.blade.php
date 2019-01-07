@@ -60,20 +60,12 @@
     </div>
     <div class="swiper-container mdui-hidden-xs-down">
         <div class="swiper-wrapper">
-            <div class="swiper-slide red-slide">
-                <a href="">
-                    <img class="login-banner" src="{{ asset('images/banner1.jpg') }}" alt="">
+            @foreach($loginbanners as $loginbanner)
+            <div class="swiper-slide">
+                <a href="{{ $loginbanner->link }}"  style="background-image:url('{{ $loginbanner->banner }}')">
                 </a>
             </div>
-            <div class="swiper-slide" style="background:gary">
-                <div class="title">Slide 2</div>
-            </div>
-            <div class="swiper-slide" style="background:green">
-                <div class="title">Slide 3</div>
-            </div>
-            <div class="swiper-slide">
-                <div class="title">Slide 4</div>
-            </div>
+            @endforeach
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
@@ -84,43 +76,3 @@
     </div>
 </div>
 @endsection
-
-@section('script')
-<script>
-    var $$ = mdui.JQ;
-    $$(document).ready(function () {
-        // 初始化首页轮播图
-        if ($$('.swiper-container').length === 1) {
-            var swiper = new Swiper('.swiper-container', {
-                // autoplay: true,//可选选项，自动滑动
-                loop: true, // 循环模式选项
-                // 如果需要分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                    //原点分页器效果
-                    dynamicBullets: true,
-                    dynamicMainBullets: 1
-                },
-            });
-        }
-        $$('#submit').on('click', function (e) {
-            var phone = $$('#phone');
-            var pwd = $$('#password');
-            if (!phone.val()) {
-                phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
-                e.preventDefault();
-            }
-            if (!pwd.val()) {
-                pwd.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
-                e.preventDefault();
-                return false;
-            }
-            if((phone.val()).indexOf('@') !== -1){
-                phone.prop({'name':'email'});
-            }else{
-                phone.prop({'name':'phone'});
-            }
-        });
-    });
-</script>
-@stop

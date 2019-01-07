@@ -95,6 +95,28 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="edit-action-warp" style="margin-bottom:0">
+                <p>登录页banner</p>
+            </div>
+            <table lay-filter="loginbanner-table" id="loginbanner-table">
+                <thead>
+                    <tr>
+                        <th lay-data="{field:'id', width:40}">ID</th>
+                        <th lay-data="{field:'link'}">链接</th>
+                        <th lay-data="{field:'banner'}">banner</th>
+                        <th lay-data="{toolbar: '#barAction', width:110}">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($loginbanners as $loginbanner)
+                    <tr>
+                        <td>{{ $loginbanner->id }}</td>
+                        <td>{{ $loginbanner->link }}</td>
+                        <td>{{ $loginbanner->banner }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -294,6 +316,34 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn solutionbanner-btn" lay-submit="" lay-filter="solutionbanner-btn">保存</button>
+        </div>
+    </div>
+</form>
+<!-- 登录页banner -->
+<form class="layui-form" id="loginbanner-form" lay-filter="loginbanner-form" style="display:none;margin-right: 80px;">
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <input type="hidden" name="id">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">banner图片</label>
+        <div class="layui-input-block">
+            <input type="text" name="banner" lay-verify="required" autocomplete="off" placeholder="请上传图片1920*500"
+                class="layui-input">
+            <a href="javascript:;" class="upload-banner">上传</a>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接</label>
+        <div class="layui-input-block">
+            <input type="text" name="link" lay-verify="required" autocomplete="off" placeholder="请输入链接" class="layui-input">
+        </div>
+    </div>
+     
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn loginbanner-btn" lay-submit="" lay-filter="loginbanner-btn">保存</button>
         </div>
     </div>
 </form>

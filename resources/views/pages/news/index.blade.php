@@ -5,26 +5,22 @@
 <div class="mdui-container-full">
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            @foreach($banners as $banner)
             <div class="swiper-slide">
-                <div>
-                    <img src="{{ asset('images/topics1.jpg') }}" alt="">
-                </div>
+                 <a href="{{ $banner->link() }}"  style="background-image:url('{{ $banner->banner }}')"></a>
             </div>
-            <div class="swiper-slide">
-                <div>
-                    <img src="{{ asset('images/topics2.png') }}" alt="">
-                </div>
-            </div>
+             @endforeach
         </div>
+        <div class="swiper-pagination"></div>
     </div>
     @include('common.error')
     <div class="mdui-container">
         <div class="news-nav">
             <ul class="column-nav-ul">
-                <li class="{{ active_class(if_route('news.index')) }}">
+                <li class="{{ active_class(if_route('news.index'), $activeClass = 'active', $inactiveClass = '') }}">
                     <a href="{{ route('news.index') }}">全部</a></li>
                 
-                <li class="{{ active_class(if_route('columns.show') && if_route_param('column', 1)) }}">
+                <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 1)), $activeClass = 'active', $inactiveClass = '') }}">
                     <a href="{{ route('columns.show', 1) }}">沟通动态</a></li>
 
                 <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 2)), $activeClass = 'active', $inactiveClass = '') }}">
@@ -39,7 +35,7 @@
             @foreach($newss as $index => $news)
             <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
                 <div class="article-list">
-                    <a href="{{ route('news.show',$news->id) }}" target="_blank">
+                    <a href="{{ $news->link() }}" target="_blank">
                         <div class="images">
                             <img src="{{ $news->image }}" alt="{{ $news->title }}">
                         </div>
@@ -72,4 +68,14 @@
 
 @section('script')
 <script src="{{ asset('js/swiper.min.js') }}"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			autoplay: true,
+			pagination: {
+				el: '.swiper-pagination',
+				dynamicBullets: true,
+			},
+		});
+</script>
 @stop

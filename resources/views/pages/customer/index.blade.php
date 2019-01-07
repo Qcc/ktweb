@@ -42,7 +42,7 @@
             @foreach($customers as $index => $customer)
             <div class="mdui-col-xs-3">
                 <div class="article-list">
-                    <a href="{{ route('customer.show',$customer->id) }}" target="_blank">
+                    <a href="{{ $customer->link() }}" target="_blank">
                         <div class="images">
                             <img src="{{ $customer->image }}" alt="{{ $customer->title }}">
                         </div>

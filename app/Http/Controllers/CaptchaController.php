@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store as Session;
 use Illuminate\Http\Response;
+use App\Models\User;
 
 class CaptchaController extends Controller
 {
@@ -42,6 +43,10 @@ class CaptchaController extends Controller
         $status = ['captcha'=>false,'msg'=>'验证码不正确'];
         if (!$validator->fails()){
             $status = ['captcha'=>true,'msg'=>'验证码正确'];
+            $count = User::where('phone',$request->phone)->count();
+            if($count != 0){
+                $status['user']= true;
+            }
         }
         return response()->json($status);
     }

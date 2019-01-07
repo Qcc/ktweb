@@ -613,7 +613,7 @@ a:active {
 }
 
 .copyright {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 @media screen and (max-width:1200px) {
@@ -1012,7 +1012,18 @@ a:active {
     text-align: right;
     position: absolute;
 }
-
+.news-index-page .swiper-slide,.columns-show-page .swiper-slide{
+    width: 100%;
+    height: 400px;
+}
+.news-index-page .swiper-slide>a,.columns-show-page .swiper-slide>a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 /* 小于600px宽度 */
 
@@ -1161,7 +1172,11 @@ a:active {
 .ktnews-tab-warp .mdui-p-a-2 {
     margin-top: 20px;
 }
-
+.column-nav-ul .active{
+    background: #e2e2e2;
+    padding: 0 10px;
+    border-radius: 2px;
+}
 
 /* 新闻资讯结束 */
 
@@ -4128,4 +4143,200 @@ color:#666;
     font-size: 20px;
     border: none 0;
     background: none;
+}
+
+.register-page .kt-nav-warp nav.kt-nav-login,
+.register-page footer {
+    display: none;
+}
+.register-page .kt-nav-warp .kt-nav {
+    float: right;
+}
+
+.register-page .kt-nav-header .kt-nav-background {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.register-page .kt-nav-warp .kt-navigetion-sections,
+.register-page .kt-navigetion-sections {
+    color: #333 !important;
+}
+
+/* 小于600px宽度 */
+@media screen and (max-width: 600px) {
+}
+.register-page .submit{
+            width: 100%;
+            cursor: pointer;
+        }
+.form-group{
+    position: relative;
+}
+.captcha-img{
+    width: 120px;
+    position: absolute;
+    right: 0;
+    bottom: 28px;
+}
+
+.form-group-sms{
+    display:none;
+}
+.send-sms{
+    margin-bottom: 20px;
+}
+.sendsmstips,.sendsmstips a,.sendsms-title{
+    color: #888!important;
+}
+.sendsmstips span,.sendsms-title span{
+    color: #ff790a;
+}
+.captcha-input{
+    padding-right: 130px;
+}
+.kt-register ,.panel-heading{
+    line-height: 60px;
+    text-align: center;
+}
+/* 大于600px宽度 */
+@media screen and (min-width: 600px) {
+    .registry-body{
+        width: 280px;
+    }
+    .panel-heading{
+        border-bottom: 1px solid #ccc;
+        margin: 20px;
+    }
+    .panel-default{
+        border: 1px solid #ccc;
+        height: 506px;
+        width: 900px;
+        border-radius: 10px;
+        margin: 70px auto 20px;
+    }
+}
+.smscode-success-icon,.captcha-success-icon{    
+    right: 0px;
+    position: absolute;
+    top: 30px;
+    color: #8BC34A;
+    display: none;
+}
+.form-group .captcha-check-icon,.form-group .smscode-check-icon{
+    display: none;
+    right: 6px;
+    top: 23px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+}
+
+.register-page .ktm-logo, .login-page .ktm-logo{
+    background-image: url(/images/logo-blue.png);
+}
+
+.login-page .kt-nav-warp nav.kt-nav-login, .login-page footer {
+    display: none;
+}
+.login-page .kt-nav-warp .kt-nav {
+    float: right;
+}
+
+.login-page .kt-nav-header .kt-nav-background {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.login-page .kt-nav-warp .kt-navigetion-sections,
+.login-page .kt-navigetion-sections {
+    color: #333 !important;
+}
+
+
+.login-page .login-form-warp .swiper-slide {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.login-page .login-form-warp .swiper-slide>a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-page .login-banner {
+    position: absolute;
+    left: -25%;
+}
+
+
+.login-page .login-form {
+    padding: 30px;
+    position: absolute;
+    right: 110px;
+    top: 60px;
+    z-index: 2;
+    width: 310px;
+    height: 330px;
+    background-color: #fff;
+}
+
+.login-page .form-group {
+    position: relative;
+}
+
+.submit {
+    width: 310px;
+}
+
+.kt-register {
+    line-height: 60px;
+    text-align: center;
+}
+
+.remember-pwd {
+    position: absolute;
+    right: 5px;
+    line-height: 36px;
+}
+
+.login-footer {
+    margin-top: 30px;
+}
+
+/* 大于1024px宽度 */
+@media screen and (min-width: 1024px) {}
+
+/* 小于600px宽度 */
+@media screen and (max-width: 600px) {
+    .login-form {
+        padding: 0;
+        position: relative;
+        right: 0px;
+        top: 60px;
+        z-index: 2;
+        width: 100%;
+        height: 330px;
+        background-color: #fff;
+    }
+
+    .login-page .panel-body {
+        margin: 0 20px;
+    }
+
+    .login-page .submit {
+        width: 100%;
+    }
+
+    .login-page .login-title {
+        text-align: center;
+    }
+
+    .login-page .login-footer {
+        display: none;
+    }
 }

@@ -11,6 +11,7 @@ use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\BatchCreateSeoNews;
 
 class NewsController extends Controller
 {
@@ -23,8 +24,13 @@ class NewsController extends Controller
     {
 		// 分页获取21条记录。默认获取15条
 		$newss = $news->withOrder($request->order)->paginate(15);
-
-		return view('pages.news.index', compact('newss'));
+        // 读取分类 banner有值的文章，首页显示
+        $banners = Cache::rememberForever('news_banners', function () use($request, $news){
+			return $news->withOrder($request->order)
+                        ->whereNotNull('banner')
+                        ->paginate(6);
+        });
+		return view('pages.news.index', compact('newss','banners'));
     }
 
     /**
@@ -50,25 +56,30 @@ class NewsController extends Controller
         $this->authorize('create',$news);
         // 行业资讯和管理智库允许批量发布SEO填充文章
         if($request->column_id != 1 && $request->seo){
-            $seos = \DB::table('seos')->get();
-            $seos->each(function ($item, $key) use($request,$news){
-                $title = str_replace('**',$item->city,$request->title);
-                $body = str_replace('**',$item->city,$request->body);
-                $keywords = str_replace('**',$item->city,$request->keywords);
-                News::create([
-                    'title'=>$title,
-                    'image'=>$request->image,
-                    'body'=>$body,
-                    'user_id'=>Auth::id(),
-                    'column_id'=>$request->column_id,
-                    'keywords'=>$keywords
-                    ]);
-            });
+            // $seos = \DB::table('seos')->get();
+            // $seos->each(function ($item, $key) use($request,$news){
+            //     $title = str_replace('**',$item->city,$request->title);
+            //     $body = str_replace('**',$item->city,$request->body);
+            //     $keywords = str_replace('**',$item->city,$request->keywords);
+            //     News::create([
+            //         'title'=>$title,
+            //         'image'=>$request->image,
+            //         'body'=>$body,
+            //         'user_id'=>Auth::id(),
+            //         'column_id'=>$request->column_id,
+            //         'keywords'=>$keywords,
+            //         ]);
+            // });
+            // 批量生成SEO文章 耗时任务推送到队列执行
+            $article = $request->all();
+            $article['user_id'] = Auth::id();
+            dispatch(new BatchCreateSeoNews($article));
         }else{
             $news->fill($request->all());
             $news->user_id = Auth::id();
             $news->save();
         }
+        Cache::forget('news_banners');
 		return redirect()->to($news->link())->with('success', '成功创建话题！');
     }
 
@@ -114,7 +125,7 @@ class NewsController extends Controller
     {
         $this->authorize('update', $news);
 		$news->update($request->all());
-
+        Cache::forget('news_banners');
 		return redirect()->to($news->link())->with('success', '话题更新成功！');
     }
 

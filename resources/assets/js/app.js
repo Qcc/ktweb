@@ -2000,10 +2000,13 @@ $(document).ready(function () {
 				upload = layui.upload,
 				form = layui.form;
 
-			table.init('homebanner-table', { //转化静态表格
+			table.init('homebanner-table', { //首页大图
 				toolbar: '#toolbarAdd',
 			});
-			table.init('solutionbanner-table', { //转化静态表格
+			table.init('solutionbanner-table', { //首页解决方案
+				toolbar: '#toolbarAdd',
+			});
+			table.init('loginbanner-table', { //登录页banner
 				toolbar: '#toolbarAdd',
 			});
 
@@ -2085,32 +2088,12 @@ $(document).ready(function () {
 					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'update');
 				}
 			});
-			// //上传图片
-			// var uploadIcon = upload.render({
-			// 	elem: ".upload-banner",
-			// 	url: "/upload/uploadImage",
-			// 	field: 'upload_file',
-			// 	accept: 'images',
-			// 	data: {
-			// 		_token: $('meta[name="csrf-token"]').attr('content')
-			// 	},
-			// 	done: function (res, index, upload) {
-			// 		//如果上传失败
-			// 		if (!res.success) {
-			// 			return layer.msg('上传失败');
-			// 		}
-			// 		// this.item 可获取到触发上传动作的按钮;
-			// 		$(this.item).prev().val(res.file_path);
-			// 	},
-			// 	error: function () {
-			// 		layer.msg('上传失败');
-			// 	}
-			// });
+			
 			// 首页大图提交
 			function homebannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
 				form.on("submit(homebanner-btn)", function (data) {
-					$(".roles-btn").addClass('layui-btn-disabled');
+					$(this).addClass('layui-btn-disabled');
 					var field = data.field;
 					field.action = action;
 					$.ajax({
@@ -2156,7 +2139,7 @@ $(document).ready(function () {
 					solutionbannerSubmit('/management/club/solution/store', solutionbanner_form, 'add');
 				}
 			});
-			//监听工具条 首页大图banner
+			//监听工具条 解决方案banner
 			table.on('tool(solutionbanner-table)', function (obj) {
 				var data = obj.data;
 				if (obj.event === 'delete') {
@@ -2204,6 +2187,100 @@ $(document).ready(function () {
 					solutionbannerSubmit('/management/club/solution/store', solutionbanner_form, 'update');
 				}
 			});
+			function solutionbannerSubmit(api, layerOpen, action) {
+				//监听提交 修改分类
+				form.on("submit(solutionbanner-btn)", function (data) {
+					$(this).addClass('layui-btn-disabled');
+					var field = data.field;
+					field.action = action;
+					$.ajax({
+						method: 'POST',
+						url: api,
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: field,
+						success: function (data) {
+							$(".solutionbanner-btn").removeClass('layui-btn-disabled');
+							if (data.code == 0) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							layer.close(layerOpen);
+						}
+					});
+					return false;
+				});
+			}
+
+			//监听工具条 登录页
+			table.on('toolbar(loginbanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'add') {
+					document.getElementById('loginbanner-form').reset();
+					var loginbanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '添加登录页广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#loginbanner-form")
+					});
+					loginbannerSubmit('/management/club/login/store', loginbanner_form, 'add');
+				}
+			});
+			//监听工具条 登录页
+			table.on('tool(loginbanner-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'delete') {
+					data.action = 'delete';
+					layer.confirm('真的删除行么', function (index) {
+						$.ajax({
+							method: 'POST',
+							url: '/management/club/login/store',
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: data,
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							}
+						});
+						layer.close(index);
+					});
+				} else if (obj.event === 'edit') {
+					var loginbanner_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '请修改广告',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#loginbanner-form")
+					});
+					//表单初始赋值
+					form.val('loginbanner-form', {
+						"id": data.id,
+						"banner": data.banner,
+						"link": data.link,
+					})
+					loginbannerSubmit('/management/club/login/store', loginbanner_form, 'update');
+				}
+			});
 			//上传图片
 			var uploadIcon = upload.render({
 				elem: ".upload-banner",
@@ -2226,10 +2303,10 @@ $(document).ready(function () {
 				}
 			});
 
-			function solutionbannerSubmit(api, layerOpen, action) {
+			function loginbannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
-				form.on("submit(solutionbanner-btn)", function (data) {
-					$(".roles-btn").addClass('layui-btn-disabled');
+				form.on("submit(loginbanner-btn)", function (data) {
+					$(this).addClass('layui-btn-disabled');
 					var field = data.field;
 					field.action = action;
 					$.ajax({
@@ -2242,7 +2319,7 @@ $(document).ready(function () {
 						},
 						data: field,
 						success: function (data) {
-							$(".solutionbanner-btn").removeClass('layui-btn-disabled');
+							$(".loginbanner-btn").removeClass('layui-btn-disabled');
 							if (data.code == 0) {
 								layer.msg(data.msg, {
 									icon: 1
@@ -2709,5 +2786,196 @@ $(document).ready(function () {
 		if ($('.swiper-container').length === 1) {
 			var swiper = new Swiper('.swiper-container', {});
 		}
+	}
+	if ($('.register-page').length == 1) {
+		// 保存图形验证码是否正确状态
+		var captchaStatus = false; //图形验证码状态
+		var sms = ''; // 保存短信验证码
+		var smsStatus = false; //短信验证码发送状态
+		var ready = false; // 验证是否就绪，就绪后直接提交表单
+		var captcha = $('#captcha'); // 图片验证码
+		var vercode = $('#vercode'); //短信验证码
+		var phone = $('#phone'); // 手机号input
+		var submit = $('#submit'); //提交表单按钮
+
+		submit.on('click', function (event) {
+			var e = event || window.event;
+			if (!ready) {
+				if (!phone.val() || !phone.val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/)) {
+					phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+					e.preventDefault();
+					return false;
+				}
+				if (!captchaStatus) {
+					captcha.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+					e.preventDefault();
+					return false;
+				}
+				$('.form-group-phone').css('display', 'none');
+				$('.form-group-captcha').css('display', 'none');
+				$('.form-group-sms').css('display', 'block');
+				if (!smsStatus && !sms) {
+					sendsms(phone.val());
+					return false;
+				}
+				if (!sms) {
+					vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+					e.preventDefault();
+					return false;
+				}
+			}
+		});
+		// 校验图形验证码
+		captcha.on('keyup', function () {
+			var value = captcha.val();
+			var phone_number = phone.val();
+			// 限定验证码长度为4位
+			if (value.length === 4) {
+				$('.captcha-check-icon').css('display', 'block');
+				$.ajax({
+					method: 'POST',
+					url: '/ajax/captcha',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {
+						captcha: value,
+						phone: phone_number
+					},
+					success: function (data) {
+						if (data.captcha) {
+							$('.captcha-check-icon').css('display', 'none');
+							$('.captcha-success-icon').css('display', 'inline');
+							if (data.user) {
+								captchaStatus = false;
+								$('.form-group-phone>div').addClass('mdui-textfield-invalid-html5');
+								$('.form-group-phone .mdui-textfield-error').text('手机号已注册,请直接登录!');
+							} else {
+								$('#submit').text('下 一 步');
+								captchaStatus = true;
+							}
+						} else {
+							$('.captcha-check-icon').css('display', 'none');
+							captchaStatus = false;
+							captcha.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+						}
+					}
+				})
+			} else {
+				$('.captcha-success-icon').css('display', 'none');
+				captchaStatus = false;
+				captcha.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+			}
+		});
+		// 校验短信验证码
+		vercode.on('keyup', function () {
+			// 限定验证码长度为5位
+			if (vercode.val().length === 5) {
+				$('.smscode-check-icon').css('display', 'block');
+				$.ajax({
+					method: 'POST',
+					url: '/ajax/smscode',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {
+						smscode: vercode.val(),
+						captcha: captcha.val()
+					},
+					success: function (data) {
+						if (data.smscode) {
+							vercode.parent('.mdui-textfield').removeClass('mdui-textfield-invalid-html5');
+							$('.smscode-check-icon').css('display', 'none');
+							$('.smscode-success-icon').css('display', 'inline');
+							ready = true; // 装备就绪 可以提交表单
+							sms = data.value; // 保存获取到的正确短信验证码
+						} else {
+							$('.smscode-check-icon').css('display', 'none');
+							vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+							ready = false;
+						}
+					}
+				});
+			} else {
+				sms = '';
+				ready = false; // 重置短信表单验证状态
+				$('.smscode-success-icon').css('display', 'none');
+				vercode.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+			}
+		});
+
+		function smstips() {
+			var num = 60;
+			$('.sendsms-title').empty().append("我们已经向您的手机<span>" + phone.val() + "</span>发送了一条验证码")
+			var interval = setInterval(function () {
+				$('.sendsmstips').empty();
+				if (num < 0) {
+					$('.sendsmstips').append("<a id='btnsendsms' href='javascript:;'>重新发送验证码?</a>")
+					clearInterval(interval);
+					$('#btnsendsms').on('click', function () {
+						sendsms(phone.val());
+					})
+					smsStatus = false; //校验超时后 重置发送状态
+					return;
+				}
+				$('.sendsmstips').append("没收到?<span>" + num + "秒</span>后重新获取。");
+				num--;
+			}, 1000);
+		};
+
+		// 发送验证码
+		function sendsms(phoneNumber) {
+			$.ajax({
+				method: 'POST',
+				url: '/ajax/sendsms',
+				ContentType: 'application/json',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data: {
+					phone: phoneNumber,
+					captcha: captcha.val()
+				},
+				success: function (data) {}
+			});
+			smstips();
+			smsStatus = true; //发送短信后 改变发送状态
+		}
+	}
+	if($('.login-page').length == 1){
+		// 初始化首页轮播图
+        if ($('.swiper-container').length === 1) {
+            var swiper = new Swiper('.swiper-container', {
+                // autoplay: true,//可选选项，自动滑动
+                loop: true, // 循环模式选项
+                // 如果需要分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                    //原点分页器效果
+                    dynamicBullets: true,
+                    dynamicMainBullets: 1
+                },
+            });
+        }
+        $('#submit').on('click', function (e) {
+            var phone = $('#phone');
+            var pwd = $('#password');
+            if (!phone.val()) {
+                phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+                e.preventDefault();
+            }
+            if (!pwd.val()) {
+                pwd.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+                e.preventDefault();
+                return false;
+            }
+            if((phone.val()).indexOf('@') !== -1){
+                phone.prop({'name':'email'});
+            }else{
+                phone.prop({'name':'phone'});
+            }
+        });
 	}
 });

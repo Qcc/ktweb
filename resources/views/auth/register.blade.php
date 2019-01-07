@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('title', '用户注册')
-@section('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
-@stop
 @section('content')
 <div class="mdui-container">
     <div class="panel-default">
         <div class="panel-heading mdui-typo-display-1-opacity">用户注册</div>
-        <div class="panel-body mdui-center">
+        <div class="registry-body mdui-center">
             <form method="POST" action="{{ route('register') }}">
                 {{ csrf_field() }}
 
@@ -32,7 +29,15 @@
                             <input id="vercode" class="mdui-textfield-input" type="text" required name="vercode" />
                             <div class="mdui-textfield-error">短信验证码不正确</div>
                             <div class="mdui-spinner mdui-spinner-colorful smscode-check-icon"></div>
-                            <i class="kticon smscode-success-icon">&#xe6ae;</i>
+                            <i class="kticon smscode-success-icon">&#xe659;</i>
+                        </div>
+                    </div>
+                    
+                    <div class="sms-input">
+                        <div class="mdui-textfield mdui-textfield-floating-label">
+                            <label class="mdui-textfield-label">密码</label>
+                            <input id="password" class="mdui-textfield-input" type="password" pattern="^.*(?=.{6,25}).*$" required name="password" />
+                            <div class="mdui-textfield-error">请输入至少 6 位</div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +56,7 @@
                             <div class="mdui-textfield-error">图形证码不正确</div>
                             @endif
                             <div class="mdui-spinner mdui-spinner-colorful captcha-check-icon"></div>
-                            <i class="kticon captcha-success-icon">&#xe6ae;</i>
+                            <i class="kticon captcha-success-icon">&#xe659;</i>
                         </div>
                     </div>
 
@@ -78,7 +83,3 @@
     </div>
 </div>
 @endsection
-
-@section('script')
-<script src="{{ asset('js/register.js') }}"></script>
-@stop

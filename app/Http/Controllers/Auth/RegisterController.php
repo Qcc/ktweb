@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Session\Store as Session;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Hash;
 class RegisterController extends Controller
 {
     /*
@@ -52,12 +52,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'phone' => 'required|max:11|min:11',
+            'phone' => 'required|max:11|min:11|unique:users,phone',
             'vercode' => 'required|max:5|min:5',
+            'password' => 'required|max:25|min:6',
             'captcha' => 'required|captcha',
         ], [
             'captcha.required' => '验证码不能为空',
             'captcha.captcha' => '请输入正确的验证码',
+            'password.requires' => '密码不能为空',
+            'password.max' => '密码不能超过25位',
+            'password.min' => '密码最少需要6位',
         ]);
     }
 
@@ -75,7 +79,7 @@ class RegisterController extends Controller
 
         return User::create([
             'phone' => $data['phone'],
-            'password' => bcrypt('password'),
+            'password' => Hash::make($data['password']),
             'avatar' => '/images/avatar.png',
         ]);
         
