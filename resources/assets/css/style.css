@@ -2685,7 +2685,7 @@ a:active {
     right: 20px;
 }
 
-.article-panel .edit .point>.simditor {
+.article-panel .edit .point {
     max-width: 70%;
 }
 
@@ -4207,7 +4207,7 @@ color:#666;
         border-bottom: 1px solid #ccc;
         margin: 20px;
     }
-    .panel-default{
+    .register-page .panel-default{
         border: 1px solid #ccc;
         height: 506px;
         width: 900px;

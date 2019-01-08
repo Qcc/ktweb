@@ -33,11 +33,13 @@
                                     {{$value->name }}</option>
                                 @endforeach
                             </select>
+                            @if(!$news->id)
                             <label class="mdui-checkbox" title="勾选此项会使用seo表中关键字替换批量生成文章" style="margin-left: 40px;">
-                                    <input type="checkbox" name="seo"/>
-                                    <i class="mdui-checkbox-icon"></i>
-                                    SEO批量生成
-                                  </label>
+                                <input type="checkbox" name="seo"/>
+                                <i class="mdui-checkbox-icon"></i>
+                                SEO批量生成
+                            </label>
+                            @endif
                         </div>
 
                         <div class="form-group title">

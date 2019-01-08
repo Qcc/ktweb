@@ -15,15 +15,15 @@ class BatchCreateSeoNews implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $news;
+    public $article;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($news)
+    public function __construct($article)
     {
-        $this->news = $news;
+        $this->article = $article;
     }
 
     /**
@@ -32,23 +32,9 @@ class BatchCreateSeoNews implements ShouldQueue
      * @return void
      */
     public function handle(News $news)
-    {
-        $citys = Cache::rememberForever('soe_citys', function (){
-			return \DB::table('seos')->get();
-        });
-        $article = $this->news;
-        $citys->each(function ($item, $key) use($article){
-            $title = str_replace('**',$item->city,$article['title']);
-            $body = str_replace('**',$item->city,$article['body']);
-            $keywords = str_replace('**',$item->city,$article['keywords']);
-            News::create([
-                'title'=>$title,
-                'image'=>$article['image'],
-                'body'=>$body,
-                'user_id'=>$article['user_id'],
-                'column_id'=>$article['column_id'],
-                'keywords'=>$keywords,
-                ]);
-        });
+    { 
+        if(is_array($this->article)){
+            News::create($this->article);
+        }
     }
 }

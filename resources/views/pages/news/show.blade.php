@@ -44,6 +44,8 @@
         </div>
         <div class="mdui-col-xs-12 mdui-col-sm-3">
                 @include('pages.side_advertising')
+                @include('pages.product.side_product',$products)
+                @include('pages.customer.side_customer',$customers)
         </div>
     </div>
 </div>
