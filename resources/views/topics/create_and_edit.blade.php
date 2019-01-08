@@ -69,6 +69,8 @@
 <script type="text/javascript" src="{{ asset('js/hotkeys.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/uploader.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/simditor.min.js') }}"></script>
+<script src="{{ URL::asset('js/spark-md5.min.js') }}"></script><!--需要引入spark-md5.min.js-->
+<script src="{{ URL::asset('js/aetherupload.js') }}"></script><!--需要引入aetherupload.js-->
 
 <script>
     $(document).ready(function () {
