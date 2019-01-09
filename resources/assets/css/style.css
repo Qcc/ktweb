@@ -251,14 +251,14 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';
-    /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_88wux91y4mb.eot');
-    src: url('//at.alicdn.com/t/font_916960_88wux91y4mb.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_916960_88wux91y4mb.woff') format('woff'),
-        url('//at.alicdn.com/t/font_916960_88wux91y4mb.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_916960_88wux91y4mb.svg#kticon') format('svg');
-}
+    font-family: 'kticon';  /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_aijcthixaf.eot');
+    src: url('//at.alicdn.com/t/font_916960_aijcthixaf.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_aijcthixaf.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_916960_aijcthixaf.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_aijcthixaf.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_aijcthixaf.svg#kticon') format('svg');
+  }
 
 .kticon {
     font-family: "kticon" !important;
@@ -4237,6 +4237,9 @@ color:#666;
 
 .login-page .kt-nav-warp nav.kt-nav-login, .login-page footer {
     display: none;
+}
+.login-page .swiper-container{
+    min-height: 500px;
 }
 .login-page .kt-nav-warp .kt-nav {
     float: right;

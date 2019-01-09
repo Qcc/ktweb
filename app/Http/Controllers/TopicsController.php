@@ -67,6 +67,7 @@ class TopicsController extends Controller
 	 */
     public function show(Request $request, Topic $topic)
     {
+		dd($request);
 		// 根据会话阅读增加文章访问量
 		if (!$this->session->has('topic_'.$topic->id))
 		{
