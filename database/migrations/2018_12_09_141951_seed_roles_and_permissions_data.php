@@ -27,6 +27,7 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name' => 'manage_users','cn_name'=>'用户管理']);
         Permission::create(['name' => 'manage_roles','cn_name'=>'权限管理']);
         Permission::create(['name' => 'manage_business','cn_name'=>'商机管理']);
+        Permission::create(['name' => 'upload_files','cn_name'=>'上传附件']);
         Permission::create(['name' => 'revice_business','cn_name'=>'商机收发']);
         Permission::create(['name' => 'manage_report','cn_name'=>'举报管理']);
 
@@ -39,6 +40,7 @@ class SeedRolesAndPermissionsData extends Migration
         $founder->givePermissionTo('manage_business');
         $founder->givePermissionTo('revice_business');
         $founder->givePermissionTo('manage_report');
+        $founder->givePermissionTo('upload_files');
 
     }
 

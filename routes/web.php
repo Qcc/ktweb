@@ -96,6 +96,12 @@ Route::post('/topic/excellent/action', 'TopicsController@excellent')->name('exce
 Route::post('/topic/topping/action', 'TopicsController@topping')->name('topping.action');
 
 // 网站管理需要 web_manage 权限
+Route::group(['middleware' => ['permission:upload_files']], function () {
+    Route::post('/upload/files/update','FilesController@update')->name('upload.files.update');
+    Route::post('/upload/files/store','FilesController@store')->name('upload.files.store');
+    Route::post('/upload/files/destroy','FilesController@destroy')->name('upload.files.destroy');
+});
+// 网站管理需要 web_manage 权限
 Route::group(['middleware' => ['permission:web_manage']], function () {
     // 网站管理
     Route::get('/management/club/column','ClubManagementController@column')->name('admin.club.column');

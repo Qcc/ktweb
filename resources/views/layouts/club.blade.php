@@ -27,6 +27,7 @@
   <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
   <script src="{{ asset('js/mdui.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/layui/layui.js') }}"></script>
+  <script src="//at.alicdn.com/t/font_916960_dsr6fh19j3f.js"></script>
   <script src="{{ asset('js/app.js') }}"></script>
   @if (app()->isLocal())
         @include('sudosu::user-selector')

@@ -251,14 +251,15 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';  /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_aijcthixaf.eot');
-    src: url('//at.alicdn.com/t/font_916960_aijcthixaf.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_aijcthixaf.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_916960_aijcthixaf.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_aijcthixaf.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_aijcthixaf.svg#kticon') format('svg');
-  }
+    font-family: 'kticon';
+    /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.eot');
+    src: url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.woff2') format('woff2'),
+        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.woff') format('woff'),
+        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.svg#kticon') format('svg');
+}
 
 .kticon {
     font-family: "kticon" !important;
@@ -267,6 +268,14 @@ body {
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
 }
 
 
@@ -532,9 +541,11 @@ a:active {
     background-repeat: no-repeat;
     background-image: url(/images/logo-white.png);
 }
+
 .ktm-logo-blue {
     background-image: url(/images/logo-blue.png);
 }
+
 .ktm-logo-white {
     background-image: url(/images/logo-white.png);
 }
@@ -723,7 +734,8 @@ a:active {
 .banner-signup {
     margin-top: 50px;
 }
-.banner-products{
+
+.banner-products {
     min-height: 230px;
 }
 
@@ -865,7 +877,8 @@ a:active {
     .img-solution-item .link {
         display: none;
     }
-    .img-solution-item:hover .img-solution-background{
+
+    .img-solution-item:hover .img-solution-background {
         display: block;
     }
 }
@@ -883,9 +896,11 @@ a:active {
         background-size: cover;
         overflow: hidden;
     }
+
     .img-solution-item {
         line-height: 5px;
     }
+
     .img-solution-content h3 {
         font-size: 25px;
         line-height: 40px;
@@ -896,6 +911,7 @@ a:active {
         line-height: 30px;
     }
 }
+
 @media screen and (max-width: 1024px) {
     .img-solution-content i {
         transition: 0.2s;
@@ -909,9 +925,11 @@ a:active {
         background-size: cover;
         overflow: hidden;
     }
+
     .img-solution-item {
         line-height: 5px;
     }
+
     .img-solution-content h3 {
         font-size: 25px;
         line-height: 30px;
@@ -1012,11 +1030,15 @@ a:active {
     text-align: right;
     position: absolute;
 }
-.news-index-page .swiper-slide,.columns-show-page .swiper-slide{
+
+.news-index-page .swiper-slide,
+.columns-show-page .swiper-slide {
     width: 100%;
     height: 400px;
 }
-.news-index-page .swiper-slide>a,.columns-show-page .swiper-slide>a{
+
+.news-index-page .swiper-slide>a,
+.columns-show-page .swiper-slide>a {
     width: 100%;
     height: 100%;
     display: block;
@@ -1094,6 +1116,7 @@ a:active {
     .news-big-content-warp .news-date {
         font-size: 12px;
     }
+
     .img-solution-content i {
         width: 60px;
         height: 60px;
@@ -1172,7 +1195,8 @@ a:active {
 .ktnews-tab-warp .mdui-p-a-2 {
     margin-top: 20px;
 }
-.column-nav-ul .active{
+
+.column-nav-ul .active {
     background: #e2e2e2;
     padding: 0 10px;
     border-radius: 2px;
@@ -1812,11 +1836,15 @@ a:active {
 .topic-body ul {
     margin: 10px 0;
 }
-.topic-body ol>li,.simditor .simditor-body ol>li{
+
+.topic-body ol>li,
+.simditor .simditor-body ol>li {
     list-style: decimal;
 }
-.topic-body ul>li,.simditor .simditor-body ul>li{
-    list-style:disc;
+
+.topic-body ul>li,
+.simditor .simditor-body ul>li {
+    list-style: disc;
 }
 
 .topic-body blockquote {
@@ -2149,7 +2177,8 @@ a:active {
     float: right;
     border-left: 1px solid #e2e2e2;
 }
-.notifucation-content{
+
+.notifucation-content {
     margin: 5px 10px;
 }
 
@@ -3412,10 +3441,12 @@ a:active {
     border-bottom: 1px solid #e2e2e2;
     position: relative;
 }
-.notifications-box:hover>.notifications-del{
-   display: inline; 
+
+.notifications-box:hover>.notifications-del {
+    display: inline;
 }
-.notifications-box .notifications-del{
+
+.notifications-box .notifications-del {
     display: none;
     position: absolute;
     right: 10px;
@@ -3429,10 +3460,10 @@ a:active {
 
 /*手机*/
 
-@media only screen and (max-width: 750px) {
-}
+@media only screen and (max-width: 750px) {}
+
 /* 客户案例轮播图 */
-.customer-banner .banner{
+.customer-banner .banner {
     transition: 0.2s;
     display: block;
     width: 100%;
@@ -3442,6 +3473,7 @@ a:active {
     background-size: cover;
     overflow: hidden;
 }
+
 /*手机*/
 
 @media only screen and (min-width: 320px) {
@@ -3493,10 +3525,12 @@ a:active {
         width: 100%;
         text-align: center;
     }
-    .contact .tips{
+
+    .contact .tips {
         margin-top: 20px;
     }
-    .contact .tips>p{
+
+    .contact .tips>p {
         font-size: 19px;
     }
 
@@ -3506,10 +3540,12 @@ a:active {
         display: block;
         margin: 20px 10px;
     }
-    .contact-head .contact-title p{
+
+    .contact-head .contact-title p {
         font-size: 13px;
     }
-    .contact-head .contact-title h5{
+
+    .contact-head .contact-title h5 {
         font-size: 20px;
     }
 
@@ -3666,13 +3702,15 @@ a:active {
         width: 800px;
         text-align: center;
     }
-    .contact .tips{
+
+    .contact .tips {
         margin-top: 30px;
     }
-    .contact .tips>p{
+
+    .contact .tips>p {
         font-size: 20px;
     }
-    
+
 
     .contact-form .phone,
     .contact-form .name,
@@ -3773,12 +3811,14 @@ a:active {
     .xhs_zan_hide {
         display: none;
     }
-   
+
 }
-.contact .tips{
+
+.contact .tips {
     text-align: center
 }
-.contact .tips>p{
+
+.contact .tips>p {
     color: #fff;
     font-size: 28px;
     text-align: center
@@ -3834,10 +3874,12 @@ a:active {
         width: 800px;
         text-align: center;
     }
-    .contact .tips{
+
+    .contact .tips {
         margin-top: 30px;
     }
-    .contact .tips>p{
+
+    .contact .tips>p {
         font-size: 28px;
     }
 
@@ -3847,7 +3889,7 @@ a:active {
         display: inline;
         margin: 0 10px;
     }
-    
+
 
     .contact-head .xhs_col_2 {
         border-left: none;
@@ -4054,88 +4096,108 @@ a:active {
 
 /* 小于650px */
 @media screen and (max-width: 650px) {
-.solutions-show-page .featrue-title>p{
-    font-size: 20px;
+    .solutions-show-page .featrue-title>p {
+        font-size: 20px;
+    }
+
+    .products-show-page .featrue-title>p {
+        font-size: 20px;
+    }
 }
-.products-show-page .featrue-title>p{
-    font-size: 20px;
-}
-}
+
 /* 小于1024大于650px */
-@media screen and (max-width: 1024px) and (min-width:650px) {
+@media screen and (max-width: 1024px) and (min-width:650px) {}
 
-}
 /* 大于1024px */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {}
 
-}
-.new-topic-btn{
+.new-topic-btn {
     text-align: center;
 }
-.hot-topic-box,.reply-more-box, .conact-box{
+
+.hot-topic-box,
+.reply-more-box,
+.conact-box {
     margin: 20px auto;
 }
-.hot-topic-box .head,.reply-more-box .head{
+
+.hot-topic-box .head,
+.reply-more-box .head {
     border: 1px solid #e2e2e2;
     padding: 10px;
     text-align: center;
     border-radius: 2px;
 }
-.hot-topic-box .content,.reply-more-box .content{
+
+.hot-topic-box .content,
+.reply-more-box .content {
     margin: 10px;
 }
-.hot-topic-box .content .list>li,.reply-more-box .content .list>li{
+
+.hot-topic-box .content .list>li,
+.reply-more-box .content .list>li {
     margin: 10px 0;
     line-height: 20px;
 }
-.hot-topic-box .content .list>li>a,.reply-more-box .content .list>li>a{
-color:#666;
+
+.hot-topic-box .content .list>li>a,
+.reply-more-box .content .list>li>a {
+    color: #666;
 }
-.category-comment{
+
+.category-comment {
     height: 150px;
     background-position: center;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
     width: 100%;
     display: table;
     margin-bottom: 20px;
 }
-.category-comment .cell{
+
+.category-comment .cell {
     display: table-cell;
     vertical-align: middle;
     padding-left: 60px;
 }
-.category-comment .cell>h3{
+
+.category-comment .cell>h3 {
     color: #fff;
     font-size: 25px;
     line-height: 30px;
 }
-.category-comment .cell>p{
+
+.category-comment .cell>p {
     color: #fff;
     font-size: 18px;
     line-height: 25px;
 }
-.conact-box{
+
+.conact-box {
     text-align: center
 }
-.conact-box .head{
+
+.conact-box .head {
     line-height: 30px;
     font-size: 20px;
     margin: 10px 0;
 }
-.conact-box .content>p{
+
+.conact-box .content>p {
     line-height: 30px;
     font-size: 16px;
 }
 
-.club-search .search-bar{
+.club-search .search-bar {
     color: #fff;
 }
-.search-input{
+
+.search-input {
     display: none;
 }
-.search-input input{
+
+.search-input input {
     height: 75px;
     line-height: 75px;
     width: 500px;
@@ -4149,6 +4211,7 @@ color:#666;
 .register-page footer {
     display: none;
 }
+
 .register-page .kt-nav-warp .kt-nav {
     float: right;
 }
@@ -4163,51 +4226,65 @@ color:#666;
 }
 
 /* 小于600px宽度 */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {}
+
+.register-page .submit {
+    width: 100%;
+    cursor: pointer;
 }
-.register-page .submit{
-            width: 100%;
-            cursor: pointer;
-        }
-.form-group{
+
+.form-group {
     position: relative;
 }
-.captcha-img{
+
+.captcha-img {
     width: 120px;
     position: absolute;
     right: 0;
     bottom: 28px;
 }
 
-.form-group-sms{
-    display:none;
+.form-group-sms {
+    display: none;
 }
-.send-sms{
+
+.send-sms {
     margin-bottom: 20px;
 }
-.sendsmstips,.sendsmstips a,.sendsms-title{
-    color: #888!important;
+
+.sendsmstips,
+.sendsmstips a,
+.sendsms-title {
+    color: #888 !important;
 }
-.sendsmstips span,.sendsms-title span{
+
+.sendsmstips span,
+.sendsms-title span {
     color: #ff790a;
 }
-.captcha-input{
+
+.captcha-input {
     padding-right: 130px;
 }
-.kt-register ,.panel-heading{
+
+.kt-register,
+.panel-heading {
     line-height: 60px;
     text-align: center;
 }
+
 /* 大于600px宽度 */
 @media screen and (min-width: 600px) {
-    .registry-body{
+    .registry-body {
         width: 280px;
     }
-    .panel-heading{
+
+    .panel-heading {
         border-bottom: 1px solid #ccc;
         margin: 20px;
     }
-    .register-page .panel-default{
+
+    .register-page .panel-default {
         border: 1px solid #ccc;
         height: 506px;
         width: 900px;
@@ -4215,14 +4292,18 @@ color:#666;
         margin: 70px auto 20px;
     }
 }
-.smscode-success-icon,.captcha-success-icon{    
+
+.smscode-success-icon,
+.captcha-success-icon {
     right: 0px;
     position: absolute;
     top: 30px;
     color: #8BC34A;
     display: none;
 }
-.form-group .captcha-check-icon,.form-group .smscode-check-icon{
+
+.form-group .captcha-check-icon,
+.form-group .smscode-check-icon {
     display: none;
     right: 6px;
     top: 23px;
@@ -4231,16 +4312,20 @@ color:#666;
     height: 25px;
 }
 
-.register-page .ktm-logo, .login-page .ktm-logo{
+.register-page .ktm-logo,
+.login-page .ktm-logo {
     background-image: url(/images/logo-blue.png);
 }
 
-.login-page .kt-nav-warp nav.kt-nav-login, .login-page footer {
+.login-page .kt-nav-warp nav.kt-nav-login,
+.login-page footer {
     display: none;
 }
-.login-page .swiper-container{
+
+.login-page .swiper-container {
     min-height: 500px;
 }
+
 .login-page .kt-nav-warp .kt-nav {
     float: right;
 }
@@ -4262,7 +4347,8 @@ color:#666;
     overflow: hidden;
     vertical-align: middle;
 }
-.login-page .login-form-warp .swiper-slide>a{
+
+.login-page .login-form-warp .swiper-slide>a {
     width: 100%;
     height: 100%;
     display: block;

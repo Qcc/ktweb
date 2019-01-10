@@ -1356,6 +1356,73 @@ $(document).ready(function () {
 							});
 						}
 					});
+					// 文件管理
+				}else if (data.index == 5) {
+					$.ajax({
+						method: 'POST',
+						url: '/management/club/columns',
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: {
+							type: 'file',
+						},
+						success: function (data) {
+							if (data.code) {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							table.render({
+								elem: '#filetable',
+								cols: [
+									[{
+										field: 'id',
+										title: 'ID',
+										width: 60,
+										fixed: 'left'
+									}, {
+										field: 'name',
+										title: '文件名'
+									}, {
+										field: 'suffix',
+										title: '类型',
+										width: 60,
+									}, {
+										field: 'size',
+										title: '大小',
+										width: 100,
+									}, {
+										field: 'logined',
+										title: '下载权限',
+										width: 90,
+									}, {
+										field: 'path',
+										title: '路径',
+									}, {
+										field: 'hash',
+										title: 'hash',
+										hide:true,
+									}, {
+										field: 'save_name',
+										title: '保存名',
+										hide:true,
+									}, {
+										field: 'created_at',
+										title: '上传时间'
+									}, {
+										toolbar: '#barAction',
+										title: '操作',
+										width: 120,
+									}]
+								],
+								data: data,
+								page: true
+							});
+						}
+					});
 				}
 			});
 			//头工具栏事件 添加社区分类
@@ -1616,7 +1683,6 @@ $(document).ready(function () {
 						shadeClose: true, //开启遮罩关闭
 						content: $("#seo_form")
 					});
-					console.log(data);
 					//表单初始赋值
 					form.val('seo_form', {
 						"id": data.id,
@@ -1626,6 +1692,39 @@ $(document).ready(function () {
 
 				} else if (obj.event == 'delete') {
 					deleteLine('/management/club/seoDestroy', obj);
+				}
+			});
+			
+			//工具栏事件 修改文件下载权限
+			table.on('tool(filetable)', function (obj) {
+				if (obj.event == 'edit') {
+					var data = obj.data;
+					// 产品解决方案 客户案例 共用一个form
+					var file_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '请修改权限',
+						area: '500px',
+						shadeClose: true, //开启遮罩关闭
+						content: $("#file_form")
+					});
+					console.log(data);
+					//表单初始赋值
+					form.val('file_form', {
+						"id":data.id,
+						"name":data.name,
+						"suffix":data.suffix,
+						"size":data.size,
+						"hash":data.hash,
+						"save_name":data.save_name,
+						"path":data.path,
+						"logined":data.logined,
+						"created_at":data.created_at,
+					});
+					fileFormSubmit('/upload/files/update', file_form);
+
+				} else if (obj.event == 'delete') {
+					deleteLine('/upload/files/destroy', obj);
 				}
 			});
 
@@ -1679,6 +1778,38 @@ $(document).ready(function () {
 						data: field,
 						success: function (data) {
 							$(".seo_form_btn").removeClass('layui-btn-disabled');
+							if (data.code == 0) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							layer.close(layerOpen);
+						}
+					});
+					return false;
+				});
+			}
+			// 表单SEO提交监听
+			function fileFormSubmit(api, layerOpen) {
+				//监听提交 修改分类
+				form.on("submit(file_form_btn)", function (data) {
+					$(this).addClass('layui-btn-disabled');
+					var field = data.field;
+					$.ajax({
+						method: 'POST',
+						url: api,
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: field,
+						success: function (data) {
+							$(".file_form_btn").removeClass('layui-btn-disabled');
 							if (data.code == 0) {
 								layer.msg(data.msg, {
 									icon: 1
@@ -2088,7 +2219,7 @@ $(document).ready(function () {
 					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'update');
 				}
 			});
-			
+
 			// 首页大图提交
 			function homebannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
@@ -2187,6 +2318,7 @@ $(document).ready(function () {
 					solutionbannerSubmit('/management/club/solution/store', solutionbanner_form, 'update');
 				}
 			});
+
 			function solutionbannerSubmit(api, layerOpen, action) {
 				//监听提交 修改分类
 				form.on("submit(solutionbanner-btn)", function (data) {
@@ -2944,38 +3076,154 @@ $(document).ready(function () {
 			smsStatus = true; //发送短信后 改变发送状态
 		}
 	}
-	if($('.login-page').length == 1){
+	if ($('.login-page').length == 1) {
 		// 初始化首页轮播图
-        if ($('.swiper-container').length === 1) {
-            var swiper = new Swiper('.swiper-container', {
-                // autoplay: true,//可选选项，自动滑动
-                loop: true, // 循环模式选项
-                // 如果需要分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                    //原点分页器效果
-                    dynamicBullets: true,
-                    dynamicMainBullets: 1
-                },
-            });
-        }
-        $('#submit').on('click', function (e) {
-            var phone = $('#phone');
-            var pwd = $('#password');
-            if (!phone.val()) {
-                phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
-                e.preventDefault();
-            }
-            if (!pwd.val()) {
-                pwd.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
-                e.preventDefault();
-                return false;
-            }
-            if((phone.val()).indexOf('@') !== -1){
-                phone.prop({'name':'email'});
-            }else{
-                phone.prop({'name':'phone'});
-            }
-        });
+		if ($('.swiper-container').length === 1) {
+			var swiper = new Swiper('.swiper-container', {
+				// autoplay: true,//可选选项，自动滑动
+				loop: true, // 循环模式选项
+				// 如果需要分页器
+				pagination: {
+					el: '.swiper-pagination',
+					//原点分页器效果
+					dynamicBullets: true,
+					dynamicMainBullets: 1
+				},
+			});
+		}
+		$('#submit').on('click', function (e) {
+			var phone = $('#phone');
+			var pwd = $('#password');
+			if (!phone.val()) {
+				phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+				e.preventDefault();
+			}
+			if (!pwd.val()) {
+				pwd.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
+				e.preventDefault();
+				return false;
+			}
+			if ((phone.val()).indexOf('@') !== -1) {
+				phone.prop({
+					'name': 'email'
+				});
+			} else {
+				phone.prop({
+					'name': 'phone'
+				});
+			}
+		});
+	}
+	// 新建或编辑社区话题
+	if ($('.topics-edit-page').length == 1 || $('.topics-create-page').length == 1) {
+		// 富文本编辑器
+		var editor = new Simditor({
+			textarea: $('#editor'),
+			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+				'|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
+				'indent', 'outdent', 'alignment'
+			],
+			cleanPaste: true,
+			upload: {
+				url: "{{ route('topics.upload_image') }}",
+				//工具条都包含哪些内容
+				params: {
+					_token: '{{ csrf_token() }}'
+				},
+				fileKey: 'upload_file',
+				connectionCount: 3,
+				leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+			},
+			pasteImage: true,
+		});
+		layui.use(['upload', 'layer', 'form', 'table'], function () {
+			var upload = layui.upload,
+				form = layui.form,
+				table = layui.table,
+				layer = layui.layer;
+			// 选择附件
+			$('.select_file').on('click', function (e) {
+				console.log('选择');
+				e.preventDefault();
+				var select_layer = layer.open({
+					type: 1,
+					title: '选择附件',
+					skin: 'layui-layer-demo', //样式类名
+					closeBtn: 1, //关闭按钮
+					anim: 2,
+					area: ['500px', '300px'],
+					maxmin: true,
+					shade: 0, //开启遮罩
+					content: $('.select-file-box')
+				});
+
+			});
+			// 上传附件
+			$('.upload_file').on('click', function (e) {
+				console.log('上传');
+				e.preventDefault();
+				var upload_layer = layer.open({
+					type: 1,
+					title: '上传附件',
+					skin: 'layui-layer-demo', //样式类名
+					closeBtn: 1, //关闭按钮
+					anim: 2,
+					area: ['500px', '300px'],
+					maxmin: true,
+					shade: 0, //开启遮罩
+					content: $('.upload-file-box')
+				});
+				form.on("submit(upload-btn)", function (data) {
+					var file = data.field;
+					$.ajax({
+						method: 'POST',
+						url: '/upload/files/store',
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: file,
+						success: function (data) {
+							$(".loginbanner-btn").removeClass('layui-btn-disabled');
+							if (!data.success) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							}
+						}
+					});
+					layer.close(upload_layer);
+					// 清除已经表单文件
+					document.getElementById('upload-file-form') && document.getElementById('upload-file-form').reset();
+					$('#progressbar').css('width', '0px');
+					$('#output').text('');
+					$('#file').removeAttr('disabled');
+					$('.upload-file-sucess').hide();
+					// 插入附件到富文本输入框
+					var value = editor.getValue();
+					editor.setValue(value + "<a href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name +"."+ file.suffix + "</a> &nbsp;");
+					editor.focus();
+
+					return false;
+				});
+			});
+			// 文件上传回调
+			// success(callback)中声名的回调方法需在此定义，参数callback可为任意名称，此方法将会在上传完成后被调用
+			// 可使用this对象获得fileName,fileSize,uploadBaseName,uploadExt,subDir,group,savedPath等属性的值
+			someCallback = function () {
+				$('.upload-file-sucess').show();
+				//表单初始赋值
+				form.val('upload-file-sucess', {
+					"name": this.fileName.substr(0, this.fileName.lastIndexOf('.')),
+					"hash": this.savedPath.substring(this.savedPath.lastIndexOf('/') + 1, this.savedPath.lastIndexOf('.')),
+					"size": this.fileSize,
+					"save_name": this.savedPath.substr(this.savedPath.lastIndexOf('/') + 1),
+					"path": this.savedPath,
+					"suffix": this.savedPath.substr(this.savedPath.lastIndexOf('.') + 1),
+				});
+			}
+		});
+
 	}
 });

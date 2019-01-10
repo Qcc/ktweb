@@ -52,6 +52,8 @@ class ClubManagementController extends Controller
             $data = Customercol::all();
         }else if($request->type == 'seo'){
             $data = DB::table('seos')->get();
+        }else if($request->type == 'file'){
+            $data = DB::table('files')->get();
         }
         return $data;
     }

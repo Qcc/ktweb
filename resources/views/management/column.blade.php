@@ -21,6 +21,7 @@
                         <li>解决方案</li>
                         <li>客户案例</li>
                         <li>SEO城市</li>
+                        <li>上传文件管理</li>
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
@@ -59,6 +60,9 @@
                         </div>
                         <div class="layui-tab-item">
                             <table class="layui-table" lay-filter="seotable" id="seotable"></table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <table class="layui-table" lay-filter="filetable" id="filetable"></table>
                         </div>
                     </div>
                 </div>
@@ -164,6 +168,34 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn seo_form_btn" lay-submit="" lay-filter="seo_form_btn">确认</button>
+        </div>
+    </div>
+</form>
+<!-- 文件管理 -->
+<form class="layui-form" id="file_form" action="" lay-filter="file_form" style="display:none;margin-right: 80px;">
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <input type="hidden" name="id">
+            <input type="hidden" name="name">
+            <input type="hidden" name="hash" class="upload-hash">
+            <input type="hidden" name="size" class="upload-size">
+            <input type="hidden" name="save_name" class="upload-save-name">
+            <input type="hidden" name="path" class="upload-path">
+            <input type="hidden" name="suffix" class="upload-suffix">
+            <input type="hidden" name="logined" class="upload-logined">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">下载权限</label>
+            <div class="layui-input-block">
+                <input type="radio" name="logined" value='0' title="开放" checked="">
+                <input type="radio" name="logined" value='1' title="登录">
+            </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn file_form_btn" lay-submit="" lay-filter="file_form_btn">确认</button>
         </div>
     </div>
 </form>

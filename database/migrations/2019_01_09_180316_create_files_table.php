@@ -15,12 +15,13 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hash')->unique();
-            $table->string('name');
-            $table->string('size');
-            $table->string('save_name');
-            $table->string('path');
-            $table->string('suffix');
+            $table->string('hash')->unique()->comment('文件哈希');
+            $table->string('name')->comment('原名称');
+            $table->string('size')->comment('大小');
+            $table->string('save_name')->comment('保存名称');
+            $table->string('path')->comment('路径');
+            $table->string('suffix')->comment('后缀');
+            $table->boolean('logined')->default(false)->comment('下载权限');
             $table->timestamps();
         });
     }

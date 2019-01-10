@@ -27,7 +27,7 @@
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    
+
 
                     <div class="form-group select">
                         <select class="mdui-select" mdui-select name="category_id" required>
@@ -40,9 +40,9 @@
                     </div>
 
                     <div class="form-group title">
-                            <input class="form-control" type="text" name="title" value="{{ old('title', $topic->title ) }}"
-                                placeholder="请填写标题" required />
-                        </div>
+                        <input class="form-control" type="text" name="title" value="{{ old('title', $topic->title ) }}"
+                            placeholder="请填写标题" required />
+                    </div>
 
                     <div class="form-group">
                         <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少三个字符的内容。"
@@ -52,10 +52,59 @@
                     <div class="form-btn">
                         <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">
                             <i class="kticon">&#xe61f;</i> 发布</button>
+                            @can('upload_files')
+                        <button class="layui-btn layui-btn-primary layui-btn-sm upload_file" title="上传附件" style="margin-left:30px;"><i class="kticon">&#xe634;</i> 上传附件</button>
+                            @endcan
                     </div>
                 </form>
         </div>
     </div>
+</div>
+<div class="select-file-box" style="display:none">
+
+</div>
+<div class="upload-file-box" style="display:none">
+    <form method="post" class="upload-file-form" id="upload-file-form" style="margin:20px 40px 0;text-align: center;" action="">
+        <div class="form-group " id="aetherupload-wrapper">
+            <!--组件最外部需要有一个名为aetherupload-wrapper的id，用以包装组件-->
+            <div class="controls">
+                <input type="file" id="file" onchange="aetherupload(this,'file').success(someCallback).upload()" />
+                <!--需要有一个名为file的id，用以标识上传的文件，aetherupload(file,group)中第二个参数为分组名，success方法可用于声名上传成功后的回调方法名-->
+                <div class="progress " style="height: 6px;margin-bottom: 2px;margin-top: 10px;">
+                    <div id="progressbar" style="background:#5FB878;;height:6px;width:0;"></div>
+                    <!--需要有一个名为progressbar的id，用以标识进度条-->
+                </div>
+                <span style="font-size:12px;color:#aaa;" id="output"></span>
+                <!--需要有一个名为output的id，用以标识提示信息-->
+                <input type="hidden" name="file1" id="savedpath">
+                <!--需要有一个名为savedpath的id，用以标识文件保存路径的表单字段，还需要一个任意名称的name-->
+            </div>
+        </div>
+    </form>
+    <form class="layui-form upload-file-sucess" lay-filter="upload-file-sucess" style="margin:20px 40px 0;text-align: center;display:none;" action="">
+        <div class="layui-form-item">
+            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入文件名称" class="layui-input name">
+            <input type="hidden" name="hash" class="upload-hash">
+            <input type="hidden" name="size" class="upload-size">
+            <input type="hidden" name="save_name" class="upload-save-name">
+            <input type="hidden" name="path" class="upload-path">
+            <input type="hidden" name="suffix" class="upload-suffix">
+            <input type="hidden" name="logined" class="upload-logined">
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">下载权限</label>
+            <div class="layui-input-block">
+                <input type="radio" name="logined" value='false' title="开放" checked="">
+                <input type="radio" name="logined" value='true' title="登录">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left:0">
+                <button class="layui-btn upload-btn" lay-submit="" lay-filter="upload-btn">添加</button>
+            </div>
+        </div>
+    </form>
 </div>
 @endsection
 
@@ -69,38 +118,8 @@
 <script type="text/javascript" src="{{ asset('js/hotkeys.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/uploader.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/simditor.min.js') }}"></script>
-<script src="{{ URL::asset('js/spark-md5.min.js') }}"></script><!--需要引入spark-md5.min.js-->
-<script src="{{ URL::asset('js/aetherupload.js') }}"></script><!--需要引入aetherupload.js-->
-
-<script>
-    $(document).ready(function () {
-        var editor = new Simditor({
-            textarea: $('#editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
-                '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
-                'indent', 'outdent', 'alignment'
-            ],
-            upload: {
-                url: "{{ route('topics.upload_image') }}",
-                //工具条都包含哪些内容
-                params: {
-                    _token: '{{ csrf_token() }}'
-                },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-            },
-            pasteImage: true,
-        });
-    });
-    // <!-- 
-    //     pasteImage —— 设定是否支持图片黏贴上传，这里我们使用 true 进行开启；
-    // url —— 处理上传图片的 URL；
-    // params —— 表单提交的参数，Laravel 的 POST 请求必须带防止 CSRF 跨站请求伪造的 _token 参数；
-    // fileKey —— 是服务器端获取图片的键值，我们设置为 upload_file;
-    // connectionCount —— 最多只能同时上传 3 张图片；
-    // leaveConfirm —— 上传过程中，用户关闭页面时的提醒。
-    //  -->
-</script>
-
+<script src="{{ URL::asset('js/spark-md5.min.js') }}"></script>
+<!--需要引入spark-md5.min.js-->
+<script src="{{ URL::asset('js/aetherupload.js') }}"></script>
+<!--需要引入aetherupload.js-->
 @stop
