@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','找不到页面_深圳市沟通科技有限公司')
+@section('title','找不到页面')
 @section('content')
 <div class="without-404-box">
     <div class="title">

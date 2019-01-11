@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('title', '用户登录')
-@section('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
-@stop
 @section('content')
 <div class="login-form-warp xhs_login_pad" style="margin-top:60px;">
     <div class="login-form">

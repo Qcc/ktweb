@@ -525,6 +525,7 @@ a:active {
 
 .ktm-nav-menu i.active {
     display: inline;
+    color: #333;
 }
 
 .ktm-logo {
@@ -4313,7 +4314,8 @@ a:active {
 }
 
 .register-page .ktm-logo,
-.login-page .ktm-logo {
+.login-page .ktm-logo,
+.password-request-page .ktm-logo {
     background-image: url(/images/logo-blue.png);
 }
 
@@ -4330,14 +4332,18 @@ a:active {
     float: right;
 }
 
-.login-page .kt-nav-header .kt-nav-background {
+.login-page .kt-nav-header .kt-nav-background, 
+.password-request-page .kt-nav-header .kt-nav-background{
     background: rgba(255, 255, 255, 0.9) !important;
 }
 
-.login-page .kt-nav-warp .kt-navigetion-sections,
-.login-page .kt-navigetion-sections {
-    color: #333 !important;
+.login-page .kt-navigetion-sections{
+    color: #333;
 }
+.password-request-page .kt-navigetion-sections{
+    color: #333;
+}
+
 
 
 .login-page .login-form-warp .swiper-slide {
@@ -4402,6 +4408,9 @@ a:active {
 
 /* 小于600px宽度 */
 @media screen and (max-width: 600px) {
+    .login-page .login-form {
+        right: 0px;
+    }
     .login-form {
         padding: 0;
         position: relative;
