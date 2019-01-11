@@ -21,6 +21,9 @@ class CheckDownload
         $file_name = cut_str($request->path(),'.',0);
         $name = cut_str($file_name,'/',-1);
         $file = File::where('hash',$name)->first();
+        if(!$file){
+            return $next($request);
+        }
         if($file->logined && !Auth::check()){
             return redirect('login');
         }

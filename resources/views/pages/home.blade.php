@@ -174,7 +174,7 @@
   <div class="mdui-container-fluid">
     <div class="mdui-row img-solution-warp">
       @foreach($solutionbanners as $solution)
-      <div class="wow fadeInLeft img-solution-item mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
+      <div class="wow fadeInUp img-solution-item mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
         <div class="img-solution-background mdui-color-grey"></div>
         <img src="{{ $solution->banner }}" alt="{{ $solution->title }}">
         <div class="img-solution-content  mdui-text-color-white">

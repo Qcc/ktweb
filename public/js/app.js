@@ -124,7 +124,7 @@ $(document).ready(function () {
 		});
 		// 初始化首页轮播图
 		if ($('.swiper-container').length === 1) {
-			var swiper = new Swiper('.swiper-container', {
+			var home_swiper = new Swiper('.swiper-container', {
 				loop: true,
 				autoplay: true,
 				pagination: {
@@ -293,9 +293,9 @@ $(document).ready(function () {
 
 	// 社区首页列表
 	if ($('.topics-index-page').length == 1) {
-		// 初始化首页轮播图
+		// 初始化社区首页页轮播图
 		if ($('.swiper-container').length === 1) {
-			var swiper = new Swiper('.swiper-container', {
+			var topics_swiper = new Swiper('.swiper-container', {
 				loop: true,
 				autoplay: true,
 				pagination: {
@@ -696,6 +696,7 @@ $(document).ready(function () {
 				})
 				var userform = layer.open({
 					type: 1,
+					area:'500px',
 					title: '修改用户信息 - ' + data.nickname,
 					content: $('#user-form') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 				});
@@ -1708,18 +1709,11 @@ $(document).ready(function () {
 						shadeClose: true, //开启遮罩关闭
 						content: $("#file_form")
 					});
-					console.log(data);
 					//表单初始赋值
 					form.val('file_form', {
 						"id":data.id,
 						"name":data.name,
-						"suffix":data.suffix,
-						"size":data.size,
-						"hash":data.hash,
-						"save_name":data.save_name,
-						"path":data.path,
-						"logined":data.logined,
-						"created_at":data.created_at,
+						"logined":data.logined ? 'true' : 'false',
 					});
 					fileFormSubmit('/upload/files/update', file_form);
 
@@ -1810,7 +1804,7 @@ $(document).ready(function () {
 						data: field,
 						success: function (data) {
 							$(".file_form_btn").removeClass('layui-btn-disabled');
-							if (data.code == 0) {
+							if (data.success) {
 								layer.msg(data.msg, {
 									icon: 1
 								});
@@ -1845,7 +1839,7 @@ $(document).ready(function () {
 							id: obj.data.id
 						},
 						success: function (data) {
-							if (data.code == 0) {
+							if (data.success) {
 								obj.del();
 							} else {
 								layer.msg(data.msg, {
@@ -2475,7 +2469,7 @@ $(document).ready(function () {
 	// 产品页面
 	if ($('.products-show-page').length == 1) {
 		// 初始化产品页面轮播图
-		if ($('.swiper-container').length === 1) {
+		if ($('#solutionSwiper').length === 1) {
 			var solutionSwiper = new Swiper('#solutionSwiper', {
 				centeredSlides: true,
 				slidesPerView: 'auto',
@@ -2490,8 +2484,8 @@ $(document).ready(function () {
 		}
 	}
 	// 客户案例列表
-	if ($('.customer-index-page').length == 1) {
-		var swiper = new Swiper('.swiper-container', {
+	if ($('.index-page').length == 1) {
+		var customer_swiper = new Swiper('.swiper-container', {
 			loop: true,
 			autoplay: true,
 			pagination: {
@@ -2914,9 +2908,16 @@ $(document).ready(function () {
 		});
 	}
 	if ($('.columns-show-page').length == 1) {
-		// 初始化首页轮播图
+		// 初始化新闻首页轮播图
 		if ($('.swiper-container').length === 1) {
-			var swiper = new Swiper('.swiper-container', {});
+			var news_swiper = new Swiper('.swiper-container', {
+				loop: true,
+				autoplay: true,
+				pagination: {
+					el: '.swiper-pagination',
+					dynamicBullets: true,
+				},
+			});
 		}
 	}
 	if ($('.register-page').length == 1) {
@@ -3077,9 +3078,9 @@ $(document).ready(function () {
 		}
 	}
 	if ($('.login-page').length == 1) {
-		// 初始化首页轮播图
+		// 初始化登录页轮播图
 		if ($('.swiper-container').length === 1) {
-			var swiper = new Swiper('.swiper-container', {
+			var login_swiper = new Swiper('.swiper-container', {
 				// autoplay: true,//可选选项，自动滑动
 				loop: true, // 循环模式选项
 				// 如果需要分页器

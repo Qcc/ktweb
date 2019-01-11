@@ -63,7 +63,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+            <input type="text" name="name" autocomplete="off" placeholder="请输入姓名" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -81,7 +81,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input">
+            <input type="text" name="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">

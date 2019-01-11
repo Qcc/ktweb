@@ -176,20 +176,19 @@
     <div class="layui-form-item">
         <div class="layui-input-inline">
             <input type="hidden" name="id">
-            <input type="hidden" name="name">
-            <input type="hidden" name="hash" class="upload-hash">
-            <input type="hidden" name="size" class="upload-size">
-            <input type="hidden" name="save_name" class="upload-save-name">
-            <input type="hidden" name="path" class="upload-path">
-            <input type="hidden" name="suffix" class="upload-suffix">
-            <input type="hidden" name="logined" class="upload-logined">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">文件名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" disabled class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">下载权限</label>
             <div class="layui-input-block">
-                <input type="radio" name="logined" value='0' title="开放" checked="">
-                <input type="radio" name="logined" value='1' title="登录">
+                <input type="radio" name="logined" value="false" title="开放">
+                <input type="radio" name="logined" value="true" title="登录">
             </div>
     </div>
 

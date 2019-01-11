@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/topics';
     protected $request;
 
     /**
@@ -66,4 +66,17 @@ class LoginController extends Controller
 		});
         return view('auth.login',compact('loginbanners'));
     }
+
+    /**
+     * 增加activated字段验证用户是否禁用
+     *
+     * @param Request $request
+     * @return void
+     */
+    protected function credentials(Request $request)
+    {
+        return array_prepend($request->only($this->username(), 'password'),1,'activated');
+    }
+    
+     
 }
