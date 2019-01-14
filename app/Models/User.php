@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Log;
+use App\Notifications\ResetPassword;
+
 class User extends Authenticatable
 {
     // 权限管理扩展 trait
@@ -230,6 +232,15 @@ class User extends Authenticatable
             $reply_ids = compact('reply_ids');
         }
         $this->replyGreats()->detach($reply_ids);
+    }
+
+    /** * Send the password reset notification. * 
+     * * @param string $token 
+     * * @return void 
+     * */ 
+    public function sendPasswordResetNotification($token) 
+    { 
+        $this->notify(new ResetPassword($token)); 
     }
     
 }

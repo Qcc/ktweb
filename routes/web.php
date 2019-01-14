@@ -39,6 +39,10 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+//发送手机短信验证码
+Route::post('password/phone', 'Auth\ForgotPasswordController@sendResetCodePhone')->name('password.phone.request');
+//通过手机验证码找回密码
+Route::post('password/reset-phone', 'Auth\ForgotPasswordController@resetByPhone');
 
 //用户粉丝 显示用户的关注人列表
 Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');

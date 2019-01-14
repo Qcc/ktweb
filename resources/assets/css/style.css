@@ -251,15 +251,14 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';
-    /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.eot');
-    src: url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.woff2') format('woff2'),
-        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.woff') format('woff'),
-        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_916960_dsr6fh19j3f.svg#kticon') format('svg');
-}
+    font-family: 'kticon';  /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_nxmmc7nualn.eot');
+    src: url('//at.alicdn.com/t/font_916960_nxmmc7nualn.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.svg#kticon') format('svg');
+  }
 
 .kticon {
     font-family: "kticon" !important;
@@ -569,6 +568,9 @@ a:active {
     .kt-menu-warp {
         display: none;
     }
+    .password-request-page .reset-password-tab{
+        width: 208px;
+    }
 }
 
 .kt-nav-header-open .ktm-nav-content {
@@ -681,6 +683,7 @@ a:active {
         line-height: 36px;
         font-size: 20px;
     }
+    
 }
 
 @media screen and (max-width: 1024px) {
@@ -805,6 +808,9 @@ a:active {
 @media screen and (min-width: 1024px) {
     .mdui-card-primary {
         min-height: 108px;
+    }
+    .password-request-page .reset-password-tab{
+        width: 224px;
     }
 }
 
@@ -965,6 +971,10 @@ a:active {
         font-size: 11px;
         line-height: 20px;
     }
+    .password-request-page .reset-password-tab{
+        width: auto;
+    }
+
 }
 
 .img-solution-background {
@@ -2322,6 +2332,7 @@ a:active {
     color: #555;
 }
 
+.reset-box .body input,
 .panel-body input,
 .panel-body select,
 .panel-body .mdui-select {
@@ -4469,3 +4480,71 @@ a:active {
     border: 1px solid #fff;
     border-radius: 3px;
 }
+/* 找回密码 */
+.reset-box .heading{
+    margin: 80px 0 20px;
+    font-size: 25px;
+    text-align: center;
+    border-bottom: 1px solid #e2e2e2;
+}
+.reset-box .tab-content{
+    margin: 20px auto 80px;
+    width: 350px;
+}
+.reset-box .tab-content .layui-input-block{
+     margin: 0;
+ }
+ .tab-content .input-captcha{
+     position: relative;
+ }
+.input-captcha .captcha {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    height: 32px;
+ }
+ .tab-content .help-block i{
+    font-size: 11px;
+ }
+ .tab-content .help-block,  .tab-content .help-success{
+    background: #FF8A80;
+    color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 3px;
+    font-size: 14px;
+ }
+ .tab-content .help-success{
+    background: #9CCC65;
+ }
+ .reset-box .progress-box{
+    height: 100px;
+    text-align: center;
+ }
+ .progress-box>div{
+    margin: 20px auto;
+    width: 550px;
+ }
+ .progress-box .step{
+    width: 100px;
+    height: 66px;
+    float: left;
+    color: #a2a2a2;
+ }
+ .progress-box .step i{
+     margin:0 30px; 
+ }
+ .progress-box .step-bumber i{
+    font-size: 40px;
+ }
+ .progress-box .step-arrow i{
+    font-size: 20px;
+    line-height: 66px;
+ }
+ .reset-box .phone-form{
+     width: 350px;
+     margin: 20px auto;
+ }
+ .reset-box .phone-form .layui-input-block{
+    margin-left: 0px;
+ }

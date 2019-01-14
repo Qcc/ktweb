@@ -696,7 +696,7 @@ $(document).ready(function () {
 				})
 				var userform = layer.open({
 					type: 1,
-					area:'500px',
+					area: '500px',
 					title: '修改用户信息 - ' + data.nickname,
 					content: $('#user-form') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 				});
@@ -1358,7 +1358,7 @@ $(document).ready(function () {
 						}
 					});
 					// 文件管理
-				}else if (data.index == 5) {
+				} else if (data.index == 5) {
 					$.ajax({
 						method: 'POST',
 						url: '/management/club/columns',
@@ -1405,11 +1405,11 @@ $(document).ready(function () {
 									}, {
 										field: 'hash',
 										title: 'hash',
-										hide:true,
+										hide: true,
 									}, {
 										field: 'save_name',
 										title: '保存名',
-										hide:true,
+										hide: true,
 									}, {
 										field: 'created_at',
 										title: '上传时间'
@@ -1695,7 +1695,7 @@ $(document).ready(function () {
 					deleteLine('/management/club/seoDestroy', obj);
 				}
 			});
-			
+
 			//工具栏事件 修改文件下载权限
 			table.on('tool(filetable)', function (obj) {
 				if (obj.event == 'edit') {
@@ -1711,9 +1711,9 @@ $(document).ready(function () {
 					});
 					//表单初始赋值
 					form.val('file_form', {
-						"id":data.id,
-						"name":data.name,
-						"logined":data.logined ? 'true' : 'false',
+						"id": data.id,
+						"name": data.name,
+						"logined": data.logined ? 'true' : 'false',
 					});
 					fileFormSubmit('/upload/files/update', file_form);
 
@@ -3144,7 +3144,6 @@ $(document).ready(function () {
 				layer = layui.layer;
 			// 选择附件
 			$('.select_file').on('click', function (e) {
-				console.log('选择');
 				e.preventDefault();
 				var select_layer = layer.open({
 					type: 1,
@@ -3161,7 +3160,6 @@ $(document).ready(function () {
 			});
 			// 上传附件
 			$('.upload_file').on('click', function (e) {
-				console.log('上传');
 				e.preventDefault();
 				var upload_layer = layer.open({
 					type: 1,
@@ -3203,7 +3201,7 @@ $(document).ready(function () {
 					$('.upload-file-sucess').hide();
 					// 插入附件到富文本输入框
 					var value = editor.getValue();
-					editor.setValue(value + "<a href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name +"."+ file.suffix + "</a> &nbsp;");
+					editor.setValue(value + "<a href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "</a> &nbsp;");
 					editor.focus();
 
 					return false;
@@ -3225,6 +3223,34 @@ $(document).ready(function () {
 				});
 			}
 		});
-
+	}
+	if ($('.password-request-page').length == 1) {
+		layui.use(['layer', 'form'], function () {
+			var form = layui.form,
+				layer = layui.layer;
+			form.on("submit(phone-btn)", function (data) {
+				var data = data.field;
+				console.log(data)
+				$.ajax({
+					method: 'POST',
+					url: '/password/phone',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: data,
+					success: function (data) {
+						$(".loginbanner-btn").removeClass('layui-btn-disabled');
+						if (!data.success) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+						}
+					}
+				});
+				return false;
+			});
+		});
 	}
 });
