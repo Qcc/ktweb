@@ -64,15 +64,27 @@
                                     <div class="mdui-textfield-helper">请输入固定电话</div>
                                 </div>
                             </div>
-
+                            @if($user->email)
                             <div class="form-group">
                                 <div class="mdui-textfield mdui-textfield-floating-label">
                                     <label class="mdui-textfield-label">邮箱</label>
                                     <input class="mdui-textfield-input {{ $user->email?'disabled':'' }}" type="email"
                                         name="email" {{ $user->email?'readonly':'' }} value="{{ old('email', $user->email) }}" />
-                                    <div class="mdui-textfield-helper">请输入邮箱,保存后不能再修改，请谨慎操作</div>
+                                    <div class="mdui-textfield-helper">邮箱已经激活不能再修改</div>
                                 </div>
                             </div>
+                            @else
+                            <div class="form-group">
+                                <div class="mdui-textfield mdui-textfield-floating-label {{ $user->temp_mail?'temp-mail':'' }}">
+                                    <label class="mdui-textfield-label">邮箱</label>
+                                    <input class="mdui-textfield-input" type="email" name="temp_mail" value="{{ old('temp_mail', $user->temp_mail) }}" />
+                                    @if($user->temp_mail)
+                                    <a href="{{ route('send_email') }}" title="绑定的邮箱还未激活" class="mdui-btn mdui-btn-raised mdui-ripple mail-active">发送激活邮件</a>
+                                    @endif
+                                    <div class="mdui-textfield-helper">请输入邮箱,保存后需要激活才能使用</div>
+                                </div>
+                            </div>
+                            @endif
                             <div class="form-group">
                                 <div class="mdui-textfield mdui-textfield-floating-label">
                                     <label class="mdui-textfield-label">简介</label>

@@ -22,6 +22,10 @@ Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 Route::get('/users/{user}/password', 'UsersController@password')->name('users.password');
 Route::post('/users/{user}/uppwd', 'UsersController@uppwd')->name('users.uppwd');
+// 绑定邮箱激活
+Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
+Route::get('signup/send', 'UsersController@sendEmailConfirmationTo')->name('send_email');
+
 // AJAX图形验证码
 Route::post('ajax/captcha', 'CaptchaController@captcha');
 // AJAX短信验证码

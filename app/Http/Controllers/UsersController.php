@@ -6,16 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use Hash;
+use Auth;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\SendActivedEmail;
 
 class UsersController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show','confirmEmail']]);
     }    
     
     // 显示用户个人信息页面
@@ -62,7 +64,11 @@ class UsersController extends Controller
             }
         }
         $user->update($data);
-        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
+        if($data['temp_mail']){
+            return redirect()->route('users.edit', $user->id)->with('success', '更新成功,已发送激活邮件到 '.$data['temp_mail'].'，激活后才能使用！');
+        }else{
+            return redirect()->route('users.edit', $user->id)->with('success', '个人资料更新成功！');
+        }
     }
 
     //** 关注的人列表  */
@@ -78,6 +84,26 @@ class UsersController extends Controller
         $users = $user->followers()->paginate(30);
         $title = '粉丝';
         return view('users.show_follow',compact('users','title'));
+    }
+
+    public function confirmEmail($token)
+    {
+        $user = User::where('activation_token', $token)->firstOrFail();
+        $user->email = $user->temp_mail;
+        $user->temp_mail = null ;
+        $user->activation_token = null;
+        $user->save();
+        // Auth::login($user);
+        session()->flash('success', '恭喜你，邮箱激活成功！');
+        return redirect()->route('users.show', [$user]);
+    }
+    public function sendEmailConfirmationTo(Request $request)
+    {
+        $user = Auth::user();
+        //推送到队列执行，发送激活邮件
+        dispatch(new SendActivedEmail($user));
+        Log::info('zaicifasong');
+        return back()->with('success', '邮件发送成功，请注意查收!');
     }
     
 }

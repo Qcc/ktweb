@@ -251,14 +251,15 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';  /* project id 916960 */
+    font-family: 'kticon';
+    /* project id 916960 */
     src: url('//at.alicdn.com/t/font_916960_nxmmc7nualn.eot');
     src: url('//at.alicdn.com/t/font_916960_nxmmc7nualn.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_nxmmc7nualn.svg#kticon') format('svg');
-  }
+        url('//at.alicdn.com/t/font_916960_nxmmc7nualn.woff2') format('woff2'),
+        url('//at.alicdn.com/t/font_916960_nxmmc7nualn.woff') format('woff'),
+        url('//at.alicdn.com/t/font_916960_nxmmc7nualn.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_916960_nxmmc7nualn.svg#kticon') format('svg');
+}
 
 .kticon {
     font-family: "kticon" !important;
@@ -568,7 +569,8 @@ a:active {
     .kt-menu-warp {
         display: none;
     }
-    .password-request-page .reset-password-tab{
+
+    .password-request-page .reset-password-tab {
         width: 208px;
     }
 }
@@ -683,7 +685,7 @@ a:active {
         line-height: 36px;
         font-size: 20px;
     }
-    
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -809,7 +811,8 @@ a:active {
     .mdui-card-primary {
         min-height: 108px;
     }
-    .password-request-page .reset-password-tab{
+
+    .password-request-page .reset-password-tab {
         width: 224px;
     }
 }
@@ -971,7 +974,8 @@ a:active {
         font-size: 11px;
         line-height: 20px;
     }
-    .password-request-page .reset-password-tab{
+
+    .password-request-page .reset-password-tab {
         width: auto;
     }
 
@@ -2438,6 +2442,18 @@ a:active {
 
 .edit-action .edit-form {
     max-width: 500px
+}
+
+.users-edit-page .edit-form .temp-mail {
+    padding-right: 120px;
+}
+
+.users-edit-page .temp-mail .mail-active{
+    background: #9CCC65;
+    color: #fff;
+    position: absolute;
+    right: -6px;
+    top: 20px;
 }
 
 .edit-form .disabled {
@@ -4343,15 +4359,16 @@ a:active {
     float: right;
 }
 
-.login-page .kt-nav-header .kt-nav-background, 
-.password-request-page .kt-nav-header .kt-nav-background{
+.login-page .kt-nav-header .kt-nav-background,
+.password-request-page .kt-nav-header .kt-nav-background {
     background: rgba(255, 255, 255, 0.9) !important;
 }
 
-.login-page .kt-navigetion-sections{
+.login-page .kt-navigetion-sections {
     color: #333;
 }
-.password-request-page .kt-navigetion-sections{
+
+.password-request-page .kt-navigetion-sections {
     color: #333;
 }
 
@@ -4422,6 +4439,7 @@ a:active {
     .login-page .login-form {
         right: 0px;
     }
+
     .login-form {
         padding: 0;
         position: relative;
@@ -4449,7 +4467,8 @@ a:active {
         display: none;
     }
 }
-.-page .without-404-box{
+
+.-page .without-404-box {
     width: 100%;
     height: 768px;
     background-position: center;
@@ -4458,19 +4477,23 @@ a:active {
     background-image: url(/images/404.png);
     position: relative;
 }
-.without-404-box .title{
+
+.without-404-box .title {
     text-align: center;
     padding-top: 350px;
 }
-.without-404-box .title>h3{
+
+.without-404-box .title>h3 {
     color: #fff;
     font-size: 16px;
 }
-.without-404-box .back{
+
+.without-404-box .back {
     text-align: center;
     margin-top: 20px;
 }
-.without-404-box .back>a{
+
+.without-404-box .back>a {
     margin: 0 auto;
     display: block;
     width: 120px;
@@ -4480,104 +4503,133 @@ a:active {
     border: 1px solid #fff;
     border-radius: 3px;
 }
+
 /* 找回密码 */
-.reset-box .heading{
+.reset-box .heading {
     margin: 80px 0 20px;
     font-size: 25px;
     text-align: center;
     border-bottom: 1px solid #e2e2e2;
 }
-.reset-box .tab-content{
+
+.reset-box .tab-content {
     margin: 20px auto 80px;
     width: 350px;
 }
-.reset-box .tab-content .layui-input-block{
-     margin: 0;
- }
- .tab-content .input-captcha{
-     position: relative;
- }
+
+.reset-box .tab-content .layui-input-block {
+    margin: 0;
+}
+
+.tab-content .input-captcha {
+    position: relative;
+}
+
 .input-captcha .captcha {
     position: absolute;
     top: 3px;
     right: 5px;
     height: 32px;
- }
- .reset-box  .help-block i{
+}
+
+.reset-box .help-block i {
     font-size: 11px;
- }
- .reset-box  .help-block,  .reset-box  .help-success{
+}
+
+.reset-box .help-block,
+.reset-box .help-success {
     background: #FF8A80;
     color: #fff;
     padding: 10px;
     margin: 10px 0;
     border-radius: 3px;
     font-size: 14px;
- }
- .reset-box  .help-success{
+}
+
+.reset-box .help-success {
     background: #9CCC65;
- }
- .reset-box .progress-box{
+}
+
+.reset-box .progress-box {
     height: 100px;
     text-align: center;
- }
- .progress-box>div{
+}
+
+.progress-box>div {
     margin: 20px auto;
     width: 550px;
- }
- .progress-box .step{
+}
+
+.progress-box .step {
     width: 100px;
     height: 66px;
     float: left;
     color: #a2a2a2;
- }
- .progress-box .step i{
-     margin:0 30px; 
- }
- .progress-box .step-bumber i{
+}
+
+.progress-box .step i {
+    margin: 0 30px;
+}
+
+.progress-box .step-bumber i {
     font-size: 30px;
- }
- .progress-box .step-arrow i{
+}
+
+.progress-box .step-arrow i {
     font-size: 20px;
     line-height: 66px;
- }
- .reset-box .phone-form, .reset-box .code-form{
-     width: 350px;
-     margin: 20px auto;
- }
- .reset-box .code-form{
-     display: none;
- }
- .phone-form .help-block{
-     display: none;
- }
- .code-form .telphone, .code-form .second{
-     color: #FF9800;
- }
- .code-form .second-box{
+}
+
+.reset-box .phone-form,
+.reset-box .code-form {
+    width: 350px;
+    margin: 20px auto;
+}
+
+.reset-box .code-form {
+    display: none;
+}
+
+.phone-form .help-block {
+    display: none;
+}
+
+.code-form .telphone,
+.code-form .second {
+    color: #FF9800;
+}
+
+.code-form .second-box {
     margin-top: 10px;
-    color:#a2a2a2;
- }
- .code-form .telphone-box{
-     margin-bottom: 10px;
-     color:#a2a2a2;
- }
- .code-form .resend{
-     margin-top: 10px;
-     color:#a2a2a2;
-     display: none;
- }
- .reset-box .phone-form .layui-input-block, .code-form .layui-input-block{
+    color: #a2a2a2;
+}
+
+.code-form .telphone-box {
+    margin-bottom: 10px;
+    color: #a2a2a2;
+}
+
+.code-form .resend {
+    margin-top: 10px;
+    color: #a2a2a2;
+    display: none;
+}
+
+.reset-box .phone-form .layui-input-block,
+.code-form .layui-input-block {
     margin-left: 0px;
- }
- .reset-box .password-success{
+}
+
+.reset-box .password-success {
     text-align: center;
     display: none;
- }
- .password-success>img{
+}
+
+.password-success>img {
     width: 100px;
- }
- .password-success>p{
+}
+
+.password-success>p {
     color: #a2a2a2;
     margin: 20px 0;
- }
+}

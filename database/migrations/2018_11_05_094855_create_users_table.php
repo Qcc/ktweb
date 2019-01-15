@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('introduction')->nullable()->comment('简介');
             $table->string('activation_token')->nullable()->comment('找回密码');
             $table->boolean('activated')->default(true)->comment('用户状态');
-            $table->boolean('mail_activated')->default(false)->comment('邮箱激活');
+            $table->string('temp_mail')->nullable()->comment('邮箱未激活');
             $table->rememberToken();
             $table->timestamps();
         });
