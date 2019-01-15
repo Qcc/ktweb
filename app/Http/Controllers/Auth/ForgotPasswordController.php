@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store as Session;
-use Illuminate\Support\Facades\Validator;
+use Validator;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
@@ -49,7 +52,7 @@ class ForgotPasswordController extends Controller
      */
     protected function validateEmail(Request $request)
     {
-        $this->validate($request, ['email' => 'required|email','captcha' => 'required|captcha',]);
+        $this->validate($request, ['email' => 'required|email','captcha' => 'required|captcha']);
     }
 
     /**
@@ -60,24 +63,24 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetCodePhone(Request $request)
     {
-        $rules = ['captcha' => 'required|captcha','phone'=>'required|exists:users,phone'];
+        $rules = ['captcha' => 'bail|required|captcha','phone'=>'required|exists:users,phone'];
         $messages = [
             'captcha.required' => '验证码不能为空。',
             'captcha.captcha' => '验证码不正确。',
             'phone.required' => '手机号不能为空',
             'phone.exists' => '手机号不存在',
         ];
-        $validator = Validator::make($request->all(), $rules,$messages);
-        $status = ['captcha'=>false,'msg'=>'验证码不正确'];
-        // dd($request->all());
-        dd($validator->errors()->all());
+        $validator = Validator::make($request->input(), $rules,$messages);
+        $res = ['success'=>false,'msg'=>'验证码不正确'];
         if (!$validator->fails()){
-            $status = ['captcha'=>true,'msg'=>'验证码正确'];
-            $count = User::where('phone',$request->phone)->count();
-            if($count != 0){
-                $status['user']= true;
-            }
+            $res = ['success'=>true,'msg'=>'短信已发送!'];   
+            //发送短信
+            $res['sms'] = $this->generate($request->phone);
+        }else{
+            $res = $validator->errors()->all();
         }
+        return $res;
+
     }
     /**
      * 验证手机短信找回密码
@@ -85,9 +88,23 @@ class ForgotPasswordController extends Controller
      * @param Request $request
      * @return void
      */
-    public function resetByPhone(Request $request)
+    public function resetByPhone(Request $request, User $user)
     {
-
+        $res = ['success' => false, 'msg'=>'验证码不正确，请重新输入！'];
+        if($this->check($request->code)){
+            $phone = $this->session->get('smscode.phone');
+            $user = User::where('phone',$phone)->first();
+            if($user){
+                $user->password = Hash::make($request->password);
+                $user->setRememberToken(Str::random(60));
+                $user->save();         
+                $res = ['success' => true, 'msg'=>'密码已经修改，请使用新密码重新登录！'];  
+                $this->session->remove('smscode'); 
+            }else{
+                $res = ['success' => false, 'msg'=>'手机号不正确！'];   
+            }
+        }
+        return $res;
     }
 
     /**

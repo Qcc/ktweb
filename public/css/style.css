@@ -4503,10 +4503,10 @@ a:active {
     right: 5px;
     height: 32px;
  }
- .tab-content .help-block i{
+ .reset-box  .help-block i{
     font-size: 11px;
  }
- .tab-content .help-block,  .tab-content .help-success{
+ .reset-box  .help-block,  .reset-box  .help-success{
     background: #FF8A80;
     color: #fff;
     padding: 10px;
@@ -4514,7 +4514,7 @@ a:active {
     border-radius: 3px;
     font-size: 14px;
  }
- .tab-content .help-success{
+ .reset-box  .help-success{
     background: #9CCC65;
  }
  .reset-box .progress-box{
@@ -4535,16 +4535,49 @@ a:active {
      margin:0 30px; 
  }
  .progress-box .step-bumber i{
-    font-size: 40px;
+    font-size: 30px;
  }
  .progress-box .step-arrow i{
     font-size: 20px;
     line-height: 66px;
  }
- .reset-box .phone-form{
+ .reset-box .phone-form, .reset-box .code-form{
      width: 350px;
      margin: 20px auto;
  }
- .reset-box .phone-form .layui-input-block{
+ .reset-box .code-form{
+     display: none;
+ }
+ .phone-form .help-block{
+     display: none;
+ }
+ .code-form .telphone, .code-form .second{
+     color: #FF9800;
+ }
+ .code-form .second-box{
+    margin-top: 10px;
+    color:#a2a2a2;
+ }
+ .code-form .telphone-box{
+     margin-bottom: 10px;
+     color:#a2a2a2;
+ }
+ .code-form .resend{
+     margin-top: 10px;
+     color:#a2a2a2;
+     display: none;
+ }
+ .reset-box .phone-form .layui-input-block, .code-form .layui-input-block{
     margin-left: 0px;
+ }
+ .reset-box .password-success{
+    text-align: center;
+    display: none;
+ }
+ .password-success>img{
+    width: 100px;
+ }
+ .password-success>p{
+    color: #a2a2a2;
+    margin: 20px 0;
  }

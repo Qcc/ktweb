@@ -3229,8 +3229,8 @@ $(document).ready(function () {
 			var form = layui.form,
 				layer = layui.layer;
 			form.on("submit(phone-btn)", function (data) {
-				var data = data.field;
-				console.log(data)
+				$(this).addClass('layui-btn-disabled');
+				var field = data.field;
 				$.ajax({
 					method: 'POST',
 					url: '/password/phone',
@@ -3239,12 +3239,96 @@ $(document).ready(function () {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
 							'content')
 					},
-					data: data,
+					data: field,
 					success: function (data) {
-						$(".loginbanner-btn").removeClass('layui-btn-disabled');
-						if (!data.success) {
+						$(".phone-btn").removeClass('layui-btn-disabled');
+						if (data.success) {
+							$('.phone-form').hide();
+							$('.code-form').show();
+							$('.telphone').text(data.sms.phone);
+							$('.step2').css('color','#9CCC65');
+							var number = 60;
+							var interval = setInterval(function () {
+								$('.second').text(number);
+								number--;
+								if (number < 0) {
+									clearInterval(interval);
+									$('.second').text();
+									$('.second-box').hide();
+									$('.resend').css('display', 'block');
+								}
+							}, 1000);
+							$('.resend').on('click', function () {
+								$(this).hide();
+								$('.second-box').show();
+								var number = 60;
+								var interval = setInterval(function () {
+									$('.second').text(number);
+									number--;
+									if (number < 0) {
+										clearInterval(interval);
+										$('.second-box').hide();
+										$('.resend').css('display', 'block');
+									}
+								}, 1000);
+								$.ajax({
+									method: 'POST',
+									url: '/password/phone',
+									ContentType: 'application/json',
+									headers: {
+										'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+											'content')
+									},
+									data: field,
+									success: function (data) {
+
+									}
+								});
+							});
+						} else {
+							$('.phone-form .help-block').empty().show();
+							for (let index = 0; index < data.length; index++) {
+								$('.phone-form .help-block').append("<p><i class='kticon'>&#xe6b9;</i><strong>" + data[index] + "</strong></p>");
+							}
+						}
+
+					}
+				});
+				return false;
+			});
+			form.on("submit(code-btn)", function (data) {
+				var field = data.field;
+				if(field.password.length < 6){
+					layer.msg('密码长度不能小于6位', {
+						icon: 2
+					});
+					return false;
+				}
+				if(field.password != field.confirmpassword){
+					layer.msg('两次输入的密码不一致', {
+						icon: 2
+					});
+					return false;
+				}
+				$(this).addClass('layui-btn-disabled');
+				$.ajax({
+					method: 'POST',
+					url: '/password/reset-phone',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: field,
+					success: function (data) {
+						if(data.success){
+							$('.code-form').hide();
+							$('.password-success').show();
+							$('.step3').css('color','#9CCC65');
+						}else{
+							$('.code-btn').removeClass('layui-btn-disabled');
 							layer.msg(data.msg, {
-								icon: 1
+								icon: 2
 							});
 						}
 					}
