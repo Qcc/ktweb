@@ -11,7 +11,7 @@ return [
     "GROUPS"              => [ # 分组，可设置多个不同分组，各自拥有独立配置
         "file" => [ # 新增分组请尽量使用video、audio等有意义的分组名
             "FILE_MAXSIZE"                 => 0, # 被允许的资源文件大小（MB），0为不限制
-            "FILE_EXTENSIONS"              => "", # 被允许的资源文件扩展名，空为不限制，多个值以逗号分隔
+            "FILE_EXTENSIONS"              => "doc,docx,xlsx,xls,pptx,ppt,pdf,rar,zip", # 被允许的资源文件扩展名，空为不限制，多个值以逗号分隔
             "MIDDLEWARE_PREPROCESS"        => ['web','auth'], # 上传预处理时的路由中间件
             "MIDDLEWARE_SAVE_CHUNK"        => ['web','auth'], # 上传文件分块时的路由中间件
             "MIDDLEWARE_DISPLAY"           => [], # 文件展示时的路由中间件

@@ -28,6 +28,9 @@ class RepliesController extends Controller
 		$reply->user_id = Auth::id();
 		$reply->topic_id = $request->topic_id;
 		$reply->save();
+		$topic = $reply->topic;
+		// 如果文章是置顶文章，更新缓存
+		updateTopCache($topic);
 		return redirect()->to($reply->topic->link(['#reply' . $reply->id]))->with('success', '回复成功！');
 	}
 

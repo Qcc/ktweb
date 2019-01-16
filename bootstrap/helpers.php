@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Redis;
+
 /**
  * 根据页面链接生成类名，自定义样式 function
  *
@@ -59,4 +61,23 @@ function cut_str($str,$sign,$number)
             return $array[$number];
         }
     }
+}
+
+/**
+ *  更新社区置顶文章缓存
+ *
+ * @return void
+ */
+function updateTopCache($topic)
+{
+    // 如果文章是置顶文章，更新缓存
+	if(Redis::exists('topic_'.$topic->category->id.'_'.$topic->id)){
+		// 缓存过期时间
+		$ttl = Redis::ttl('topic_'.$topic->category->id.'_'.$topic->id);
+		if($ttl < 0){
+			Redis::set('topic_'.$topic->category->id.'_'.$topic->id,serialize($topic));
+		}else{
+			Redis::setex('topic_'.$topic->category->id.'_'.$topic->id,$ttl,serialize($topic));
+		}
+	}
 }

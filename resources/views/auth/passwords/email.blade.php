@@ -9,7 +9,7 @@
                     <p>找回密码</p>
                 </div>
 
-                <div class="body">
+                <div class="body" >
 
                     <div class="mdui-tab reset-password-tab" mdui-tab>
                         <a href="#email-tab" class="mdui-ripple">邮箱找回</a>
@@ -59,7 +59,7 @@
                             </div>
                         </form>
                     </div>
-                    <div id="sms-tab" class="mdui-p-a-2">
+                    <div id="sms-tab" class="mdui-p-a-2 ">
                         <div class="progress-box">
                             <div>
                                 <div class="step step-bumber" style="color:#9CCC65"><i class="kticon">&#xe637;</i>

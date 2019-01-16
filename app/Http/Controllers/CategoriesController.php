@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class CategoriesController extends Controller
 {
@@ -18,10 +19,12 @@ class CategoriesController extends Controller
     public function show(Category $category, Request $request, Topic $topic)
     {
         //获取置顶文章
-        $tops = $topic->withOrder($request->order)
-                      ->where('topping', 1)
-                      ->where('category_id',$category->id)              
-                      ->get();
+        //获取置顶文章
+		$tops =  [];
+		$keys =  Redis::keys('topic_'.$category->id.'_*');
+		foreach ($keys as $key) {
+			array_push($tops,unserialize(Redis::get($key)));
+		}
         // 读取分类 ID  关联的话题， 并按照每20条分页
         $topics = $topic->withOrder($request->order)
                         ->where('category_id',$category->id)

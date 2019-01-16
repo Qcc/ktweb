@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="mdui-col-sm-8 mdui-col-xs-12">
-            <div class="edit-action-warp">
+            <div class="edit-action-warp" style="min-height: 350px;">
                 @if ($notifications->count())
 
                 <div class="notification-list">

@@ -54,7 +54,7 @@
                         
                         <div class="form-group title">
                             <input class="form-control" type="text" name="banner" value="{{ old('banner', $news->banner ) }}"
-                                placeholder="推荐轮播图（可选）" />
+                                placeholder="推荐轮播图1920*400 顶部菜单背景64px（可选）" />
                                 <a href="javascript:;" id="upload-banner">上传</a>
                         </div>
                         

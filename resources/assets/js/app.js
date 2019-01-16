@@ -352,7 +352,8 @@ $(document).ready(function () {
 				laydate = layui.laydate,
 				form = layui.form;
 			laydate.render({
-				elem: '#top_expired'
+				elem: '#top_expired',
+				type: 'datetime'
 			});
 			$('.club-report').on('click', function () {
 				var reportform = layer.open({
@@ -583,7 +584,7 @@ $(document).ready(function () {
 						if (data.status) {
 							$('.topic-topping').empty().append(
 									"<i class='kticon'>&#xe659;</i> 已置顶")
-								.attr('title', '取消文章精置顶').css('color', '#00C853').attr('topping', '1');
+								.attr('title', '取消文章置顶').css('color', '#00C853').attr('topping', '1');
 						} else {
 							$('.topic-topping').empty().append(
 									"<i class='kticon'>&#xe636;</i> 置顶")
@@ -754,7 +755,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请输入要添加的角色',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#roles-form")
 					});
 					rolesSubmit('/management/club/roleStore', relo_form);
@@ -862,7 +863,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改角色',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#roles-form")
 					});
 					//表单初始赋值
@@ -985,7 +986,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请选择要添加的权限',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#permission-form")
 					});
 					$.ajax({
@@ -1434,7 +1435,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请输入要添加的分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#club_form")
 					});
 					document.getElementById('club_form').reset();
@@ -1486,7 +1487,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '修改社区类目名称',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#club_form")
 					});
 
@@ -1531,7 +1532,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请输入要添加的分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#pro_solu_cus_form")
 					});
 					document.getElementById('pro_solu_cus_form').reset()
@@ -1549,7 +1550,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请选修改分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#pro_solu_cus_form")
 					});
 					//表单初始赋值
@@ -1575,7 +1576,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请输入要添加的分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#pro_solu_cus_form")
 					});
 					document.getElementById('pro_solu_cus_form').reset()
@@ -1593,7 +1594,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请选修改分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#pro_solu_cus_form")
 					});
 					//表单初始赋值
@@ -1619,7 +1620,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请输入要添加的分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#pro_solu_cus_form")
 					});
 					document.getElementById('pro_solu_cus_form').reset()
@@ -1637,7 +1638,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请选修改分类',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#pro_solu_cus_form")
 					});
 					//表单初始赋值
@@ -1663,7 +1664,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请输入要添加城市名称',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#seo_form")
 					});
 					document.getElementById('seo_form').reset();
@@ -1681,7 +1682,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请选修城市',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#seo_form")
 					});
 					//表单初始赋值
@@ -1706,7 +1707,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改权限',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#file_form")
 					});
 					//表单初始赋值
@@ -1877,7 +1878,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '添加广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#advertising-form")
 					});
 					advertisingSubmit('/management/club/settings/store', advertising_form, 'add');
@@ -1916,7 +1917,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#advertising-form")
 					});
 					//表单初始赋值
@@ -2008,7 +2009,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '添加广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#clubbanner-form")
 					});
 					clubbannerSubmit('/management/club/recommend/store', clubbanner_form, 'add');
@@ -2047,7 +2048,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#clubbanner-form")
 					});
 					//表单初始赋值
@@ -2145,7 +2146,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '添加广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#homebanner-form")
 					});
 					homebannerSubmit('/management/club/web_recommend/store', homebanner_form, 'add');
@@ -2184,7 +2185,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#homebanner-form")
 					});
 					//表单初始赋值
@@ -2258,7 +2259,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '添加广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#solutionbanner-form")
 					});
 					solutionbannerSubmit('/management/club/solution/store', solutionbanner_form, 'add');
@@ -2297,7 +2298,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#solutionbanner-form")
 					});
 					//表单初始赋值
@@ -2356,7 +2357,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '添加登录页广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#loginbanner-form")
 					});
 					loginbannerSubmit('/management/club/login/store', loginbanner_form, 'add');
@@ -2395,7 +2396,7 @@ $(document).ready(function () {
 						anim: 2,
 						title: '请修改广告',
 						area: '500px',
-						shadeClose: true, //开启遮罩关闭
+						// shadeClose: true, //开启遮罩关闭
 						content: $("#loginbanner-form")
 					});
 					//表单初始赋值
@@ -3124,6 +3125,7 @@ $(document).ready(function () {
 				'|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
 				'indent', 'outdent', 'alignment'
 			],
+			a: ['href', 'target','class'],
 			cleanPaste: true,
 			upload: {
 				url: "{{ route('topics.upload_image') }}",
@@ -3201,7 +3203,33 @@ $(document).ready(function () {
 					$('.upload-file-sucess').hide();
 					// 插入附件到富文本输入框
 					var value = editor.getValue();
-					editor.setValue(value + "<a href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "</a> &nbsp;");
+					var icon = ''
+					switch (file.suffix) {
+						case 'doc':
+						case 'docx':
+							icon = 'doc';
+							break;
+						case 'ppt':
+						case 'pptx':
+							icon = 'ppt';
+							break;
+						case 'xsl':
+						case 'xslx':
+							icon = 'xsl';
+							break;
+						case 'pdf':
+							icon = 'pdf';
+							break;
+						case 'rar':
+						case 'zip':
+							icon = 'rar';
+							break;
+						default:
+							icon = 'file';
+							break;
+					}
+					var link = "<a class='annex'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "</a>";
+					editor.setValue(value + link);
 					editor.focus();
 
 					return false;
@@ -3246,7 +3274,7 @@ $(document).ready(function () {
 							$('.phone-form').hide();
 							$('.code-form').show();
 							$('.telphone').text(data.sms.phone);
-							$('.step2').css('color','#9CCC65');
+							$('.step2').css('color', '#9CCC65');
 							var number = 60;
 							var interval = setInterval(function () {
 								$('.second').text(number);
@@ -3298,13 +3326,13 @@ $(document).ready(function () {
 			});
 			form.on("submit(code-btn)", function (data) {
 				var field = data.field;
-				if(field.password.length < 6){
+				if (field.password.length < 6) {
 					layer.msg('密码长度不能小于6位', {
 						icon: 2
 					});
 					return false;
 				}
-				if(field.password != field.confirmpassword){
+				if (field.password != field.confirmpassword) {
 					layer.msg('两次输入的密码不一致', {
 						icon: 2
 					});
@@ -3321,11 +3349,11 @@ $(document).ready(function () {
 					},
 					data: field,
 					success: function (data) {
-						if(data.success){
+						if (data.success) {
 							$('.code-form').hide();
 							$('.password-success').show();
-							$('.step3').css('color','#9CCC65');
-						}else{
+							$('.step3').css('color', '#9CCC65');
+						} else {
 							$('.code-btn').removeClass('layui-btn-disabled');
 							layer.msg(data.msg, {
 								icon: 2
@@ -3335,6 +3363,11 @@ $(document).ready(function () {
 				});
 				return false;
 			});
+		});
+	}
+	if ($('password-reset-page').length == 1) {
+		layui.use(['layer', 'form'], function () {
+			var form = layui.form;
 		});
 	}
 });

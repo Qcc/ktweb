@@ -1954,7 +1954,7 @@ a:active {
 
 .topexpired-warp {
     display: none;
-    width: 160px;
+    width: 200px;
     height: 56px;
     padding: 10px;
     position: absolute;
@@ -1966,7 +1966,7 @@ a:active {
 }
 
 .topexpired-warp input {
-    width: 90px;
+    width: 132px;
     height: 34px;
     border: 1px solid #a2a2a2;
 }
@@ -4301,6 +4301,9 @@ a:active {
     text-align: center;
 }
 
+.register-page .panel-default {
+    margin: 100px auto 20px;
+}
 /* 大于600px宽度 */
 @media screen and (min-width: 600px) {
     .registry-body {
@@ -4320,6 +4323,7 @@ a:active {
         margin: 70px auto 20px;
     }
 }
+
 
 .smscode-success-icon,
 .captcha-success-icon {
@@ -4341,6 +4345,7 @@ a:active {
 }
 
 .register-page .ktm-logo,
+.password-reset-page .ktm-logo,
 .login-page .ktm-logo,
 .password-request-page .ktm-logo {
     background-image: url(/images/logo-blue.png);
@@ -4359,6 +4364,7 @@ a:active {
     float: right;
 }
 
+.password-reset-page .kt-nav-header .kt-nav-background,
 .login-page .kt-nav-header .kt-nav-background,
 .password-request-page .kt-nav-header .kt-nav-background {
     background: rgba(255, 255, 255, 0.9) !important;
@@ -4369,6 +4375,9 @@ a:active {
 }
 
 .password-request-page .kt-navigetion-sections {
+    color: #333;
+}
+.password-reset-page .kt-navigetion-sections {
     color: #333;
 }
 
@@ -4430,6 +4439,9 @@ a:active {
 .login-footer {
     margin-top: 30px;
 }
+.login-page .login-title {
+    font-size: 30px;
+}
 
 /* 大于1024px宽度 */
 @media screen and (min-width: 1024px) {}
@@ -4437,10 +4449,6 @@ a:active {
 /* 小于600px宽度 */
 @media screen and (max-width: 600px) {
     .login-page .login-form {
-        right: 0px;
-    }
-
-    .login-form {
         padding: 0;
         position: relative;
         right: 0px;
@@ -4512,12 +4520,44 @@ a:active {
     border-bottom: 1px solid #e2e2e2;
 }
 
-.reset-box .tab-content {
-    margin: 20px auto 80px;
+.reset-box .body .layui-form{
+    margin: 50px auto 180px;
     width: 350px;
+}
+ 
+/* 小于500px宽度 */
+@media screen and (max-width: 500px) {
+    .reset-box .body .layui-form{
+        margin: 50px auto 120px;
+        width: 100%;
+    }
+    .reset-box .progress-box .step {
+        width: auto;
+        height: 40px;
+    }
+    .reset-box .progress-box .step-arrow i {
+        font-size: 13px;
+        line-height: 40px;
+    }
+    
+    .reset-box .progress-box .step i {
+        margin: 0px 10px;
+    }
+    .reset-box .progress-box .step p {
+        font-size: 12px;
+    }
+    .reset-box .progress-box .step-bumber i {
+        font-size: 20px;
+    }
+    .reset-box .body .phone-form, .reset-box .body .code-form{
+        width: 100%;
+    }
 }
 
 .reset-box .tab-content .layui-input-block {
+    margin: 0;
+}
+.reset-box .layui-form .layui-input-block {
     margin: 0;
 }
 
@@ -4632,4 +4672,27 @@ a:active {
 .password-success>p {
     color: #a2a2a2;
     margin: 20px 0;
+}
+.topics-show-page .annex{
+    background-position: left;
+    padding-left: 35px;
+    margin: 10px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+.topics-show-page .doc{
+    background-image: url(/images/doc.png)
+}
+.topics-show-page .xls{
+    background-image: url(/images/xls.png)
+}
+.topics-show-page .ppt{
+    background-image: url(/images/ppt.png)
+}
+.topics-show-page .pdf{
+    background-image: url(/images/pdf.png)
+}
+.topics-show-page .rar{
+    background-image: url(/images/rar.png)
 }

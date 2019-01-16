@@ -57,6 +57,7 @@ class FollowersController extends Controller
             $data['result'] = false;
             $data['msg'] = '取消文章关注成功';
         }
+        
         return $data;
     }
     /** 点赞 取消点赞 文章 */
@@ -92,6 +93,9 @@ class FollowersController extends Controller
             $data['status'] = false;
             $data['msg'] = '取消用户点赞成功';
         }
+        $topic->timestamps = true;
+        // 如果文章是置顶文章，更新缓存
+		updateTopCache($topic);
         return $data;
     }
     /** 点赞 取消点赞 回复 */

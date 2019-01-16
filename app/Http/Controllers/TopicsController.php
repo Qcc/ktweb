@@ -12,6 +12,8 @@ use Illuminate\Session\Store as Session;
 use App\Handlers\ImageUploadHandler;
 use App\Notifications\ReportNotice;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Log;
 use Auth;
 
 class TopicsController extends Controller
@@ -46,7 +48,11 @@ class TopicsController extends Controller
 			return \DB::table('settings')->where('key','side_advertising')->get();
         });
 		//获取置顶文章
-		$tops = $topic->withOrder($request->order)->where('topping', 1)->get();
+		$tops =  [];
+		$keys =  Redis::keys('topic_*');
+		foreach ($keys as $key) {
+			array_push($tops,unserialize(Redis::get($key)));
+		}
 		// 分页获取20条记录。默认获取15条
 		$topics = $topic->withOrder($request->order)->paginate(20);
 
@@ -74,6 +80,12 @@ class TopicsController extends Controller
 			$this->session->put('topic_'.$topic->id,$topic->id);
 			$topic->increment('view_count');
 			$topic->timestamps = true;
+			// 如果文章是置顶文章，更新缓存
+			updateTopCache($topic);
+		}
+		// 判断文章是否是置顶文章
+		if(Redis::exists('topic_'.$topic->category->id.'_'.$topic->id)){
+			$topic->topping = true;
 		}
 		$topics = $topic->user->topics()->with('category')->recent()->paginate(5);
 		$advertisings = Cache::rememberForever('side_advertising', function (){
@@ -124,15 +136,19 @@ class TopicsController extends Controller
 	{
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
-
+		// 如果文章是置顶文章，更新缓存
+		updateTopCache($topic);
 		return redirect()->to($topic->link())->with('success', '话题更新成功！');
 	}
 
 	public function destroy(Topic $topic)
 	{
 		$this->authorize('destroy', $topic);
+		// 如果文章是置顶文章，删除缓存
+		if(Redis::exists('topic_'.$topic->category->id.'_'.$topic->id)){
+			Redis::del('topic_'.$topic->category->id.'_'.$topic->id);
+		}
 		$topic->delete();
-
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
 	}
 
@@ -193,9 +209,11 @@ class TopicsController extends Controller
 				$data['status'] = true;
 				$data['msg'] = '设置精华成功!';
 			}
+			$topic->timestamps = true;
+			// 如果文章是置顶文章，更新缓存
+			updateTopCache($topic);
 		}
 		return $data;
-		
 	}
 	/**
 	 * 将文章设置置顶
@@ -207,27 +225,34 @@ class TopicsController extends Controller
 	public function topping(Request $request)
 	{
 		$data = ['result' => false,'status' => false,'top_expired' => '','msg' => '设置置顶失败!'];
+		$topic = Topic::find($request->id);
 		if($request->id){
-			$topic = Topic::find($request->id);
 			$this->authorize('manage', $topic);
-			// 设置置顶时禁止更新updated_at字段
-			$topic->timestamps = false;
-			if($topic->topping){
-				$topic->topping = false;
-				$topic->top_expired = null;
-				$topic->save();
+			if(Redis::exists('topic_'.$topic->category->id.'_'.$topic->id)){
+				Redis::del('topic_'.$topic->category->id.'_'.$topic->id);
 				$data['result'] = true;
 				$data['status'] = false;
 				$data['msg'] = '取消置顶成功!';
 			}else{
-				$topic->topping = true;
-				$topic->topping_user = Auth::user()->nickname;
-				$topic->top_expired = $request->expired;
-				$topic->save();
-				$data['result'] = true;
-				$data['status'] = true;
-				$data['top_expired'] = $request->expired;
-				$data['msg'] = '设置置顶成功!';
+				if($request->expired){
+					$expired = strtotime($request->expired);
+					$now = time();
+					if(($expired - $now) > 0){
+						$result = Redis::setex('topic_'.$topic->category->id.'_'.$topic->id, ($expired - $now), serialize($topic));
+						$data['result'] = true;
+						$data['status'] = true;
+						$data['msg'] = '设置置顶成功!';
+					}else{
+						$data['result'] = true;
+						$data['status'] = false;
+						$data['msg'] = '置顶有效期不能小于当前时间!';
+					}
+				}else{
+					$result = Redis::set('topic_'.$topic->category->id.'_'.$topic->id, serialize($topic));
+					$data['result'] = true;
+					$data['status'] = true;
+					$data['msg'] = '设置置顶成功!';
+				}
 			}
 		}
 		return $data;

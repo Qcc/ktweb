@@ -61,5 +61,8 @@
     .solution-show-page .kt-nav-header .kt-navigetion-sections {
         color: #333;
     }
+    .solution-show-page .ktm-logo {
+    background-image: url(/images/logo-blue.png);
+    }
 </style>
 @stop
