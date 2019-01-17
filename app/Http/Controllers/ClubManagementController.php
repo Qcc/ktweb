@@ -270,8 +270,12 @@ class ClubManagementController extends Controller
      *
      * @return void
      */
-    public function users(){
-        $users = User::paginate(8);
+    public function users(Request $request, User $user){
+        if($request->phone){
+            $users = User::where('phone',$request->phone)->paginate(1);
+        }else{
+            $users = User::paginate(8);
+        }
         return view('management.users',compact('users'));
     }
     /**

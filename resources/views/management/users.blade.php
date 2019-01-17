@@ -12,6 +12,17 @@
         </div>
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
+                <form class="layui-form" method="get" action="{{ route('admin.club.users') }}">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <input type="text" name="phone" lay-verify="required|phone" autocomplete="off" placeholder="请输入手机号"
+                                class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" lay-submit="" lay-filter="search-user"><i class="kticon">&#xe60e;</i> 查找用户</button>
+                        </div>
+                    </div>
+                </form>
                 <table lay-filter="users-table" id="users-table">
                     <thead>
                         <tr>
@@ -48,7 +59,7 @@
                 </table>
             </div>
             <div class="pagination-box">
-                {!! $users->appends(Request::except('page'))->render() !!}
+                    {!! $users->appends(Request::except('page'))->render() !!}
             </div>
         </div>
     </div>

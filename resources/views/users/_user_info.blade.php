@@ -9,6 +9,7 @@
             <div class="usercard-name">
                 <div class="name mdui-typo-title-opacity">
                     {{ $user->nickname }}
+                    @include('users._permission',$user)
                 </div>
                 <div class="mdui-typo-body-1-opacity mdui-hidden-sm-down">
                     {{ $user->introduction }}

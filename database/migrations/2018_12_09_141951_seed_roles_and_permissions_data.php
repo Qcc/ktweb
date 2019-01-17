@@ -30,6 +30,9 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name' => 'upload_files','cn_name'=>'上传附件']);
         Permission::create(['name' => 'revice_business','cn_name'=>'商机收发']);
         Permission::create(['name' => 'manage_report','cn_name'=>'举报管理']);
+        Permission::create(['name' => 'employee_identity','cn_name'=>'员工身份']);
+        Permission::create(['name' => 'customer_identity','cn_name'=>'客户身份']);
+        Permission::create(['name' => 'parnter_identity','cn_name'=>'代理商身份']);
 
         // 创建站长角色，并赋予权限
         $founder = Role::create(['name' => 'Webmaster','cn_name'=>'超级管理员']);
@@ -41,7 +44,17 @@ class SeedRolesAndPermissionsData extends Migration
         $founder->givePermissionTo('revice_business');
         $founder->givePermissionTo('manage_report');
         $founder->givePermissionTo('upload_files');
+        $founder->givePermissionTo('employee_identity');
 
+        // 创建员工角色，并赋予权限
+        $employee = Role::create(['name' => 'Employee','cn_name'=>'员工']);
+        $employee->givePermissionTo('employee_identity');
+        // 创建客户角色，并赋予权限
+        $customer = Role::create(['name' => 'Customer','cn_name'=>'客户']);
+        $customer->givePermissionTo('customer_identity');
+        // 创建代理商角色，并赋予权限
+        $parnter = Role::create(['name' => 'Parnter','cn_name'=>'代理商']);
+        $parnter->givePermissionTo('parnter_identity');
     }
 
     /**

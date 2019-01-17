@@ -4677,7 +4677,7 @@ a:active {
     background-position: left;
     padding-left: 35px;
     margin: 10px;
-    display: block;
+    display: table;
     background-repeat: no-repeat;
     background-size: 30px;
 }
@@ -4695,4 +4695,10 @@ a:active {
 }
 .topics-show-page .rar{
     background-image: url(/images/rar.png)
+}
+/* 身份铭牌 */
+.identity{
+    display: inline;
+    margin: 0 5px;
+    cursor: pointer;
 }

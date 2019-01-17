@@ -3125,7 +3125,12 @@ $(document).ready(function () {
 				'|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|',
 				'indent', 'outdent', 'alignment'
 			],
-			a: ['href', 'target','class'],
+			allowedAttributes: {
+				img: ['src', 'alt', 'width', 'height', 'data-non-image'],
+				a: ['href', 'target','class'],
+				font: ['color'],
+				code: ['class'],
+			},
 			cleanPaste: true,
 			upload: {
 				url: "{{ route('topics.upload_image') }}",
@@ -3213,9 +3218,9 @@ $(document).ready(function () {
 						case 'pptx':
 							icon = 'ppt';
 							break;
-						case 'xsl':
-						case 'xslx':
-							icon = 'xsl';
+						case 'xls':
+						case 'xlsx':
+							icon = 'xls';
 							break;
 						case 'pdf':
 							icon = 'pdf';
@@ -3228,7 +3233,7 @@ $(document).ready(function () {
 							icon = 'file';
 							break;
 					}
-					var link = "<a class='annex'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "</a>";
+					var link = "<a class='annex "+ icon +"'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "</a>";
 					editor.setValue(value + link);
 					editor.focus();
 
