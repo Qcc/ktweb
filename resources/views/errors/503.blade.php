@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <meta name="description" content="深圳市沟通科技有限公司官方网站" />
-    <title>找不到访问的页面 - 深圳市沟通科技有限公司</title>
+    <title>服务器端错误 - 深圳市沟通科技有限公司</title>
     <link rel="stylesheet" href="{{ asset('layui/css/layui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mdui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
@@ -278,7 +278,7 @@
     <div class="page404">
         <div class="without-404-box">
             <div class="title">
-                <h3>对不起，您访问的页面不存在或资源已被删除!</h3>
+                <h3>对不起，服务器端错误，请稍后再试!</h3>
             </div>
             <div class="back">
                 <a href="javascript:;" onClick="javascript :history.back(-1);">点击返回</a>

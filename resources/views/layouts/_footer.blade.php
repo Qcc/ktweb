@@ -4,35 +4,35 @@
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
         <h4 class="mdui-text-color-white">关于沟通</h4>
         <ul>
-          <li>联系我们</li>
-          <li>沟通动态</li>
-          <li>管理资讯</li>
+          <li><a href="{{ route('columns.show',1)}}">沟通动态</a></li>
+          <li><a href="{{ route('columns.show',2)}}">行业资讯</a></li>
+          <li><a href="{{ route('columns.show',3)}}">管理智库</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
-        <h4 class="mdui-text-color-white">产品中心</h4>
+        <h4 class="mdui-text-color-white">客户案例</h4>
         <ul>
-          <li>试用和下载</li>
-          <li>帮助与支持</li>
-          <li>资源中心</li>
+            <li><a href="{{ route('customer.index').'?order=product' }}">产品案例</a></li>
+            <li><a href="{{ route('customer.index').'?order=industry' }}">行业案例</a></li>
+            <li><a href="{{ route('customer.index').'?order=profession' }}">具体业务案例</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
         <h4 class="mdui-text-color-white">解决方案</h4>
         <ul>
-          <li>应用虚拟化</li>
-          <li>财务解决方案</li>
-          <li>生产解决方案</li>
-          <li>供应链解决方案</li>
+          <li><a href="{{ route('solutions.show',1) }}">制造业</a></li>
+          <li><a href="{{ route('solutions.show',6) }}">服务行业</a></li>
+          <li><a href="{{ route('solutions.show',11) }}">零售业</a></li>
+          <li><a href="{{ route('solutions.show',13) }}">政府事业单位</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo xhs_a_hover_none">
         <h4 class="mdui-text-color-white">产品社区</h4>
         <ul>
-          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">虚拟化</a></li>
-          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">金蝶云</a></li>
-          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">精斗云</a></li>
-          <li><a href="http://ktweb.test/topics" style="color: #9e9e9e;">金蝶ERP</a></li>
+          <li><a href="{{ route('categories.show',1) }}">虚拟化</a></li>
+          <li><a href="{{ route('categories.show',2) }}"> 金蝶云</a></li>
+          <li><a href="{{ route('categories.show',3) }}"> 精斗云</a></li>
+          <li><a href="{{ route('categories.show',4) }}"> 金蝶ERP</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">

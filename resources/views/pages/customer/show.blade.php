@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('title',$customer->title)
+@section('description', $customer->excerpt)
+@section('keywords', $customer->keywords)
 
 @section('content')
 <div class="mdui-container" style="margin-top:70px;">

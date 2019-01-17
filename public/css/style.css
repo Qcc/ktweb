@@ -627,9 +627,12 @@ a:active {
     width: 1170px;
     margin: 0 auto;
 }
+.footer-sections ul i>a{
+    color: #9e9e9e;
+}
 
 .copyright {
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 @media screen and (max-width:1200px) {
@@ -650,9 +653,14 @@ a:active {
     letter-spacing: 0;
 }
 
-.footer-sections .mdui-typo ul li {
-    color: #9e9e9e;
+.footer-sections div ul li a{
+    color: #9e9e9e!important;
+    text-decoration:none;
 }
+.footer-sections div ul li a:before{
+    background-color:#9e9e9e!important;;
+}
+
 
 
 /* 首页轮播图 */
@@ -4476,7 +4484,7 @@ a:active {
     }
 }
 
-.-page .without-404-box {
+.page404 .without-404-box {
     width: 100%;
     height: 768px;
     background-position: center;

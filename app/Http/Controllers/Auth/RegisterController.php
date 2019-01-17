@@ -76,11 +76,27 @@ class RegisterController extends Controller
         // 注册成功后删除会话中的验证码，修改captcha包中ajax多次请求验证失败的问题
         $this->session->remove('captcha');
         $this->session->remove('smscode');
-
+        // 提供13张默认头像
+        $avatars = [
+            'avatar001.png',
+            'avatar002.png',
+            'avatar003.png',
+            'avatar004.png',
+            'avatar005.png',
+            'avatar006.png',
+            'avatar007.png',
+            'avatar008.png',
+            'avatar009.png',
+            'avatar010.png',
+            'avatar011.png',
+            'avatar012.png',
+            'avatar013.png',
+        ];
+        $avatar = array_rand($avatars);
         return User::create([
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
-            'avatar' => '/images/avatar.png',
+            'avatar' => '/images/avatar/'.$avatars[$avatar],
         ]);
         
     }
