@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Session\Store as Session;
 use Illuminate\Http\Response;
 use App\Models\User;
+use Overtrue\EasySms\EasySms;
 
 class CaptchaController extends Controller
 {
@@ -92,12 +93,39 @@ class CaptchaController extends Controller
         if($phone === null){
             return [];
         }
-        $bag = '';
-        for($i = 0; $i < $this->length; $i++)
-        {
-            $bag .= rand(0, 9);
-        }
+        $bag = mt_rand(10000,99999);
         $timestamp = time();
+        $config = [
+            // HTTP 请求的超时时间（秒）
+            'timeout' => 5.0,
+            // 默认发送配置
+            'default' => [
+                // 网关调用策略，默认：顺序调用
+                'strategy' => \Overtrue\EasySms\Strategies\OrderStrategy::class,
+                // 默认可用的发送网关
+                'gateways' => ['aliyun'],
+            ],
+            // 可用的网关配置
+            'gateways' => [
+                'errorlog' => [
+                    'file' => '/tmp/easy-sms.log',
+                ],
+                'aliyun' => [
+                    'access_key_id' => env('SMS_ACCESS_KEY_ID'),
+                    'access_key_secret' => env('SMS_ACCESS_KEY_SECRET'),
+                    'sign_name' => env('SMS_SIGN_NAME'),
+                ],
+            ],
+        ];
+        $easySms = new EasySms($config);
+
+        $easySms->send($phone, [
+            'content'  => '您的验证码为:'.$bag,
+            'template' => 'SMS_001',
+            'data' => [
+                'code' => $bag
+            ],
+        ]);
         //todo: 这里添加阿里云发送短信服务api
         $this->session->put('smscode', [
             'timestamp' => $timestamp,

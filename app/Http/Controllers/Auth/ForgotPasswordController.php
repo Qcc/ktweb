@@ -132,11 +132,7 @@ class ForgotPasswordController extends Controller
         if($phone === null){
             return [];
         }
-        $bag = '';
-        for($i = 0; $i < $this->length; $i++)
-        {
-            $bag .= rand(0, 9);
-        }
+        $bag = mt_rand(10000,99999);
         $timestamp = time();
         //todo: 这里添加阿里云发送短信服务api
         $this->session->put('smscode', [
