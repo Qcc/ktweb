@@ -15,7 +15,7 @@
     @yield('styles')
     
 </head>
-<body class="mdui-theme-primary-pink mdui-theme-accent-pink">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo">
     <div class="{{ route_class() }}-page">
         @include('layouts._club_header')
         <div class="mdui-container-full">

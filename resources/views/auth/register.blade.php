@@ -11,7 +11,7 @@
                 <div class="form-group form-group-phone">
                     <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('phone') ? ' mdui-textfield-invalid-html5' : '' }}">
                         <label class="mdui-textfield-label">手机号码</label>
-                        <input id="phone" class="mdui-textfield-input" type="text" pattern="^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$"
+                        <input id="phone" class="mdui-textfield-input" type="text" pattern="^(1[0-9])\d{9}$"
                             name="phone" value="{{ old('phone') }}" required />
                         @if ($errors->has('phone'))
                         <div class="mdui-textfield-error">{{ $errors->first('phone') }}</div>

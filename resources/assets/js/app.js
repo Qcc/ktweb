@@ -3127,7 +3127,7 @@ $(document).ready(function () {
 			],
 			allowedAttributes: {
 				img: ['src', 'alt', 'width', 'height', 'data-non-image'],
-				a: ['href', 'target','class'],
+				a: ['href', 'target', 'class','title'],
 				font: ['color'],
 				code: ['class'],
 			},
@@ -3233,7 +3233,11 @@ $(document).ready(function () {
 							icon = 'file';
 							break;
 					}
-					var link = "<a class='annex "+ icon +"'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "</a>";
+					var title = '点击下载该文件';
+					if(file.logined == 'true'){
+						title = '该文件需要登录后才能下载';
+					}
+					var link = "<a title="+ title +" class='annex " + icon + "'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix +"("+ byteConvert(file.size) + ")</a>";
 					editor.setValue(value + link);
 					editor.focus();
 
@@ -3375,4 +3379,22 @@ $(document).ready(function () {
 			var form = layui.form;
 		});
 	}
+	// 字节单位换算
+	var byteConvert = function (bytes) {
+		if (isNaN(bytes)) {
+			return '';
+		}
+		var symbols = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		var exp = Math.floor(Math.log(bytes) / Math.log(2));
+		if (exp < 1) {
+			exp = 0;
+		}
+		var i = Math.floor(exp / 10);
+		bytes = bytes / Math.pow(2, 10 * i);
+
+		if (bytes.toString().length > bytes.toFixed(2).toString().length) {
+			bytes = bytes.toFixed(2);
+		}
+		return bytes + ' ' + symbols[i];
+	};
 });

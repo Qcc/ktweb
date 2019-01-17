@@ -27,6 +27,7 @@ class CheckDownload
         if($file->logined && !Auth::check()){
             return redirect('login');
         }
+        $file->increment('download_count',1);
         return $next($request);
     }
 }

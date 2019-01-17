@@ -2874,11 +2874,11 @@ a:active {
 }
 
 .ghostbtn {
-    border: 1px solid #ff4081;
+    border: 1px solid #536dfe;
 }
 
 .ghostbtn:hover {
-    background: #ff4081;
+    background: #536dfe;
     color: #fff;
 }
 
@@ -3015,8 +3015,8 @@ a:active {
 }
 
 #solutionSwiper .info .btn:hover {
-    background: #ff4081;
-    border: 2px solid #ff4081;
+    background: #536dfe;
+    border: 2px solid #536dfe;
     color: #fff;
 }
 

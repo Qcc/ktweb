@@ -21,6 +21,7 @@ class CreateFilesTable extends Migration
             $table->string('save_name')->comment('保存名称');
             $table->string('path')->comment('路径');
             $table->string('suffix')->comment('后缀');
+            $table->integer('download_count')->default(0)->comment('下载次数');
             $table->boolean('logined')->default(false)->comment('下载权限');
             $table->timestamps();
         });
