@@ -368,25 +368,6 @@ a:active {
 }
 
 
-/* 用户中心菜单样式 */
-
-.mdui-menu-cascade {
-    width: 150px;
-}
-
-
-/* 头像 */
-
-.avatar {
-    width: 26px;
-    height: 26px;
-    border: 2px solid #fff;
-    border-radius: 15px;
-    vertical-align: middle;
-    margin-right: 3px;
-}
-
-
 /* 产品详情导航 */
 
 .kt-menu-panl {
@@ -1434,7 +1415,6 @@ a:active {
     margin-right: 3px;
 }
 
-
 /* 用户中心菜单样式 */
 
 .mdui-menu-cascade {
@@ -2262,7 +2242,6 @@ a:active {
     text-align: center;
 }
 
-.useraction-nav .nav-tabs {}
 
 .useraction-nav .nav-tabs li a {
     display: block;

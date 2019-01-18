@@ -18,7 +18,7 @@ class ReplysTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $replys = factory(Reply::class)
-                    ->times(500) //生成500条回复数据
+                    ->times(1) //生成500条回复数据
                     ->make()
                     ->each(function ($reply, $index) 
                     use ($user_ids, $topic_ids, $faker)

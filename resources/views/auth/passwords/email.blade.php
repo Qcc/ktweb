@@ -117,7 +117,7 @@
                                 <div class="layui-form-item">
                                     <div class="layui-input-block">
                                         <input type="password" name="password" lay-verify="required" autocomplete="off"
-                                            placeholder="请输入密码不小于6位" value="{{ old('password') }}" class="layui-input {{ $errors->has('password') ? 'layui-form-danger':'' }}">
+                                            placeholder="请输入新密码不小于6位" value="{{ old('password') }}" class="layui-input {{ $errors->has('password') ? 'layui-form-danger':'' }}">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">

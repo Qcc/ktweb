@@ -193,4 +193,5 @@
   @include('pages._news',['kouton'=>$kouton,'industry'=>$industry,'think'=>$think])
 </section>
 @include('pages._contact')
+{{ cache('key') }}11
 @stop

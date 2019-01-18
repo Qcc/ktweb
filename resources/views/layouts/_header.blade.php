@@ -133,7 +133,7 @@
             <tel>400-0755-799</tel> , <tel>(0755) 2652-5890</tel>
           </div>
           <div class="kt-navigetion-sections">
-            <a class="mdui-btn mdui-color-theme-accent mdui-ripple btn-lg" href=""><i class="kticon">&#xe63e;</i>
+            <a class="mdui-btn mdui-color-theme-accent mdui-ripple btn-lg" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{ cache('online_service')??'100934166' }}&site=qq&menu=yes"><i class="kticon">&#xe63e;</i>
               联系销售顾问</a>
           </div>
           <div class="kt-navigetion-sections-tips ">
@@ -192,7 +192,7 @@
             <tel>400-0755-799</tel> , <tel>(0755) 2652-5890</tel>
           </div>
           <div class="kt-navigetion-sections">
-            <a class="mdui-btn mdui-color-theme-accent mdui-ripple btn-lg" href=""><i class="kticon">&#xe63e;</i>
+            <a class="mdui-btn mdui-color-theme-accent mdui-ripple btn-lg" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{ cache('online_service')??'100934166' }}&site=qq&menu=yes"><i class="kticon">&#xe63e;</i>
               联系销售顾问</a>
           </div>
           <div class="kt-navigetion-sections-tips ">

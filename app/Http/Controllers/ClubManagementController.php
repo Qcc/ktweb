@@ -460,5 +460,12 @@ class ClubManagementController extends Controller
         Cache::forget('side_advertising');
         return $res;
     }
+    // QQ客服
+    public function onlineService(Request $request)
+    {
+        Cache::forever('online_service', $request->qq);
+        //反序列号 得到广告列表
+        return back()->with('success', '客服QQ保存成功');
+    }
      
 }

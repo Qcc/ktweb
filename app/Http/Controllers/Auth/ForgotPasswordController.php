@@ -10,6 +10,7 @@ use Validator;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Overtrue\EasySms\EasySms;
 
 class ForgotPasswordController extends Controller
 {
@@ -34,13 +35,13 @@ class ForgotPasswordController extends Controller
       *
       * @var [type]
       */
-    protected $length;
+    protected $easySms;
 
-    public function __construct(Session $session, $length = 5)
+    public function __construct(Session $session, EasySms $easySms)
     {
         $this->middleware('guest');
         $this->session = $session;
-        $this->length = $length;
+        $this->easySms = $easySms;
     }
     
 
@@ -73,9 +74,27 @@ class ForgotPasswordController extends Controller
         $validator = Validator::make($request->input(), $rules,$messages);
         $res = ['success'=>false,'msg'=>'验证码不正确'];
         if (!$validator->fails()){
-            $res = ['success'=>true,'msg'=>'短信已发送!'];   
-            //发送短信
-            $res['sms'] = $this->generate($request->phone);
+            $phone = $request->phone;  
+            // 生成5位随机数，左侧补0
+            $code = str_pad(random_int(1, 99999), 5, 0, STR_PAD_LEFT);
+            try {
+                $result = $this->easySms->send($phone, [
+                    'template' => 'SMS_1057',
+                    'data' => [
+                        'code' => $code
+                    ],
+                ]);
+            } catch (Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
+                $response = $exception->getExceptions();
+                return response()->json($response);
+            }
+            $timestamp = time();
+            $this->session->put('smscode', [
+                'timestamp' => $timestamp,
+                'value' => $code,
+                'phone' => $phone
+            ]);
+            $res = ['success'=>true,'msg'=>'短信已发送!','phone' => $phone,];   
         }else{
             $res = $validator->errors()->all();
         }
@@ -91,8 +110,9 @@ class ForgotPasswordController extends Controller
     public function resetByPhone(Request $request, User $user)
     {
         $res = ['success' => false, 'msg'=>'验证码不正确，请重新输入！'];
-        if($this->check($request->code)){
-            $phone = $this->session->get('smscode.phone');
+        $code = $this->session->get('smscode.value');
+        $phone = $this->session->get('smscode.phone');
+        if($code == $request->code){
             $user = User::where('phone',$phone)->first();
             if($user){
                 $user->password = Hash::make($request->password);
@@ -107,44 +127,4 @@ class ForgotPasswordController extends Controller
         return $res;
     }
 
-    /**
-     * 校验收到的值与会话中存储的是否一致
-     *
-     * @param [type] $value
-     * @return void
-     */
-    protected function check($value){
-        if ( ! $this->session->has('smscode'))
-		{
-			return false;
-		}
-		$key = $this->session->get('smscode.value');
-		return $key === $value;
-    }
-    /**
-     * 生成一个随机5位数的短信验证码
-     * 调用阿里云服务发送短信
-     * 并存储到sessions中
-     *
-     * @return void
-     */
-    protected function generate($phone){
-        if($phone === null){
-            return [];
-        }
-        $bag = mt_rand(10000,99999);
-        $timestamp = time();
-        //todo: 这里添加阿里云发送短信服务api
-        $this->session->put('smscode', [
-            'timestamp' => $timestamp,
-            'value' => $bag,
-            'phone' => $phone
-        ]);
-
-        return [
-        	'value'     => $bag,
-            'timestamp' => $timestamp,
-            'phone' => $phone
-        ];
-    }
 }

@@ -2935,7 +2935,7 @@ $(document).ready(function () {
 		submit.on('click', function (event) {
 			var e = event || window.event;
 			if (!ready) {
-				if (!phone.val() || !phone.val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/)) {
+				if (!phone.val() || !phone.val().match(/^(1[0-9])\d{9}$/)) {
 					phone.parent('.mdui-textfield').addClass('mdui-textfield-invalid-html5');
 					e.preventDefault();
 					return false;
@@ -2968,7 +2968,7 @@ $(document).ready(function () {
 				$('.captcha-check-icon').css('display', 'block');
 				$.ajax({
 					method: 'POST',
-					url: '/ajax/captcha',
+					url: '/register/captcha',
 					ContentType: 'application/json',
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -3009,7 +3009,7 @@ $(document).ready(function () {
 				$('.smscode-check-icon').css('display', 'block');
 				$.ajax({
 					method: 'POST',
-					url: '/ajax/smscode',
+					url: '/register/smscode',
 					ContentType: 'application/json',
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -3063,7 +3063,7 @@ $(document).ready(function () {
 		function sendsms(phoneNumber) {
 			$.ajax({
 				method: 'POST',
-				url: '/ajax/sendsms',
+				url: '/register/sendsms',
 				ContentType: 'application/json',
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -3282,7 +3282,7 @@ $(document).ready(function () {
 						if (data.success) {
 							$('.phone-form').hide();
 							$('.code-form').show();
-							$('.telphone').text(data.sms.phone);
+							$('.telphone').text(data.phone);
 							$('.step2').css('color', '#9CCC65');
 							var number = 60;
 							var interval = setInterval(function () {

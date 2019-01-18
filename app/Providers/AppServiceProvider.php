@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
 		\App\Models\Business::observe(\App\Observers\BusinessObserver::class);
         Schema::defaultStringLength(191);
         \Carbon\Carbon::setLocale('zh');
+        //自定义短信验证码规则
+        Validator::extend('smscode', function($attribute, $value, $parameters){
+            return $value == session('smscode.value');
+        });
+
     }
 
     /**

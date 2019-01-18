@@ -26,11 +26,7 @@ Route::post('/users/{user}/uppwd', 'UsersController@uppwd')->name('users.uppwd')
 Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
 Route::get('signup/send', 'UsersController@sendEmailConfirmationTo')->name('send_email');
 
-// AJAX图形验证码
-Route::post('ajax/captcha', 'CaptchaController@captcha');
-// AJAX短信验证码
-Route::post('ajax/smscode', 'CaptchaController@smscode');
-Route::post('ajax/sendsms', 'CaptchaController@sendsms');
+
 // 用户登录 退出
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -38,6 +34,12 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // 用户注册...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+// AJAX图形验证码
+Route::post('register/captcha', 'Auth\RegisterController@captcha');
+// AJAX短信验证码
+Route::post('register/smscode', 'Auth\RegisterController@smscode');
+Route::post('register/sendsms', 'Auth\RegisterController@sendsms');
+
 // 邮件重置密码 找回密码...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -124,6 +126,8 @@ Route::group(['middleware' => ['permission:web_manage']], function () {
     // 网站设置
     Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
     Route::post('/management/club/settings/store','ClubManagementController@settingsStore')->name('admin.club.setting.store');
+    // 客服QQ
+    Route::post('/management/club/settings/onlineService','ClubManagementController@onlineService')->name('admin.club.setting.onlineService');
     // SEO修改
     Route::post('/management/club/seoStore','ClubManagementController@seoStore')->name('admin.club.seoStore');
     Route::post('/management/club/seoDestroy','ClubManagementController@seoDestroy')->name('admin.club.seoDestroy');

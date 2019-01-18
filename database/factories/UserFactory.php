@@ -22,7 +22,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'nickname' => $name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('password'),
-        'phone' => $faker->numberBetween($min = 13, $max = 18).$faker->numberBetween($min = 100000000, $max = 900000000),
+        'phone' => $faker->numberBetween($min = 12, $max = 12).$faker->numberBetween($min = 100000000, $max = 900000000),
         'remember_token' => str_random(10),
         'introduction' => $faker->sentence(),
         'created_at' => $now,

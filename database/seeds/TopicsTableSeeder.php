@@ -19,7 +19,7 @@ class TopicsTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $topics = factory(Topic::class)
-                        ->times(500) //填充500 条话题数据
+                        ->times(1) //填充500 条话题数据
                         ->make()
                         ->each(function ($topic, $index)
                             use ($user_ids, $category_ids, $faker)

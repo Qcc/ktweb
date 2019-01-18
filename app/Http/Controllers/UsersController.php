@@ -102,7 +102,6 @@ class UsersController extends Controller
         $user = Auth::user();
         //推送到队列执行，发送激活邮件
         dispatch(new SendActivedEmail($user));
-        Log::info('zaicifasong');
         return back()->with('success', '邮件发送成功，请注意查收!');
     }
     

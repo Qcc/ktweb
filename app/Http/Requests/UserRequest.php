@@ -42,6 +42,7 @@ class UserRequest extends FormRequest
     {
         return [
             'temp_mail.unique' => '邮箱已被注册，如果不是您本人注册请找回密码修改',
+            'temp_mail.email' => '邮箱不正确，请输入正确邮箱地址',
             'name.between' => '姓名必须介于 3 - 10 个字符之间。',
             'nickname.required' => '昵称不能为空。',
             'nickname.unique' => '昵称已经被使用。',

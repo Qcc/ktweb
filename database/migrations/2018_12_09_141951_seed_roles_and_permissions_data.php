@@ -31,6 +31,10 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name' => 'revice_business','cn_name'=>'商机收发']);
         Permission::create(['name' => 'manage_report','cn_name'=>'举报管理']);
         Permission::create(['name' => 'employee_identity','cn_name'=>'员工身份']);
+        Permission::create(['name' => 'employee_seal','cn_name'=>'员工销售']);
+        Permission::create(['name' => 'employee_tech','cn_name'=>'员工技术']);
+        Permission::create(['name' => 'employee_finance','cn_name'=>'员工财务']);
+        Permission::create(['name' => 'employee_menage','cn_name'=>'员工管理']);
         Permission::create(['name' => 'customer_identity','cn_name'=>'客户身份']);
         Permission::create(['name' => 'parnter_identity','cn_name'=>'代理商身份']);
 
