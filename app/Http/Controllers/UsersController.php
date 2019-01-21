@@ -64,7 +64,7 @@ class UsersController extends Controller
             }
         }
         $user->update($data);
-        if($data['temp_mail']){
+        if(isset($data['temp_mail'])){
             return redirect()->route('users.edit', $user->id)->with('success', '更新成功,已发送激活邮件到 '.$data['temp_mail'].'，激活后才能使用！');
         }else{
             return redirect()->route('users.edit', $user->id)->with('success', '个人资料更新成功！');
