@@ -2499,7 +2499,7 @@ $(document).ready(function () {
 		});
 	}
 	// 发布客户案例页面
-	if ($('.customer-edit-page').length == 1) {
+	if ($('.customer-edit-page').length == 1 || $('.customer-create-page').length == 1) {
 		var editor = new Simditor({
 			textarea: $('#editor'),
 			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
@@ -2583,7 +2583,7 @@ $(document).ready(function () {
 
 	}
 	// 产品添加编辑页面
-	if ($('.product-edit-page').length == 1) {
+	if ($('.product-edit-page').length == 1 || $('.product-create-page').length == 1) {
 		// 主要内容描述
 		var editor = new Simditor({
 			textarea: $('#editor'),
@@ -2687,7 +2687,7 @@ $(document).ready(function () {
 		});
 	}
 	// 解决方案编辑新建页面
-	if ($('.solution-edit-page').length == 1) {
+	if ($('.solution-edit-page').length == 1 || $('.solution-create-page').length == 1) {
 		var editor = new Simditor({
 			textarea: $('#editor'),
 			toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',

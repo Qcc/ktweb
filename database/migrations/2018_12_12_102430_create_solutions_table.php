@@ -23,7 +23,7 @@ class CreateSolutionsTable extends Migration
             $table->text('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index()->comment('作者');
             $table->integer('solutioncol_id')->unsigned()->index()->comment('分类');
-            $table->integer('productcol_id')->unsigned()->index();
+            $table->integer('productcol_id')->unsigned()->index()->comment('相关产品');
             $table->integer('order')->unsigned()->default(0)->comment('排序');
             $table->string('keywords')->comment('关键词');
             $table->string('excerpt')->nullable()->comment('摘要');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Solutioncol;
+use App\Models\Productcol;
 use App\Models\Solution;
 use App\Http\Requests\SolutionRequest;
 use Auth;
@@ -24,7 +25,8 @@ class SolutionController extends Controller
     {
         $this->authorize('create',$solution);
         $solutioncol = Solutioncol::all();
-		return view('pages.solution.create_and_edit', compact('solution', 'solutioncol'));
+        $productcol = Productcol::all();
+		return view('pages.solution.create_and_edit', compact('solution', 'solutioncol','productcol'));
     }
 
     /**

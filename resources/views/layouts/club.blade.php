@@ -21,6 +21,7 @@
         <div class="mdui-container-full">
             @include('layouts._message')
             @yield('content')
+            <button class="mdui-fab mdui-fab-fixed mdui-color-theme-accent reset-top mdui-ripple"><i class="kticon">&#xe786;</i></button>
         </div>    
         @include('layouts._footer')
     </div>

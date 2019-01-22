@@ -100,7 +100,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">大图</label>
         <div class="layui-input-block">
-            <input type="text" name="banner"  lay-verify="required" placeholder="请上传大图(1920*464)" class="layui-input">
+            <input type="text" name="banner"  lay-verify="required" placeholder="产品首页展示，请上传大图(1920*464)" class="layui-input">
             <a href="javascript:;" id="upload-banner">上传</a>
         </div>
     </div>
@@ -134,7 +134,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">首图</label>
         <div class="layui-input-block">
-            <input type="text" name="icon" lay-verify="required" placeholder="请上传首图(960*200)" class="layui-input">
+            <input type="text" name="icon" lay-verify="required" placeholder="社区分类首页展示,请上传首图(960*200)" class="layui-input">
             <a href="javascript:;" id="upload-club-icon">上传</a>
         </div>
     </div>

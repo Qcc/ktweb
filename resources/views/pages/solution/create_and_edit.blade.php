@@ -28,10 +28,18 @@
 
                         <div class="form-group select">
                             <select class="mdui-select" mdui-select name="solutioncol_id" required>
-                                <option value="" hidden disabled {{ $solution->id ? '' : 'selected' }}>请选择分类</option>
+                                <option value="" hidden disabled {{ $solution->id ? '' : 'selected' }}>方案分类</option>
                                 @foreach ($solutioncol as $value)
                                 <option value="{{ $value->id }}"
                                     {{ $solution->solutioncol_id == $value->id ? 'selected' : '' }}>
+                                    {{$value->name }}</option>
+                                @endforeach
+                            </select>
+                            <select class="mdui-select" mdui-select name="productcol_id" required>
+                                <option value="" hidden disabled {{ $solution->id ? '' : 'selected' }}>相关产品</option>
+                                @foreach ($productcol as $value)
+                                <option value="{{ $value->id }}"
+                                    {{ $solution->productcol_id == $value->id ? 'selected' : '' }}>
                                     {{$value->name }}</option>
                                 @endforeach
                             </select>
@@ -46,7 +54,7 @@
                             <input class="form-control" type="text" name="keywords" value="{{ old('keywords', $solution->keywords ) }}"
                                 placeholder="关键词" required />
                         </div>
-                        <div class="form-group icon">
+                        <div class="form-group icon-input">
                             <div class="layui-upload-list">
                                 <img class="layui-upload-icon" src="{{ old('icon', $solution->icon ) }}" id="icon">
                                 <p id="status"></p>

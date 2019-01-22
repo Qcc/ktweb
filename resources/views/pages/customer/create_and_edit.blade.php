@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', isset($customer->id) ? $customer->title : '新建产品介绍')
+@section('title', isset($customer->id) ? $customer->title : '新建客户案例')
 @section('content')
 <div class="mdui-container" style="margin-top:80px;">
     <div class="article-panel">

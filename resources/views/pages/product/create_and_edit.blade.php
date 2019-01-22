@@ -19,14 +19,10 @@
                 @if($product->id)
                 <form action="{{ route('product.update', $product->id) }}" method="POST" accept-charset="UTF-8">
                     <input type="hidden" name="_method" value="PUT">
-                    @else
-                    <form action="{{ route('product.store') }}" method="POST" accept-charset="UTF-8">
-                        @endif
-
+                @else
+                <form action="{{ route('product.store') }}" method="POST" accept-charset="UTF-8">
+                @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-
-
                         <div class="form-group select">
                             <select class="mdui-select" mdui-select name="productcol_id" required>
                                 <option value="" hidden disabled {{ $product->productcol_id ? '' : 'selected' }}>请选择分类</option>
@@ -47,7 +43,7 @@
                             <input class="form-control" type="text" name="keywords" value="{{ old('keywords', $product->keywords ) }}"
                                 placeholder="关键词" required />
                         </div>
-                        <div class="form-group icon">
+                        <div class="form-group icon-input">
                                 <div class="layui-upload-list">
                                         <img class="layui-upload-icon" src="{{ old('icon', $product->icon ) }}" id="icon">
                                         <p id="status"></p>

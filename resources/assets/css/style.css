@@ -251,14 +251,15 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';  /* project id 916960 */
+    font-family: 'kticon';
+    /* project id 916960 */
     src: url('//at.alicdn.com/t/font_916960_ke7qbehkth.eot');
     src: url('//at.alicdn.com/t/font_916960_ke7qbehkth.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_ke7qbehkth.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_916960_ke7qbehkth.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_ke7qbehkth.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_ke7qbehkth.svg#kticon') format('svg');
-  }
+        url('//at.alicdn.com/t/font_916960_ke7qbehkth.woff2') format('woff2'),
+        url('//at.alicdn.com/t/font_916960_ke7qbehkth.woff') format('woff'),
+        url('//at.alicdn.com/t/font_916960_ke7qbehkth.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_916960_ke7qbehkth.svg#kticon') format('svg');
+}
 
 .kticon {
     font-family: "kticon" !important;
@@ -269,13 +270,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* 
 .icon {
     width: 1em;
     height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
-}
+} */
 
 
 /* 首页导航栏 */
@@ -607,7 +609,8 @@ a:active {
     width: 1170px;
     margin: 0 auto;
 }
-.footer-sections ul i>a{
+
+.footer-sections ul i>a {
     color: #9e9e9e;
 }
 
@@ -633,12 +636,14 @@ a:active {
     letter-spacing: 0;
 }
 
-.footer-sections div ul li a{
-    color: #9e9e9e!important;
-    text-decoration:none;
+.footer-sections div ul li a {
+    color: #9e9e9e !important;
+    text-decoration: none;
 }
-.footer-sections div ul li a:before{
-    background-color:#9e9e9e!important;;
+
+.footer-sections div ul li a:before {
+    background-color: #9e9e9e !important;
+    ;
 }
 
 
@@ -1823,6 +1828,7 @@ a:active {
     line-height: 34px;
     margin-bottom: 30px;
     font-size: 15px;
+    padding: 15px 0;
 }
 
 .topic-body b,
@@ -2434,7 +2440,7 @@ a:active {
     padding-right: 120px;
 }
 
-.users-edit-page .temp-mail .mail-active{
+.users-edit-page .temp-mail .mail-active {
     background: #9CCC65;
     color: #fff;
     position: absolute;
@@ -2578,7 +2584,7 @@ a:active {
     max-width: 100%;
 }
 
-.article-panel .edit .icon {
+.article-panel .edit .icon-input {
     display: inline-block;
     position: absolute;
     right: 20px;
@@ -2588,7 +2594,7 @@ a:active {
     max-width: 70%;
 }
 
-.icon>.layui-upload-list {
+.icon-input>.layui-upload-list {
     border: 1px solid #e2e2e2;
     width: 250px;
     text-align: center;
@@ -2722,7 +2728,7 @@ a:active {
     max-width: 100%;
 }
 
-.article-panel .edit .icon {
+.article-panel .edit .icon-input {
     display: inline-block;
     position: absolute;
     right: 20px;
@@ -2732,7 +2738,7 @@ a:active {
     max-width: 70%;
 }
 
-.icon>.layui-upload-list {
+.icon-input>.layui-upload-list {
     border: 1px solid #e2e2e2;
     width: 250px;
     text-align: center;
@@ -2816,6 +2822,13 @@ a:active {
     margin-top: 10px;
     padding: 0 20px;
     text-align: center;
+}
+.product-featrue-arp .featrue-point>p{
+    overflow:hidden; 
+text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:3; 
 }
 
 .featrue-arp .product-left {
@@ -2974,6 +2987,11 @@ a:active {
 
 #solutionSwiper .info h3 {
     margin-bottom: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 #solutionSwiper .info h3 a {
@@ -2986,6 +3004,11 @@ a:active {
 #solutionSwiper .info p {
     text-indent: 2em;
     color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 #solutionSwiper .info .btn {
@@ -3014,7 +3037,7 @@ a:active {
 
 #solutionSwiper .swiper-image>img {
     height: 100%;
-    width: 100%;
+    overflow: hidden;
 }
 
 #solutionSwiper .swiper-background {
@@ -4290,6 +4313,7 @@ a:active {
 .register-page .panel-default {
     margin: 100px auto 20px;
 }
+
 /* 大于600px宽度 */
 @media screen and (min-width: 600px) {
     .registry-body {
@@ -4363,6 +4387,7 @@ a:active {
 .password-request-page .kt-navigetion-sections {
     color: #333;
 }
+
 .password-reset-page .kt-navigetion-sections {
     color: #333;
 }
@@ -4425,6 +4450,7 @@ a:active {
 .login-footer {
     margin-top: 30px;
 }
+
 .login-page .login-title {
     font-size: 30px;
 }
@@ -4506,36 +4532,42 @@ a:active {
     border-bottom: 1px solid #e2e2e2;
 }
 
-.reset-box .body .layui-form{
+.reset-box .body .layui-form {
     margin: 50px auto 180px;
     width: 350px;
 }
- 
+
 /* 小于500px宽度 */
 @media screen and (max-width: 500px) {
-    .reset-box .body .layui-form{
+    .reset-box .body .layui-form {
         margin: 50px auto 120px;
         width: 100%;
     }
+
     .reset-box .progress-box .step {
         width: auto;
         height: 40px;
     }
+
     .reset-box .progress-box .step-arrow i {
         font-size: 13px;
         line-height: 40px;
     }
-    
+
     .reset-box .progress-box .step i {
         margin: 0px 10px;
     }
+
     .reset-box .progress-box .step p {
         font-size: 12px;
     }
+
     .reset-box .progress-box .step-bumber i {
         font-size: 20px;
     }
-    .reset-box .body .phone-form, .reset-box .body .code-form{
+
+    .reset-box .body .phone-form,
+    .reset-box .body .code-form {
         width: 100%;
     }
 }
@@ -4543,6 +4575,7 @@ a:active {
 .reset-box .tab-content .layui-input-block {
     margin: 0;
 }
+
 .reset-box .layui-form .layui-input-block {
     margin: 0;
 }
@@ -4659,7 +4692,8 @@ a:active {
     color: #a2a2a2;
     margin: 20px 0;
 }
-.topics-show-page .annex{
+
+.topics-show-page .annex {
     background-position: left;
     padding-left: 35px;
     margin: 10px;
@@ -4667,23 +4701,29 @@ a:active {
     background-repeat: no-repeat;
     background-size: 30px;
 }
-.topics-show-page .doc{
+
+.topics-show-page .doc {
     background-image: url(/images/doc.png)
 }
-.topics-show-page .xls{
+
+.topics-show-page .xls {
     background-image: url(/images/xls.png)
 }
-.topics-show-page .ppt{
+
+.topics-show-page .ppt {
     background-image: url(/images/ppt.png)
 }
-.topics-show-page .pdf{
+
+.topics-show-page .pdf {
     background-image: url(/images/pdf.png)
 }
-.topics-show-page .rar{
+
+.topics-show-page .rar {
     background-image: url(/images/rar.png)
 }
+
 /* 身份铭牌 */
-.identity{
+.identity {
     display: inline;
     margin: 0 5px;
     cursor: pointer;
