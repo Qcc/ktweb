@@ -278,9 +278,12 @@ $(document).ready(function () {
 				$('.kt-nav-header').addClass('kt-header-top');
 			}
 			$('.ktm-logo').removeClass('ktm-logo-white').addClass('ktm-logo-blue')
+			// 回到顶部按钮
+			$('.reset-top').show();
 		} else {
 			$('.ktm-logo').removeClass('ktm-logo-blue').addClass('ktm-logo-white');
 			$('.kt-nav-header').removeClass('kt-header-top kt-header-top-and-open');
+			$('.reset-top').hide();
 		};
 		// runNumberAnimat(); // 添加body内容数字动画
 	});
@@ -3397,4 +3400,16 @@ $(document).ready(function () {
 		}
 		return bytes + ' ' + symbols[i];
 	};
+
+	// 返回顶部按钮
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	if(scrollTop != 0){
+		$('.reset-top').show();
+	}else{
+		$('.reset-top').hide();
+	}
+	$('.reset-top').on('click',function(){
+		$(window).scrollTop(0);
+	});
+
 });
