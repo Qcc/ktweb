@@ -5,6 +5,7 @@
 <div class="mdui-container-full">
     <div class="products-banner-warp">
         <div class="products-banner">
+            <div class="product-icon" style="background-image:url('{{ $productcol->icon }}')"></div>
             <img src="{{ $productcol->banner }}" alt="{{ $productcol->name }}">
         </div>
         <div class="products-action">

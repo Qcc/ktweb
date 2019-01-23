@@ -24,7 +24,7 @@ class NewsTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $allnews = factory(News::class)
-                        ->times(1) //填充500 条话题数据
+                        ->times(100) //填充500 条话题数据
                         ->make()
                         ->each(function ($news, $index)
                             use ($user_ids, $column_ids, $faker)

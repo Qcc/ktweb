@@ -11,27 +11,36 @@
           <h3>{{ $banner->title }}</h3>
         </div>
         <div class="banner-products mdui-hidden-sm-down">
+          @if($banner->icon1)
           <a href="{{ $banner->icon_link1}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon1 }}')"></i>
             <span>{{ $banner->icon_title1 }}</span>
           </a>
+          @endif
+          @if($banner->icon2)
           <a href="{{ $banner->icon_link2}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon2 }}')"></i>
             <span>{{ $banner->icon_title2 }}</span>
           </a>
+          @endif
+          @if($banner->icon3)
           <a href="{{ $banner->icon_link3}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon3 }}')"></i>
             <span>{{ $banner->icon_title3 }}</span>
           </a>
+          @endif
+          @if($banner->icon4)
           <a href="{{ $banner->icon_link4}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon4 }}')"></i>
             <span>{{ $banner->icon_title4 }}</span>
           </a>
+          @endif
+          @if($banner->icon5)
           <a href="{{ $banner->icon_link5}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon5 }}')"></i>
             <span>{{ $banner->icon_title5 }}</span>
           </a>
-          
+          @endif
         </div>
         <div class="banner-signup">
           <a  href="{{ $banner->link }}" class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">

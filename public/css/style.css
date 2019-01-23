@@ -251,15 +251,14 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';
-    /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_ke7qbehkth.eot');
-    src: url('//at.alicdn.com/t/font_916960_ke7qbehkth.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_916960_ke7qbehkth.woff2') format('woff2'),
-        url('//at.alicdn.com/t/font_916960_ke7qbehkth.woff') format('woff'),
-        url('//at.alicdn.com/t/font_916960_ke7qbehkth.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_916960_ke7qbehkth.svg#kticon') format('svg');
-}
+    font-family: 'kticon';  /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_sri82if6psb.eot');
+    src: url('//at.alicdn.com/t/font_916960_sri82if6psb.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_sri82if6psb.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_916960_sri82if6psb.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_sri82if6psb.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_sri82if6psb.svg#kticon') format('svg');
+  }
 
 .kticon {
     font-family: "kticon" !important;
@@ -2767,6 +2766,25 @@ a:active {
     left: 50%;
     margin-left: -960px;
     z-index: 1;
+    background: #29a3fd;
+    background: -moz-linear-gradient(bottom, #29a3fd 0%, #afbdf7 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #29a3fd), color-stop(100%, #afbdf7));
+    background: -webkit-linear-gradient(bottom, #29a3fd 0%, #afbdf7 100%);
+    background: -o-linear-gradient(bottom, #29a3fd 0%, #afbdf7 100%);
+    background: -ms-linear-gradient(bottom, #29a3fd 0%, #afbdf7 100%);
+    background: linear-gradient(to bottom, #29a3fd 0%, #afbdf7 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#29a3fd', endColorstr='#afbdf7', GradientType=1);
+
+}
+.products-banner .product-icon{
+    width: 400px;
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 25%;
+    top: 15%;
 }
 
 .products-banner-warp .products-action {
@@ -2779,14 +2797,14 @@ a:active {
 .products-head>h2 {
     font-size: 40px;
     max-width: 400px;
-    color: #2196f3;
+    color: #536dfe;
 }
 
 .products-head>h4 {
     max-width: 350px;
     font-size: 20px;
     margin: 10px 0;
-    color: #999;
+    color: #fff;
 }
 
 .products-action .products-btn a {
