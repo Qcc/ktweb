@@ -5,7 +5,12 @@
 <div class="mdui-container-full">
     <div class="products-banner-warp">
         <div class="products-banner">
-            <img src="{{ $solutioncol->banner }}" alt="{{ $solutioncol->name }}">
+            @if($solutioncol->banner)
+            <img src="{{ $solutioncol->banner }}" alt="{{ $solutioncol->name }}" alt="{{ $solutioncol->title }}">
+            @endif
+            @if($solutioncol->icon)
+            <img class="product-icon" src="{{ $solutioncol->icon }}" alt="{{ $solutioncol->title }}">
+            @endif
         </div>
         <div class="products-action">
             <div class="products-head">
@@ -47,7 +52,7 @@
             @if($loop->index % 2 == 0)
             @include('pages.solution._pic_right',$solution)
             @endif
-        @endforeach
+            @endforeach
     </div>
 </div>
 @include('pages._contact')

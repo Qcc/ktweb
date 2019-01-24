@@ -5,8 +5,12 @@
 <div class="mdui-container-full">
     <div class="products-banner-warp">
         <div class="products-banner">
-            <div class="product-icon" style="background-image:url('{{ $productcol->icon }}')"></div>
-            <img src="{{ $productcol->banner }}" alt="{{ $productcol->name }}">
+            @if($productcol->banner)
+            <img class="product-icon" src="{{ $productcol->icon }}" alt="{{ $productcol->title }}">
+            @endif
+            @if($productcol->banner)
+            <img src="{{ $productcol->banner }}" alt="{{ $productcol->name }}" alt="{{ $productcol->title }}">
+            @endif
         </div>
         <div class="products-action">
             <div class="products-head">
@@ -48,14 +52,15 @@
             @if($loop->index % 2 == 0)
             @include('pages.product._pic_right',$product)
             @endif
-        @endforeach
+            @endforeach
     </div>
     <div class="solution-warp">
-        <div class="solution-title"><p>{{ $productcol->name }}解决方案</p>
+        <div class="solution-title">
+            <p>{{ $productcol->name }}解决方案</p>
         </div>
         <div id="solutionSwiper" class="swiper-container">
             <div class="swiper-wrapper">
-            @foreach($solutions as $index => $solution)
+                @foreach($solutions as $index => $solution)
                 <div class="swiper-slide">
                     <div class="swiper-background"></div>
                     <div class="swiper-image">
@@ -68,41 +73,43 @@
                         <a href="{{ route('solution.show', $solution->id) }}" class="btn">详情</a>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
             </div>
             <div class="swiper-button-prev"><i class="kticon">&#xe779;</i></div>
             <div class="swiper-button-next"><i class="kticon">&#xe638;</i></div>
         </div>
     </div>
     <div class="mdui-container customer-warp">
-        <div class="customer-title"><p>看看他们如何使用{{ $productcol->name }}</p>
+        <div class="customer-title">
+            <p>看看他们如何使用{{ $productcol->name }}</p>
         </div>
-            <div class="mdui-row customer-list">
+        <div class="mdui-row customer-list">
             @foreach($customers as $index => $customer)
-                <div class="mdui-col-xs-12 mdui-col-sm-3">
-                    <div class=" customer-item">
-                        <div class="customer-img">
-                            <a href="{{ route('customer.show',$customer->id) }}">
-                                <img src="{{ $customer->image }}" alt="{{ $customer->title }}">
-                            </a>
-                        </div>
-                        <div class="customer-col">
-                            <a href="{{ route('customer.index')}}?order=profession&particular={{$customer->customercol->id}}">{{ $customer->customercol->name }}</a>
-                            <span> | </span>
-                            <a href="{{ route('customer.show',$customer->id) }}">{{ $customer->name }}</a>
-                        </div>
-                        <div class="customer-body">
-                            <a href="{{ route('customer.show',$customer->id) }}">
-                                <p>{{ $customer->title }} </p>
-                            </a>
-                        </div>
+            <div class="mdui-col-xs-12 mdui-col-sm-3">
+                <div class=" customer-item">
+                    <div class="customer-img">
+                        <a href="{{ route('customer.show',$customer->id) }}">
+                            <img src="{{ $customer->image }}" alt="{{ $customer->title }}">
+                        </a>
+                    </div>
+                    <div class="customer-col">
+                        <a href="{{ route('customer.index')}}?order=profession&particular={{$customer->customercol->id}}">{{
+                            $customer->customercol->name }}</a>
+                        <span> | </span>
+                        <a href="{{ route('customer.show',$customer->id) }}">{{ $customer->name }}</a>
+                    </div>
+                    <div class="customer-body">
+                        <a href="{{ route('customer.show',$customer->id) }}">
+                            <p>{{ $customer->title }} </p>
+                        </a>
                     </div>
                 </div>
-        @endforeach
             </div>
+            @endforeach
         </div>
-         
     </div>
+
+</div>
 </div>
 @include('pages._contact')
 @stop

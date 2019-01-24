@@ -2761,6 +2761,7 @@ a:active {
 }
 
 .products-banner-warp .products-banner {
+    min-height: 464px;
     width: 1920px;
     position: absolute;
     left: 50%;
@@ -2777,13 +2778,9 @@ a:active {
 
 }
 .products-banner .product-icon{
-    width: 400px;
-    height: 400px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    max-width: 700px;
     position: absolute;
-    right: 25%;
+    right: 20%;
     top: 15%;
 }
 
