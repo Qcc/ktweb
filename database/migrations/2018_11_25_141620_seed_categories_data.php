@@ -16,23 +16,28 @@ class SeedCategoriesData extends Migration
         $categories = [
             [
                 'name'        => '虚拟化',
-                'description' => '沟通科技应用虚拟化系统',
+                'icon' =>'/images/club.jpg' ,
+                'description' => 'CTBS企业版、CTBS高级版、云桌面RAS，沟通科技应用虚拟化系统',
             ],
             [
                 'name'        => '金蝶云',
-                'description' => '金蝶云',
+                'icon' =>'/images/club.jpg' ,
+                'description' => '金蝶云苍穹、金蝶云星空企业数字化创新云服务平台',
             ],
             [
                 'name'        => '精斗云',
-                'description' => '精斗云',
+                'icon' =>'/images/club.jpg' ,
+                'description' => '管账、管货、管生意，陪您一起成长',
             ],
             [
                 'name'        => '金蝶ERP',
-                'description' => '金蝶ERP',
+                'icon' =>'/images/club.jpg' ,
+                'description' => '金蝶EAS、金蝶K3 WISE、金蝶KIS系列中国小微企业云管理软件知名品牌',
             ],
             [
                 'name'        => '其他',
-                'description' => '其他',
+                'icon' =>'/images/club.jpg' ,
+                'description' => '深圳市沟通科技有限公司产品社区',
             ],
         ];
 

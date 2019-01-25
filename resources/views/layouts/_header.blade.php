@@ -165,22 +165,13 @@
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',6) }}"> 汽车经销</a></li>
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',7) }}"> 餐饮连锁</a></li>
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',8) }}"> 教育机构</a></li>
-            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',9) }}"> 财税服务</a></li>
-            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',10) }}"> 金融服务</a></li>
           </ul>
           <ul class="navigation-product">
-            <li class="navigetion-sections-title"><a href="{{ route('solutions.show',11) }}" class="kt-navigetion-sections"><i
+            <li class="navigetion-sections-title"><a href="{{ route('solutions.show',9) }}" class="kt-navigetion-sections"><i
                   class="kticon">&#xe6e5;</i>
                 零售业</a></li>
-            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',11) }}"> 电商企业</a></li>
-            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',12) }}"> 全渠道零售</a></li>
-          </ul>
-          <ul class="navigation-product">
-            <li class="navigetion-sections-title"><a href="{{ route('solutions.show',13) }}" class="kt-navigetion-sections"><i
-                  class="kticon">&#xe685;</i>
-                政府机构</a></li>
-            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',13) }}"> 政府部门</a></li>
-            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',14) }}"> 企事业单位</a></li>
+            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',9) }}"> 电商企业</a></li>
+            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',10) }}"> 全渠道零售</a></li>
           </ul>
         </div>
         <div class="mdui-col-xs-4">

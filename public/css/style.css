@@ -1138,6 +1138,7 @@ a:active {
         overflow: hidden;
         text-indent: 25px;
     }
+    
 }
 
 
@@ -1473,6 +1474,9 @@ a:active {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .home-page .swiper-slide img {
@@ -2798,10 +2802,15 @@ a:active {
 }
 
 .products-head>h4 {
-    max-width: 350px;
-    font-size: 20px;
+    max-width: 450px;
+    font-size: 16px;
     margin: 10px 0;
     color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
 .products-action .products-btn a {
@@ -4157,8 +4166,25 @@ display:-webkit-box;
     }
 }
 
-/* 小于1024大于650px */
-@media screen and (max-width: 1024px) and (min-width:650px) {}
+/* 小于1024*/
+@media screen and (max-width: 1024px){
+    .products-banner .product-icon{
+        display: none;
+    }
+    .products-banner-warp .products-action {
+        left: 100px;
+    }
+}
+/* 小于1024 大于768*/
+@media screen and (max-width: 1024px) and (max-width:768px){
+    .products-banner-warp .products-action {
+        left: 150px;
+        margin-right: 20px;
+    }
+    .products-head>h2 {
+        font-size: 30px;
+    }
+}
 
 /* 大于1024px */
 @media screen and (min-width: 1024px) {}

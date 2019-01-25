@@ -17,12 +17,19 @@ class UsersTableSeeder extends Seeder
 
         // 头像假数据
         $avatars = [
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/s5ehp11z6s.png?imageView2/1/w/200/h/200',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/Lhd1SHqu86.png?imageView2/1/w/200/h/200',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/LOnMrqbHJn.png?imageView2/1/w/200/h/200',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/xAuDMxteQy.png?imageView2/1/w/200/h/200',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
+            '/images/avatar/avatar001.png',
+            '/images/avatar/avatar002.png',
+            '/images/avatar/avatar003.png',
+            '/images/avatar/avatar004.png',
+            '/images/avatar/avatar005.png',
+            '/images/avatar/avatar006.png',
+            '/images/avatar/avatar007.png',
+            '/images/avatar/avatar008.png',
+            '/images/avatar/avatar009.png',
+            '/images/avatar/avatar010.png',
+            '/images/avatar/avatar011.png',
+            '/images/avatar/avatar012.png',
+            '/images/avatar/avatar013.png',
         ];
 
         // 生成数据集合
@@ -48,7 +55,7 @@ class UsersTableSeeder extends Seeder
         $user->nickname = 'kevin';
         $user->phone = '15889730027';
         $user->email = 'kevin@kouton.com';
-        $user->avatar = '/images/avatar.png';
+        $user->avatar = '/images/avatar/avatar013.png';
         $user->save();
 
         // 初始化用户角色，将 1 号用户指派为『站长』
