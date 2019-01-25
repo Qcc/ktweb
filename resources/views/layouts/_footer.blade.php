@@ -23,7 +23,6 @@
           <li><a href="{{ route('solutions.show',1) }}">制造业</a></li>
           <li><a href="{{ route('solutions.show',6) }}">服务行业</a></li>
           <li><a href="{{ route('solutions.show',11) }}">零售业</a></li>
-          <li><a href="{{ route('solutions.show',13) }}">政府事业单位</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo xhs_a_hover_none">

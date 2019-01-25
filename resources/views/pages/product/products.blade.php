@@ -5,11 +5,11 @@
 <div class="mdui-container-full">
     <div class="products-banner-warp">
         <div class="products-banner">
-            @if($productcol->banner)
+            @if($productcol->icon)
             <img class="product-icon" src="{{ $productcol->icon }}" alt="{{ $productcol->title }}">
             @endif
             @if($productcol->banner)
-            <img src="{{ $productcol->banner }}" alt="{{ $productcol->name }}" alt="{{ $productcol->title }}">
+            <img src="{{ $productcol->banner }}" alt="{{ $productcol->name }}">
             @endif
         </div>
         <div class="products-action">

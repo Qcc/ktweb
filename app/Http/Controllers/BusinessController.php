@@ -22,6 +22,12 @@ class BusinessController extends Controller
         return view('pages.partner');
     }
 
+    public function tryOut()
+    {
+        return view('pages.buy');
+    }
+
+
     public function info()
     {
         return view('pages.partnerform');

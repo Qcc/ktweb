@@ -6,7 +6,7 @@
     <div class="products-banner-warp">
         <div class="products-banner">
             @if($solutioncol->banner)
-            <img src="{{ $solutioncol->banner }}" alt="{{ $solutioncol->name }}" alt="{{ $solutioncol->title }}">
+            <img src="{{ $solutioncol->banner }}" alt="{{ $solutioncol->name }}">
             @endif
             @if($solutioncol->icon)
             <img class="product-icon" src="{{ $solutioncol->icon }}" alt="{{ $solutioncol->title }}">

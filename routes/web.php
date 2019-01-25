@@ -193,6 +193,8 @@ Route::post('product/upload_image', 'ProductController@uploadImage')->name('prod
 Route::post('solution/upload_image', 'SolutionController@uploadImage')->name('solution.upload_image');
 Route::post('customer/upload_image', 'CustomersController@uploadImage')->name('customer.upload_image');
 
+// 下载试用需求提交
+Route::get('business/buy', 'BusinessController@tryOut')->name('business.tryout');
 // 用户需求提交
 Route::get('business/partner', 'BusinessController@show')->name('business.show');
 Route::get('business/partner_info', 'BusinessController@info')->name('business.info');

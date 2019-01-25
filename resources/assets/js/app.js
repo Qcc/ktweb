@@ -3130,7 +3130,7 @@ $(document).ready(function () {
 			],
 			allowedAttributes: {
 				img: ['src', 'alt', 'width', 'height', 'data-non-image'],
-				a: ['href', 'target', 'class','title'],
+				a: ['href', 'target', 'class', 'title'],
 				font: ['color'],
 				code: ['class'],
 			},
@@ -3237,10 +3237,10 @@ $(document).ready(function () {
 							break;
 					}
 					var title = '点击下载该文件';
-					if(file.logined == 'true'){
+					if (file.logined == 'true') {
 						title = '该文件需要登录后才能下载';
 					}
-					var link = "<a title="+ title +" class='annex " + icon + "'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix +"("+ byteConvert(file.size) + ")</a>";
+					var link = "<a title=" + title + " class='annex " + icon + "'  href=/aetherupload/download/" + file.path + "/" + file.name + ">" + file.name + "." + file.suffix + "(" + byteConvert(file.size) + ")</a>";
 					editor.setValue(value + link);
 					editor.focus();
 
@@ -3403,13 +3403,28 @@ $(document).ready(function () {
 
 	// 返回顶部按钮
 	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-	if(scrollTop != 0){
+	if (scrollTop != 0) {
 		$('.reset-top').show();
-	}else{
+	} else {
 		$('.reset-top').hide();
 	}
-	$('.reset-top').on('click',function(){
+	$('.reset-top').on('click', function () {
 		$(window).scrollTop(0);
 	});
+
+	// 试用申请页面
+	if ($('.business-tryout-page').length == 1) {
+		layui.use(['layer', 'form'], function () {
+			var form = layui.form,
+				layer = layui.layer;
+			//监听提交
+			form.on('submit(buy-btn)', function (data) {
+				layer.alert(JSON.stringify(data.field), {
+					title: '最终的提交信息'
+				})
+				return false;
+			});
+		});
+	}
 
 });
