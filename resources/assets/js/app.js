@@ -2,7 +2,8 @@
 $(document).ready(function () {
 	//  cookie操作
 	var cookie = {
-		set: function (key, val, time = 30) { //设置cookie方法
+		set: function (key, val, time) { //设置cookie方法
+			time = time || 30;
 			var date = new Date(); //获取当前时间
 			var expiresDays = time; //将date设置为n天以后的时间
 			date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000); //格式化为cookie识别的时间
@@ -136,11 +137,11 @@ $(document).ready(function () {
 		$('.banner-content>.title>h3').each(function () {
 			var title = $(this).text();
 			var numbers = getNumber(title);
-			for (let index = 0; index < numbers.length; index++) {
-				title = title.replace(numbers[index], "<span id=CountUp" + numbers[index] + ">" + numbers[index] + "</span>+");
+			for (var i = 0; i < numbers.length; i++) {
+				title = title.replace(numbers[i], "<span id=CountUp" + numbers[i] + ">" + numbers[i] + "</span>+");
 				$(this).empty();
 				$(this).append(title);
-				runCountUp(numbers[index]);
+				runCountUp(numbers[i]);
 			}
 		});
 
@@ -320,7 +321,7 @@ $(document).ready(function () {
 		// 已读的话题灰色显示
 		var topics_readings = JSON.parse(cookie.get('topics_reading'));
 		if (topics_readings) {
-			for (let index = 0; index < topics_readings.length; index++) {
+			for (var index = 0; index < topics_readings.length; index++) {
 				$('#' + topics_readings[index]).css('color', '#a2a2a2');
 			}
 		}
@@ -339,7 +340,7 @@ $(document).ready(function () {
 		// 已读的话题灰色显示
 		var topics_readings = JSON.parse(cookie.get('topics_reading'));
 		if (topics_readings) {
-			for (let index = 0; index < topics_readings.length; index++) {
+			for (var index = 0; index < topics_readings.length; index++) {
 				$('#' + topics_readings[index]).css('color', '#a2a2a2');
 			}
 		}
@@ -1004,7 +1005,7 @@ $(document).ready(function () {
 						success: function (data) {
 							var permission = $('.permission-form-input');
 							permission.empty();
-							for (let index = 0; index < data.length; index++) {
+							for (var index = 0; index < data.length; index++) {
 								data[index];
 								permission.append("<input type='checkbox' name=" + data[index].id + " lay-skin='primary' title=" + data[index].cn_name + "></input>")
 							}
@@ -3327,7 +3328,7 @@ $(document).ready(function () {
 							});
 						} else {
 							$('.phone-form .help-block').empty().show();
-							for (let index = 0; index < data.length; index++) {
+							for (var index = 0; index < data.length; index++) {
 								$('.phone-form .help-block').append("<p><i class='kticon'>&#xe6b9;</i><strong>" + data[index] + "</strong></p>");
 							}
 						}
