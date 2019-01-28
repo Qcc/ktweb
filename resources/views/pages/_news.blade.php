@@ -14,7 +14,7 @@
                 @foreach($kouton as $index => $news)
                 <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-lg-4 news-big-item">
                     <div class="news-big-content-warp">
-                        <a href="{{ $news->link() }}">
+                        <a target="_blank" href="{{ $news->link() }}">
                             <h3 class="mdui-typo-title-opacity">{{ $news->title }}</h3>
                         </a>
                         <p class="mdui-typo-body-1-opacity mdui-hidden-xs news-summary">
@@ -23,7 +23,7 @@
                         <p class="news-date mdui-typo-caption-opacity">{{ $news->updated_at->toDateString() }}</p>
                     </div>
                     <div class="news-big-pictures-warp">
-                        <a href="{{ $news->link() }}">
+                        <a target="_blank" href="{{ $news->link() }}">
                             <img class="news-big-pictures" src="{{ $news->image }}" alt="{{ $news->title }}">
                         </a>
                     </div>
@@ -37,7 +37,7 @@
                 @foreach($industry as $index => $news)
                 <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-lg-4 news-big-item">
                     <div class="news-big-content-warp">
-                        <a href="{{ $news->link() }}">
+                        <a target="_blank" href="{{ $news->link() }}">
                             <h3 class="mdui-typo-title-opacity">{{ $news->title }}</h3>
                         </a>
                         <p class="mdui-typo-body-1-opacity mdui-hidden-xs news-summary">
@@ -46,7 +46,7 @@
                         <p class="news-date mdui-typo-caption-opacity">{{ $news->updated_at->toDateString() }}</p>
                     </div>
                     <div class="news-big-pictures-warp">
-                        <a href="{{ $news->link() }}">
+                        <a target="_blank" href="{{ $news->link() }}">
                             <img class="news-big-pictures" src="{{ $news->image }}" alt="{{ $news->title }}">
                         </a>
                     </div>
@@ -60,7 +60,7 @@
                 @foreach($think as $index => $news)
                 <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-lg-4 news-big-item">
                     <div class="news-big-content-warp">
-                        <a href="{{ $news->link() }}">
+                        <a target="_blank" href="{{ $news->link() }}">
                             <h3 class="mdui-typo-title-opacity">{{ $news->title }}</h3>
                         </a>
                         <p class="mdui-typo-body-1-opacity mdui-hidden-xs news-summary">
@@ -69,7 +69,7 @@
                         <p class="news-date mdui-typo-caption-opacity">{{ $news->updated_at->toDateString() }}</p>
                     </div>
                     <div class="news-big-pictures-warp">
-                        <a href="{{ $news->link() }}">
+                        <a target="_blank" href="{{ $news->link() }}">
                             <img class="news-big-pictures" src="{{ $news->image }}" alt="{{ $news->title }}">
                         </a>
                     </div>

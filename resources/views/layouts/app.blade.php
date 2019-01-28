@@ -20,7 +20,7 @@
 <body class="mdui-theme-primary-indigo mdui-theme-accent-indigo">
     <div class="{{ route_class() }}-page">
         @include('layouts._header')
-        <div class="mdui-container-full">
+        <div class="container">
             @include('layouts._message')
             @yield('content')
             <button class="mdui-fab mdui-fab-fixed mdui-color-theme-accent reset-top mdui-ripple"><i class="kticon">&#xe786;</i></button>

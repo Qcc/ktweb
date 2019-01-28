@@ -3419,9 +3419,27 @@ $(document).ready(function () {
 				layer = layui.layer;
 			//监听提交
 			form.on('submit(buy-btn)', function (data) {
-				layer.alert(JSON.stringify(data.field), {
-					title: '最终的提交信息'
-				})
+				$(this).addClass('layui-btn-disabled');
+				console.log(data.field);
+				$.ajax({
+					method: 'POST',
+					url: '/business/store',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: data.field,
+					success: function (data) {
+						$(".buy-btn").removeClass('layui-btn-disabled');
+						if (!data.success) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+							document.getElementById("buy-form").reset();
+						}
+					}
+				});
 				return false;
 			});
 		});

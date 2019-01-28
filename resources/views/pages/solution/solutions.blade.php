@@ -2,7 +2,7 @@
 @section('title',$solutioncol->name)
 
 @section('content')
-<div class="mdui-container-full">
+<div class="container">
     <div class="products-banner-warp">
         <div class="products-banner">
             @if($solutioncol->banner)
@@ -24,7 +24,7 @@
         </div>
     </div>
     @include('common.error')
-    <div class="mdui-container-full featrue-arp">
+    <div class="mdui-container-fluid featrue-arp">
         <div class="featrue-title">
             <p>{{ $solutioncol->title }}</p>
         </div>

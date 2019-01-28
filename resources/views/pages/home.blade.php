@@ -12,38 +12,38 @@
         </div>
         <div class="banner-products mdui-hidden-sm-down">
           @if($banner->icon1)
-          <a href="{{ $banner->icon_link1}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+          <a target="_blank" href="{{ $banner->icon_link1}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon1 }}')"></i>
             <span>{{ $banner->icon_title1 }}</span>
           </a>
           @endif
           @if($banner->icon2)
-          <a href="{{ $banner->icon_link2}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+          <a target="_blank" href="{{ $banner->icon_link2}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon2 }}')"></i>
             <span>{{ $banner->icon_title2 }}</span>
           </a>
           @endif
           @if($banner->icon3)
-          <a href="{{ $banner->icon_link3}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+          <a target="_blank" href="{{ $banner->icon_link3}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon3 }}')"></i>
             <span>{{ $banner->icon_title3 }}</span>
           </a>
           @endif
           @if($banner->icon4)
-          <a href="{{ $banner->icon_link4}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+          <a target="_blank" href="{{ $banner->icon_link4}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon4 }}')"></i>
             <span>{{ $banner->icon_title4 }}</span>
           </a>
           @endif
           @if($banner->icon5)
-          <a href="{{ $banner->icon_link5}}" class=" wow fadeInUp mdui-text-color-white-secondary">
+          <a target="_blank" href="{{ $banner->icon_link5}}" class=" wow fadeInUp mdui-text-color-white-secondary">
             <i class="kticon" style="background-image:url('{{ $banner->icon5 }}')"></i>
             <span>{{ $banner->icon_title5 }}</span>
           </a>
           @endif
         </div>
         <div class="banner-signup">
-          <a  href="{{ $banner->link }}" class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
+          <a target="_blank" href="{{ $banner->link }}" class="mdui-btn mdui-ripple mdui-color-theme-accent btn-lg wow slideInUp" style="width: 160px;">
             {{ $banner->subtitle }}</a>
           </a>
         </div>
@@ -72,8 +72,8 @@
           <div class="mdui-card-content">累计交付客户</div>
           <div class="mdui-card-content-number mdui-text-color-blue"><span id="ctbs">1</span>+</div>
           <div class="mdui-card-actions">
-            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" href="{{ route('business.tryout') }}">免费试用</a>
-            <a class="mdui-text-color-blue mdui-float-right" href="{{ route('products.show',3) }}">查看详情<i class="kticon">&#xe638;</i></a>
+            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" target="_blank" href="{{ route('business.tryout') }}">免费试用</a>
+            <a class="mdui-text-color-blue mdui-float-right" target="_blank" href="{{ route('products.show',3) }}">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -89,8 +89,8 @@
           <div class="mdui-card-content">企业IT成本费用</div>
           <div class="mdui-card-content-number mdui-text-color-blue">-<span id="kingdee">1</span>%</div>
           <div class="mdui-card-actions">
-            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" href="{{ route('business.tryout') }}">免费试用</a>
-            <a class="mdui-text-color-blue mdui-float-right" href="{{ route('products.show',5) }}">查看详情<i class="kticon">&#xe638;</i></a>
+            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" target="_blank" href="{{ route('business.tryout') }}">免费试用</a>
+            <a class="mdui-text-color-blue mdui-float-right" target="_blank" href="{{ route('products.show',5) }}">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -106,8 +106,8 @@
           <div class="mdui-card-content">激活企业员工</div>
           <div class="mdui-card-content-number mdui-text-color-blue">+<span id="yzj"></span>%</div>
           <div class="mdui-card-actions">
-            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" href="{{ route('business.tryout') }}">免费试用</a>
-            <a class="mdui-text-color-blue mdui-float-right" href="{{ route('products.show',7) }}">查看详情<i class="kticon">&#xe638;</i></a>
+            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" target="_blank" href="{{ route('business.tryout') }}">免费试用</a>
+            <a class="mdui-text-color-blue mdui-float-right" target="_blank" href="{{ route('products.show',7) }}">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -123,8 +123,8 @@
           <div class="mdui-card-content">财务工作效率</div>
           <div class="mdui-card-content-number mdui-text-color-blue">+<span id="jdy">1</span>%</div>
           <div class="mdui-card-actions">
-            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" href="{{ route('business.tryout') }}">免费试用</a>
-            <a class="mdui-text-color-blue mdui-float-right" href="{{ route('products.show',6) }}">查看详情<i class="kticon">&#xe638;</i></a>
+            <a class="mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple" target="_blank" href="{{ route('business.tryout') }}">免费试用</a>
+            <a class="mdui-text-color-blue mdui-float-right" target="_blank" href="{{ route('products.show',6) }}">查看详情<i class="kticon">&#xe638;</i></a>
           </div>
         </div>
       </div>
@@ -140,25 +140,25 @@
     </div>
     <div class="mdui-row">
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
-        <a href="{{ route('products.show',1) }}" class="wow fadeInUp mdui-text-center solution-item  mdui-text-color-grey-600">
+        <a target="_blank" href="{{ route('products.show',1) }}" class="wow fadeInUp mdui-text-center solution-item  mdui-text-color-grey-600">
           <i class="kticon mdui-text-color-cyan">&#xe61e;</i>
           <p class="mdui-typo-title">远程接入</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
-        <a href="{{ route('products.show',10) }}" class="wow fadeInUp mdui-text-center solution-item  mdui-text-color-grey-600">
+        <a target="_blank" href="{{ route('products.show',10) }}" class="wow fadeInUp mdui-text-center solution-item  mdui-text-color-grey-600">
           <i class="kticon mdui-text-color-yellow">&#xe62a;</i>
           <p class="mdui-typo-title">财务管理</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
-        <a href="{{ route('products.show',5) }}" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
+        <a target="_blank" href="{{ route('products.show',5) }}" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
           <i class="kticon mdui-text-color-orange">&#xe621;</i>
           <p class="mdui-typo-title">生产制造</p>
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
-        <a href="{{ route('products.show',6) }}" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
+        <a target="_blank" href="{{ route('products.show',6) }}" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
           <i class="kticon mdui-text-color-red">&#xe65a;</i>
           <p class="mdui-typo-title">零售</p>
         </a>
@@ -170,7 +170,7 @@
         </a>
       </div>
       <div class="mdui-col-md-2 mdui-col-sm-4 mdui-col-xs-6">
-        <a href="{{ route('products.show',9) }}" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
+        <a target="_blank" href="{{ route('products.show',9) }}" class="wow fadeInUp mdui-text-center solution-item mdui-text-color-grey-600">
           <i class="kticon mdui-text-color-indigo">&#xe64a;</i>
           <p class="mdui-typo-title">供应链</p>
         </a>
@@ -191,7 +191,7 @@
           <h3 class="mdui-typo-headline">{{ $solution->title }}</h3>
           <p class="mdui-typo-subheading">{{ $solution->subtitle }}</p>
         </div>
-        <a href="{{ $solution->link }}" class="link mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</a>
+        <a href="{{ $solution->link }}" target="_blank" class="link mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">了解详情</a>
       </div>
       @endforeach
     </div>

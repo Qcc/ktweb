@@ -251,14 +251,15 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';  /* project id 916960 */
+    font-family: 'kticon';
+    /* project id 916960 */
     src: url('//at.alicdn.com/t/font_916960_sri82if6psb.eot');
     src: url('//at.alicdn.com/t/font_916960_sri82if6psb.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_916960_sri82if6psb.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_916960_sri82if6psb.woff') format('woff'),
-    url('//at.alicdn.com/t/font_916960_sri82if6psb.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_916960_sri82if6psb.svg#kticon') format('svg');
-  }
+        url('//at.alicdn.com/t/font_916960_sri82if6psb.woff2') format('woff2'),
+        url('//at.alicdn.com/t/font_916960_sri82if6psb.woff') format('woff'),
+        url('//at.alicdn.com/t/font_916960_sri82if6psb.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_916960_sri82if6psb.svg#kticon') format('svg');
+}
 
 .kticon {
     font-family: "kticon" !important;
@@ -1138,7 +1139,7 @@ a:active {
         overflow: hidden;
         text-indent: 25px;
     }
-    
+
 }
 
 
@@ -2781,7 +2782,8 @@ a:active {
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#29a3fd', endColorstr='#afbdf7', GradientType=1);
 
 }
-.products-banner .product-icon{
+
+.products-banner .product-icon {
     max-width: 700px;
     position: absolute;
     right: 20%;
@@ -2847,12 +2849,13 @@ a:active {
     padding: 0 20px;
     text-align: center;
 }
-.product-featrue-arp .featrue-point>p{
-    overflow:hidden; 
-text-overflow:ellipsis;
-display:-webkit-box; 
--webkit-box-orient:vertical;
--webkit-line-clamp:3; 
+
+.product-featrue-arp .featrue-point>p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
 .featrue-arp .product-left {
@@ -3360,7 +3363,7 @@ display:-webkit-box;
 }
 
 .partner-warp .title {
-    margin: 30px auto;
+    margin: 5px auto;
     text-align: center;
     padding-top: 20px;
 }
@@ -4167,20 +4170,23 @@ display:-webkit-box;
 }
 
 /* 小于1024*/
-@media screen and (max-width: 1024px){
-    .products-banner .product-icon{
+@media screen and (max-width: 1024px) {
+    .products-banner .product-icon {
         display: none;
     }
+
     .products-banner-warp .products-action {
         left: 100px;
     }
 }
+
 /* 小于1024 大于768*/
-@media screen and (max-width: 1024px) and (max-width:768px){
+@media screen and (max-width: 1024px) and (max-width:768px) {
     .products-banner-warp .products-action {
         left: 150px;
         margin-right: 20px;
     }
+
     .products-head>h2 {
         font-size: 30px;
     }
@@ -4771,24 +4777,58 @@ display:-webkit-box;
 }
 
 /* 试用下载页面 */
-.business-tryout-page .layui-form .layui-input-block{
+.business-tryout-page .layui-form .layui-input-block {
     margin-right: 50px;
 }
-.business-tryout-page .layui-form .layui-btn{
+
+.business-tryout-page .layui-form .layui-btn {
     background-color: #536dfe;
 }
+
 .business-tryout-page .buy-section {
-    margin:30px 0;
+    margin: 30px 0;
 }
-.buy-section .buy-adj{
-padding: 10px 70px;
+
+.buy-section .buy-adj {
+    padding: 10px 70px;
 }
-.buy-section .buy-adj>h3{
+
+.buy-section .buy-adj>h3 {
     font-size: 25px;
     line-height: 37px;
     margin: 20px 0;
 }
-.buy-section .buy-adj>ol>li{
+
+.buy-section .buy-adj>ol>li {
     list-style: circle;
     margin: 5px 0;
+}
+
+.business-tryout-page .buy-title {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    left: 50%;
+    margin-left: -50%;
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+}
+
+.business-tryout-page .buy-title>p {
+    margin: 0 20px;
+}
+
+/* 小于600px宽度 */
+@media screen and (max-width: 600px) {
+    .layui-form .layui-form-label {
+        width: 60px;
+    }
+
+    .layui-form .layui-input-block {
+        margin-left: 90px;
+    }
+    .business-tryout-page .buy-title {
+        font-size: 32px;
+    }
 }

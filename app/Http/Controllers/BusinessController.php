@@ -15,7 +15,7 @@ class BusinessController extends Controller
     {
 		// 'except' => ['index', 'show'] —— 对除了 index() 和 show() 以外的方法使用 auth 中间件进行认证。
 		// 使用其余方法需要登录
-        $this->middleware('auth', ['except' => ['show', 'info','store']]);
+        $this->middleware('auth', ['except' => ['show', 'info','store','tryOut']]);
     }
     public function show()
     {
@@ -54,6 +54,9 @@ class BusinessController extends Controller
                 'phone' => $request->phone,
                 'type' => $request->type,
                 'city' => $request->city,
+                'email' => $request->email,
+                'company' => $request->company,
+                'demand' => $request->demand,
             ]);
         }
         return $data;
@@ -76,11 +79,11 @@ class BusinessController extends Controller
     {
         
         $this->authorize('update', $business);
-        $validator = Validator::make($request->all(), ['comment' => 'required|min:3']);
+        $validator = Validator::make($request->all(), ['feedback' => 'required|min:3']);
         if (!$validator->fails()){
             $business->status = true;
             $business->user_id = Auth::User()->id;
-            $business->comment = $request->comment;
+            $business->feedback = $request->feedback;
             $business->save();
             return redirect()->route('business.check',$business->active_token)->with('success', '提交结果成功！');
         }else{
