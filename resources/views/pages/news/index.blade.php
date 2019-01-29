@@ -7,9 +7,9 @@
         <div class="swiper-wrapper">
             @foreach($banners as $banner)
             <div class="swiper-slide">
-                 <a href="{{ $banner->link() }}"  style="background-image:url('{{ $banner->banner }}')"></a>
+                <a href="{{ $banner->link() }}" style="background-image:url('{{ $banner->banner }}')"></a>
             </div>
-             @endforeach
+            @endforeach
         </div>
         <div class="swiper-pagination"></div>
     </div>
@@ -19,15 +19,10 @@
             <ul class="column-nav-ul">
                 <li class="{{ active_class(if_route('news.index'), $activeClass = 'active', $inactiveClass = '') }}">
                     <a href="{{ route('news.index') }}">全部</a></li>
-                
-                <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 1)), $activeClass = 'active', $inactiveClass = '') }}">
-                    <a href="{{ route('columns.show', 1) }}">沟通动态</a></li>
-
-                <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 2)), $activeClass = 'active', $inactiveClass = '') }}">
-                    <a href="{{ route('columns.show', 2) }}">行业资讯</a></li>
-
-                <li class="{{ active_class((if_route('columns.show') && if_route_param('column', 3)), $activeClass = 'active', $inactiveClass = '') }}">
-                    <a href="{{ route('columns.show', 3) }}">管理智库</a></li>
+                    @foreach($columns as $column)
+                <li class="{{ active_class(if_route('columns.show') && if_route_param('column', $column->id), $activeClass = 'active', $inactiveClass = '') }}">
+                    <a href="{{ $column->link() }}">{{ $column->name }}</a></li>
+                @endforeach
             </ul>
         </div>
         <div class="mdui-divider"></div>
@@ -70,12 +65,12 @@
 <script src="{{ asset('js/swiper.min.js') }}"></script>
 <script>
     var swiper = new Swiper('.swiper-container', {
-			loop: true,
-			autoplay: true,
-			pagination: {
-				el: '.swiper-pagination',
-				dynamicBullets: true,
-			},
-		});
+        loop: true,
+        autoplay: true,
+        pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: true,
+        },
+    });
 </script>
 @stop

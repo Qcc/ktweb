@@ -15,7 +15,7 @@
                 {!! $solution->point !!}
             </div>
             <div>
-            <a class="mdui-btn ghostbtn mdui-ripple" href="{{ route('solution.show',$solution->id) }}">详情查看</a>
+            <a class="mdui-btn ghostbtn mdui-ripple" href="{{ $solution->link() }}">详情查看</a>
             </div>
         </div>
     </div>

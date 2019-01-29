@@ -21,6 +21,7 @@ class CreateColumnsTable extends Migration
             $table->boolean('directory')->default(false)->coment('是否有子分类录');
             $table->integer('parent')->nullable()->unsigned()->comment('所属目录');
             $table->integer('post_count')->default(0)->comment('帖子数');
+            $table->string('slug')->nullable()->comment('seo链接');
             $table->timestamps();
         });
     }

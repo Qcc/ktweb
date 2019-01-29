@@ -157,7 +157,7 @@ Route::group(['middleware' => ['permission:manage_roles']], function () {
 Route::resource('news', 'NewsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('news/{news}/{slug?}', 'NewsController@show')->name('news.show');
 // 分类新闻
-Route::resource('columns', 'ColumnsController', ['only' => ['show']]);
+Route::get('columns/{column}/{slug?}', 'ColumnsController@show')->name('columns.show');
 
 //产品介绍
 Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
@@ -169,7 +169,7 @@ Route::resource('product', 'ProductController', ['only' => ['create', 'store', '
 // Route::delete('/product/{product}', 'ProductController@destroy')->name('product.destroy');
 Route::get('product/{product}/{slug?}', 'ProductController@show')->name('product.show');
 // 产品分类
-Route::get('products/{productcol}', 'ProductcolController@show')->name('products.show');
+Route::get('products/{productcol}/{slug?}', 'ProductcolController@show')->name('products.show');
 Route::post('products/update', 'ProductcolController@update')->name('products.update');
 Route::post('products/store', 'ProductcolController@store')->name('products.store');
 Route::post('products/destroy', 'ProductcolController@destroy')->name('products.destroy');
@@ -180,7 +180,7 @@ Route::resource('solution', 'SolutionController', ['only' => ['create', 'store',
 Route::get('solution/{solution}/{slug?}', 'SolutionController@show')->name('solution.show');
 
 // 方案分类
-Route::get('solutions/{solutioncol}', 'SolutioncolController@show')->name('solutions.show');
+Route::get('solutions/{solutioncol}/{slug?}', 'SolutioncolController@show')->name('solutions.show');
 Route::post('solutions/update', 'SolutioncolController@update')->name('solutions.update');
 Route::post('solutions/store', 'SolutioncolController@store')->name('solutions.store');
 Route::post('solutions/destroy', 'SolutioncolController@destroy')->name('solutions.destroy');

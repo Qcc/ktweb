@@ -10,7 +10,7 @@
         <div class="mdui-col-xs-12 mdui-col-sm-9 topic-content">
             <div class="navigation">
                 <span><a href="{{ route('home') }}">首页</a></span> /
-                <span><a href="{{ route('columns.show',$news->column->id) }}">{{ $news->column->name }}</a></span> /
+                <span><a href="{{ $news->column->link() }}">{{ $news->column->name }}</a></span> /
                 <span class="now">{{ $news->title }}</span>
             </div>
             <div class="article-body">

@@ -10,7 +10,7 @@
                 {!! $product->point !!}
             </div>
             <div>
-            <a class="mdui-btn ghostbtn mdui-ripple" href="{{ route('product.show',$product->id) }}">详情查看</a>
+            <a class="mdui-btn ghostbtn mdui-ripple" href="{{ $product->link() }}">详情查看</a>
             </div>
         </div>
     </div>

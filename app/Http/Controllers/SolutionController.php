@@ -73,8 +73,9 @@ class SolutionController extends Controller
     public function edit(Solution $solution)
     {
         $this->authorize('update', $solution);
-		$solutioncol = Solutioncol::all();
-		return view('pages.solution.create_and_edit', compact('solution','solutioncol'));
+        $solutioncol = Solutioncol::all();
+        $productcol = Productcol::all();
+		return view('pages.solution.create_and_edit', compact('solution', 'productcol', 'solutioncol'));
     }
 
     /**

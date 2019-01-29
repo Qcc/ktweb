@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group title">
                             <input class="form-control" type="text" name="banner" value="{{ old('banner', $customer->banner ) }}"
-                                placeholder="banner推荐1920*464" required />
+                                placeholder="banner推荐1920*464 可选" />
                                 <a href="javascript:;" id="upload-banner">上传</a>
                         </div>
 

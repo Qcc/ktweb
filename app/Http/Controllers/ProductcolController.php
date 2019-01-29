@@ -26,7 +26,10 @@ class ProductcolController extends Controller
         $customers = $customer->orderby('updated_at','desc')
                         ->where('productcol_id',$productcol->id)
                         ->paginate(8);
-        
+        // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
+        if ( ! empty($productcol->slug) && $productcol->slug != $request->slug) {
+            return redirect($productcol->link(), 301);
+		}
         // 传参变量话题和分类 到模版中
         return view('pages.product.products',compact('products','solutions','customers','productcol'));
     }

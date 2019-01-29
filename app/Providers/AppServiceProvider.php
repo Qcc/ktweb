@@ -22,7 +22,9 @@ class AppServiceProvider extends ServiceProvider
 		\App\Models\Message::observe(\App\Observers\MessageObserver::class);
 		\App\Models\News::observe(\App\Observers\NewsObserver::class);
 		\App\Models\Product::observe(\App\Observers\ProductObserver::class);
+		\App\Models\Productcol::observe(\App\Observers\ProductcolObserver::class);
 		\App\Models\Solution::observe(\App\Observers\SolutionObserver::class);
+		\App\Models\Solutioncol::observe(\App\Observers\SolutioncolObserver::class);
 		\App\Models\Conversation::observe(\App\Observers\ConversationObserver::class);
 		\App\Models\Business::observe(\App\Observers\BusinessObserver::class);
         Schema::defaultStringLength(191);

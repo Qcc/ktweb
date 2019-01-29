@@ -17,14 +17,17 @@ class SeedColumnsData extends Migration
             [
                 'name'        => '沟通动态',
                 'description' => '沟通科技公司动态',
+                'slug' => 'Shenzhen-KouTon-technology-Co.,Ltd-news',
             ],
             [
                 'name'        => '行业资讯',
                 'description' => '企业管理软件行业资讯',
+                'slug' => 'industry-news',
             ],
             [
                 'name'        => '管理智库',
                 'description' => '企业管理新闻资讯',
+                'slug' => 'management-think-tank',
             ],
         ];
 

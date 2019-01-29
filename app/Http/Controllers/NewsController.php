@@ -22,8 +22,9 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(News $news, Request $request)
+    public function index(News $news,Column $column, Request $request)
     {
+        $columns = Column::all(); 
 		// 分页获取21条记录。默认获取15条
 		$newss = $news->withOrder($request->order)->paginate(15);
         // 读取分类 banner有值的文章，首页显示
@@ -32,7 +33,7 @@ class NewsController extends Controller
                         ->whereNotNull('banner')
                         ->paginate(6);
         });
-		return view('pages.news.index', compact('newss','banners'));
+		return view('pages.news.index', compact('newss', 'columns', 'banners'));
     }
 
     /**

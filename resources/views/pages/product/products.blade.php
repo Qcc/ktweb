@@ -18,8 +18,8 @@
                 <h4> {{ $productcol->description }}</h4>
             </div>
             <div class="products-btn">
-                <a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">在线咨询</a>
-                <a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">相关方案</a>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{ cache('online_service')??'100934166' }}&site=qq&menu=yes" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">在线咨询</a>
+                <a href="{{ route('business.tryout') }}" target="_blank" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">现在试用</a>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
             @break($loop->index > 3)
             <div class="mdui-col-sm-3 mdui-col-xs-6">
                 <div class="product-featrue">
-                    <a href="{{ route('product.show',$product->id) }}" target="_blank">
+                    <a href="{{ $product->link() }}" target="_blank">
                         <div class="images">
                             <img src="{{ $product->icon }}" alt="{{ $product->title }}">
                         </div>

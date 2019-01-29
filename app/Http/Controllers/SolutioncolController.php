@@ -14,6 +14,10 @@ class SolutioncolController extends Controller
         $solutions = $solution->where('solutioncol_id',$solutioncol->id)
                         ->orderby('updated_at','desc')
                         ->paginate(8);
+                        // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
+        if ( ! empty($solutioncol->slug) && $solutioncol->slug != $request->slug) {
+            return redirect($solutioncol->link(), 301);
+		}
         // 传参变量话题和分类 到模版中
         return view('pages.solution.solutions',compact('solutions','solutioncol'));
     }

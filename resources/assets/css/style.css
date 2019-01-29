@@ -4408,6 +4408,10 @@ a:active {
     background-image: url(/images/logo-blue.png);
 }
 
+.password-request-page .layui-btn {
+    background-color: #536dfe;
+}
+
 .login-page .kt-nav-warp nav.kt-nav-login,
 .login-page footer {
     display: none;
@@ -4580,14 +4584,14 @@ a:active {
 }
 
 .reset-box .body .layui-form {
-    margin: 50px auto 180px;
+    margin: 10px auto 180px;
     width: 350px;
 }
 
 /* 小于500px宽度 */
 @media screen and (max-width: 500px) {
     .reset-box .body .layui-form {
-        margin: 50px auto 120px;
+        margin: 10px auto 120px;
         width: 100%;
     }
 
@@ -4617,6 +4621,11 @@ a:active {
     .reset-box .body .code-form {
         width: 100%;
     }
+}
+
+.reset-box .email-form {
+    max-width: 350px;
+    margin: 0 auto;
 }
 
 .reset-box .tab-content .layui-input-block {
@@ -4828,6 +4837,7 @@ a:active {
     .layui-form .layui-input-block {
         margin-left: 90px;
     }
+
     .business-tryout-page .buy-title {
         font-size: 32px;
     }
