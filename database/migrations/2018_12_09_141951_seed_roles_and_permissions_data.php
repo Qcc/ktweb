@@ -37,6 +37,7 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name' => 'employee_menage','cn_name'=>'员工管理']);
         Permission::create(['name' => 'customer_identity','cn_name'=>'客户身份']);
         Permission::create(['name' => 'parnter_identity','cn_name'=>'代理商身份']);
+        Permission::create(['name' => 'manage_logs','cn_name'=>'查看系统日志']);
 
         // 创建站长角色，并赋予权限
         $founder = Role::create(['name' => 'Webmaster','cn_name'=>'超级管理员']);
@@ -49,6 +50,7 @@ class SeedRolesAndPermissionsData extends Migration
         $founder->givePermissionTo('manage_report');
         $founder->givePermissionTo('upload_files');
         $founder->givePermissionTo('employee_identity');
+        $founder->givePermissionTo('manage_logs');
 
         // 创建员工角色，并赋予权限
         $employee = Role::create(['name' => 'Employee','cn_name'=>'员工']);

@@ -137,6 +137,10 @@ Route::group(['middleware' => ['permission:manage_users']], function () {
     Route::get('/management/club/users','ClubManagementController@users')->name('admin.club.users');
     Route::post('/management/club/userstore','ClubManagementController@userstore')->name('admin.club.userstore');
 });
+// 查看日志需要 manage_logs 权限
+Route::group(['middleware' => ['permission:manage_logs']], function () {
+    Route::get('/management/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('system.logs');
+});
 // 角色管理需要 manage_roles 权限
 Route::group(['middleware' => ['permission:manage_roles']], function () {
    // 角色管理
