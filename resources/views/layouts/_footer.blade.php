@@ -7,6 +7,7 @@
           <li><a href="{{ route('columns.show',1)}}">沟通动态</a></li>
           <li><a href="{{ route('columns.show',2)}}">行业资讯</a></li>
           <li><a href="{{ route('columns.show',3)}}">管理智库</a></li>
+          <li><a href="{{ config('app.url').'/index.html' }}">旧版网站</a></li>
         </ul>
       </div>
       <div class="mdui-col-xs-6 mdui-col-sm-3 mdui-col-md-2 mdui-typo">
