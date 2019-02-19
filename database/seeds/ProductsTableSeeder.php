@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $products = factory(Product::class)
-                        ->times(100) //填充500 条话题数据
+                        ->times(1) //填充500 条话题数据
                         ->make()
                         ->each(function ($product, $index)
                             use ($user_ids, $productcol_ids, $faker)

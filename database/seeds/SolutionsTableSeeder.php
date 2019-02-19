@@ -26,7 +26,7 @@ class SolutionsTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $solutions = factory(Solution::class)
-                        ->times(100) //填充500 条话题数据
+                        ->times(1) //填充500 条话题数据
                         ->make()
                         ->each(function ($solution, $index)
                             use ($user_ids, $solutioncol_ids,$productcol_ids, $faker)
