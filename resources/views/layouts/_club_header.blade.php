@@ -4,7 +4,7 @@
     <div class="club-header-warp">
       <div class="mdui-container club-header-content mdui-valign">
         <div class="club-log mdui-hidden-sm-down">
-          <a href="{{ route('home') }}"><img src="{{ asset('images/logo-blue.png') }}" alt="沟通科技logo"></a>
+          <a target="_blank" href="{{ route('home') }}"><img src="{{ asset('images/logo-blue.png') }}" alt="沟通科技logo"></a>
         </div>
         <div class="club-nav mdui-hidden-sm-down">
           <ul class="club-nav-ul">
@@ -67,7 +67,7 @@
     </div>
     <div class="ktm-nav-warp mdui-hidden-md-up xhs_cpsq_menu" style="height: 50px;z-index: 999;position: fixed;top: 0;left: 0;background: #444;">
       <div class="mdui-hidden-md-up mdui-float-left">
-        <a href="http://ktweb.test"><img src="{{ asset('images/logo-blue.png') }}" alt="沟通科技logo"></a>
+        <a target="_blank" href="{{ route('home') }}"><img src="{{ asset('images/logo-blue.png') }}" alt="沟通科技logo"></a>
       </div>
       <nav class="ktm-nav-menu mdui-hidden-md-up mdui-float-right" style="height: 50px;line-height: 50px;">
         <i class="kticon kt-navigetion-sections active">&#xe60b;</i>
