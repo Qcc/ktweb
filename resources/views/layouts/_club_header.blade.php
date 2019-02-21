@@ -4,7 +4,7 @@
     <div class="club-header-warp">
       <div class="mdui-container club-header-content mdui-valign">
         <div class="club-log mdui-hidden-sm-down">
-          <a href="http://ktweb.test"><img src="{{ asset('images/logo-blue.png') }}" alt="沟通科技logo"></a>
+          <a href="{{ route('home') }}"><img src="{{ asset('images/logo-blue.png') }}" alt="沟通科技logo"></a>
         </div>
         <div class="club-nav mdui-hidden-sm-down">
           <ul class="club-nav-ul">
