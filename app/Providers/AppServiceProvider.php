@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Horizon\Horizon;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
             return $value == session('smscode.value');
         });
 
+        Horizon::auth(function ($request) {
+            // 访问队列仪表盘需要权限 return true / false;
+           return Auth::user()->can('web_manage');
+        });
     }
 
     /**
