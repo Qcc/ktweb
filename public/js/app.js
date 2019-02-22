@@ -427,7 +427,7 @@ $(document).ready(function () {
 				textarea: $('#reply-editor'),
 				toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr'],
 				upload: {
-					url: "{{ route('topics.upload_image') }}",
+					url: "/topics/upload_image",
 					//工具条都包含哪些内容
 					params: {
 						_token: $('meta[name="csrf-token"]').attr('content')
@@ -3137,10 +3137,10 @@ $(document).ready(function () {
 			},
 			cleanPaste: true,
 			upload: {
-				url: "{{ route('topics.upload_image') }}",
+				url: "/topics/upload_image",
 				//工具条都包含哪些内容
 				params: {
-					_token: '{{ csrf_token() }}'
+					_token: $('meta[name="csrf-token"]').attr('content')
 				},
 				fileKey: 'upload_file',
 				connectionCount: 3,
