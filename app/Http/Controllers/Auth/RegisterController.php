@@ -160,6 +160,7 @@ class RegisterController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         $status = ['sendsms'=>false,'msg'=>'短信未发送'];
+        $timestamp = time();
         if (!$validator->fails()){
             $phone = $request->phone;  
             // 生成5位随机数，左侧补0
@@ -175,7 +176,6 @@ class RegisterController extends Controller
                 $response = $exception->getExceptions();
                 return response()->json($response);
             }
-            $timestamp = time();
             $this->session->put('smscode', [
                 'timestamp' => $timestamp,
                 'value' => $code,
