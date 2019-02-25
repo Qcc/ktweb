@@ -161,8 +161,8 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), $rules);
         $status = ['sendsms'=>false,'msg'=>'短信未发送'];
         $timestamp = time();
+        $phone = $request->phone;  
         if (!$validator->fails()){
-            $phone = $request->phone;  
             // 生成5位随机数，左侧补0
             $code = str_pad(random_int(1, 99999), 5, 0, STR_PAD_LEFT);
             try {
