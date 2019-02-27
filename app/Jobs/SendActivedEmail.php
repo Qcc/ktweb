@@ -34,8 +34,8 @@ class SendActivedEmail implements ShouldQueue
         $user = $this->user;
         $view = 'emails.confirm';
         $data = compact('user');
-        $from = config('mail.form.address');
-        $name = config('mail.form.name');
+        $from = config('mail.from.address');
+        $name = config('mail.from.name');
         $to = $user->temp_mail;
         $subject = "感谢注册！请确认您的邮箱。";
 
