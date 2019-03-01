@@ -2895,7 +2895,7 @@ a:active {
 
 .product-title .product-title-h3 {
     font-size: 30px;
-    line-height: 30px;
+    line-height: 45px;
     margin-bottom: 30px;
 }
 
@@ -4841,4 +4841,7 @@ a:active {
     .business-tryout-page .buy-title {
         font-size: 32px;
     }
+}
+.mdui-container-full .reset-top{
+    z-index: 1;
 }
