@@ -173,6 +173,13 @@
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',9) }}"> 电商企业</a></li>
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',10) }}"> 全渠道零售</a></li>
           </ul>
+          <ul class="navigation-product">
+            <li class="navigetion-sections-title"><a href="{{ route('solutions.show',11) }}" class="kt-navigetion-sections"><i
+                  class="kticon">&#xe6e5;</i>
+                更多方案</a></li>
+            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',11) }}"> 产品方案</a></li>
+            <li class="kt-navigetion-item"><a href="{{ route('solutions.show',12) }}"> 其他行业</a></li>
+          </ul>
         </div>
         <div class="mdui-col-xs-4">
           <div class="kt-navigetion-sections ">
