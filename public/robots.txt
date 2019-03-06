@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: http://www.kouton.com/sitemap.xml
