@@ -467,5 +467,30 @@ class ClubManagementController extends Controller
         //反序列号 得到广告列表
         return back()->with('success', '客服QQ保存成功');
     }
-     
+
+    // 数据导入
+    public function loads()
+    {
+        $temparticles = DB::table('temparticle')->paginate(50);
+        //数据导入表格
+        return view('management.loads',compact('temparticles'));
+    }     
+    // 数据预览修改
+    public function loadStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'操作失败!'];
+        if($request->action == 'view'){
+            $res['code'] = 0;
+            $res['msg'] = '操作成功!';
+            $data = DB::table('temparticle')->where('id',$request->id)->first();
+            $res['data'] = $data;
+        }else if($request->action == 'delete'){
+            $res['code'] = 0;
+            $res['msg'] = '删除成功!';
+            DB::table('temparticle')->where('id', $request->id)->delete();
+        }else if($request->action == 'edit'){
+
+        }
+        return $res; 
+    }     
 }

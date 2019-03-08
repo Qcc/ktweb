@@ -31,9 +31,10 @@
   <script type="text/javascript" src="{{ asset('/layui/layui.js') }}"></script>
   <script src="//at.alicdn.com/t/font_916960_dsr6fh19j3f.js"></script>
   <script src="{{ asset('js/app.js') }}"></script>
+  @includeWhen(app()->environment() === 'production','layouts.baidu_360_js_push')
   @if (app()->isLocal())
         @include('sudosu::user-selector')
-    @endif
+  @endif
   @yield('script')
 </body>
 </html>

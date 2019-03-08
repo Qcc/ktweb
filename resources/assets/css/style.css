@@ -251,15 +251,14 @@ body {
 /* 阿里巴巴图标字体 */
 
 @font-face {
-    font-family: 'kticon';
-    /* project id 916960 */
-    src: url('//at.alicdn.com/t/font_916960_sri82if6psb.eot');
-    src: url('//at.alicdn.com/t/font_916960_sri82if6psb.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_916960_sri82if6psb.woff2') format('woff2'),
-        url('//at.alicdn.com/t/font_916960_sri82if6psb.woff') format('woff'),
-        url('//at.alicdn.com/t/font_916960_sri82if6psb.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_916960_sri82if6psb.svg#kticon') format('svg');
-}
+    font-family: 'kticon';  /* project id 916960 */
+    src: url('//at.alicdn.com/t/font_916960_elj86f1sjae.eot');
+    src: url('//at.alicdn.com/t/font_916960_elj86f1sjae.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_916960_elj86f1sjae.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_916960_elj86f1sjae.woff') format('woff'),
+    url('//at.alicdn.com/t/font_916960_elj86f1sjae.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_916960_elj86f1sjae.svg#kticon') format('svg');
+  }
 
 .kticon {
     font-family: "kticon" !important;
@@ -4160,6 +4159,12 @@ a:active {
 
 /* 小于650px */
 @media screen and (max-width: 650px) {
+    .reply-list .avatar-left, .reply-item .reply-heading:before{
+        display: none;
+    }
+    .reply-list .reply-infos{
+        margin-left: 0;
+    }
     .solutions-show-page .featrue-title>p {
         font-size: 20px;
     }

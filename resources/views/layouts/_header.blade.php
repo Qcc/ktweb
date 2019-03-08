@@ -175,7 +175,7 @@
           </ul>
           <ul class="navigation-product">
             <li class="navigetion-sections-title"><a href="{{ route('solutions.show',11) }}" class="kt-navigetion-sections"><i
-                  class="kticon">&#xe6e5;</i>
+                  class="kticon">&#xe646;</i>
                 更多方案</a></li>
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',11) }}"> 产品方案</a></li>
             <li class="kt-navigetion-item"><a href="{{ route('solutions.show',12) }}"> 其他行业</a></li>

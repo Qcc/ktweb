@@ -12,7 +12,7 @@
             <div class="new-article-warp">
                 <div class="new-article">最新发表</div>
                 <div class="list">
-                @foreach($topics as $article)
+                    @foreach($topics as $article)
                     <div class="item">
                         <span>{{ $article->created_at->diffForHumans() }} </span>
                         <a href="{{ route('topics.show',$article->id)}}" target="_blank" title="{{ $article->title}}">
@@ -81,6 +81,13 @@
             <div class="replay-warp">
                 <!-- 视条件加载模版
             话题回复功能只允许登录用户使用，未登录用户不显示即可。 -->
+                @guest
+                <div style="margin:auto;border:1px dashed #ff8995;height:100px;line-height:40px;text-indent: 8px;">
+                    <div style="margin:30px auto;width: 270px">
+                        你需要登录后才可以发表回复 <a style="color: #709ff4;" href="/login">登录</a> |
+                        <a style="color: #709ff4;" href="/register">注册</a> </div>
+                </div>
+                @endguest
                 @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
                 @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
             </div>

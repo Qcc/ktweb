@@ -105,7 +105,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="text" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
         </div>
     </div>
 

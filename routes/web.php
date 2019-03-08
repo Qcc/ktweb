@@ -126,6 +126,9 @@ Route::group(['middleware' => ['permission:web_manage']], function () {
     // 网站设置
     Route::get('/management/club/settings','ClubManagementController@settings')->name('admin.club.settings');
     Route::post('/management/club/settings/store','ClubManagementController@settingsStore')->name('admin.club.setting.store');
+    // 数据导入
+    Route::get('/management/club/load','ClubManagementController@loads')->name('admin.club.load');
+    Route::post('/management/club/loadstore','ClubManagementController@loadStore')->name('admin.club.loadstore');
     // 客服QQ
     Route::post('/management/club/settings/onlineService','ClubManagementController@onlineService')->name('admin.club.setting.onlineService');
     // SEO修改

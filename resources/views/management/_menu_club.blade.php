@@ -18,6 +18,8 @@
                                 <i class="kticon">&#xe611;</i> 社区推荐</a></li>
                 <li><a href="{{ route('admin.club.settings') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('admin.club.settings'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
                                 <i class="kticon">&#xe607;</i> 网站设置</a></li>
+                <li><a href="{{ route('admin.club.load') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('admin.club.load'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
+                                <i class="kticon">&#xe647;</i> 批量发布</a></li>
                 @can('manage_logs')
                 <li><a href="{{ route('system.logs') }}" class="mdui-btn mdui-ripple {{ active_class(if_route('system.logs'), $activeClass = 'mdui-color-theme-accent', $inactiveClass = '') }} ">
                                 <i class="kticon">&#xe62b;</i> 查看日志</a></li>

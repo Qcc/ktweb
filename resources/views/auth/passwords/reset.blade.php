@@ -31,16 +31,22 @@
                                 <strong>{{ $errors->first('password') }}</strong>
                             </p>
                             @endif
-                            @if ($errors->has('password-confirm'))
+                            @if ($errors->has('token'))
                             <p>
                                 <i class="kticon">&#xe6b9;</i>
-                                <strong>{{ $errors->first('password-confirm') }}</strong>
+                                <strong>{{ $errors->first('token') }}</strong>
+                            </p>
+                            @endif
+                            @if ($errors->has('password_confirmation'))
+                            <p>
+                                <i class="kticon">&#xe6b9;</i>
+                                <strong>{{ $errors->first('password_confirmation') }}</strong>
                             </p>
                             @endif
                         </div>
                         @endif
                         {{ csrf_field() }}
-
+                        <input type="hidden" name="token" value="{{ $token }}">
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <input type="text" name="email" lay-verify="required|email" autocomplete="off"
@@ -57,8 +63,8 @@
 
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <input type="password" name="password-confirm" lay-verify="required" autocomplete="off"
-                                    placeholder="确认密码" value="" class="layui-input {{ $errors->has('password-confirm') ? 'layui-form-danger':'' }}">
+                                <input type="password" name="password_confirmation" lay-verify="required" autocomplete="off"
+                                    placeholder="确认密码" value="" class="layui-input {{ $errors->has('password_confirmation') ? 'layui-form-danger':'' }}">
                             </div>
                         </div>
 

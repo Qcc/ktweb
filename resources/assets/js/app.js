@@ -2471,6 +2471,135 @@ $(document).ready(function () {
 		});
 	}
 
+	// 批量发布文章页面
+	if ($('.admin-club-load-page').length == 1) {
+		layui.use(['table', 'layer'], function () {
+			var $ = layui.jquery,
+				table = layui.table;
+			layer = layui.layer;
+			table.init('articles-table', { //转化静态表格
+				limit:50,
+			});
+
+			//监听工具条 登录页
+			table.on('tool(articles-table)', function (obj) {
+				var data = obj.data;
+				if (obj.event === 'delete') {
+					data.action = 'delete';
+					layer.confirm('真的删除行么', function (index) {
+						$.ajax({
+							method: 'POST',
+							url: '/management/club/loadstore',
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: data,
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							}
+						});
+						layer.close(index);
+					});
+				} else if (obj.event === 'view') {
+					var view_layer = layer.open({
+						type: 1,
+						anim: 2,
+						title: '文章预览',
+						area: '500px',
+						maxmin:true,
+						cancel: function(){ 
+							//右上角关闭回调
+							$('.topic-body').empty();
+							//return false 开启该代码可禁止点击该按钮关闭
+						  },
+						// shadeClose: true, //开启遮罩关闭
+						content: $("#body-views")
+					});
+					layer.full(view_layer);
+					data.action = 'view';
+					$.ajax({
+						method: 'POST',
+						url: '/management/club/loadstore',
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: data,
+						success: function (data) {
+							if (data.code == 0) {
+								var article = data.data;
+								if(article.category){
+									$('.topic-body').append(article.category);
+								}
+								if(article.title){
+									$('.topic-body').append(article.title);
+								}
+								if(article.body){
+									$('.topic-body').append(article.body);
+								}
+								if(article.content1){
+									$('.topic-body').append(article.content1);
+								}
+								if(article.content2){
+									$('.topic-body').append(article.content2);
+								}
+								if(article.content3){
+									$('.topic-body').append(article.content3);
+								}
+								if(article.content4){
+									$('.topic-body').append(article.content4);
+								}
+								if(article.content5){
+									$('.topic-body').append(article.content5);
+								}
+								if(article.content6){
+									$('.topic-body').append(article.content6);
+								}
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+						}
+					});
+				}
+			});
+			// 检查数据是否完整 格式化数据
+			$('.check-data').on('click',function(){
+				var checkStatus = table.checkStatus('articles-table');
+	  			var data = checkStatus.data;
+	  			layer.alert(JSON.stringify(data));
+			});
+			// 发布文章到社区
+			$('.send-club').on('click',function(){
+				var checkStatus = table.checkStatus('articles-table');
+	  			var data = checkStatus.data;
+	  			layer.alert(JSON.stringify(data));
+			});
+			// 发布文章到行业新闻
+			$('.send-hy').on('click',function(){
+				var checkStatus = table.checkStatus('articles-table');
+	  			var data = checkStatus.data;
+	  			layer.alert(JSON.stringify(data));
+			});
+			// 发布文章到管理智库
+			$('.send-zhik').on('click',function(){
+				var checkStatus = table.checkStatus('articles-table');
+	  			var data = checkStatus.data;
+	  			layer.alert(JSON.stringify(data));
+			});
+		});
+	}
+
 	// 产品页面
 	if ($('.products-show-page').length == 1) {
 		// 初始化产品页面轮播图
