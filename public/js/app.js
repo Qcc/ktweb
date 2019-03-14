@@ -492,7 +492,6 @@ $(document).ready(function () {
 					id: id
 				},
 				success: function (data) {
-					var data = JSON.parse(data);
 					if (data.result) {
 						$('.user-follower').empty().append(
 							"<i class='kticon'>&#xe659;</i> 已关注").attr(

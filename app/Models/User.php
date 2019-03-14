@@ -47,7 +47,7 @@ class User extends Authenticatable
         'name', 'nickname', 'email', 'phone', 'telephone', 'company', 'temp_mail', 'password','permission','avatar','introduction'
     ];
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'password_confirmation', 'remember_token',
     ];
     
     // 通过用户查询话题

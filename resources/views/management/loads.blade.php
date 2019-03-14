@@ -17,6 +17,7 @@
                     <button class="layui-btn send-club" style="background-color:#536dfe"><i class="kticon">&#xe648;</i> 发布到社区</button>
                     <button class="layui-btn send-hy" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i> 发布到行业新闻</button>
                     <button class="layui-btn send-zhik" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i> 发布到管理智库</button>
+                    <button class="layui-btn delete-temp-article" style="background-color:#536dfe"><i class="kticon">&#xe6b9;</i> 删除</button>
                 </div>
                 <table lay-filter="articles-table" id="articles-table">
                     <thead>

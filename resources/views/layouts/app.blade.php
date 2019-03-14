@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="bookmark"href="/favicon.ico" />
     @yield('styles')
 
 </head>
