@@ -468,7 +468,7 @@ class ClubManagementController extends Controller
         return back()->with('success', '客服QQ保存成功');
     }
 
-    // 数据导入
+    // 数据导入展示
     public function loads()
     {
         $temparticles = DB::table('temparticle')->paginate(50);
@@ -485,12 +485,20 @@ class ClubManagementController extends Controller
             $data = DB::table('temparticle')->where('id',$request->id)->first();
             $res['data'] = $data;
         }else if($request->action == 'delete'){
+            if($request->list){
+                DB::table('temparticle')->whereIn('id', $request->list)->delete();
+            }else{
+                DB::table('temparticle')->where('id', $request->id)->delete();
+            }
             $res['code'] = 0;
             $res['msg'] = '删除成功!';
-            DB::table('temparticle')->where('id', $request->id)->delete();
-        }else if($request->action == 'edit'){
-
         }
         return $res; 
-    }     
+    }
+    
+    // 格式化文章，下载图片到本地，删除特殊字符
+    public function loadformat(Request $request)
+    {
+        return $res = ['code'=>1,'msg'=>'操作失败!'];
+    }
 }

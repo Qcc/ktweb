@@ -3,6 +3,7 @@
 @section('title', $topic->title)
 
 @section('description', $topic->excerpt)
+@section('keywords', $topic->keywords)
 
 @section('content')
 <div class="mdui-container club-artical">

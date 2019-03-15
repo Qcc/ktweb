@@ -2574,27 +2574,105 @@ $(document).ready(function () {
 			});
 			// 检查数据是否完整 格式化数据
 			$('.check-data').on('click',function(){
+				$(this).addClass('layui-btn-disabled');
 				var checkStatus = table.checkStatus('articles-table');
-	  			var data = checkStatus.data;
-	  			layer.alert(JSON.stringify(data));
+				if(checkStatus.data.length === 0){
+					layer.msg('没有数据被选中!');
+					return false;
+				}
+				console.log(checkStatus);
+				var ids = [];
+				for (let index = 0; index < checkStatus.data.length; index++) {
+					  ids.push(checkStatus.data[index].id);
+					}
+				$.ajax({
+					method: 'POST',
+					url: '/management/club/loadformat',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: {list:ids},
+					success: function (data) {
+						$('.check-data').removeClass('layui-btn-disabled');
+						if (data.code == 0) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+						}
+					}
+				});
 			});
 			// 发布文章到社区
 			$('.send-club').on('click',function(){
 				var checkStatus = table.checkStatus('articles-table');
+				if(checkStatus.data.length === 0){
+					layer.msg('没有数据被选中!');
+					return false;
+				}
 	  			var data = checkStatus.data;
 	  			layer.alert(JSON.stringify(data));
 			});
 			// 发布文章到行业新闻
 			$('.send-hy').on('click',function(){
 				var checkStatus = table.checkStatus('articles-table');
+				if(checkStatus.data.length === 0){
+					layer.msg('没有数据被选中!');
+					return false;
+				}
 	  			var data = checkStatus.data;
 	  			layer.alert(JSON.stringify(data));
 			});
 			// 发布文章到管理智库
 			$('.send-zhik').on('click',function(){
 				var checkStatus = table.checkStatus('articles-table');
+				if(checkStatus.data.length === 0){
+					layer.msg('没有数据被选中!');
+					return false;
+				}
 	  			var data = checkStatus.data;
 	  			layer.alert(JSON.stringify(data));
+			});
+			// 批量删除文章
+			$('.delete-temp-article').on('click',function(){
+				$(this).addClass('layui-btn-disabled');
+				var checkStatus = table.checkStatus('articles-table');
+				if(checkStatus.data.length === 0){
+					layer.msg('没有数据被选中!');
+					return false;
+				}
+				var data = checkStatus.data;
+				var ids = [];
+				for (let index = 0; index < data.length; index++) {
+					  ids.push(data[index].id);
+				}
+				$.ajax({
+					method: 'POST',
+					url: '/management/club/loadstore',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: {list:ids,action:'delete'},
+					success: function (data) {
+						$('.delete-temp-article').removeClass('layui-btn-disabled');
+						if (data.code == 0) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+						}
+					}
+				});
 			});
 		});
 	}

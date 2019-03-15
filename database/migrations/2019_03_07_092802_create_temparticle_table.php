@@ -15,6 +15,7 @@ class CreateTemparticleTable extends Migration
     {
         Schema::create('temparticle', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('format')->default(false)->comment('状态');
             $table->string('category')->nullable()->comment('分类');
             $table->string('title')->index()->comment('标题');
             $table->text('body')->comment('正文');
