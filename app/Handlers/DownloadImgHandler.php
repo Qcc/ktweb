@@ -4,6 +4,7 @@ namespace App\Handlers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class DownloadImgHandler
 {
@@ -13,36 +14,23 @@ class DownloadImgHandler
      * @param [type] $text
      * @return void
      */
-    public function download($url)
+    public function downloadImg($url,$folder = 'topics')
     {
-        // 实例化Http客户端
         try {
-            $http = new Client(['verify' => false]);  //忽略SSL错误
-            $client->get($url, ['save_to' =>$path]);  //保存远程url到文件
-        } catch (GuzzleException $e) {
-            Log::info('下载图片失败!');
+            $client = new Client();
+            $extentArray = explode('.', $url);
+            $extension = array_pop($extentArray) ?? 'png';
+            $filePath ="public/images/". $folder . "/" . date("Ym/d", time()) ."/".'_' . time() . '_' . str_random(15) . '.' . $extension;
+            $file = $client->get($url)->getBody()->getContents();
+            $boolSave = Storage::put( $filePath, $file,'public');
+            if($boolSave){
+              $imgUrl= Storage::url($filePath);
+              return $imgUrl;
+            }
+            return false;
+        } catch (GuzzleException $exception) {
+            Log::info('下载图片失败:' . $url);
+            return false;
         }
-
-        return $result;
-    }
-
-    public function downloadImage($url, $path='images/')
-    {
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-      $file = curl_exec($ch);
-      curl_close($ch);
-  
-      $this->saveAsImage($url, $file, $path);
-    }
-  
-    private function saveAsImage($url, $file, $path)
-    {
-      $filename = pathinfo($url, PATHINFO_BASENAME);
-      $resource = fopen($path . $filename, 'a');
-      fwrite($resource, $file);
-      fclose($resource);
     }
 }

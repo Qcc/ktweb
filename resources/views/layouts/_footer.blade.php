@@ -52,6 +52,6 @@
 
     <div class="mdui-text-color-grey copyright">
       <p class="txt-center">深圳市沟通科技有限公司 · 版权所有 电话：0755-26525890 地址：深圳市南山区科技园南区W1-B栋5楼</p>
-      <p class="txt-center"><small>KouTon © 2000-2018 粤ICP备09149236 号</small></p>
+      <p class="txt-center"><small>KouTon © 2000-2018</small><a target="_blank" href="http://www.miitbeian.gov.cn" title="www.miitbeian.gov.cn"> 粤ICP备09149236号-1</a></p>
     </div>
   </footer>
