@@ -15,6 +15,8 @@ use App\Models\Category;
 use App\Models\Productcol;
 use App\Models\Solutioncol;
 use App\Models\Customercol;
+use App\Jobs\FormatTempArticles;
+use Illuminate\Support\Facades\Log;
 
 class ClubManagementController extends Controller
 {
@@ -499,6 +501,47 @@ class ClubManagementController extends Controller
     // 格式化文章，下载图片到本地，删除特殊字符
     public function loadformat(Request $request)
     {
-        return $res = ['code'=>1,'msg'=>'操作失败!'];
+        //要替换的内容      
+        $content = '<img alt="" src="js/fckeditor/UserFiles/image/F201005201210502415831196.jpg" width="600" height="366"><br><br><br><br><img alt="" src="js/fckeditor/UserFiles/image/33_avatar_middle.jpg" width="120" height="120">';  
+  
+        //提取图片路径的src的正则表达式  
+        preg_match_all("/<img(.*)src=\"([^\"]+)\"[^>]+>/isU",$content,$matches);  
+  
+            $img = "";  
+            if(!emptyempty($matches)) {  
+            //注意，上面的正则表达式说明src的值是放在数组的第三个中  
+                $img = $matches[2];  
+            }else {  
+                $img = "";  
+            }  
+            if (!emptyempty($img)) {  
+                $img_url = "http://".$_SERVER['SERVER_NAME'];  
+  
+                $patterns= array();  
+                $replacements = array();  
+  
+                foreach($img as $imgItem){  
+  
+                $final_imgUrl = $img_url.$imgItem;  
+                $replacements[] = $final_imgUrl;  
+  
+                $img_new = "/".preg_replace("/\//i","\/",$imgItem)."/";  
+                $patterns[] = $img_new;  
+  
+                }  
+  
+                //让数组按照key来排序  
+                ksort($patterns);  
+                ksort($replacements);  
+  
+                //替换内容  
+                $vote_content = preg_replace($patterns, $replacements, $content); 
+
+        // foreach($request->list as $id){ 
+        //     Log::info('ID '.$id);
+        //     //推送到队列执行，翻译标题填入slug SEO优化
+        //     dispatch(new FormatTempArticles($id));
+        // }
+        return $res = ['code'=>0,'msg'=>'数据处理中...'];
     }
 }
