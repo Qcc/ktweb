@@ -137,6 +137,9 @@ Route::group(['middleware' => ['permission:web_manage']], function () {
     // SEO修改
     Route::post('/management/club/seoStore','ClubManagementController@seoStore')->name('admin.club.seoStore');
     Route::post('/management/club/seoDestroy','ClubManagementController@seoDestroy')->name('admin.club.seoDestroy');
+    // keywords添加删除
+    Route::post('/management/club/keywordsStore','ClubManagementController@keywordsStore')->name('admin.club.keywordsStore');
+    Route::post('/management/club/keywordsDestroy','ClubManagementController@keywordsDestroy')->name('admin.club.keywordsDestroy');
 });
 // 用户管理需要 manage_users 权限
 Route::group(['middleware' => ['permission:manage_users']], function () {

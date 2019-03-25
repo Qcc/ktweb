@@ -20,6 +20,7 @@
                         <li>产品</li>
                         <li>解决方案</li>
                         <li>客户案例</li>
+                        <li>关键词</li>
                         <li>SEO城市</li>
                         <li>上传文件管理</li>
                     </ul>
@@ -57,6 +58,9 @@
                         </div>
                         <div class="layui-tab-item">
                             <table class="layui-table" lay-filter="customertable" id="customertable"></table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <table class="layui-table" lay-filter="keywordstable" id="keywordstable"></table>
                         </div>
                         <div class="layui-tab-item">
                             <table class="layui-table" lay-filter="seotable" id="seotable"></table>
@@ -168,6 +172,26 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn seo_form_btn" lay-submit="" lay-filter="seo_form_btn">确认</button>
+        </div>
+    </div>
+</form>
+<!-- keywords关键词 -->
+<form class="layui-form" id="keywords_form" action="" lay-filter="keywords_form" style="display:none;margin-right: 80px;">
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <input type="hidden" name="key">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">关键词</label>
+        <div class="layui-input-block">
+            <textarea name="keywords" lay-verify="required" placeholder="请输入关键词以逗号(,)分隔" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn keywords_form_btn" lay-submit="" lay-filter="keywords_form_btn">确认</button>
         </div>
     </div>
 </form>

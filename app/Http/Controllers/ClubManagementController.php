@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Productcol;
@@ -54,6 +55,13 @@ class ClubManagementController extends Controller
             $data = Customercol::all();
         }else if($request->type == 'seo'){
             $data = DB::table('seos')->get();
+        }else if($request->type == 'keywords'){
+            //获取缓存的关键词
+		    $data =  [];
+		    $keys =  Redis::keys('keywords_*');
+		    foreach ($keys as $key) {
+		    	array_push($data,Redis::get($key));
+		    }
         }else if($request->type == 'file'){
             $data = DB::table('files')->get();
         }
@@ -265,6 +273,47 @@ class ClubManagementController extends Controller
             $res = ['code'=>0,'msg'=>'删除城市成功!'];
         }
         Cache::forget('soe_citys');
+        return $res;
+    }
+    /**
+     * 添加 更新keywords关键词
+     *
+     * @return void
+     */
+    public function keywordsStore(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'操作失败!'];
+        if($request->keywords){
+            $keywords = $request->keywords;
+            Log::info($keywords);
+            $keywords1 = str_replace("，",",",$keywords); 
+            Log::info($keywords1);
+            $keywords2 = trim($keywords1,",");
+            Log::info($keywords2);
+            $keywords3 = str_replace(" ","",$keywords2);
+            Log::info($keywords3);
+            $keywords4 = explode(",",$request->keywords3);
+            Log::info($keywords4);
+            foreach ($keywords4 as $word) {
+                // 关键词默认保存90天，过期后自动删除
+                Redis::setex("keywords_".str_random(10),20,$word);
+            }
+            $res = ['code'=>0,'msg'=>"新增".count($keywords)."个城市成功!"];
+        }
+        return $res;
+    }
+    /**
+     * 删除keywords关键词
+     *
+     * @return void
+     */
+    public function keywordsDestroy(Request $request)
+    {
+        $res = ['code'=>1,'msg'=>'删除关键词失败!'];
+        if($request->key){
+            Redis::del($request->key);
+            $res = ['code'=>0,'msg'=>'删除关键词成功!'];
+        }
         return $res;
     }
     /**
@@ -501,47 +550,7 @@ class ClubManagementController extends Controller
     // 格式化文章，下载图片到本地，删除特殊字符
     public function loadformat(Request $request)
     {
-        //要替换的内容      
-        $content = '<img alt="" src="js/fckeditor/UserFiles/image/F201005201210502415831196.jpg" width="600" height="366"><br><br><br><br><img alt="" src="js/fckeditor/UserFiles/image/33_avatar_middle.jpg" width="120" height="120">';  
-  
-        //提取图片路径的src的正则表达式  
-        preg_match_all("/<img(.*)src=\"([^\"]+)\"[^>]+>/isU",$content,$matches);  
-  
-            $img = "";  
-            if(!emptyempty($matches)) {  
-            //注意，上面的正则表达式说明src的值是放在数组的第三个中  
-                $img = $matches[2];  
-            }else {  
-                $img = "";  
-            }  
-            if (!emptyempty($img)) {  
-                $img_url = "http://".$_SERVER['SERVER_NAME'];  
-  
-                $patterns= array();  
-                $replacements = array();  
-  
-                foreach($img as $imgItem){  
-  
-                $final_imgUrl = $img_url.$imgItem;  
-                $replacements[] = $final_imgUrl;  
-  
-                $img_new = "/".preg_replace("/\//i","\/",$imgItem)."/";  
-                $patterns[] = $img_new;  
-  
-                }  
-  
-                //让数组按照key来排序  
-                ksort($patterns);  
-                ksort($replacements);  
-  
-                //替换内容  
-                $vote_content = preg_replace($patterns, $replacements, $content); 
-
-        // foreach($request->list as $id){ 
-        //     Log::info('ID '.$id);
-        //     //推送到队列执行，翻译标题填入slug SEO优化
-        //     dispatch(new FormatTempArticles($id));
-        // }
+         
         return $res = ['code'=>0,'msg'=>'数据处理中...'];
     }
 }

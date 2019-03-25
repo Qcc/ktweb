@@ -1161,6 +1161,7 @@ $(document).ready(function () {
 				}
 			});
 			element.on('tab(column-tab)', function (data) {
+				console.log(data.index );
 				// 产品表
 				if (data.index == 1) {
 					$.ajax({
@@ -1320,8 +1321,49 @@ $(document).ready(function () {
 							});
 						}
 					});
-					// seo城市表
+					// keywords关键词缓存表
 				} else if (data.index == 4) {
+					$.ajax({
+						method: 'POST',
+						url: '/management/club/columns',
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: {
+							type: 'keywords',
+						},
+						success: function (data) {
+							if (data.code) {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							table.render({
+								elem: '#keywordstable',
+								toolbar: '#toolbarAdd',
+								cols: [
+									[{
+										field: 'key',
+										title: 'key',
+										width: 60,
+										fixed: 'left'
+									}, {
+										field: 'keywords',
+										title: '关键词'
+									}, {
+										toolbar: '#barAction',
+										title: '操作'
+									}]
+								],
+								data: data,
+								page: true
+							});
+						}
+					});
+					// seo城市表
+				} else if (data.index == 5) {
 					$.ajax({
 						method: 'POST',
 						url: '/management/club/columns',
@@ -1362,7 +1404,7 @@ $(document).ready(function () {
 						}
 					});
 					// 文件管理
-				} else if (data.index == 5) {
+				} else if (data.index == 6) {
 					$.ajax({
 						method: 'POST',
 						url: '/management/club/columns',
@@ -1699,6 +1741,28 @@ $(document).ready(function () {
 					deleteLine('/management/club/seoDestroy', obj);
 				}
 			});
+			//头工具栏事件 添加keywords关键词缓存
+			table.on('toolbar(keywordstable)', function (obj) {
+				if (obj.event == 'add') {
+					var keywords_form = layer.open({
+						type: 1,
+						anim: 2,
+						title: '请输入要添加长尾词名称',
+						area: '500px',
+						// shadeClose: true, //开启遮罩关闭
+						content: $("#keywords_form")
+					});
+					document.getElementById('keywords_form').reset();
+					//监听提交 确认添加SEO城市
+					keywordsFormSubmit('/management/club/keywordsStore', keywords_form);
+				}
+			});
+			//工具栏事件 修改keywords关键词
+			table.on('tool(keywordstable)', function (obj) {
+				if (obj.event == 'delete') {
+					deleteLine('/management/club/keywordsDestroy', obj);
+				}
+			});
 
 			//工具栏事件 修改文件下载权限
 			table.on('tool(filetable)', function (obj) {
@@ -1791,7 +1855,39 @@ $(document).ready(function () {
 					return false;
 				});
 			}
-			// 表单SEO提交监听
+			// 关键词
+			function keywordsFormSubmit(api, layerOpen) {
+				//监听提交 修改分类
+				form.on("submit(keywords_form_btn)", function (data) {
+					$(".keywords_form_btn").addClass('layui-btn-disabled');
+					var field = data.field;
+					$.ajax({
+						method: 'POST',
+						url: api,
+						ContentType: 'application/json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+								'content')
+						},
+						data: field,
+						success: function (data) {
+							$(".keywords_form_btn").removeClass('layui-btn-disabled');
+							if (data.code == 0) {
+								layer.msg(data.msg, {
+									icon: 1
+								});
+							} else {
+								layer.msg(data.msg, {
+									icon: 2
+								});
+							}
+							layer.close(layerOpen);
+						}
+					});
+					return false;
+				});
+			}
+			// 表单文件提交监听
 			function fileFormSubmit(api, layerOpen) {
 				//监听提交 修改分类
 				form.on("submit(file_form_btn)", function (data) {
