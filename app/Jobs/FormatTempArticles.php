@@ -37,6 +37,14 @@ class FormatTempArticles implements ShouldQueue
             Log::info("未查到数据，id是=>".$request->id);
             return false;
         }
+        // 准备好关键词作为图片的alt，获取缓存的关键词
+		$allKeywords =  [];
+		$keys =  Redis::keys('keywords_*');
+		foreach ($keys as $key) {
+			array_push($allKeywords,Redis::get($key));
+        }
+        $altWords = [];
+        todo......
         $body = trim($article->body);
         $patternImg = '/<img[^>]+>/i';
         $patternAtl = '/alt="[^"]*"/i';
@@ -52,12 +60,12 @@ class FormatTempArticles implements ShouldQueue
          */
         preg_match_all($patternImg,$body,$result);  
         //准备空数组存放alt与src
-        foreach( $result[0] as $img_tag)
+        foreach( $result[0] as $index=> $img_tag)
         {
             preg_match($patternAtl,$img_tag, $alt);
             $noAlt = false; //是否没有alt属性
             if(!empty($alt)){
-                $replace =' alt="" ';
+                $replace =' alt="'.isset($altWords[$index])?$altWords[$index]:$article->title.'" ';
                 $target = $alt[0];
                 //替换内容alt  
                 $body = str_replace($target, $replace, $body);
@@ -73,7 +81,7 @@ class FormatTempArticles implements ShouldQueue
                 if($path){
                     if($noAlt){
                         
-                        $replace =' alt="没有alt" src="'.$path.'" ';
+                        $replace =' alt="'.isset($altWords[$index])?$altWords[$index]:$article->title.'" src="'.$path.'" ';
                     }else{
                         $replace =' src="'.$path.'" ';
                     }

@@ -60,7 +60,10 @@ class ClubManagementController extends Controller
 		    $data =  [];
 		    $keys =  Redis::keys('keywords_*');
 		    foreach ($keys as $key) {
-		    	array_push($data,Redis::get($key));
+                $word = [];
+                $word['key'] = $key;
+                $word['keywords'] = Redis::get($key);
+		    	array_push($data,$word);
 		    }
         }else if($request->type == 'file'){
             $data = DB::table('files')->get();
@@ -285,20 +288,15 @@ class ClubManagementController extends Controller
         $res = ['code'=>1,'msg'=>'操作失败!'];
         if($request->keywords){
             $keywords = $request->keywords;
-            Log::info($keywords);
-            $keywords1 = str_replace("，",",",$keywords); 
-            Log::info($keywords1);
-            $keywords2 = trim($keywords1,",");
-            Log::info($keywords2);
-            $keywords3 = str_replace(" ","",$keywords2);
-            Log::info($keywords3);
-            $keywords4 = explode(",",$request->keywords3);
-            Log::info($keywords4);
-            foreach ($keywords4 as $word) {
+            $keywords = str_replace("，",",",$keywords); 
+            $keywords = str_replace(" ","",$keywords);
+            $keywords = trim($keywords,",");
+            $keywords = explode(",",$keywords);
+            foreach ($keywords as $word) {
                 // 关键词默认保存90天，过期后自动删除
-                Redis::setex("keywords_".str_random(10),20,$word);
+                Redis::setex("keywords_".str_random(10),60*60*24*90,$word);
             }
-            $res = ['code'=>0,'msg'=>"新增".count($keywords)."个城市成功!"];
+            $res = ['code'=>0,'msg'=>"新增".count($keywords)."个关键词成功!"];
         }
         return $res;
     }

@@ -1161,7 +1161,6 @@ $(document).ready(function () {
 				}
 			});
 			element.on('tab(column-tab)', function (data) {
-				console.log(data.index );
 				// 产品表
 				if (data.index == 1) {
 					$.ajax({
@@ -1347,13 +1346,13 @@ $(document).ready(function () {
 									[{
 										field: 'key',
 										title: 'key',
-										width: 60,
+										width: 200,
 										fixed: 'left'
 									}, {
 										field: 'keywords',
 										title: '关键词'
 									}, {
-										toolbar: '#barAction',
+										toolbar: '#keywordsAction',
 										title: '操作'
 									}]
 								],
@@ -1760,7 +1759,30 @@ $(document).ready(function () {
 			//工具栏事件 修改keywords关键词
 			table.on('tool(keywordstable)', function (obj) {
 				if (obj.event == 'delete') {
-					deleteLine('/management/club/keywordsDestroy', obj);
+					layer.confirm('真的移除么', function (index) {
+						$.ajax({
+							method: 'POST',
+							url: "/management/club/keywordsDestroy",
+							ContentType: 'application/json',
+							headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+									'content')
+							},
+							data: {
+								key: obj.data.key
+							},
+							success: function (data) {
+								if (data.code == 0) {
+									obj.del();
+								} else {
+									layer.msg(data.msg, {
+										icon: 2
+									});
+								}
+							},
+						});
+						layer.close(index);
+					});
 				}
 			});
 
@@ -2676,7 +2698,6 @@ $(document).ready(function () {
 					layer.msg('没有数据被选中!');
 					return false;
 				}
-				console.log(checkStatus);
 				var ids = [];
 				for (let index = 0; index < checkStatus.data.length; index++) {
 					  ids.push(checkStatus.data[index].id);
@@ -3723,7 +3744,6 @@ $(document).ready(function () {
 			//监听提交
 			form.on('submit(buy-btn)', function (data) {
 				$(this).addClass('layui-btn-disabled');
-				console.log(data.field);
 				$.ajax({
 					method: 'POST',
 					url: '/business/store',

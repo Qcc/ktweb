@@ -227,6 +227,9 @@
     <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
 </script>
+<script type="text/html" id="keywordsAction">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
 <script type="text/html" id="toolbarAdd">
     <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
 </script>
