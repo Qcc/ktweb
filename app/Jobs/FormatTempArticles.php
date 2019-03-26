@@ -37,15 +37,25 @@ class FormatTempArticles implements ShouldQueue
             Log::info("未查到数据，id是=>".$request->id);
             return false;
         }
+        $body = trim($article->body);
         // 准备好关键词作为图片的alt，获取缓存的关键词
 		$allKeywords =  [];
 		$keys =  Redis::keys('keywords_*');
 		foreach ($keys as $key) {
 			array_push($allKeywords,Redis::get($key));
         }
+        // 打乱关键词默认顺序，随机分布关键词数量
+        shuffle($allKeywords);
+        // 查找匹配最多不超过4个关键词，存放匹配的关键词
         $altWords = [];
-        todo......
-        $body = trim($article->body);
+        foreach ($allKeywords as $index=>$w){
+            if(strripos($body,$w)){
+                array_push($w);
+            }
+            if($index>3){
+                break;
+            }
+        }
         $patternImg = '/<img[^>]+>/i';
         $patternAtl = '/alt="[^"]*"/i';
         $patternSrc = '/src="[^"]*"/i';

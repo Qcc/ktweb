@@ -17,6 +17,7 @@ use App\Models\Productcol;
 use App\Models\Solutioncol;
 use App\Models\Customercol;
 use App\Jobs\FormatTempArticles;
+use App\Handlers\DownloadImgHandler;
 use Illuminate\Support\Facades\Log;
 
 class ClubManagementController extends Controller
@@ -548,7 +549,92 @@ class ClubManagementController extends Controller
     // 格式化文章，下载图片到本地，删除特殊字符
     public function loadformat(Request $request)
     {
-         
+        foreach ($request->list as $id) {
+            
+        $article = \DB::table('temparticle')->where('id',$id)->first();
+        if(!$article){
+            Log::info("未查到数据，id是=>".$id);
+            return $res = ['code'=>0,'msg'=>'未查到数据，id是=>'.$id];;
+        }
+        $body = trim($article->body);
+        // 准备好关键词作为图片的alt，获取缓存的关键词
+		$allKeywords =  [];
+		$keys =  Redis::keys('keywords_*');
+		foreach ($keys as $key) {
+			array_push($allKeywords,Redis::get($key));
+        }
+        // 打乱关键词默认顺序，随机分布关键词数量
+        shuffle($allKeywords);
+        // 查找匹配最多不超过4个关键词，存放匹配的关键词
+        $altWords = [];
+        foreach ($allKeywords as $index=>$w){
+            if(strripos($body,$w)){
+                array_push($altWords,$w);
+            }
+            if($index>3){
+                break;
+            }
+        }
+        $patternImg = '/<img[^>]+>/i';
+        $patternAtl = '/alt="[^"]*"/i';
+        $patternSrc = '/src="[^"]*"/i';
+
+        //提取文章中的img元素  
+        /**
+         * 0:array($result)
+         * 0:"<img src="js/fckeditor/UserFiles/image/F201005201210502415831196.jpg" alt="aaa" width="600" height="366">"
+         * 1:"<img alt="bbb" src="js/fckeditor/UserFiles/image/33_avatar_middle.jpg" width="120" height="120">"
+
+         * 
+         */
+        preg_match_all($patternImg,$body,$result);  
+        //准备空数组存放alt与src
+        foreach( $result[0] as $index=> $img_tag)
+        {
+            preg_match($patternAtl,$img_tag, $alt);
+            $noAlt = false; //是否没有alt属性
+            Log::info("alt ".$alt[0]);
+            if(!empty($alt)){
+                if(array_key_exists($index,$altWords)){
+                    $replace =' alt="'.$altWords[$index];
+                }else{
+                    $replace =' alt="'.$article->title;
+                };
+                $target = $alt[0];
+                //替换内容alt  
+                $body = str_replace($target, $replace, $body);
+                Log::info("替换ALT ".$body);
+            }else{
+                $noAlt = true;
+            }
+            preg_match($patternSrc,$img_tag, $src);
+            Log::info("src ".$src[0]);
+            if(!empty($src)){
+                $url = trim(ltrim($src[0],"src="),'"');
+                // 下载图片并返回存储url
+                $path = app(DownloadImgHandler::class)->downloadImg($url);
+                // 确认图片下载完成并返回了保存路径
+                if($path){
+                    if($noAlt){
+                        if(array_key_exists($index,$altWords)){
+                            $replace =' alt="'.$altWords[$index].'" src="'.$path.'" ';;
+                        }else{
+                            $replace =' alt="'.$article->title.'" src="'.$path.'" ';;
+                        };
+                    }else{
+                        $replace =' src="'.$path.'" ';
+                    }
+                    $target = $src[0];
+                    //替换内容src  
+                    $body = str_replace($target, $replace, $body);
+                Log::info("替换SRC ".$body);
+                }
+            }
+        }
+        // 更新替换后的文章内容
+        $id = \DB::table('temparticle')->where('id',$id)->update(['body'=>$body]); 
+    }
+
         return $res = ['code'=>0,'msg'=>'数据处理中...'];
     }
 }
