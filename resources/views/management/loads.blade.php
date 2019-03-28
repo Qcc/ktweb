@@ -25,10 +25,12 @@
                             <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
                             <!-- <th lay-data="{checkbox:true,fixed: 'left'}"></th> -->
                             <th lay-data="{field:'id', width:50}">ID</th>
+                            <th lay-data="{field:'format', width:60}">状态</th>
                             <th lay-data="{field:'category', width:60}">分类</th>
                             <th lay-data="{field:'title'}">标题</th>
                             <th lay-data="{field:'body', width:80}">正文</th>
-                            <th lay-data="{field:'content1', width:100}">回复1</th>
+                            <th lay-data="{field:'reply1', width:100}">回复1</th>
+                            <th lay-data="{field:'source', width:100}">原文链接</th>
                             <th lay-data="{toolbar: '#barAction', width:110}">操作</th>
                         </tr>
                     </thead>
@@ -37,15 +39,12 @@
                         <tr>
                             <td></td>
                             <td>{{ $article->id }}</td>
+                            <td>{{ $article->format }}</td>
                             <td>{{ $article->category }}</td>
                             <td>{{ $article->title }}</td>
                             <td>{{ $article->body }}</td>
-                            <td>{{ $article->content1 }}</td>
-                            <td>{{ $article->content2 }}</td>
-                            <td>{{ $article->content3 }}</td>
-                            <td>{{ $article->content4 }}</td>
-                            <td>{{ $article->content5 }}</td>
-                            <td>{{ $article->content6 }}</td>
+                            <td>{{ $article->reply1 }}</td>
+                            <td>{{ $article->source }}</td>
                         </tr>
                         @endforeach
                     </tbody>

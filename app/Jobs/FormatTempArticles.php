@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Handlers\DownloadImgHandler;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class FormatTempArticles implements ShouldQueue
 {
@@ -32,12 +33,13 @@ class FormatTempArticles implements ShouldQueue
      */
     public function handle()
     {
-        $article = \DB::table('temparticle')->where('id',$request->id)->first();
-        if(!$article){
-            Log::info("未查到数据，id是=>".$request->id);
+        $article = \DB::table('temparticle')->where('id',$this->id)->first();
+        if(!$article || $article->format){
+            Log::info("未查到数据或者数据已被格式化，id是=>".$this->id);
             return false;
         }
         $body = trim($article->body);
+        
         // 准备好关键词作为图片的alt，获取缓存的关键词
 		$allKeywords =  [];
 		$keys =  Redis::keys('keywords_*');
@@ -46,20 +48,6 @@ class FormatTempArticles implements ShouldQueue
         }
         // 打乱关键词默认顺序，随机分布关键词数量
         shuffle($allKeywords);
-        // 查找匹配最多不超过4个关键词，存放匹配的关键词
-        $altWords = [];
-        foreach ($allKeywords as $index=>$w){
-            if(strripos($body,$w)){
-                array_push($w);
-            }
-            if($index>3){
-                break;
-            }
-        }
-        $patternImg = '/<img[^>]+>/i';
-        $patternAtl = '/alt="[^"]*"/i';
-        $patternSrc = '/src="[^"]*"/i';
-
         //提取文章中的img元素  
         /**
          * 0:array($result)
@@ -68,42 +56,103 @@ class FormatTempArticles implements ShouldQueue
 
          * 
          */
-        preg_match_all($patternImg,$body,$result);  
-        //准备空数组存放alt与src
-        foreach( $result[0] as $index=> $img_tag)
-        {
-            preg_match($patternAtl,$img_tag, $alt);
-            $noAlt = false; //是否没有alt属性
-            if(!empty($alt)){
-                $replace =' alt="'.isset($altWords[$index])?$altWords[$index]:$article->title.'" ';
-                $target = $alt[0];
-                //替换内容alt  
-                $body = str_replace($target, $replace, $body);
-            }else{
-                $noAlt = true;
+        preg_match_all('/<img[^>]+>/i',$body,$result);
+
+        // 查找匹配最多不超过4个关键词，存放匹配的关键词
+        $altWords = [];
+        foreach ($allKeywords as $index=>$w){
+            if(strripos($body,$w)){
+                array_push($altWords,$w);
             }
-            preg_match($patternSrc,$img_tag, $src);
-            if(!empty($src)){
-                $url = trim(ltrim($src[0],"src="),'"');
-                // 下载图片并返回存储url
-                $path = app(DownloadImgHandler::class)->downloadImg($url);
-                // 确认图片下载完成并返回了保存路径
-                if($path){
-                    if($noAlt){
-                        
-                        $replace =' alt="'.isset($altWords[$index])?$altWords[$index]:$article->title.'" src="'.$path.'" ';
-                    }else{
-                        $replace =' src="'.$path.'" ';
-                    }
-                    $target = $src[0];
-                    //替换内容src  
-                    $body = str_replace($target, $replace, $body);
-                }
+            // 一个img标签只使用一个关键词
+            $length =  count($result[0]);
+            if($index == $length){
+                break;
             }
         }
-        // 更新替换后的文章内容
-        $id = \DB::table('temparticle')->where('id',$request->id)->update(['body'=>$body]);
-        
-        
+        foreach ($result[0] as $index => $tag) {
+            $atts = $this->extract_attrib($tag);
+            $src="";
+            $file="";
+            $width="";
+            $height="";
+            if(array_key_exists('src',$atts)){
+                $src = trim($atts['src'],'"');
+            }
+            if(array_key_exists('file',$atts)){
+                $file = trim($atts['file'],'"');
+            }
+            if(array_key_exists('width',$atts)){
+
+                $width = ' width='.$atts['width'];
+            }else{
+                $width = ' width="100%" ';
+            }
+            if(array_key_exists('height',$atts)){
+
+                $height = ' height='.$atts['height'];
+            }else{
+                $height = ' height="100%" ';
+            }
+            $url = strpos($src,"http://")?$src:$file;
+            // 下载图片并返回存储url
+            $path = app(DownloadImgHandler::class)->downloadImg($url);
+            //替换内容src  
+            if($path){
+                $keyword = array_key_exists($index,$altWords)?$altWords[$index]:$article->title;
+                $img = '<img src="'.$path.'" '.' alt="'.$keyword.'" '.$width.$height.' >';
+                $body = str_replace($tag, $img, $body);
+            }else{
+                // 图片无法下载 返回
+                Log::info("图片无法下载，跳过当前文章格式化  ".$tag);
+                Log::info("源地址是   ".$article->source);
+                return false;
+            }
+            // 删除日期数据
+            
+        }
+        // 配置文件config/purifier.php
+        // 使用插件过滤用户输入的内容
+        $body = clean($body, 'temp_article_body');
+        $article->reply1 = clean($article->reply1, 'temp_article_reply');
+        $article->reply2 = clean($article->reply2, 'temp_article_reply');
+        $article->reply3 = clean($article->reply3, 'temp_article_reply');
+        $article->reply4 = clean($article->reply4, 'temp_article_reply');
+        $article->reply5 = clean($article->reply5, 'temp_article_reply');
+        $article->reply6 = clean($article->reply6, 'temp_article_reply');
+        // Log::info("格式化完成的数据 ===== ".$body);
+
+        // 更新替换后的文章内容,将格式化状态设置为true
+        \DB::table('temparticle')->where('id',$this->id)->update([
+        'body'=>$body,
+        'reply1'=>$article->reply1,
+        'reply2'=>$article->reply2,
+        'reply3'=>$article->reply3,
+        'reply4'=>$article->reply4,
+        'reply5'=>$article->reply5,
+        'reply6'=>$article->reply6,
+        'format'=>true,
+        ]); 
+
     }
+
+    // 获得img标签的任意属性
+    protected function extract_attrib($tag) {
+        preg_match_all('/(width|height|src|file)=("[^"]*")/i', $tag, $matches);
+        $ret = array();
+        foreach($matches[1] as $i => $v) {
+            $ret[$v] = $matches[2][$i];
+        } 
+        return $ret;
+    }
+    // 删除内容中的时间日期
+    // protected function extract_date($content) {
+    //     if($content){
+    //         preg_match_all('/(\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2})/i',$content,$date);
+    //         foreach ($date as $value) {
+    //             $content = str_replace($value, "", $content);
+    //         }   
+    //     }
+    //     return $content;
+    // }
 }

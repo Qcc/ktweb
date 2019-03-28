@@ -2654,32 +2654,35 @@ $(document).ready(function () {
 						success: function (data) {
 							if (data.code == 0) {
 								var article = data.data;
+								if(article.source){
+									$('.topic-body').append("<storg>来源：</storg>"+article.source+"<br>");
+								}
 								if(article.category){
-									$('.topic-body').append(article.category);
+									$('.topic-body').append("<storg>类目：</storg>"+article.category);
 								}
 								if(article.title){
-									$('.topic-body').append(article.title);
+									$('.topic-body').append("<h3>标题：</h3>"+article.title);
 								}
 								if(article.body){
-									$('.topic-body').append(article.body);
+									$('.topic-body').append("<h3>正文：</h3>"+article.body);
 								}
-								if(article.content1){
-									$('.topic-body').append(article.content1);
+								if(article.reply1){
+									$('.topic-body').append("<h3>回复1：</h3>"+article.reply1);
 								}
-								if(article.content2){
-									$('.topic-body').append(article.content2);
+								if(article.reply2){
+									$('.topic-body').append("<h3>回复2：</h3>"+article.reply2);
 								}
-								if(article.content3){
-									$('.topic-body').append(article.content3);
+								if(article.reply3){
+									$('.topic-body').append("<h3>回复3：</h3>"+article.reply3);
 								}
-								if(article.content4){
-									$('.topic-body').append(article.content4);
+								if(article.reply4){
+									$('.topic-body').append("<h3>回复4：</h3>"+article.reply4);
 								}
-								if(article.content5){
-									$('.topic-body').append(article.content5);
+								if(article.reply5){
+									$('.topic-body').append("<h3>回复5：</h3>"+article.reply5);
 								}
-								if(article.content6){
-									$('.topic-body').append(article.content6);
+								if(article.reply6){
+									$('.topic-body').append("<h3>回复6：</h3>"+article.reply6);
 								}
 							} else {
 								layer.msg(data.msg, {
@@ -2700,8 +2703,9 @@ $(document).ready(function () {
 				}
 				var ids = [];
 				for (let index = 0; index < checkStatus.data.length; index++) {
-					  ids.push(checkStatus.data[index].id);
+					  ids.push({id:checkStatus.data[index].id,format:checkStatus.data[index].format});
 					}
+					console.log(ids);
 				$.ajax({
 					method: 'POST',
 					url: '/management/club/loadformat',

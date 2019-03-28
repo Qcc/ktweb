@@ -17,7 +17,6 @@ use App\Models\Productcol;
 use App\Models\Solutioncol;
 use App\Models\Customercol;
 use App\Jobs\FormatTempArticles;
-use App\Handlers\DownloadImgHandler;
 use Illuminate\Support\Facades\Log;
 
 class ClubManagementController extends Controller
@@ -549,95 +548,15 @@ class ClubManagementController extends Controller
     // 格式化文章，下载图片到本地，删除特殊字符
     public function loadformat(Request $request)
     {
-        foreach ($request->list as $id) {
-            
-        $article = \DB::table('temparticle')->where('id',$id)->first();
-        if(!$article){
-            Log::info("未查到数据，id是=>".$id);
-            return $res = ['code'=>0,'msg'=>'未查到数据，id是=>'.$id];;
-        }
-        $body = trim($article->body);
-        Log::info("原始数据body= ".$body);
-        // 准备好关键词作为图片的alt，获取缓存的关键词
-		$allKeywords =  [];
-		$keys =  Redis::keys('keywords_*');
-		foreach ($keys as $key) {
-			array_push($allKeywords,Redis::get($key));
-        }
-        // 打乱关键词默认顺序，随机分布关键词数量
-        shuffle($allKeywords);
-        //提取文章中的img元素  
-        /**
-         * 0:array($result)
-         * 0:"<img src="js/fckeditor/UserFiles/image/F201005201210502415831196.jpg" alt="aaa" width="600" height="366">"
-         * 1:"<img alt="bbb" src="js/fckeditor/UserFiles/image/33_avatar_middle.jpg" width="120" height="120">"
-
-         * 
-         */
-        preg_match_all('/<img[^>]+>/i',$body,$result);
-        
-        // 查找匹配最多不超过4个关键词，存放匹配的关键词
-        $altWords = [];
-        foreach ($allKeywords as $index=>$w){
-            if(strripos($body,$w)){
-                array_push($altWords,$w);
-            }
-            // 一个img标签只使用一个关键词
-            if($index > count($result[0])){
-                break;
+        $count = 0;
+        foreach ($request->list as $article) {
+            if(!$article['format']){
+                dispatch(new FormatTempArticles($article['id']));
+                $count++;
             }
         }
-
-        foreach ($result[0] as $index => $tag) {
-            $atts = $this->extract_attrib($tag);
-
-            $src = trim($atts['src'],'"');
-            $file = trim($atts['file'],'"');
-            $url = starts_with($src,"http://")?$src:$file;
-            $alt = trim($atts["alt"]);
-            $title = trim($atts["title"]);
-            Log::info("src= ".$src." file= ".$file." url=".$url." alt=".$alt." title=".$title);
-            // 下载图片并返回存储url
-            $path = app(DownloadImgHandler::class)->downloadImg($url);
-            // src 下载图片失败时使用用file属性地址下载 金蝶社区img标签特性
-            if(!$path){
-                $path = app(DownloadImgHandler::class)->downloadImg($url);
-            }
-            Log::info("path=".$path);
-            //替换内容src  
-            if($path){
-                $body = str_replace($url, $path, $body);
-            } 
-            $keyword = array_key_exists($index,$altWords)?$altWords[$index]:$article->title;
-            
-            //替换内容alt 
-            if(empty($alt)){
-                $img = str_replace(">",' alt = "'.$keyword.'" >',$tag);
-                $body = str_replace($tag, $img, $body);
-            } else{
-                $body = str_replace($alt, $keyword, $body);
-            }
-            //替换内容title  
-            $body = str_replace($title, $keyword, $body);
-
-            Log::info("替换后的数据body= ".$body);
-
-        }
-         
-        // 更新替换后的文章内容
-        // $id = \DB::table('temparticle')->where('id',$id)->update(['body'=>$body]); 
+        return $res = ['code'=>0,'msg'=>$count.'条数据处理中...'];
     }
+   
 
-        return $res = ['code'=>0,'msg'=>'数据处理中...'];
-    }
-
-    // 获得img标签的任意属性
-    protected function extract_attrib($tag) {
-        preg_match_all('/(alt|title|src|file)=("[^"]*")/i', $tag, $matches);
-        $ret = array();
-        foreach($matches[1] as $i => $v) {
-            $ret[$v] = $matches[2][$i];
-        } 
-        return $ret;
-    }
 }

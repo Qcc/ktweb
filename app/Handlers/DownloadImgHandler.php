@@ -18,6 +18,7 @@ class DownloadImgHandler
      */
     public function downloadImg($url,$folder = 'topics')
     {
+        Log::info('收到URL 准备下载 :' . $url);
         try {
             $client = new Client();
             $extentArray = explode('.', $url);
