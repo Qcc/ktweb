@@ -12,12 +12,26 @@
         </div>
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
+                <div style="width: 100px;height: 20px;float: left;">
+                    <form class="layui-form" lay-filter="now-send">
+                        <div class="layui-form-item" pane="">
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="now-send" lay-filter="now-send" title="立即发布" value="1" lay-skin="primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="layui-btn-group demoTable">
-                    <button class="layui-btn check-data" style="background-color:#536dfe"><i class="kticon">&#xe64d;</i> 格式化数据</button>
-                    <button class="layui-btn send-club" style="background-color:#536dfe"><i class="kticon">&#xe648;</i> 发布到社区</button>
-                    <button class="layui-btn send-hy" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i> 发布到行业新闻</button>
-                    <button class="layui-btn send-zhik" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i> 发布到管理智库</button>
-                    <button class="layui-btn delete-temp-article" style="background-color:#536dfe"><i class="kticon">&#xe6b9;</i> 删除</button>
+                    <button class="layui-btn check-data" style="background-color:#536dfe"><i class="kticon">&#xe64d;</i>
+                        格式化数据</button>
+                    <button class="layui-btn send-club" style="background-color:#536dfe"><i class="kticon">&#xe648;</i>
+                        发布到社区</button>
+                    <button class="layui-btn send-hy" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i>
+                        发布到行业新闻</button>
+                    <button class="layui-btn send-zhik" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i>
+                        发布到管理智库</button>
+                    <button class="layui-btn delete-temp-article" style="background-color:#536dfe"><i
+                            class="kticon">&#xe6b9;</i> 删除</button>
                 </div>
                 <table lay-filter="articles-table" id="articles-table">
                     <thead>

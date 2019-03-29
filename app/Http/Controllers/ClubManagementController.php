@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
+use App\Models\Topic;
 use App\Models\Category;
 use App\Models\Productcol;
 use App\Models\Solutioncol;
@@ -556,6 +557,88 @@ class ClubManagementController extends Controller
             }
         }
         return $res = ['code'=>0,'msg'=>$count.'条数据处理中...'];
+    }
+    // 发布文章
+    public function loadSend(Request $request,User $user, Topic $topic)
+    {
+        $count = 0;
+        if($request->type == "topics"){
+            foreach ($request->list as $item) {
+                $article = \DB::table('temparticle')->where('id',$item['id'])->first();
+                if($request->nowSend == "true"){
+                    $topic = new Topic();
+                    $topic->category_id= $this->getCategory($article->category);
+                    $topic->title = $article->category."|".$article->title;
+                    $topic->body = $article->body;
+                    $topic->source = $article->source;
+                    // 随机取2-61ID的机器人用户
+		            $topic->user_id = $user->find(mt_rand(2,10))->id;
+		            $topic->save();
+                    $count++;
+                }else if($item['format']){
+
+                }
+            }
+            return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
+        }else if($request->type == "news-hy"){
+            foreach ($request->list as $article) {
+                if($article['format'] || $request->nowSend == "true"){
+                    $count++;
+                }
+            }
+            return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
+        }else if($request->type == "news-zhik"){
+            foreach ($request->list as $article) {
+                if($article['format'] || $request->nowSend == "true"){
+                    $count++;
+                }
+            }
+            return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
+        }
+        
+        return $res = ['code'=>1,'msg'=>'遇到错误,'.$count.'条数据被发布。'];
+    }
+
+    protected function getCategory($category)
+    {
+        switch ($category) {
+            case '旗舰版':
+            case '专业版':
+            case '商贸版':
+            case '标准/迷你版':
+            case '行政事业版':
+            case '账务平台':
+            case '云产品':
+            case 'EAS':
+            case 'BOS':
+            case 'K/3 WISE':
+                return 4;
+                break;
+            case '金蝶云·星空':
+            case '金蝶云·苍穹':
+            case 'C-ERP':
+            case 'OMS':
+            case 'WMS':
+            case 'E店管家':
+                return 2;
+                break;
+            case '云进销存':
+            case '云临售':
+            case '云会计':
+            case '云报销':
+            case 'APP':
+            case '工作台':
+            case '开放平台':
+            case '1688E经经':
+            return 3;
+                break;
+            case '虚拟化':
+                return 1;
+                break;
+            default:
+                return 5;
+                break;
+        }
     }
    
 

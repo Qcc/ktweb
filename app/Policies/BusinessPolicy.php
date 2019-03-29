@@ -25,7 +25,7 @@ class BusinessPolicy extends Policy
         if($business->status){
             return $user->isAuthorOf($business);
         }else{
-            return $user->can('manage_business');
+            return $user->can('revice_business');
         }
     }
 

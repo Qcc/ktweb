@@ -2590,14 +2590,19 @@ $(document).ready(function () {
 
 	// 批量发布文章页面
 	if ($('.admin-club-load-page').length == 1) {
-		layui.use(['table', 'layer'], function () {
+		layui.use(['table', 'layer','form'], function () {
 			var $ = layui.jquery,
-				table = layui.table;
-			layer = layui.layer;
+				table = layui.table,
+			layer = layui.layer,
+			nowSend = false;
+			form = layui.form;
 			table.init('articles-table', { //转化静态表格
 				limit:50,
 			});
 
+			form.on('checkbox(now-send)', function(data){
+				nowSend = data.elem.checked;
+			  });
 			//监听工具条 登录页
 			table.on('tool(articles-table)', function (obj) {
 				var data = obj.data;
@@ -2695,17 +2700,16 @@ $(document).ready(function () {
 			});
 			// 检查数据是否完整 格式化数据
 			$('.check-data').on('click',function(){
-				$(this).addClass('layui-btn-disabled');
 				var checkStatus = table.checkStatus('articles-table');
 				if(checkStatus.data.length === 0){
 					layer.msg('没有数据被选中!');
 					return false;
 				}
+				$(this).addClass('layui-btn-disabled');
 				var ids = [];
 				for (let index = 0; index < checkStatus.data.length; index++) {
 					  ids.push({id:checkStatus.data[index].id,format:checkStatus.data[index].format});
 					}
-					console.log(ids);
 				$.ajax({
 					method: 'POST',
 					url: '/management/club/loadformat',
@@ -2736,8 +2740,33 @@ $(document).ready(function () {
 					layer.msg('没有数据被选中!');
 					return false;
 				}
-	  			var data = checkStatus.data;
-	  			layer.alert(JSON.stringify(data));
+				$(this).addClass('layui-btn-disabled');
+				var ids = [];
+				for (let index = 0; index < checkStatus.data.length; index++) {
+					  ids.push({id:checkStatus.data[index].id,format:checkStatus.data[index].format});
+					}
+				$.ajax({
+					method: 'POST',
+					url: '/management/club/loadSend',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: {list:ids,nowSend:nowSend,type:"topics"},
+					success: function (data) {
+						$('.send-club').removeClass('layui-btn-disabled');
+						if (data.code == 0) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+						}
+					}
+				});
 			});
 			// 发布文章到行业新闻
 			$('.send-hy').on('click',function(){
@@ -2746,8 +2775,33 @@ $(document).ready(function () {
 					layer.msg('没有数据被选中!');
 					return false;
 				}
-	  			var data = checkStatus.data;
-	  			layer.alert(JSON.stringify(data));
+				$(this).addClass('layui-btn-disabled');
+				var ids = [];
+				for (let index = 0; index < checkStatus.data.length; index++) {
+					  ids.push({id:checkStatus.data[index].id,format:checkStatus.data[index].format});
+					}
+				$.ajax({
+					method: 'POST',
+					url: '/management/club/loadSend',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: {list:ids,nowSend:nowSend,type:"news-hy"},
+					success: function (data) {
+						$('.send-hy').removeClass('layui-btn-disabled');
+						if (data.code == 0) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+						}
+					}
+				});
 			});
 			// 发布文章到管理智库
 			$('.send-zhik').on('click',function(){
@@ -2756,17 +2810,42 @@ $(document).ready(function () {
 					layer.msg('没有数据被选中!');
 					return false;
 				}
-	  			var data = checkStatus.data;
-	  			layer.alert(JSON.stringify(data));
+				$(this).addClass('layui-btn-disabled');
+				var ids = [];
+				for (let index = 0; index < checkStatus.data.length; index++) {
+					  ids.push({id:checkStatus.data[index].id,format:checkStatus.data[index].format});
+					}
+				$.ajax({
+					method: 'POST',
+					url: '/management/club/loadSend',
+					ContentType: 'application/json',
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+							'content')
+					},
+					data: {list:ids,nowSend:nowSend,type:"news-zhik"},
+					success: function (data) {
+						$('.send-zhik').removeClass('layui-btn-disabled');
+						if (data.code == 0) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+						}
+					}
+				});
 			});
 			// 批量删除文章
 			$('.delete-temp-article').on('click',function(){
-				$(this).addClass('layui-btn-disabled');
 				var checkStatus = table.checkStatus('articles-table');
 				if(checkStatus.data.length === 0){
 					layer.msg('没有数据被选中!');
 					return false;
 				}
+				$(this).addClass('layui-btn-disabled');
 				var data = checkStatus.data;
 				var ids = [];
 				for (let index = 0; index < data.length; index++) {

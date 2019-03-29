@@ -33,6 +33,8 @@ class FormatTempArticles implements ShouldQueue
      */
     public function handle()
     {
+        // 图片是否下载完整标记
+        $flag=true;
         $article = \DB::table('temparticle')->where('id',$this->id)->first();
         if(!$article || $article->format){
             Log::info("未查到数据或者数据已被格式化，id是=>".$this->id);
@@ -106,7 +108,7 @@ class FormatTempArticles implements ShouldQueue
                 // 图片无法下载 返回
                 Log::info("图片无法下载，跳过当前文章格式化  ".$tag);
                 Log::info("源地址是   ".$article->source);
-                return false;
+                $flag = false;
             }
             // 删除日期数据
             
@@ -122,18 +124,19 @@ class FormatTempArticles implements ShouldQueue
         $article->reply6 = clean($article->reply6, 'temp_article_reply');
         // Log::info("格式化完成的数据 ===== ".$body);
 
-        // 更新替换后的文章内容,将格式化状态设置为true
-        \DB::table('temparticle')->where('id',$this->id)->update([
-        'body'=>$body,
-        'reply1'=>$article->reply1,
-        'reply2'=>$article->reply2,
-        'reply3'=>$article->reply3,
-        'reply4'=>$article->reply4,
-        'reply5'=>$article->reply5,
-        'reply6'=>$article->reply6,
-        'format'=>true,
-        ]); 
-
+        if($flag){
+            // 更新替换后的文章内容,将格式化状态设置为true
+            \DB::table('temparticle')->where('id',$this->id)->update([
+                'body'=>$body,
+                'reply1'=>$article->reply1,
+                'reply2'=>$article->reply2,
+                'reply3'=>$article->reply3,
+                'reply4'=>$article->reply4,
+                'reply5'=>$article->reply5,
+                'reply6'=>$article->reply6,
+                'format'=>true,
+                ]); 
+            }
     }
 
     // 获得img标签的任意属性
