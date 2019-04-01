@@ -15,10 +15,11 @@ class CreateTemparticleTable extends Migration
     {
         Schema::create('temparticle', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('format')->default(false)->comment('状态');
+            $table->boolean('format')->default(false)->comment('格式化状态');
             $table->string('source')->unique()->comment('来源');
             $table->string('category')->nullable()->comment('分类');
             $table->string('title')->index()->comment('标题');
+            $table->string('image')->nullable()->comment('首图');
             $table->text('body')->comment('正文');
             $table->text('reply1')->nullable()->comment('回复1');
             $table->text('reply2')->nullable()->comment('回复2');

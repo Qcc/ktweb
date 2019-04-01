@@ -2597,7 +2597,7 @@ $(document).ready(function () {
 			nowSend = false;
 			form = layui.form;
 			table.init('articles-table', { //转化静态表格
-				limit:50,
+				limit:1000,
 			});
 
 			form.on('checkbox(now-send)', function(data){

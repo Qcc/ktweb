@@ -59,7 +59,9 @@ class FormatTempArticles implements ShouldQueue
          * 
          */
         preg_match_all('/<img[^>]+>/i',$body,$result);
-
+        // 写死的四张图片
+        $pic = ['cangqiong','cloudhome','ctbs_advance','k3wise-1','eas-1','start','jdy-2','kis-1'];
+        $path="/images/".$pic[array_rand($pic)].".png";
         // 查找匹配最多不超过4个关键词，存放匹配的关键词
         $altWords = [];
         foreach ($allKeywords as $index=>$w){
@@ -125,9 +127,11 @@ class FormatTempArticles implements ShouldQueue
         // Log::info("格式化完成的数据 ===== ".$body);
 
         if($flag){
+            
             // 更新替换后的文章内容,将格式化状态设置为true
             \DB::table('temparticle')->where('id',$this->id)->update([
                 'body'=>$body,
+                'image'=>$path,
                 'reply1'=>$article->reply1,
                 'reply2'=>$article->reply2,
                 'reply3'=>$article->reply3,

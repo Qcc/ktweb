@@ -4850,3 +4850,13 @@ a:active {
 .mdui-container-full .reset-top{
     z-index: 1;
 }
+
+.sendjob>div{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.sendjob>div>span{
+    font-size: 20px;
+    color: #448AFF;
+}

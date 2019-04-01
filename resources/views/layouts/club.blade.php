@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('layui/css/layui.css') }}">
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="bookmark"href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="bookmark"href="/favicon.png" />
     @yield('styles')
     
 </head>

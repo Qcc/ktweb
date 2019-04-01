@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 use App\Models\Topic;
+use App\Models\News;
 use App\Models\Category;
 use App\Models\Productcol;
 use App\Models\Solutioncol;
@@ -521,9 +522,13 @@ class ClubManagementController extends Controller
     // 数据导入展示
     public function loads()
     {
-        $temparticles = DB::table('temparticle')->paginate(50);
+        $temparticles = DB::table('temparticle')->paginate(1000);
+        $send_jobs = [];
+        $send_jobs['topics_list']= Redis::llen("topics_list");
+        $send_jobs['news_2_list']= Redis::llen("news_2_list");
+        $send_jobs['news_3_list']= Redis::llen("news_3_list");
         //数据导入表格
-        return view('management.loads',compact('temparticles'));
+        return view('management.loads',compact('temparticles','send_jobs'));
     }     
     // 数据预览修改
     public function loadStore(Request $request)
@@ -559,14 +564,14 @@ class ClubManagementController extends Controller
         return $res = ['code'=>0,'msg'=>$count.'条数据处理中...'];
     }
     // 发布文章
-    public function loadSend(Request $request,User $user, Topic $topic)
+    public function loadSend(Request $request,User $user)
     {
         $count = 0;
         if($request->type == "topics"){
             foreach ($request->list as $item) {
-                $article = \DB::table('temparticle')->where('id',$item['id'])->first();
                 if($request->nowSend == "true"){
-                    $topic = new Topic();
+                    $article = \DB::table('temparticle')->where('id',$item['id'])->first();
+                    $topic = new Topic;
                     $topic->category_id= $this->getCategory($article->category);
                     $topic->title = $article->category."|".$article->title;
                     $topic->body = $article->body;
@@ -575,21 +580,58 @@ class ClubManagementController extends Controller
 		            $topic->user_id = $user->find(mt_rand(2,10))->id;
 		            $topic->save();
                     $count++;
+                    // 删除已发布的临时文章
+                    \DB::table('temparticle')->where('id',$item['id'])->delete();
                 }else if($item['format']){
-
+                    Redis::rpush("topics_list",$item["id"]);
+                    $count++;
                 }
             }
-            return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
+            return $res = ['code'=>0,'msg'=>$count.'条数据已处理完毕...'];
         }else if($request->type == "news-hy"){
-            foreach ($request->list as $article) {
-                if($article['format'] || $request->nowSend == "true"){
+            foreach ($request->list as $item) {
+                if($request->nowSend == "true"){
+                    $article = \DB::table('temparticle')->where('id',$item['id'])->first();
+                    $news = new News;
+                    $news->column_id= 2;
+                    $news->title = $article->title;
+                    $news->keywords = $article->title;
+                    $news->image = $article->image;
+                    $news->body = $article->body;
+                    $news->source = $article->source;
+                    // 随机取2-61ID的机器人用户
+		            $news->user_id = $user->find(mt_rand(2,10))->id;
+                    $news->save();
+                    $count++;
+                    // 删除已发布的临时文章
+                    \DB::table('temparticle')->where('id',$item['id'])->delete();
+                    $count++;
+                }else if($item['format']){
+                    Redis::rpush("news_2_list",$item["id"]);
                     $count++;
                 }
             }
             return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
         }else if($request->type == "news-zhik"){
-            foreach ($request->list as $article) {
-                if($article['format'] || $request->nowSend == "true"){
+            foreach ($request->list as $item) {
+                if($request->nowSend == "true"){
+                    $article = \DB::table('temparticle')->where('id',$item['id'])->first();
+                    $news = new News;
+                    $news->column_id= 3;
+                    $news->title = $article->title;
+                    $news->keywords = $article->title;
+                    $news->image = $article->image;
+                    $news->body = $article->body;
+                    $news->source = $article->source;
+                    // 随机取2-61ID的机器人用户
+		            $news->user_id = $user->find(mt_rand(2,10))->id;
+                    $news->save();
+                    $count++;
+                    // 删除已发布的临时文章
+                    \DB::table('temparticle')->where('id',$item['id'])->delete();
+                    $count++;
+                }else if($item['format']){
+                    Redis::rpush("news_3_list",$item["id"]);
                     $count++;
                 }
             }

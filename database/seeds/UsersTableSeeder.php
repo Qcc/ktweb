@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
 
         // 生成数据集合
         $users = factory(User::class)
-                        ->times(500) //生成10个用户
+                        ->times(50) //生成10个用户
                         ->make()
                         ->each(function ($user, $index)
                             use ($faker, $avatars)

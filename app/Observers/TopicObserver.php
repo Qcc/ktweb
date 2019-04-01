@@ -5,7 +5,8 @@ namespace App\Observers;
 use App\Models\Topic;
 use App\Jobs\TranslateSlug;
 use App\Notifications\TopicFollowing;
-
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Log;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -52,6 +53,40 @@ class TopicObserver
             //推送到队列执行，翻译标题填入slug SEO优化
             dispatch(new TranslateSlug($topic));
         }
+        // 准备好关键词作关联，获取缓存的关键词
+		$allKeywords =  [];
+		$keys =  Redis::keys('keywords_*');
+		foreach ($keys as $key) {
+			array_push($allKeywords,Redis::get($key));
+        }
+        // 是否有关键词匹配到标记
+        $flag = false;
+        // 控制关键词数量不超过10个
+        $count = 0;
+        $body = $topic->body;
+        foreach ($allKeywords as $word) {
+            if($count > 10){
+                break;
+            }
+            if(stripos($topic->body,$word)){
+                $count++;
+                $redis_key = md5($word);
+                $url = Redis::get($redis_key);
+                if($url){
+                    $link = '<a href="'.$url.'" target="_blank" title="'.$word.'">'.$word.'</a>';
+                    $body = str_replace($word, $link, $body);
+                    $ttl = Redis::ttl($redis_key);
+                    Redis::setex($redis_key,$ttl,$topic->link());
+                    $flag = true;
+                }else{                    
+                    // 关键词链接默认保存90天，过期后自动删除
+                    Redis::setex($redis_key,60*60*24*90,$topic->link());
+                }
+            }
+        }
+        if($flag){
+            \DB::table('topics')->where('id', $topic->id)->update(['body' => $body]);
+        }
         
     }
     /**
@@ -63,6 +98,6 @@ class TopicObserver
      */
     public function deleted(Topic $topic)
     {
-        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+        \DB::table('replies')->where('topic_id', $topic->id)->update(['slug' => $slug]);
     }
 }
