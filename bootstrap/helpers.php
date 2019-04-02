@@ -81,3 +81,51 @@ function updateTopCache($topic)
 		}
 	}
 }
+
+/**
+ * 批量发布社区文章 类目重新分类
+ *
+ * @param [type] $category
+ * @return void
+ */
+function getCategory($category)
+    {
+        switch ($category) {
+            case '旗舰版':
+            case '专业版':
+            case '商贸版':
+            case '标准/迷你版':
+            case '行政事业版':
+            case '账务平台':
+            case '云产品':
+            case 'EAS':
+            case 'BOS':
+            case 'K/3 WISE':
+                return 4;
+                break;
+            case '金蝶云·星空':
+            case '金蝶云·苍穹':
+            case 'C-ERP':
+            case 'OMS':
+            case 'WMS':
+            case 'E店管家':
+                return 2;
+                break;
+            case '云进销存':
+            case '云临售':
+            case '云会计':
+            case '云报销':
+            case 'APP':
+            case '工作台':
+            case '开放平台':
+            case '1688E经经':
+            return 3;
+                break;
+            case '虚拟化':
+                return 1;
+                break;
+            default:
+                return 5;
+                break;
+        }
+    }

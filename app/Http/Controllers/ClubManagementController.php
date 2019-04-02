@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
+use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\News;
 use App\Models\Category;
@@ -572,13 +573,56 @@ class ClubManagementController extends Controller
                 if($request->nowSend == "true"){
                     $article = \DB::table('temparticle')->where('id',$item['id'])->first();
                     $topic = new Topic;
-                    $topic->category_id= $this->getCategory($article->category);
+                    $topic->category_id= getCategory($article->category);
                     $topic->title = $article->category."|".$article->title;
                     $topic->body = $article->body;
                     $topic->source = $article->source;
                     // 随机取2-61ID的机器人用户
 		            $topic->user_id = $user->find(mt_rand(2,10))->id;
-		            $topic->save();
+                    $topic->save();
+                    // 最多保存6条回复
+                    if($article->reply1 != ""){
+                        $reply = new Reply;
+                        $reply->content = $article->reply1;
+                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->topic_id = $topic->id;
+                        $reply->save();
+                    }
+                    if($article->reply2 != ""){
+                        $reply = new Reply;
+                        $reply->content = $article->reply2;
+                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->topic_id = $topic->id;
+                        $reply->save();
+                    }
+                    if($article->reply3 != ""){
+                        $reply = new Reply;
+                        $reply->content = $article->reply3;
+                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->topic_id = $topic->id;
+                        $reply->save();
+                    }
+                    if($article->reply4 != ""){
+                        $reply = new Reply;
+                        $reply->content = $article->reply4;
+                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->topic_id = $topic->id;
+                        $reply->save();
+                    }
+                    if($article->reply5 != ""){
+                        $reply = new Reply;
+                        $reply->content = $article->reply5;
+                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->topic_id = $topic->id;
+                        $reply->save();
+                    }
+                    if($article->reply6 != ""){
+                        $reply = new Reply;
+                        $reply->content = $article->reply6;
+                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->topic_id = $topic->id;
+                        $reply->save();
+                    }
                     $count++;
                     // 删除已发布的临时文章
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
@@ -648,49 +692,6 @@ class ClubManagementController extends Controller
         }
         
         return $res = ['code'=>1,'msg'=>'遇到错误,'.$count.'条数据被发布。'];
-    }
-
-    protected function getCategory($category)
-    {
-        switch ($category) {
-            case '旗舰版':
-            case '专业版':
-            case '商贸版':
-            case '标准/迷你版':
-            case '行政事业版':
-            case '账务平台':
-            case '云产品':
-            case 'EAS':
-            case 'BOS':
-            case 'K/3 WISE':
-                return 4;
-                break;
-            case '金蝶云·星空':
-            case '金蝶云·苍穹':
-            case 'C-ERP':
-            case 'OMS':
-            case 'WMS':
-            case 'E店管家':
-                return 2;
-                break;
-            case '云进销存':
-            case '云临售':
-            case '云会计':
-            case '云报销':
-            case 'APP':
-            case '工作台':
-            case '开放平台':
-            case '1688E经经':
-            return 3;
-                break;
-            case '虚拟化':
-                return 1;
-                break;
-            default:
-                return 5;
-                break;
-        }
-    }
-   
+    }   
 
 }

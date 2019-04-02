@@ -7,7 +7,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Log;
 use App\Models\Topic;
 use App\Handlers\SlugTranslateHandler;
 
@@ -35,11 +36,39 @@ class TranslateSlug implements ShouldQueue
     {
         // 请求百度 API 接口进行翻译
         $slug = app(SlugTranslateHandler::class)->translate($this->topic->title);
-
+        
+        // 准备好关键词作关联，获取缓存的关键词
+		$allKeywords =  [];
+		$keys =  Redis::keys('keywords_*');
+		foreach ($keys as $key) {
+			array_push($allKeywords,Redis::get($key));
+        }
+        // 控制关键词数量不超过10个
+        $count = 0;
+        $body = $this->topic->body;
+        foreach ($allKeywords as $word) {
+            if($count > 10){
+                break;
+            }
+            if(stripos($this->topic->body,$word)){
+                $count++;
+                $redis_key = md5($word);
+                $url = Redis::get($redis_key);
+                if($url){
+                    $link = '<a href="'.$url.'" target="_blank" title="'.$word.'">'.$word.'</a>';
+                    $body = str_replace($word, $link, $body);
+                    $ttl = Redis::ttl($redis_key);
+                    Redis::setex($redis_key,$ttl,$this->topic->link()."/".$slug);
+                }else{                    
+                    // 关键词链接默认保存90天，过期后自动删除
+                    Redis::setex($redis_key,60*60*24*90,$this->topic->link()."/".$slug);
+                }
+            }
+        }
         //未来避免模型监控器死循环调用，使用DB类直接对数据库进行操作
         //任务中要避免使用 Eloquent 模型接口调用，如：create(), update(), save() 等操作。
         //否则会陷入调用死循环 —— 模型监控器分发任务，任务触发模型监控器，模型监控器再次分发任务，
         //任务再次触发模型监控器.... 死循环。在这种情况下，使用 DB 类直接对数据库进行操作即可。
-        \DB::table('topics')->where('id',$this->topic->id)->update(['slug' => $slug]);
+        \DB::table('topics')->where('id', $this->topic->id)->update(['body' => $body,'slug' => $slug]);
     }
 }

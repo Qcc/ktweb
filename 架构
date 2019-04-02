@@ -199,3 +199,16 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 <td>excel 处理</td>
 <td>导入导出 excel</td>
 </tr></tbody></table>
+
+
+Ubuntu系统使用crontab定时执行python脚本
+
+crontab -e配置完成后，如何把保存并退出？
+
+1.Ctrl+O  写入
+
+2.出现“FIile name to Write...”，输入Enter
+
+3.Ctrl+x 保存输出
+
+提示“crontab:installing new crontab”表示成功。

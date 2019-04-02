@@ -24,8 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // 批量发布文章
+        $schedule->command('batch:topics')->everyMinute()->between('8:00', '21:00');
+        $schedule->command('batch:zhik')->everyFiveMinutes()->between('8:00', '21:00');
+        $schedule->command('batch:hy')->everyFiveMinutes()->between('8:00', '18:00');
+        // 每天午夜生成sitemap
+        $schedule->command('generate:sitemap')->daily();;
     }
 
     /**
