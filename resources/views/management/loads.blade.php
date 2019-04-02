@@ -13,10 +13,10 @@
         <div class="mdui-col-xs-8">
             <div class="edit-action-warp">
                 <div class="mdui-row sendjob">
-                    <div class="mdui-col-xs-3" title="待发布的文章总">总数 <span>{{ $send_jobs['topics_list'] + $send_jobs['news_2_list'] + $send_jobs['news_3_list'] }}</span></div>
-                    <div class="mdui-col-xs-3" title="待发布的社区文章数">社区 <span>{{ $send_jobs['topics_list'] }}</span></div>
-                    <div class="mdui-col-xs-3" title="待发布的行业文章数">行业 <span>{{ $send_jobs['news_2_list'] }}</span></div>
-                    <div class="mdui-col-xs-3" title="待发布的智库文章数">智库 <span>{{ $send_jobs['news_3_list'] }}</span></div>
+                    <div class="mdui-col-xs-3" title="待发布的文章总">总数 <span>{{ $send_jobs['topics_set'] + $send_jobs['news_2_set'] + $send_jobs['news_3_set'] }}</span></div>
+                    <div class="mdui-col-xs-3" title="待发布的社区文章数">社区 <span>{{ $send_jobs['topics_set'] }}</span></div>
+                    <div class="mdui-col-xs-3" title="待发布的行业文章数">行业 <span>{{ $send_jobs['news_2_set'] }}</span></div>
+                    <div class="mdui-col-xs-3" title="待发布的智库文章数">智库 <span>{{ $send_jobs['news_3_set'] }}</span></div>
                 </div>
                 <div style="width: 100px;height: 20px;float: left;">
                     <form class="layui-form" lay-filter="now-send">

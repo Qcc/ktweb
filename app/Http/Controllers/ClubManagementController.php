@@ -524,9 +524,9 @@ class ClubManagementController extends Controller
     {
         $temparticles = DB::table('temparticle')->paginate(1000);
         $send_jobs = [];
-        $send_jobs['topics_list']= Redis::llen("topics_list");
-        $send_jobs['news_2_list']= Redis::llen("news_2_list");
-        $send_jobs['news_3_list']= Redis::llen("news_3_list");
+        $send_jobs['topics_set']= Redis::scard("topics_set");
+        $send_jobs['news_2_set']= Redis::scard("news_2_set");
+        $send_jobs['news_3_set']= Redis::scard("news_3_set");
         //数据导入表格
         return view('management.loads',compact('temparticles','send_jobs'));
     }     
@@ -583,8 +583,11 @@ class ClubManagementController extends Controller
                     // 删除已发布的临时文章
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
                 }else if($item['format']){
-                    Redis::rpush("topics_list",$item["id"]);
-                    $count++;
+                    // 将文章ID放入redis集合中
+                    if(!Redis::sismember("topics_set",$item["id"])){
+                        Redis::sadd("topics_set",$item["id"]);
+                        $count++;
+                    }
                 }
             }
             return $res = ['code'=>0,'msg'=>$count.'条数据已处理完毕...'];
@@ -607,8 +610,11 @@ class ClubManagementController extends Controller
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
                     $count++;
                 }else if($item['format']){
-                    Redis::rpush("news_2_list",$item["id"]);
-                    $count++;
+                    // 将文章ID放入redis集合中
+                    if(!Redis::sismember("news_2_set",$item["id"])){
+                        Redis::sadd("news_2_set",$item["id"]);
+                        $count++;
+                    }
                 }
             }
             return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
@@ -631,8 +637,11 @@ class ClubManagementController extends Controller
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
                     $count++;
                 }else if($item['format']){
-                    Redis::rpush("news_3_list",$item["id"]);
-                    $count++;
+                    // 将文章ID放入redis集合中
+                    if(!Redis::sismember("news_3_set",$item["id"])){
+                        Redis::sadd("news_3_set",$item["id"]);
+                        $count++;
+                    }
                 }
             }
             return $res = ['code'=>0,'msg'=>$count.'条数据处理中...','data'=>$request->all()];
