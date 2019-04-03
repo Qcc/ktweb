@@ -103,6 +103,7 @@ class FormatTempArticles implements ShouldQueue
             $path = app(DownloadImgHandler::class)->downloadImg($url);
             //替换内容src  
             if($path){
+                Log::info("返回的地址是 ".$path);
                 $keyword = array_key_exists($index,$altWords)?$altWords[$index]:$article->title;
                 $img = '<img src="'.$path.'" '.' alt="'.$keyword.'" '.$width.$height.' >';
                 $body = str_replace($tag, $img, $body);
@@ -127,7 +128,7 @@ class FormatTempArticles implements ShouldQueue
         // Log::info("格式化完成的数据 ===== ".$body);
 
         if($flag){
-            
+            // Log::info("替换后的body   ".$body);
             // 更新替换后的文章内容,将格式化状态设置为true
             \DB::table('temparticle')->where('id',$this->id)->update([
                 'body'=>$body,

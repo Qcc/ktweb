@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Services\SitemapService;
 
 class GenerateSitemap extends Command
 {
@@ -37,7 +38,14 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        Log::info("生成了网站地图（sitemap）执行时间：  ".date('Y-m-d H:i:s',time()));
-        //
+        Log::info('[' . date('Y-m-d H:i:s', time()) .'] 开始生成sitemap网站地图!');
+        try {
+            $sitemapService = new SitemapService();
+            $sitemapService->buildIndex();
+        } catch (\Exception $exception) {
+            Log::error('生成sitemap失败：' . $exception->getMessage());
+            return;
+        }
+        Log::info('[' . date('Y-m-d H:i:s', time()) .'] 生成sitemap网站地图成功!');
     }
 }

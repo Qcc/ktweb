@@ -67,6 +67,9 @@
                         <div class="topic-body">
                             {!! $topic->body !!}
                         </div>
+                        @can("web_manage")
+                        <div>{{ $topic->source }}</div>
+                        @endcan
                     </div>
                     @if($topic->excellent)
                     <div class="article-excellent">

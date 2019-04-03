@@ -33,3 +33,15 @@
         document.write('<script src="' + src + '" id="sozz"><\/script>');
     })();
 </script>
+
+<!-- 百度统计 -->
+<script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?14b7cd7c1c65554a3bda1e6d19ef238f";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+</script>
+        

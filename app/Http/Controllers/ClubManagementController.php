@@ -523,7 +523,7 @@ class ClubManagementController extends Controller
     // 数据导入展示
     public function loads()
     {
-        $temparticles = DB::table('temparticle')->paginate(1000);
+        $temparticles = DB::table('temparticle')->paginate(100);
         $send_jobs = [];
         $send_jobs['topics_set']= Redis::scard("topics_set");
         $send_jobs['news_2_set']= Redis::scard("news_2_set");

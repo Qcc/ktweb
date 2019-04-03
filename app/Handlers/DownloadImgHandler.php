@@ -33,7 +33,7 @@ class DownloadImgHandler
             $boolSave = Storage::put( $filePath, $file,'public');
             if($boolSave){
               $imgUrl= Storage::url($filePath);
-              return $imgUrl;
+              return config('app.url') . $imgUrl;
             }
             Log::info('下载图片失败:' . $url);
             return false;
