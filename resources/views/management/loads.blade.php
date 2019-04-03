@@ -44,7 +44,7 @@
                         <tr>
                             <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
                             <!-- <th lay-data="{checkbox:true,fixed: 'left'}"></th> -->
-                            <th lay-data="{field:'id', width:50}">ID</th>
+                            <th lay-data="{field:'id', width:150}">ID</th>
                             <th lay-data="{field:'format', width:60}">状态</th>
                             <th lay-data="{field:'category', width:60}">分类</th>
                             <th lay-data="{field:'title'}">标题</th>

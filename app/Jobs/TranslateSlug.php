@@ -44,14 +44,14 @@ class TranslateSlug implements ShouldQueue
 			array_push($allKeywords,Redis::get($key));
         }
         // 控制关键词数量不超过10个
-        $count = 0;
+        $count = 10;
         $body = $this->topic->body;
         foreach ($allKeywords as $word) {
-            if($count > 10){
+            if($count <= 10){
                 break;
             }
             if(stripos($this->topic->body,$word)){
-                $count++;
+                $count--;
                 $redis_key = md5($word);
                 $url = Redis::get($redis_key);
                 if($url){

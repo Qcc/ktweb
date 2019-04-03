@@ -5,8 +5,6 @@ namespace App\Observers;
 use App\Models\Topic;
 use App\Jobs\TranslateSlug;
 use App\Notifications\TopicFollowing;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Log;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
