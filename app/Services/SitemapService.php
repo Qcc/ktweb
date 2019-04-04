@@ -51,7 +51,6 @@ class SitemapService
             $lastModTimes[$name] = $lastModTime;
             $sitemap->model->resetItems();
         }
-        Log::info($lastModTimes);
         return $lastModTimes;
     }
 
@@ -71,8 +70,6 @@ class SitemapService
         }
 
         $info = $sitemap->store('xml','categorys', storage_path('app/public/sitemap'));
-        Log::info("buildCategorys");
-        Log::info($lastModTime);
         return $lastModTime;
     }
 
@@ -92,8 +89,6 @@ class SitemapService
         }
 
         $info = $sitemap->store('xml','columns', storage_path('app/public/sitemap'));
-        Log::info("buildColumns");
-        Log::info($lastModTime);
         return $lastModTime;
     }
     public function buildProductcols()
