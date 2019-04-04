@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\SitemapService;
+use Illuminate\Support\Facades\Log;
 
 class GenerateSitemap extends Command
 {

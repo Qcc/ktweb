@@ -68,7 +68,7 @@
                             {!! $topic->body !!}
                         </div>
                         @can("web_manage")
-                        <div>{{ $topic->source }}</div>
+                        <div>原文地址: {{ $topic->source }}</div>
                         @endcan
                     </div>
                     @if($topic->excellent)

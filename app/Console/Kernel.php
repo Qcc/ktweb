@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('batch:zhik')->everyFifteenMinutes()->between('7:00', '21:00');
         $schedule->command('batch:hy')->everyFifteenMinutes()->between('7:00', '21:00');
         // 每天午夜生成sitemap
-        $schedule->command('generate:sitemap')->daily();;
+        $schedule->command('generate:sitemap')->daily();
     }
 
     /**
