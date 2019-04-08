@@ -55,7 +55,7 @@ class BatchNewsHy extends Command
                $news->image = $article->image;
                $news->source = $article->source;
                // 随机取2-61ID的机器人用户
-               $news->user_id = $user->find(mt_rand(2,10))->id;
+               $news->user_id = $user->find(mt_rand(2,61))->id;
                $news->save();
                // 删除已发布的临时文章
                \DB::table('temparticle')->where('id',$id)->delete();

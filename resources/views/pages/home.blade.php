@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','深圳市沟通科技有限公司')
+@section('title','首页')
 
 @section('content')
 <div class="swiper-container">

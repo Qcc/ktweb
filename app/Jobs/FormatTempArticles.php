@@ -141,7 +141,19 @@ class FormatTempArticles implements ShouldQueue
                 'reply6'=>$article->reply6,
                 'format'=>true,
                 ]); 
-            }
+        }else{
+            \DB::table('temparticle')->where('id',$this->id)->update([
+                'body'=>$body,
+                'image'=>$path,
+                'reply1'=>$article->reply1,
+                'reply2'=>$article->reply2,
+                'reply3'=>$article->reply3,
+                'reply4'=>$article->reply4,
+                'reply5'=>$article->reply5,
+                'reply6'=>$article->reply6,
+                'format'=>false,
+            ]);
+        }
     }
 
     // 获得img标签的任意属性

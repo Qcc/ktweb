@@ -54,48 +54,48 @@ class BatchTopics extends Command
                 $topic->body = $article->body;
                 $topic->source = $article->source;
                 // 随机取2-61ID的机器人用户
-                $topic->user_id = $user->find(mt_rand(2,10))->id;
+                $topic->user_id = $user->find(mt_rand(2,61))->id;
                 $topic->save();
                 // 最多保存6条回复
                 if($article->reply1 != ""){
                     $reply = new Reply;
                     $reply->content = $article->reply1;
-                    $reply->user_id = $user->find(mt_rand(2,10))->id;
+                    $reply->user_id = $user->find(mt_rand(2,61))->id;
                     $reply->topic_id = $topic->id;
                     $reply->save();
                 }
                 if($article->reply2 != ""){
                     $reply = new Reply;
                     $reply->content = $article->reply2;
-                    $reply->user_id = $user->find(mt_rand(2,10))->id;
+                    $reply->user_id = $user->find(mt_rand(2,61))->id;
                     $reply->topic_id = $topic->id;
                     $reply->save();
                 }
                 if($article->reply3 != ""){
                     $reply = new Reply;
                     $reply->content = $article->reply3;
-                    $reply->user_id = $user->find(mt_rand(2,10))->id;
+                    $reply->user_id = $user->find(mt_rand(2,61))->id;
                     $reply->topic_id = $topic->id;
                     $reply->save();
                 }
                 if($article->reply4 != ""){
                     $reply = new Reply;
                     $reply->content = $article->reply4;
-                    $reply->user_id = $user->find(mt_rand(2,10))->id;
+                    $reply->user_id = $user->find(mt_rand(2,61))->id;
                     $reply->topic_id = $topic->id;
                     $reply->save();
                 }
                 if($article->reply5 != ""){
                     $reply = new Reply;
                     $reply->content = $article->reply5;
-                    $reply->user_id = $user->find(mt_rand(2,10))->id;
+                    $reply->user_id = $user->find(mt_rand(2,61))->id;
                     $reply->topic_id = $topic->id;
                     $reply->save();
                 }
                 if($article->reply6 != ""){
                     $reply = new Reply;
                     $reply->content = $article->reply6;
-                    $reply->user_id = $user->find(mt_rand(2,10))->id;
+                    $reply->user_id = $user->find(mt_rand(2,61))->id;
                     $reply->topic_id = $topic->id;
                     $reply->save();
                 }

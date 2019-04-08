@@ -43,15 +43,23 @@ class TranslateNewsSlug implements ShouldQueue
 		foreach ($keys as $key) {
 			array_push($allKeywords,Redis::get($key));
         }
+        $keyword = $this->news->keywords;
         // 控制关键词数量不超过10个
         $count = 10;
         $body = $this->news->body;
         foreach ($allKeywords as $word) {
-            if($count <= 10){
+            if($count <= 0){
                 break;
             }
             if(stripos($this->news->body,$word)){
-                $count--;
+                Log::info("this->news->keywords");
+                Log::info($this->news->keywords);
+                
+                if($count > 6 && $this->news->keywords == ""){
+                    $keyword = $keyword.$word.",";
+                }
+                Log::info("keyword");
+                Log::info($keyword);
                 $redis_key = md5($word);
                 $url = Redis::get($redis_key);
                 if($url){
@@ -63,12 +71,17 @@ class TranslateNewsSlug implements ShouldQueue
                     // 关键词链接默认保存90天，过期后自动删除
                     Redis::setex($redis_key,60*60*24*90,$this->news->link()."/".$slug);
                 }
+                $count--;
             }
         }
         //未来避免模型监控器死循环调用，使用DB类直接对数据库进行操作
         //任务中要避免使用 Eloquent 模型接口调用，如：create(), update(), save() 等操作。
         //否则会陷入调用死循环 —— 模型监控器分发任务，任务触发模型监控器，模型监控器再次分发任务，
         //任务再次触发模型监控器.... 死循环。在这种情况下，使用 DB 类直接对数据库进行操作即可。
-        \DB::table('news')->where('id', $this->news->id)->update(['slug' => $slug,'body' => $body]);
+        if($keyword){
+            \DB::table('news')->where('id', $this->news->id)->update(['slug' => $slug,'keywords'=>$keyword,'body' => $body]);
+        }else{
+            \DB::table('news')->where('id', $this->news->id)->update(['slug' => $slug,'body' => $body]);
+        }
     }
 }

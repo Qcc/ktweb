@@ -295,9 +295,9 @@ class ClubManagementController extends Controller
             $keywords = str_replace(" ","",$keywords);
             $keywords = trim($keywords,",");
             $keywords = explode(",",$keywords);
-            foreach ($keywords as $word) {
-                // 关键词默认保存90天，过期后自动删除
-                Redis::setex("keywords_".str_random(10),60*60*24*90,$word);
+            foreach ($keywords as $word) {                
+                    // 关键词默认保存90天，过期后自动删除
+                    Redis::setex("keywords_".md5($word),60*60*24*90,$word);
             }
             $res = ['code'=>0,'msg'=>"新增".count($keywords)."个关键词成功!"];
         }
@@ -578,48 +578,48 @@ class ClubManagementController extends Controller
                     $topic->body = $article->body;
                     $topic->source = $article->source;
                     // 随机取2-61ID的机器人用户
-		            $topic->user_id = $user->find(mt_rand(2,10))->id;
+		            $topic->user_id = $user->find(mt_rand(2,61))->id;
                     $topic->save();
                     // 最多保存6条回复
                     if($article->reply1 != ""){
                         $reply = new Reply;
                         $reply->content = $article->reply1;
-                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->user_id = $user->find(mt_rand(2,61))->id;
                         $reply->topic_id = $topic->id;
                         $reply->save();
                     }
                     if($article->reply2 != ""){
                         $reply = new Reply;
                         $reply->content = $article->reply2;
-                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->user_id = $user->find(mt_rand(2,61))->id;
                         $reply->topic_id = $topic->id;
                         $reply->save();
                     }
                     if($article->reply3 != ""){
                         $reply = new Reply;
                         $reply->content = $article->reply3;
-                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->user_id = $user->find(mt_rand(2,61))->id;
                         $reply->topic_id = $topic->id;
                         $reply->save();
                     }
                     if($article->reply4 != ""){
                         $reply = new Reply;
                         $reply->content = $article->reply4;
-                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->user_id = $user->find(mt_rand(2,61))->id;
                         $reply->topic_id = $topic->id;
                         $reply->save();
                     }
                     if($article->reply5 != ""){
                         $reply = new Reply;
                         $reply->content = $article->reply5;
-                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->user_id = $user->find(mt_rand(2,61))->id;
                         $reply->topic_id = $topic->id;
                         $reply->save();
                     }
                     if($article->reply6 != ""){
                         $reply = new Reply;
                         $reply->content = $article->reply6;
-                        $reply->user_id = $user->find(mt_rand(2,10))->id;
+                        $reply->user_id = $user->find(mt_rand(2,61))->id;
                         $reply->topic_id = $topic->id;
                         $reply->save();
                     }
@@ -642,12 +642,12 @@ class ClubManagementController extends Controller
                     $news = new News;
                     $news->column_id= 2;
                     $news->title = $article->title;
-                    $news->keywords = $article->title;
+                    $news->keywords = "";
                     $news->image = $article->image;
                     $news->body = $article->body;
                     $news->source = $article->source;
                     // 随机取2-61ID的机器人用户
-		            $news->user_id = $user->find(mt_rand(2,10))->id;
+		            $news->user_id = $user->find(mt_rand(2,61))->id;
                     $news->save();
                     $count++;
                     // 删除已发布的临时文章
@@ -669,12 +669,12 @@ class ClubManagementController extends Controller
                     $news = new News;
                     $news->column_id= 3;
                     $news->title = $article->title;
-                    $news->keywords = $article->title;
+                    $news->keywords = "";
                     $news->image = $article->image;
                     $news->body = $article->body;
                     $news->source = $article->source;
                     // 随机取2-61ID的机器人用户
-		            $news->user_id = $user->find(mt_rand(2,10))->id;
+		            $news->user_id = $user->find(mt_rand(2,61))->id;
                     $news->save();
                     $count++;
                     // 删除已发布的临时文章
