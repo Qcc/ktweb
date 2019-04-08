@@ -10,7 +10,7 @@ class CreateTopicsTable extends Migration
 		Schema::create('topics', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title')->index()->comment('标题');
-            $table->text('body')->comment('正文');
+            $table->mediumText('body')->comment('正文');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index()->comment('栏目');
             $table->integer('reply_count')->unsigned()->default(0)->comment('回复数');

@@ -212,3 +212,20 @@ crontab -e配置完成后，如何把保存并退出？
 3.Ctrl+x 保存输出
 
 提示“crontab:installing new crontab”表示成功。
+
+
+
+ALTER TABLE temparticle MODIFY body MEDIUMTEXT NOT NULL comment "正文";
+ALTER TABLE temparticle MODIFY reply1 MEDIUMTEXT NOT NULL comment "回复1";
+ALTER TABLE temparticle MODIFY reply2 MEDIUMTEXT NOT NULL comment "回复2";
+ALTER TABLE temparticle MODIFY reply3 MEDIUMTEXT NOT NULL comment "回复3";
+ALTER TABLE temparticle MODIFY reply4 MEDIUMTEXT NOT NULL comment "回复4";
+ALTER TABLE temparticle MODIFY reply5 MEDIUMTEXT NOT NULL comment "回复5";
+ALTER TABLE temparticle MODIFY reply6 MEDIUMTEXT NOT NULL comment "回复6";
+
+ALTER TABLE topics MODIFY body MEDIUMTEXT NOT NULL comment "正文";
+
+ALTER TABLE replies MODIFY content MEDIUMTEXT NOT NULL comment "回复";
+
+查看字段类型
+select column_name,column_comment,data_type from information_schema.columns where table_name='temparticle' and table_schema='ktdb';

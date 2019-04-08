@@ -52,14 +52,9 @@ class TranslateNewsSlug implements ShouldQueue
                 break;
             }
             if(stripos($this->news->body,$word)){
-                Log::info("this->news->keywords");
-                Log::info($this->news->keywords);
-                
                 if($count > 6 && $this->news->keywords == ""){
                     $keyword = $keyword.$word.",";
                 }
-                Log::info("keyword");
-                Log::info($keyword);
                 $redis_key = md5($word);
                 $url = Redis::get($redis_key);
                 if($url){

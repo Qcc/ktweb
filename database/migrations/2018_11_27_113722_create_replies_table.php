@@ -12,7 +12,7 @@ class CreateRepliesTable extends Migration
             $table->integer('topic_id')->unsigned()->default(0)->index();
             $table->integer('user_id')->unsigned()->default(0)->index();
             $table->integer('great_count')->unsigned()->default(0);
-            $table->text('content');
+            $table->mediumText('content');
             $table->timestamps();
         });
 	}
