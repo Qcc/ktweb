@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Models\Solutioncol;
 use App\Handlers\SlugTranslateHandler;
 
-class TranslateProductcolSlug implements ShouldQueue
+class TranslateSolutioncolSlug implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
