@@ -477,34 +477,6 @@ $(document).ready(function () {
 				}
 			})
 		});
-		//加关注 取消关注 粉丝
-		$(".user-follower").on("click", function () {
-			$(this).attr('disabled', true);
-			var id = $('#author_id').attr('data_id');
-			$.ajax({
-				method: 'POST',
-				url: '/users/followers/action',
-				ContentType: 'application/json',
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				},
-				data: {
-					id: id
-				},
-				success: function (data) {
-					if (data.result) {
-						$('.user-follower').empty().append(
-							"<i class='kticon'>&#xe659;</i> 已关注").attr(
-							'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
-					} else {
-						$('.user-follower').empty().append(
-							"<i class='kticon'>&#xe7b9;</i> 加关注").attr(
-							'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
-					}
-					$('.user-follower').removeAttr('disabled');
-				}
-			})
-		});
 		//加关注 取消关注 文章
 		$(".topic-follower").on("click", function () {
 			$(this).attr('disabled', true);
@@ -665,7 +637,34 @@ $(document).ready(function () {
 
 		});
 	}
-
+	//加关注 取消关注 粉丝
+	$(".user-follower").on("click", function () {
+		$(this).attr('disabled', true);
+		var id = $('#author_id').attr('data_id');
+		$.ajax({
+			method: 'POST',
+			url: '/users/followers/action',
+			ContentType: 'application/json',
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			data: {
+				id: id
+			},
+			success: function (data) {
+				if (data.result) {
+					$('.user-follower').empty().append(
+						"<i class='kticon'>&#xe659;</i> 已关注").attr(
+						'title', '取消关注将不会再收到他的动态').css('color', '#76FF03');
+				} else {
+					$('.user-follower').empty().append(
+						"<i class='kticon'>&#xe7b9;</i> 加关注").attr(
+						'title', '关注后能收到他的最新动态').css('color', '#a2a2a2');
+				}
+				$('.user-follower').removeAttr('disabled');
+			}
+		})
+	});
 
 	// 展开移动端菜单导航
 	$('.ktm-nav-menu').on('click', function () {
