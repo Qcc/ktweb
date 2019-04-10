@@ -56,7 +56,7 @@ class ReplyObserver
             }
             if(stripos($reply->content,$word)){
                 $count--;
-                $redis_key = md5($word);
+                $redis_key = "link_".md5($word);
                 $url = Redis::get($redis_key);
                 if($url){
                     $link = '<a href="'.$url.'" target="_blank" title="'.$word.'">'.$word.'</a>';

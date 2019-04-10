@@ -626,7 +626,7 @@ class ClubManagementController extends Controller
                     $count++;
                     // 删除已发布的临时文章
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
-                }else if($item['format']){
+                }else {
                     // 将文章ID放入redis集合中
                     if(!Redis::sismember("topics_set",$item["id"])){
                         Redis::sadd("topics_set",$item["id"]);
@@ -680,7 +680,7 @@ class ClubManagementController extends Controller
                     // 删除已发布的临时文章
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
                     $count++;
-                }else if($item['format']){
+                }else {
                     // 将文章ID放入redis集合中
                     if(!Redis::sismember("news_3_set",$item["id"])){
                         Redis::sadd("news_3_set",$item["id"]);

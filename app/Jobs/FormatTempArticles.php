@@ -62,16 +62,18 @@ class FormatTempArticles implements ShouldQueue
         // 写死的四张图片
         $pic = ['cangqiong','cloudhome','ctbs_advance','k3wise-1','eas-1','start','jdy-2','kis-1'];
         $path="/images/".$pic[array_rand($pic)].".png";
-        // 查找匹配最多不超过4个关键词，存放匹配的关键词
+        // 查找匹配存放匹配的关键词
         $altWords = [];
+        // 控制关键词数量不超过10个
+        $count = 10;
         foreach ($allKeywords as $index=>$w){
             if(strripos($body,$w)){
                 array_push($altWords,$w);
-            }
-            // 一个img标签只使用一个关键词
-            $length =  count($result[0]);
-            if($index == $length){
-                break;
+                // 一个img标签只使用一个关键词
+                $length =  count($result[0]);
+                if($index >= $length && $index > $count){
+                    break;
+                }
             }
         }
         foreach ($result[0] as $index => $tag) {
