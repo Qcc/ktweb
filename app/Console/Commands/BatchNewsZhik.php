@@ -7,6 +7,7 @@ use App\Models\News;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use App\Models\User;
+use App\Jobs\FormatTempArticles;
 
 class BatchNewsZhik extends Command
 {
@@ -44,22 +45,23 @@ class BatchNewsZhik extends Command
        //这里做任务的具体处理，可以用模型
        $id = Redis::spop("news_3_set");
        if($id){
+            dispatch(new FormatTempArticles($id,3));
            Log::info('批量发布管理智库文章news_3_set,ID='.$id."  执行时间：  ".date('Y-m-d H:i:s',time()));
-           $article = \DB::table('temparticle')->where('id', $id)->first();
-           if($article){
-               $news = new News;
-               $news->column_id= 3;
-               $news->title = $article->title;
-               $news->body = $article->body;
-               $news->keywords = $article->title;
-               $news->image = $article->image;
-               $news->source = $article->source;
-               // 随机取2-61ID的机器人用户
-               $news->user_id = $user->find(mt_rand(2,61))->id;
-               $news->save();
-               // 删除已发布的临时文章
-               \DB::table('temparticle')->where('id',$id)->delete();
-            }
+        //    $article = \DB::table('temparticle')->where('id', $id)->first();
+        //    if($article){
+        //        $news = new News;
+        //        $news->column_id= 3;
+        //        $news->title = $article->title;
+        //        $news->body = $article->body;
+        //        $news->keywords = $article->title;
+        //        $news->image = $article->image;
+        //        $news->source = $article->source;
+        //        // 随机取2-61ID的机器人用户
+        //        $news->user_id = $user->find(mt_rand(2,61))->id;
+        //        $news->save();
+        //        // 删除已发布的临时文章
+        //        \DB::table('temparticle')->where('id',$id)->delete();
+        //     }
         }
     }
 }

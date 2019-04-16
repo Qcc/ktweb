@@ -553,17 +553,17 @@ class ClubManagementController extends Controller
     }
     
     // 格式化文章，下载图片到本地，删除特殊字符
-    public function loadformat(Request $request)
-    {
-        $count = 0;
-        foreach ($request->list as $article) {
-            if(!$article['format']){
-                dispatch(new FormatTempArticles($article['id']));
-                $count++;
-            }
-        }
-        return $res = ['code'=>0,'msg'=>$count.'条数据处理中...'];
-    }
+    // public function loadformat(Request $request)
+    // {
+    //     $count = 0;
+    //     foreach ($request->list as $article) {
+    //         if(!$article['format']){
+    //             dispatch(new FormatTempArticles($article['id']));
+    //             $count++;
+    //         }
+    //     }
+    //     return $res = ['code'=>0,'msg'=>$count.'条数据处理中...'];
+    // }
     // 发布文章
     public function loadSend(Request $request,User $user)
     {
@@ -653,7 +653,7 @@ class ClubManagementController extends Controller
                     // 删除已发布的临时文章
                     \DB::table('temparticle')->where('id',$item['id'])->delete();
                     $count++;
-                }else if($item['format']){
+                }else {
                     // 将文章ID放入redis集合中
                     if(!Redis::sismember("news_2_set",$item["id"])){
                         Redis::sadd("news_2_set",$item["id"]);
