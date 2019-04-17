@@ -130,8 +130,6 @@ Route::group(['middleware' => ['permission:web_manage']], function () {
     Route::get('/management/club/load','ClubManagementController@loads')->name('admin.club.load');
     Route::post('/management/club/loadstore','ClubManagementController@loadStore')->name('admin.club.loadstore');
     Route::post('/management/club/loadSend','ClubManagementController@loadSend')->name('admin.club.loadSend');
-    // 格式化数据
-    Route::post('/management/club/loadformat','ClubManagementController@loadformat')->name('admin.club.loadformat');
     
     // 客服QQ
     Route::post('/management/club/settings/onlineService','ClubManagementController@onlineService')->name('admin.club.setting.onlineService');

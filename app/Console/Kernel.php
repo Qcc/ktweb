@@ -24,10 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // 批量发布文章
-        $schedule->command('batch:topics')->everyTenMinutes()->between('8:00', '23:00');
-        $schedule->command('batch:zhik')->everyFifteenMinutes()->between('7:00', '23:00');
-        $schedule->command('batch:hy')->everyFifteenMinutes()->between('7:00', '23:00');
+        // // 批量发布文章
+        // $schedule->command('batch:topics')->everyTenMinutes()->between('8:00', '23:00');
+        // $schedule->command('batch:zhik')->everyFifteenMinutes()->between('7:00', '23:00');
+        // $schedule->command('batch:hy')->everyFifteenMinutes()->between('7:00', '23:00');
         // 每天午夜生成sitemap
         $schedule->command('generate:sitemap')->twiceDaily(1, 13);
     }

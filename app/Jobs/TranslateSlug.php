@@ -58,7 +58,7 @@ class TranslateSlug implements ShouldQueue
                 $redis_key = "link_".md5($word);
                 $url = Redis::get($redis_key);
                 if($url){
-                    if($this->topic->source){
+                    if(!$this->topic->source){
                         $link = '<a href="'.$url.'" target="_blank" title="'.$word.'">'.$word.'</a>';
                         $body = str_replace($word, $link, $body);
                     }

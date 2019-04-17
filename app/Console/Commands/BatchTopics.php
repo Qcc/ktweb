@@ -46,10 +46,10 @@ class BatchTopics extends Command
         //这里做任务的具体处理，可以用模型
         $id = Redis::spop("topics_set");
         if($id){
-            Log::info('批量发布社区文章topics_set,ID='.$id."  执行时间：  ".date('Y-m-d H:i:s',time()));
-            dispatch(new FormatTempArticles($id,1));
+            Log::info('批量发布社区文章topics_set成功,ID='.$id."  执行时间：  ".date('Y-m-d H:i:s',time()));
+            dispatch(new FormatTempArticles($id,1))->delay(now()->addMinutes(rand(0, 5)));
         }else{
-            Log::info('批量发布社区文章topics_set,ID='.$id."  执行时间：  ".date('Y-m-d H:i:s',time()));
+            Log::info('批量发布社区文章topics_set失败,ID='.$id."  执行时间：  ".date('Y-m-d H:i:s',time()));
         }
     }
 }

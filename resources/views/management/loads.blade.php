@@ -28,8 +28,6 @@
                     </form>
                 </div>
                 <div class="layui-btn-group demoTable">
-                    <button class="layui-btn check-data" style="background-color:#536dfe"><i class="kticon">&#xe64d;</i>
-                        格式化数据</button>
                     <button class="layui-btn send-club" style="background-color:#536dfe"><i class="kticon">&#xe648;</i>
                         发布到社区</button>
                     <button class="layui-btn send-hy" style="background-color:#536dfe"><i class="kticon">&#xe64b;</i>
