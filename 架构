@@ -229,3 +229,126 @@ ALTER TABLE replies MODIFY content MEDIUMTEXT NOT NULL comment "回复";
 
 查看字段类型
 select column_name,column_comment,data_type from information_schema.columns where table_name='temparticle' and table_schema='ktdb';
+
+
+
+PHP部署
+旧网站
+php 5.2.5
+mysql 5.0.45
+sudo apt install git vim
+ 
+新 
+mysql 5.7.22
+php 7.2.5
+
+安装mysql
+https://blog.csdn.net/weixx3/article/details/80782479
+https://www.cnblogs.com/Jackyye/p/9289275.html
+
+安装 php 7.2
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt install php7.2 php7.2-curl php7.2-common php7.2-cli php7.2-mysql php7.2-mbstring php7.2-fpm php7.2-xml php7.2-zip  php7.2-gd -y
+sudo apt-get install -y php7.2
+ 
+安装nginx
+sudo apt-get install nginx
+
+nignx 指定多个版本的php
+https://www.howtoing.com/ubuntu-laravel-php-nginx
+
+设置防火墙 nginx 状态
+https://blog.csdn.net/fengfeng0328/article/details/82828224
+要停止您的Web服务器，请键入：
+
+
+$ sudo systemctl stop nginx
+
+
+
+要启动你的Web服务器，请输入：
+
+
+$ sudo systemctl start nginx
+
+
+
+要重启你的Web服务器，请输入：
+
+
+$ sudo systemctl restart nginx
+
+
+
+如果您只是简单地进行配置更改，Nginx通常可以重新加载而不会丢失连接。?为此，请输入：
+
+
+$ sudo systemctl reload nginx
+
+
+
+默认情况下，Nginx配置为在服务器引导时自动启动。?如果这不是您想要的，可以通过输入以下命令来禁用此行为：
+
+
+$ sudo systemctl disable nginx
+
+
+
+要重新启用服务以在启动时启动，您可以键入：
+$sudo systemctl enable nginx
+
+composer安装
+1.下载composer.phar
+
+wget https://getcomposer.org/composer.phar
+2.重命名composer.phar为composer
+
+mv composer.phar composer
+3.增加可执行权限
+
+chmod +x composer
+4.现在可以通过./composer 命令运行composer，但这只仅限于在当前目录运行。要想全局使用，composer ，要设置把它为全局变量。找到composer文件，把它移到/usl/local/bin 目录，这样就可以在全局使用composer 命令。
+
+sudo mv composer /usr/local/bin 
+
+
+redis
+安装命令：
+sudo  apt-get install redis-server 
+
+查看tcp 连接
+
+netstat -ap | grep  6379
+
+启动：
+
+服务：redis-server      
+
+客户端： redis-cli
+
+ 
+
+修改 配置文件允许局域网内的其他电脑连接redis 
+
+文件位置：/etc/redis/redis.conf   如果无法编辑或者无法保存  请先修改权限
+
+文件上传插件
+2 执行php artisan aetherupload:publish来发布一些文件和目录
+
+3 赋予上传目录相应权限，在项目根目录下，执行chmod -R 755 storage/app/aetherupload
+
+
+生成 supervisor 配置文件
+https://blog.csdn.net/win_turn/article/details/60466562
+ sudo su - root -c "echo_supervisord_conf > /etc/supervisor/conf.d/horizon.conf"
+sudo supervisorctl update
+
+[program:horizon]
+process_name=%(program_name)
+command=php /var/www/kouton.com/ktweb/artisan horizon
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/www/kouton.com/ktweb/storage/horizon.log
