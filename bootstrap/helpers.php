@@ -82,7 +82,16 @@ function updateTopCache($topic)
 	}
 }
 
-
+// 获得img标签的任意属性
+function extract_attrib($tag) {
+    preg_match_all('/(width|height|src|file)=("[^"]*")/i', $tag, $matches);
+    // preg_match_all('/(width|height|src)=("[^"]*")/i', $tag, $matches);
+    $ret = array();
+    foreach($matches[1] as $i => $v) {
+        $ret[$v] = $matches[2][$i];
+    } 
+    return $ret;
+}
 
 /**
  * 批量发布社区文章 类目重新分类
