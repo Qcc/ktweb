@@ -90,7 +90,7 @@ class FormatTempArticles implements ShouldQueue
         // 存放文章首图
         $image = "";
         foreach ($result[0] as $index => $tag) {
-            $atts = extract_attrib($tag);
+            $atts = $this->extract_attrib($tag);
             $src="";
             $file="";
             $width="";
@@ -271,5 +271,16 @@ class FormatTempArticles implements ShouldQueue
             // 删除已发布的临时文章
             \DB::table('temparticle')->where('id',$this->id)->delete(); 
         }
+    }
+
+    // 获得img标签的任意属性
+    protected function extract_attrib($tag) {
+        preg_match_all('/(width|height|src|file)=("[^"]*")/i', $tag, $matches);
+        // preg_match_all('/(width|height|src)=("[^"]*")/i', $tag, $matches);
+        $ret = array();
+        foreach($matches[1] as $i => $v) {
+            $ret[$v] = $matches[2][$i];
+        } 
+        return $ret;
     }
 }
