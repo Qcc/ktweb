@@ -119,7 +119,7 @@ class FormatTempArticles implements ShouldQueue
             // 下载图片并返回存储url
             $path = app(DownloadImgHandler::class)->downloadImg($src);
             if(!$path){
-                $src = substr($article->source,0,strpos($article->source,"/",8))."/".$src;
+                $src = substr($article->source,0,strpos($article->source,"/",8)).$src;
                 $path = app(DownloadImgHandler::class)->downloadImg($src);
             }
             //替换内容src  
