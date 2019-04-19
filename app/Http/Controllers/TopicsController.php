@@ -261,7 +261,7 @@ class TopicsController extends Controller
 	public function report(Request $request, User $user){
 		$report = $request->all();
 		// 获得拥有处理举报权限的用户
-		$users = $user->permission("manage_report")->get();
+		$users =  User::permission("manage_report")->get();
 		foreach ($users as $key => $user) {
 			//通知管理员处理举报
 			$user->notify(new ReportNotice($report));
