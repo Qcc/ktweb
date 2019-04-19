@@ -162,9 +162,13 @@ class RegisterController extends Controller
         $status = ['sendsms'=>false,'msg'=>'短信未发送'];
         $timestamp = time();
         $phone = $request->phone;  
+        Log::info("注册短信发送手机号".$phone);
+        log::info($validator->errors());
         if (!$validator->fails()){
             // 生成5位随机数，左侧补0
             $code = str_pad(random_int(1, 99999), 5, 0, STR_PAD_LEFT);
+            $config = config('easysms');
+            $easySms = new EasySms($config);
             try {
                 $result = $easySms->send($phone, [
                     'template' => 'SMS_1057',
@@ -172,15 +176,17 @@ class RegisterController extends Controller
                         'code' => $code
                     ],
                 ]);
+                Log::info("注册短信发送状态");
+                Log::info($result);
+                $this->session->put('smscode', [
+                    'timestamp' => $timestamp,
+                    'value' => $code,
+                    'phone' => $phone
+                ]);
             } catch (Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
                 $response = $exception->getExceptions();
                 return response()->json($response);
             }
-            $this->session->put('smscode', [
-                'timestamp' => $timestamp,
-                'value' => $code,
-                'phone' => $phone
-            ]);
         }
         return [
             'timestamp' => $timestamp,

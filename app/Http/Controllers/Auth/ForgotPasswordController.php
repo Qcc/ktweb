@@ -77,8 +77,10 @@ class ForgotPasswordController extends Controller
             $phone = $request->phone;  
             // 生成5位随机数，左侧补0
             $code = str_pad(random_int(1, 99999), 5, 0, STR_PAD_LEFT);
+            $config = config('easysms');
+            $easySms = new EasySms($config);
             try {
-                $result = $this->easySms->send($phone, [
+                $result = $easySms->send($phone, [
                     'template' => 'SMS_1057',
                     'data' => [
                         'code' => $code

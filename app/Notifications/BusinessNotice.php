@@ -52,7 +52,8 @@ class BusinessNotice extends Notification implements ShouldQueue
             'business_phone' => $this->business->phone,
             'business_city' => $this->business->city,
             'business_type' => $this->business->type,
-            'business_comment' => $this->business->comment,
+            'business_company' => $this->business->company,
+            'business_comment' => $this->business->demand,
             'business_status' => $this->business->status,
             'business_user_id' => $this->business->user_id,
             'business_link' => $link,
@@ -65,6 +66,11 @@ class BusinessNotice extends Notification implements ShouldQueue
         return (new MailMessage)
                     ->subject('商机通知')
                     ->line('你的新的商机申请，请在30分钟内联系客户！')
-                    ->action('查看商机', $url);
+                    ->line('姓名:'.$this->business->name)
+                    ->line('电话:'.$this->business->phone)
+                    ->line('公司:'.$this->business->company)
+                    ->line('城市:'.$this->business->city)
+                    ->line('留言:'.$this->business->demand)
+                    ->action('反馈结果', $url);
     }
 }
