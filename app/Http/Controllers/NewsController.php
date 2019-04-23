@@ -99,11 +99,16 @@ class NewsController extends Controller
         });
         $customers = Customer::orderby('updated_at','desc')->paginate(5);
         $products = Product::orderby('updated_at','desc')->paginate(5);
+        // 上一篇 下一篇
+        $pagination["previous"] = $news::find($news->id - 1);
+        $pagination["next"]= $news::find($news->id + 1);
+        // 更多内容
+        $morePage = $news->find([$news->id - 2,$news->id - 3,$news->id - 4,$news->id - 5,$news->id - 6]);
         // 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($news->slug) && $news->slug != $request->slug) {
             return redirect($news->link(), 301);
         }
-        return view('pages.news.show', compact('news','advertisings','customers','products'));
+        return view('pages.news.show', compact('news','advertisings','customers','products','pagination','morePage'));
     }
 
     /**

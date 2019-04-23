@@ -28,6 +28,25 @@
             </div>
             <div class="mdui-divider"></div>
             <div class="topic-body">{!! $news->body !!}</div>
+            <div class="layui-row">
+                    <div class="layui-col-xs6">
+                @if($pagination['previous'])
+                  <p>上一篇：<a href="{{ $pagination['previous']->link() }}">{{ $pagination['previous']->title }}</a></p>
+                @endif
+                    </div>
+                    <div class="layui-col-xs6">
+                @if($pagination['next'])
+                  <p style="text-align: right;">下一篇：<a href="{{ $pagination['next']->link() }}">{{ $pagination['next']->title }}</a></p>
+                @endif
+                    </div>
+            </div>
+            <hr>
+            <div>
+                <h4>更多文章</h4>
+                @foreach($morePage as $moreNews)
+                    <div>{{ $moreNews->title }}</div>
+                @endforeach
+            </div>
             @can('update', $news)
             <div class="article-edit">
                 <a href="{{ route('news.edit', $news->id) }}" class="mdui-btn mdui-ripple" role="button">
