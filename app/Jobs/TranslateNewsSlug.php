@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Log;
 use App\Models\News;
 use App\Handlers\SlugTranslateHandler;
+use GuzzleHttp\Client;
 
 class TranslateNewsSlug implements ShouldQueue
 {
@@ -80,5 +81,7 @@ class TranslateNewsSlug implements ShouldQueue
         }else{
             \DB::table('news')->where('id', $this->news->id)->update(['slug' => $slug,'body' => $body]);
         }
+        $client = new Client();
+        $client->get($this->news->link());
     }
 }
