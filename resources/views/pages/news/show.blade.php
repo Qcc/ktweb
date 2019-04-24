@@ -28,25 +28,6 @@
             </div>
             <div class="mdui-divider"></div>
             <div class="topic-body">{!! $news->body !!}</div>
-            <div class="layui-row">
-                    <div class="layui-col-xs6">
-                @if($pagination['previous'])
-                  <p>上一篇：<a href="{{ $pagination['previous']->link() }}">{{ $pagination['previous']->title }}</a></p>
-                @endif
-                    </div>
-                    <div class="layui-col-xs6">
-                @if($pagination['next'])
-                  <p style="text-align: right;">下一篇：<a href="{{ $pagination['next']->link() }}">{{ $pagination['next']->title }}</a></p>
-                @endif
-                    </div>
-            </div>
-            <hr>
-            <div>
-                <h4>更多文章</h4>
-                @foreach($morePage as $moreNews)
-                    <div>{{ $moreNews->title }}</div>
-                @endforeach
-            </div>
             @can('update', $news)
             <div class="article-edit">
                 <a href="{{ route('news.edit', $news->id) }}" class="mdui-btn mdui-ripple" role="button">
@@ -62,6 +43,63 @@
                 </form>
             </div>
             @endcan
+            <div class="layui-row">
+                    <div class="layui-col-xs6">
+                @if($pagination['previous'])
+                  <p>上一篇：<a href="{{ $pagination['previous']->link() }}">{{ $pagination['previous']->title }}</a></p>
+                @endif
+                    </div>
+                    <div class="layui-col-xs6">
+                @if($pagination['next'])
+                  <p style="text-align: right;">下一篇：<a href="{{ $pagination['next']->link() }}">{{ $pagination['next']->title }}</a></p>
+                @endif
+                    </div>
+            </div>
+            <hr>
+            <div class="layui-row business">
+                <div class="title">金蝶软件让工作更高效，免费试用！</div>
+                <div class="layui-col-xs12 layui-col-md6">
+                    <form class="layui-form" id="buy-form" lay-filter="buy-form" method="POST" >
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="type" value="终端客户">
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="required|title" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                          </div>
+                        </div>
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                            <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" placeholder="请输入手机号" class="layui-input">
+                          </div>
+                        </div>
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                                <button class="layui-btn buy-btn" lay-submit="" lay-filter="buy-btn">立即提交</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="jdy">
+                        <div><a href="{{ route('products.show',6) }}"> 精斗云</a></div>
+                        <div>精斗云为您提供完整的在线服务包，功能覆盖财务、新零售、电商、订货等领域帮助您更好地找生意、更便利地做生意、更高效地管生意， 让您的生意遍布全国</div>
+                        <div><a href="{{ route('products.show',6) }}">进一步了解>></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="moore-news">
+                <div class="title">更多文章</div>
+                <hr>
+                @foreach($morePage as $moreNews)
+                    <div class="layui-row news ">
+                        <div class="layui-col-xs12 layui-col-md3 left"><a href="{{ $moreNews->link() }}" target="_blank"><img src="{{ $moreNews->image }}" alt="{{ $moreNews->title }}"></a></div>
+                        <div class="layui-col-xs12 layui-col-md9 right">
+                            <div class="title"><a href="{{ $moreNews->link() }}" target="_blank">{{ $moreNews->title }}</a></div>
+                            <div class="exp">{{ $moreNews->excerpt }}</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="mdui-col-xs-12 mdui-col-sm-3">
                 @include('pages.side_advertising')

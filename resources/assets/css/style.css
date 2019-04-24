@@ -2754,7 +2754,52 @@ a:active {
 .edit .customer-select {
     display: inline-block;
 }
-
+.news-show-page .business{
+    background: #536dfe;
+    padding: 30px;
+    margin: 20px 0;
+}
+.news-show-page .business .title{
+    font-size: 25px;
+    color: #fff;
+    line-height: 60px;
+}
+.news-show-page .business .layui-input-block{
+    margin-left: 0px;
+    width: 90%;
+}
+.news-show-page .business .layui-btn{
+    background-color: #fff;
+    color: #000;
+}
+.news-show-page .business .jdy, .news-show-page .business a{
+    color: #fff;
+}
+.news-show-page .moore-news{
+    margin-bottom: 20px;
+}
+.news-show-page .moore-news>.title{
+    font-size: 25px;
+    color: #333;
+}
+.news-show-page .moore-news .news{
+    padding: 10px 0;
+    margin: 20px 0;
+    border-bottom: 1px dashed #555;
+}
+.news-show-page .moore-news .left img{
+    width: 100%;
+}
+.news-show-page .moore-news .right{
+    padding-left: 40px;    
+}
+.news-show-page .moore-news .right a{
+    font-size: 25px;
+    line-height: 45px;    
+}
+.news-show-page .moore-news .right>.exp{
+    text-indent:25px
+}
 
 /* 产品页面样式 */
 
@@ -4781,6 +4826,27 @@ a:active {
 
 .topics-show-page .rar {
     background-image: url(/images/rar.png)
+}
+.topics-show-page .business{
+    background: #536dfe;
+    padding: 30px;
+    margin: 20px 0;
+}
+.topics-show-page .business .title{
+    font-size: 25px;
+    color: #fff;
+    line-height: 60px;
+}
+.topics-show-page .business .layui-input-block{
+    margin-left: 0px;
+    width: 90%;
+}
+.topics-show-page .business .layui-btn{
+    background-color: #fff;
+    color: #000;
+}
+.topics-show-page .business .jdy, .topics-show-page .business a{
+    color: #fff;
 }
 
 /* 身份铭牌 */

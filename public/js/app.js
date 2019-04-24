@@ -3819,7 +3819,7 @@ $(document).ready(function () {
 	});
 
 	// 试用申请页面
-	if ($('.business-tryout-page').length == 1) {
+	if ($('.business-tryout-page,.news-show-page,.topics-show-page').length >= 1) {
 		layui.use(['layer', 'form'], function () {
 			var form = layui.form,
 				layer = layui.layer;

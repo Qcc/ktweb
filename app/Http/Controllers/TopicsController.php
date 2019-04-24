@@ -90,13 +90,16 @@ class TopicsController extends Controller
 		$topics = $topic->user->topics()->with('category')->recent()->paginate(5);
 		$advertisings = Cache::rememberForever('side_advertising', function (){
 			return \DB::table('settings')->where('key','side_advertising')->get();
-        });
+		});
+		// 更多内容
+		$moreTopics = $topic->find([$topic->id - 2,$topic->id - 3,$topic->id - 4,$topic->id - 5,$topic->id - 6]);
+		
 		// 如果话题带有slug翻译字段 强制使用带翻译字段的链接
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
 		}
 		// dd(compact('advertisings'));
-        return view('topics.show', compact('topic','topics','advertisings'));
+        return view('topics.show', compact('topic','topics','advertisings','moreTopics'));
     }
 
 	public function create(Topic $topic)

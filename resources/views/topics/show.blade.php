@@ -23,6 +23,19 @@
                     @endforeach
                 </div>
             </div>
+            <div class="new-article-warp">
+                <div class="new-article">推荐话题</div>
+                <div class="list">
+                @foreach($moreTopics as $moreTopic)
+                <div class="item">
+                        <span>{{ $moreTopic->created_at->diffForHumans() }} </span>
+                        <a href="{{ route('topics.show',$moreTopic->id)}}" target="_blank" title="{{ $moreTopic->title}}">
+                            <p>{{ $moreTopic->title }}</p>
+                        </a>
+                </div>
+                @endforeach
+                </div>
+            </div>
             @include('pages.side_advertising')
             @include('pages._side_conact')
         </div>
@@ -83,15 +96,39 @@
             @include('topics._execllent_list',['users' => $topic->topicGreats,'topic'=>$topic])
             {{-- 用户回复列表 --}}
             <div class="replay-warp">
-                <!-- 视条件加载模版
-            话题回复功能只允许登录用户使用，未登录用户不显示即可。 -->
-                @guest
-                <div style="margin:auto;border:1px dashed #ff8995;height:100px;line-height:40px;text-indent: 8px;">
-                    <div style="margin:30px auto;width: 270px">
-                        你需要登录后才可以发表回复 <a style="color: #709ff4;" href="/login">登录</a> |
-                        <a style="color: #709ff4;" href="/register">注册</a> </div>
+            <hr>
+            <div class="layui-row business">
+                <div class="title">金蝶软件让工作更高效，免费试用！</div>
+                <div class="layui-col-xs12 layui-col-md6">
+                    <form class="layui-form" id="buy-form" lay-filter="buy-form" method="POST" >
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="type" value="终端客户">
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="required|title" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                          </div>
+                        </div>
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                            <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" placeholder="请输入手机号" class="layui-input">
+                          </div>
+                        </div>
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                                <button class="layui-btn buy-btn" lay-submit="" lay-filter="buy-btn">立即提交</button>
+                          </div>
+                        </div>
+                    </form>
                 </div>
-                @endguest
+                <div class="layui-col-md6">
+                    <div class="jdy">
+                        <div><a href="{{ route('products.show',6) }}"> 精斗云</a></div>
+                        <div>精斗云为您提供完整的在线服务包，功能覆盖财务、新零售、电商、订货等领域帮助您更好地找生意、更便利地做生意、更高效地管生意， 让您的生意遍布全国</div>
+                        <div><a href="{{ route('products.show',6) }}">进一步了解>></a></div>
+                    </div>
+                </div>
+            </div>
+            
                 @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
                 @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
             </div>
