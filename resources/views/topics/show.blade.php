@@ -128,7 +128,6 @@
                     </div>
                 </div>
             </div>
-            
                 @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
                 @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
             </div>
