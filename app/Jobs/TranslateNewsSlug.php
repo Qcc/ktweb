@@ -37,6 +37,8 @@ class TranslateNewsSlug implements ShouldQueue
         // 请求百度 API 接口进行翻译
         $slug = app(SlugTranslateHandler::class)->translate($this->news->title);
         
+        // 新的地址
+        $newsUrl = $this->news->link()."/".$slug; 
         // 准备好关键词作关联，获取缓存的关键词
 		$allKeywords =  [];
 		$keys =  Redis::keys('keywords_*');
@@ -63,10 +65,10 @@ class TranslateNewsSlug implements ShouldQueue
                         $body = str_replace($word, $link, $body);
                     }
                     $ttl = Redis::ttl($redis_key);
-                    Redis::setex($redis_key,$ttl,$this->news->link()."/".$slug);
+                    Redis::setex($redis_key,$ttl,$newsUrl);
                 }else{                    
                     // 关键词链接默认保存90天，过期后自动删除
-                    Redis::setex($redis_key,60*60*24*90,$this->news->link()."/".$slug);
+                    Redis::setex($redis_key,60*60*24*90,$newsUrl);
                 }
                 $count--;
             }
@@ -81,7 +83,7 @@ class TranslateNewsSlug implements ShouldQueue
             \DB::table('news')->where('id', $this->news->id)->update(['slug' => $slug,'body' => $body]);
         }
         // 百度主动推送
-        $urls = array($this->news->link());
+        $urls = array($newsUrl);
         // $api = 'http://data.zz.baidu.com/urls?site=www.kouton.com&token=Ni7aXOJYzIfwW1iX';
         $api = "http://data.zz.baidu.com/urls?site=".env('BAIDU_AUTOURL_URL')."&token=".env('BAIDU_AUTOURL_KEY');
         $ch = curl_init();
