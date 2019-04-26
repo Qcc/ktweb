@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Log;
 use App\Models\News;
 use App\Handlers\SlugTranslateHandler;
-use GuzzleHttp\Client;
 
 class TranslateNewsSlug implements ShouldQueue
 {
@@ -81,7 +80,21 @@ class TranslateNewsSlug implements ShouldQueue
         }else{
             \DB::table('news')->where('id', $this->news->id)->update(['slug' => $slug,'body' => $body]);
         }
-        $client = new Client();
-        $client->get($this->news->link());
+        // 百度主动推送
+        $urls = array($this->news->link());
+        // $api = 'http://data.zz.baidu.com/urls?site=www.kouton.com&token=Ni7aXOJYzIfwW1iX';
+        $api = "http://data.zz.baidu.com/urls?site=".env('BAIDU_AUTOURL_URL')."&token=".env('BAIDU_AUTOURL_KEY');
+        $ch = curl_init();
+        $options =  array(
+            CURLOPT_URL => $api,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => implode("\n", $urls),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        );
+        curl_setopt_array($ch, $options);
+        $result = curl_exec($ch);
+        Log::info("百度自动推动结果:");
+        Log::info($result);
     }
 }

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Log;
 use App\Models\Topic;
 use App\Handlers\SlugTranslateHandler;
-use GuzzleHttp\Client;
 
 class TranslateSlug implements ShouldQueue
 {
@@ -81,8 +80,21 @@ class TranslateSlug implements ShouldQueue
         }else{
             \DB::table('topics')->where('id', $this->topic->id)->update(['body' => $body,'slug' => $slug]);
         }
-
-        $client = new Client();
-        $client->get($this->topic->link());
+        // 百度主动推送
+        $urls = array($this->topic->link());
+        // $api = 'http://data.zz.baidu.com/urls?site=www.kouton.com&token=Ni7aXOJYzIfwW1iX';
+        $api = "http://data.zz.baidu.com/urls?site=".env('BAIDU_AUTOURL_URL')."&token=".env('BAIDU_AUTOURL_KEY');
+        $ch = curl_init();
+        $options =  array(
+            CURLOPT_URL => $api,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => implode("\n", $urls),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        );
+        curl_setopt_array($ch, $options);
+        $result = curl_exec($ch);
+        Log::info("百度自动推动结果:");
+        Log::info($result);
     }
 }
