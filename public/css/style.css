@@ -1157,7 +1157,7 @@ a:active {
 }
 
 .news-big-item .news-big-pictures {
-    width: 100%;
+    width: 80%;
     transition: all 0.6s;
 }
 
