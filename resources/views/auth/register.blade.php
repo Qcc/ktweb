@@ -12,7 +12,8 @@
                     <div class="mdui-textfield mdui-textfield-floating-label{{ $errors->has('phone') ? ' mdui-textfield-invalid-html5' : '' }}">
                         <label class="mdui-textfield-label">手机号码</label>
                         <input id="phone" class="mdui-textfield-input" type="text" pattern="^(1[0-9])\d{9}$"
-                            name="phone" value="{{ old('phone') }}" required />
+                            name="phone" value="{{ old('phone') }}" disabled required />
+                            暂停注册，如有疑问请致电8009996619
                         @if ($errors->has('phone'))
                         <div class="mdui-textfield-error">{{ $errors->first('phone') }}</div>
                         @else
